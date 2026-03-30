@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Our Story | RentSpace Nairobi</title>
+  <meta name="description" content="Discover the story behind RentSpace - Nairobi's premier residential concierge. Curating exceptional properties and bespoke relocation services since 2018.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Our Story | RentSpace Nairobi">
+  <meta property="og:description" content="Discover the story behind RentSpace - Nairobi's premier residential concierge.">
+  <meta property="og:type" content="website">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ============================================
+       ABOUT PAGE - PREMIUM DARK THEME
+       ============================================ */
+    
+    :root {
+      --gold: #c9a45c;
+      --gold-dark: #b88f3c;
+      --bg-dark: #0a0a0a;
+      --bg-card: #111111;
+      --border: rgba(201, 164, 92, 0.2);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: radial-gradient(circle at 30% 10%, #1a1a1a 0%, #0a0a0a 100%);
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 100vh;
+      animation: pageFadeIn 1s ease;
+    }
+    
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* ========== EXECUTIVE NAVBAR ========== */
+    .exec-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    
+    .nav-logo span {
+      color: var(--gold);
+      font-weight: 400;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+    
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    
+    .nav-cta:hover {
+      background: var(--gold);
+      color: #000;
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1002;
+    }
+    
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    /* ========== PAGE HEADER ========== */
+    .page-header {
+      text-align: center;
+      padding: 140px 5% 60px;
+    }
+    
+    .page-subtitle {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+    
+    .page-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+    }
+    
+    /* ========== MAIN CONTENT ========== */
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5% 80px;
+    }
+    
+    /* Story Section */
+    .story-section {
+      margin-bottom: 80px;
+    }
+    
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    @media (max-width: 900px) {
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    
+    .story-text h2 {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+    
+    .story-text p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .story-image {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    
+    .story-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    
+    .story-image:hover img {
+      transform: scale(1.05);
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin: 80px 0;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+    }
+    
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: var(--transition);
+    }
+    
+    .stat-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+    }
+    
+    .stat-number {
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    
+    /* Values Section */
+    .values-section {
+      margin: 80px 0;
+      text-align: center;
+    }
+    
+    .values-section h2 {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    @media (max-width: 768px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+    }
+    
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    
+    .value-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+    }
+    
+    .value-icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(201, 164, 92, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .value-icon i {
+      font-size: 32px;
+      color: var(--gold);
+    }
+    
+    .value-card h3 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
+    .value-card p {
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    
+    /* Team Section */
+    .team-section {
+      margin: 80px 0;
+      text-align: center;
+    }
+    
+    .team-section h2 {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+    
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .team-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+    }
+    
+    .team-image {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+    }
+    
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    
+    .team-card:hover .team-image img {
+      transform: scale(1.05);
+    }
+    
+    .team-info {
+      padding: 1.5rem;
+    }
+    
+    .team-info h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    
+    .team-info p {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .team-info .bio {
+      color: var(--text-secondary);
+      font-size: 12px;
+      margin-top: 0.5rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(201, 164, 92, 0.1), transparent);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .cta-section h2 {
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-section p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      background: var(--gold);
+      color: #000;
+      padding: 12px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 12px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(201, 164, 92, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    /* ========== PREMIUM FOOTER ========== */
+    .premium-footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 4rem 5% 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-col h4 {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    
+    .footer-col p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+    }
+    
+    .footer-col a:hover {
+      color: var(--gold);
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+    
+    .footer-bottom i {
+      color: var(--gold);
+    }
+    
+    /* ========== MOBILE BOTTOM NAV ========== */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 999;
+    }
+    
+    .mobile-bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 10px;
+      transition: var(--transition);
+    }
+    
+    .mobile-bottom-nav a i {
+      font-size: 20px;
+    }
+    
+    .mobile-bottom-nav a.active {
+      color: var(--gold);
+    }
+    
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-cta {
+        display: none;
+      }
+      
+      .mobile-bottom-nav {
+        display: flex;
+      }
+      
+      body {
+        padding-bottom: 70px;
+      }
+      
+      .page-header {
+        padding: 120px 5% 40px;
+      }
+      
+      .stats-section {
+        gap: 20px;
+      }
+      
+      .stat-number {
+        font-size: 32px;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Executive Navbar -->
+  <nav class="exec-nav">
+    <a href="/index.html" class="nav-logo">ELITE<span>HOMES</span></a>
+    <ul class="nav-links">
+      <li><a href="/rentals.html">The Collection</a></li>
+      <li><a href="/movers.html">Relocation</a></li>
+      <li><a href="https://your-fumigation-site.com" target="_blank">Sanctuary Prep</a></li>
+    </ul>
+    <a href="/contact.html" class="nav-cta">Private Inquiry</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-subtitle">Our Story</div>
+    <h1>Curating Excellence Since 2018</h1>
+    <p class="page-description">A legacy of discretion, service, and architectural distinction in Nairobi's most prestigious estates.</p>
+  </div>
+
+  <!-- About Container -->
+  <div class="about-container">
+    
+    <!-- Story Section -->
+    <div class="story-section">
+      <div class="story-grid">
+        <div class="story-text">
+          <h2>The RentSpace Philosophy</h2>
+          <p>Founded in 2018, RentSpace was born from a simple yet profound vision: to create a residential concierge that understands the nuanced needs of Nairobi's most discerning individuals. We recognized that finding a home is not merely a transaction—it is the curation of a lifestyle.</p>
+          <p>What sets us apart is our unwavering commitment to discretion, our deep understanding of Nairobi's architectural landscape, and our ability to anticipate the unspoken requirements of our clients. From the leafy avenues of Karen to the vibrant energy of Kilimani, we've cultivated relationships with property owners and architects who share our standard of excellence.</p>
+          <p>Today, RentSpace stands as the premier destination for those seeking not just a residence, but a sanctuary that reflects their personal narrative.</p>
+        </div>
+        <div class="story-image">
+          <img src="images/about-hero.jpg" alt="RentSpace Team" onerror="this.src='https://placehold.co/600x400/1a1a1a/c9a45c?text=RentSpace+Legacy'">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Properties Curated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Premier Estates</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Concierge Access</div>
+      </div>
+    </div>
+    
+    <!-- Values Section -->
+    <div class="values-section">
+      <h2>Our Guiding Principles</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">The values that define our approach to residential excellence</p>
+      
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>Discretion</h3>
+          <p>We understand that privacy is paramount. Every interaction is handled with the utmost confidentiality and respect.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3>Excellence</h3>
+          <p>From architectural integrity to service delivery, we hold ourselves to the highest standards of quality.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Anticipation</h3>
+          <p>We don't just respond to needs—we anticipate them, ensuring a seamless experience for our clients.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Team Section -->
+    <div class="team-section">
+      <h2>The Concierge Team</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Meet the experts dedicated to your residential journey</p>
+      
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-image">
+            <img src="images/team-1.jpg" alt="Michael Harrington" onerror="this.src='https://placehold.co/400x400/1a1a1a/c9a45c?text=MH'">
+          </div>
+          <div class="team-info">
+            <h3>Michael Harrington</h3>
+            <p>Founder & Principal</p>
+            <p class="bio">With over 15 years in Nairobi's luxury real estate, Michael brings unparalleled insight and relationships.</p>
+          </div>
+        </div>
+        
+        <div class="team-card">
+          <div class="team-image">
+            <img src="images/team-2.jpg" alt="Sarah Wanjiku" onerror="this.src='https://placehold.co/400x400/1a1a1a/c9a45c?text=SW'">
+          </div>
+          <div class="team-info">
+            <h3>Sarah Wanjiku</h3>
+            <p>Senior Concierge</p>
+            <p class="bio">Sarah's attention to detail and client-first approach ensures every transition is flawless.</p>
+          </div>
+        </div>
+        
+        <div class="team-card">
+          <div class="team-image">
+            <img src="images/team-3.jpg" alt="James Omondi" onerror="this.src='https://placehold.co/400x400/1a1a1a/c9a45c?text=JO'">
+          </div>
+          <div class="team-info">
+            <h3>James Omondi</h3>
+            <p>Relocation Specialist</p>
+            <p class="bio">James orchestrates bespoke moving experiences for high-value estates across Nairobi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <h2>Begin Your Journey</h2>
+      <p>Experience the RentSpace difference. Let us curate your next chapter.</p>
+      <div class="cta-buttons">
+        <a href="/contact.html" class="btn-primary">Request Consultation</a>
+        <a href="/rentals.html" class="btn-secondary">Explore The Collection</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Elite Homes</h4>
+        <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/rentals.html">The Collection</a>
+        <a href="/movers.html">Bespoke Relocation</a>
+        <a href="https://your-fumigation-site.com">Sanctuary Prep</a>
+      </div>
+      <div class="footer-col">
+        <h4>Concierge</h4>
+        <a href="tel:+254723562484">+254 723 562 484</a>
+        <a href="mailto:concierge@rentspace.co.ke">concierge@rentspace.co.ke</a>
+        <a href="/contact.html">Private Viewings</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> RENTSPACE NAIROBI — ALL RIGHTS RESERVED</p>
+      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="/rentals.html"><i class="fas fa-search"></i> Explore</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ========== HAMBURGER MENU ==========
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+      });
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (navMenu && navMenu.classList.contains('active')) {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

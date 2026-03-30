@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Elite Collection | Luxury Rentals in Nairobi</title>
+  <meta name="description" content="Discover Nairobi's most prestigious properties. Curated selection of luxury homes in Karen, Kilimani, Hurlingham, and beyond.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Elite Collection | Luxury Rentals in Nairobi">
+  <meta property="og:description" content="Discover Nairobi's most prestigious properties. Curated selection of luxury homes.">
+  <meta property="og:type" content="website">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/rentals.css">
+</head>
+<body>
+
+  <!-- Executive Navbar -->
+ <!-- Executive Navbar -->
+<!-- Executive Navbar -->
+<nav class="exec-nav">
+  <a href="/index.html" class="nav-logo">ELITE<span>HOMES</span></a>
+  
+  <!-- Navigation Links - Mobile Menu with Close Button -->
+  <ul class="nav-links" id="navLinks">
+    <!-- Close button (X) inside menu for easy closing -->
+    <div class="menu-close" id="menuCloseBtn">
+      <i class="fas fa-times"></i>
+    </div>
+    
+    <!-- Optional: Brand inside menu for consistency -->
+    <div class="menu-brand">ELITE<span>HOMES</span></div>
+    
+    <li><a href="/rentals.html" class="active">The Collection</a></li>
+    <li><a href="/movers.html">Relocation</a></li>
+    <li><a href="https://your-fumigation-site.com" target="_blank">Sanctuary Prep</a></li>
+    
+    <!-- Mobile CTA Button (visible only on mobile) -->
+    <li class="mobile-cta">
+      <a href="/contact.html" class="menu-cta-btn">Private Inquiry</a>
+    </li>
+  </ul>
+  
+  <!-- Desktop CTA Button -->
+  <a href="/contact.html" class="nav-cta">Private Inquiry</a>
+  
+  <!-- Hamburger Icon -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- Overlay for closing menu when clicking outside -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Page Header (No Hero) -->
+  <div class="page-header">
+    <div class="page-subtitle">CURRENT CURATIONS</div>
+    <h1 class="page-title">Nairobi's Finest Residences</h1>
+    <p class="page-description">A hand-picked selection of elite homes across the city's most prestigious estates.</p>
+  </div>
+
+  <!-- Filter Strip -->
+  <div class="filter-strip">
+    <button class="filter-btn" id="filterNeighborhoodBtn">
+      Neighborhood <i class="fas fa-chevron-down"></i>
+    </button>
+    <button class="filter-btn" id="filterTypeBtn">
+      Property Type <i class="fas fa-chevron-down"></i>
+    </button>
+    <button class="filter-btn" id="filterBudgetBtn">
+      Budget <i class="fas fa-chevron-down"></i>
+    </button>
+    <button class="filter-btn refine-btn" id="openDrawerBtn">
+      <i class="fas fa-sliders-h"></i> Refine Search
+    </button>
+  </div>
+
+  <!-- Result Count -->
+  <div class="result-count" id="resultCount">
+    Loading <span id="countValue">0</span> exceptional properties
+  </div>
+
+  <!-- Property Grid (Dynamic) -->
+  <div id="propertyGrid" class="property-grid"></div>
+
+  <!-- Skeleton Loader -->
+  <div id="skeletonLoader" class="skeleton-grid">
+    <div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+  </div>
+
+  <!-- Empty State -->
+  <div id="emptyState" class="empty-state">
+    <div class="empty-state-icon">
+      <i class="fas fa-home"></i>
+    </div>
+    <h3>No Properties Match These Criteria</h3>
+    <p>Our private portfolio may have off-market options that suit your needs.</p>
+    <a href="https://wa.me/254723562484?text=I'm%20interested%20in%20a%20private%20consultation" class="empty-state-btn">
+      Request Private Consultation
+    </a>
+  </div>
+
+  <!-- Premium Filter Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="filter-drawer" id="filterDrawer">
+    <div class="drawer-header">
+      <h3>Refine Collection</h3>
+      <div class="drawer-close" id="closeDrawerBtn">✕</div>
+    </div>
+
+    <div class="filter-section" data-filter="neighborhood">
+      <span class="filter-section-label">Neighborhood</span>
+      <div class="filter-chips" id="neighborhoodChips">
+        <div class="filter-chip active" data-value="all">All Estates</div>
+        <div class="filter-chip" data-value="Karen">Karen</div>
+        <div class="filter-chip" data-value="Kilimani">Kilimani</div>
+        <div class="filter-chip" data-value="Hurlingham">Hurlingham</div>
+        <div class="filter-chip" data-value="Ruiru">Ruiru</div>
+        <div class="filter-chip" data-value="Ngong">Ngong</div>
+        <div class="filter-chip" data-value="Kitengela">Kitengela</div>
+      </div>
+    </div>
+
+    <div class="filter-section" data-filter="type">
+      <span class="filter-section-label">Property Type</span>
+      <div class="filter-chips" id="typeChips">
+        <div class="filter-chip active" data-value="all">All Types</div>
+        <div class="filter-chip" data-value="Bedsitter">Studio</div>
+        <div class="filter-chip" data-value="1 Bedroom">1 Bedroom</div>
+        <div class="filter-chip" data-value="2 Bedroom">2 Bedroom</div>
+        <div class="filter-chip" data-value="3 Bedroom">3 Bedroom</div>
+        <div class="filter-chip" data-value="Bungalow">Bungalow</div>
+        <div class="filter-chip" data-value="Mansionette">Mansionette</div>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <span class="filter-section-label">Budget (Monthly)</span>
+      <div class="price-range">
+        <input type="range" id="priceRange" min="0" max="500000" step="10000" value="500000">
+        <div class="price-values">
+          <span>KES 0</span>
+          <span id="maxPriceLabel">KES 500,000+</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="drawer-apply" id="applyFiltersBtn">Show Results</button>
+  </div>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Elite Homes</h4>
+        <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio</h4>
+        <a href="/rentals.html">The Collection</a>
+        <a href="/movers.html">Relocation Services</a>
+        <a href="https://your-fumigation-site.com">Sanctuary Preparation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Concierge</h4>
+        <a href="tel:+254723562484">+254 723 562 484</a>
+        <a href="mailto:concierge@rentspace.co.ke">concierge@rentspace.co.ke</a>
+        <a href="/contact.html">Private Viewings</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/about.html">About the Brand</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> ELITE HOMES NAIROBI — ALL RIGHTS RESERVED</p>
+      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="/rentals.html" class="active"><i class="fas fa-search"></i> Explore</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <script src="js/rentals.js"></script>
+</body>
+</html>

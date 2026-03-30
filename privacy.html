@@ -1,0 +1,856 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Privacy Policy | RentSpace Nairobi</title>
+  <meta name="description" content="Learn how RentSpace protects your personal information. Our commitment to privacy, data protection, and confidentiality.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Privacy Policy | RentSpace Nairobi">
+  <meta property="og:description" content="Learn how RentSpace protects your personal information. Our commitment to privacy, data protection, and confidentiality.">
+  <meta property="og:type" content="website">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ============================================
+       PRIVACY POLICY PAGE - PREMIUM DARK THEME
+       ============================================ */
+    
+    :root {
+      --gold: #c9a45c;
+      --gold-dark: #b88f3c;
+      --bg-dark: #0a0a0a;
+      --bg-card: #111111;
+      --border: rgba(201, 164, 92, 0.2);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: radial-gradient(circle at 30% 10%, #1a1a1a 0%, #0a0a0a 100%);
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 100vh;
+      animation: pageFadeIn 1s ease;
+    }
+    
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* ========== EXECUTIVE NAVBAR ========== */
+    .exec-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    
+    .nav-logo span {
+      color: var(--gold);
+      font-weight: 400;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+    
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    
+    .nav-cta:hover {
+      background: var(--gold);
+      color: #000;
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1002;
+    }
+    
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    /* ========== PAGE HEADER ========== */
+    .page-header {
+      text-align: center;
+      padding: 140px 5% 60px;
+    }
+    
+    .page-subtitle {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+    
+    .page-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .last-updated {
+      margin-top: 1rem;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+    }
+    
+    /* ========== PRIVACY CONTENT ========== */
+    .privacy-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 5% 80px;
+    }
+    
+    .privacy-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+    }
+    
+    @media (max-width: 768px) {
+      .privacy-content {
+        padding: 1.5rem;
+      }
+    }
+    
+    .privacy-section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .privacy-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .privacy-section h2 {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: -0.3px;
+    }
+    
+    .privacy-section h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      margin-top: 1rem;
+    }
+    
+    .privacy-section p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    
+    .privacy-section ul, 
+    .privacy-section ol {
+      margin: 1rem 0 1rem 1.5rem;
+      color: var(--text-secondary);
+    }
+    
+    .privacy-section li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .privacy-section a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .privacy-section a:hover {
+      text-decoration: underline;
+    }
+    
+    .highlight-box {
+      background: rgba(201, 164, 92, 0.05);
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+    
+    .highlight-box p {
+      margin-bottom: 0;
+      font-size: 13px;
+    }
+    
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+    
+    /* Table of Contents */
+    .toc {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .toc h3 {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .toc-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    
+    .toc-link {
+      background: rgba(201, 164, 92, 0.1);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .toc-link:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+    
+    /* Data Rights Cards */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    @media (max-width: 600px) {
+      .rights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .right-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      transition: var(--transition);
+    }
+    
+    .right-card:hover {
+      border-color: var(--gold);
+    }
+    
+    .right-card i {
+      color: var(--gold);
+      font-size: 20px;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    
+    .right-card h4 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    
+    .right-card p {
+      font-size: 12px;
+      margin-bottom: 0;
+    }
+    
+    /* Contact Card */
+    .contact-card {
+      background: rgba(201, 164, 92, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    
+    .contact-card h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .contact-card p {
+      margin-bottom: 1rem;
+    }
+    
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .contact-links a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 13px;
+      transition: var(--transition);
+    }
+    
+    .contact-links a i {
+      margin-right: 6px;
+    }
+    
+    .contact-links a:hover {
+      color: var(--gold-dark);
+    }
+    
+    /* ========== PREMIUM FOOTER ========== */
+    .premium-footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 4rem 5% 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-col h4 {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    
+    .footer-col p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+    }
+    
+    .footer-col a:hover {
+      color: var(--gold);
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+    
+    .footer-bottom i {
+      color: var(--gold);
+    }
+    
+    /* ========== MOBILE BOTTOM NAV ========== */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 999;
+    }
+    
+    .mobile-bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 10px;
+      transition: var(--transition);
+    }
+    
+    .mobile-bottom-nav a i {
+      font-size: 20px;
+    }
+    
+    .mobile-bottom-nav a.active {
+      color: var(--gold);
+    }
+    
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-cta {
+        display: none;
+      }
+      
+      .mobile-bottom-nav {
+        display: flex;
+      }
+      
+      body {
+        padding-bottom: 70px;
+      }
+      
+      .page-header {
+        padding: 120px 5% 40px;
+      }
+      
+      .toc-links {
+        gap: 0.5rem;
+      }
+      
+      .toc-link {
+        font-size: 10px;
+        padding: 4px 10px;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Executive Navbar -->
+  <nav class="exec-nav">
+    <a href="/index.html" class="nav-logo">ELITE<span>HOMES</span></a>
+    <ul class="nav-links">
+      <li><a href="/rentals.html">The Collection</a></li>
+      <li><a href="/movers.html">Relocation</a></li>
+      <li><a href="https://your-fumigation-site.com" target="_blank">Sanctuary Prep</a></li>
+    </ul>
+    <a href="/contact.html" class="nav-cta">Private Inquiry</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-subtitle">Data Protection</div>
+    <h1>Privacy Policy</h1>
+    <p class="page-description">How we collect, use, and protect your personal information. Your privacy is our priority.</p>
+    <div class="last-updated">Last Updated: March 2026</div>
+  </div>
+
+  <!-- Privacy Container -->
+  <div class="privacy-container">
+    <div class="privacy-content">
+      
+      <!-- Table of Contents -->
+      <div class="toc">
+        <h3>Quick Navigation</h3>
+        <div class="toc-links">
+          <a href="#commitment" class="toc-link">Our Commitment</a>
+          <a href="#collection" class="toc-link">Information Collection</a>
+          <a href="#usage" class="toc-link">How We Use Data</a>
+          <a href="#sharing" class="toc-link">Information Sharing</a>
+          <a href="#cookies" class="toc-link">Cookies</a>
+          <a href="#rights" class="toc-link">Your Rights</a>
+          <a href="#security" class="toc-link">Data Security</a>
+          <a href="#retention" class="toc-link">Data Retention</a>
+          <a href="#children" class="toc-link">Children's Privacy</a>
+          <a href="#changes" class="toc-link">Policy Changes</a>
+          <a href="#contact" class="toc-link">Contact Us</a>
+        </div>
+      </div>
+      
+      <!-- Section 1: Our Commitment -->
+      <div class="privacy-section" id="commitment">
+        <h2>1. Our Commitment to Privacy</h2>
+        <p>At RentSpace, we understand that privacy is not just a legal requirement—it is a fundamental aspect of trust. As a concierge serving Nairobi's most discerning individuals, we are committed to protecting the confidentiality and security of your personal information.</p>
+        <div class="highlight-box">
+          <p><strong>🔒 Elite Assurance:</strong> Your personal information will never be sold, traded, or shared with third parties for marketing purposes. We maintain the same discretion for your data as we do for your property transactions.</p>
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 2: Information We Collect -->
+      <div class="privacy-section" id="collection">
+        <h2>2. Information We Collect</h2>
+        <p>To provide our premium services, we may collect the following categories of information:</p>
+        
+        <h3>2.1 Personal Identification Information</h3>
+        <ul>
+          <li>Full name and title</li>
+          <li>Contact information (email address, phone number, physical address)</li>
+          <li>Government-issued identification for verification purposes</li>
+          <li>Professional and residential history</li>
+        </ul>
+        
+        <h3>2.2 Property & Relocation Information</h3>
+        <ul>
+          <li>Property preferences and viewing history</li>
+          <li>Relocation details (origin, destination, move volume)</li>
+          <li>Payment and billing information</li>
+          <li>Communications with our concierge team</li>
+        </ul>
+        
+        <h3>2.3 Technical Information</h3>
+        <ul>
+          <li>IP address and device information</li>
+          <li>Browser type and operating system</li>
+          <li>Website usage patterns and preferences</li>
+        </ul>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 3: How We Use Your Information -->
+      <div class="privacy-section" id="usage">
+        <h2>3. How We Use Your Information</h2>
+        <p>Your information enables us to deliver the exceptional service you expect:</p>
+        <ul>
+          <li><strong>Service Delivery:</strong> To process property viewings, relocation services, and sanctuary preparation requests.</li>
+          <li><strong>Communication:</strong> To respond to inquiries, provide updates, and coordinate service delivery.</li>
+          <li><strong>Personalization:</strong> To curate property recommendations aligned with your preferences.</li>
+          <li><strong>Legal Compliance:</strong> To fulfill our legal obligations and verify identity for high-value transactions.</li>
+          <li><strong>Service Improvement:</strong> To analyze usage patterns and enhance our platform.</li>
+        </ul>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 4: Information Sharing -->
+      <div class="privacy-section" id="sharing">
+        <h2>4. Information Sharing</h2>
+        <p>We value your trust and only share your information in limited circumstances:</p>
+        <ul>
+          <li><strong>With Your Consent:</strong> When you authorize us to share information with property owners or service partners.</li>
+          <li><strong>Service Providers:</strong> With trusted partners who assist in delivering our services (e.g., moving companies, fumigation specialists), under strict confidentiality agreements.</li>
+          <li><strong>Legal Requirements:</strong> When required by law or to protect our rights and property.</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>⚠️ Important:</strong> RentSpace does not sell your personal information to third parties. Any sharing is strictly for service delivery with your explicit consent.</p>
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 5: Cookies & Tracking -->
+      <div class="privacy-section" id="cookies">
+        <h2>5. Cookies & Tracking Technologies</h2>
+        <p>We use cookies and similar technologies to enhance your experience:</p>
+        <ul>
+          <li><strong>Essential Cookies:</strong> Required for website functionality and security.</li>
+          <li><strong>Performance Cookies:</strong> Help us understand how visitors interact with our site.</li>
+          <li><strong>Preference Cookies:</strong> Remember your settings and preferences.</li>
+        </ul>
+        <p>You can manage cookie preferences through your browser settings. However, disabling certain cookies may affect website functionality.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 6: Your Privacy Rights -->
+      <div class="privacy-section" id="rights">
+        <h2>6. Your Privacy Rights</h2>
+        <p>Under the Kenya Data Protection Act, 2019, and applicable international regulations, you have the right to:</p>
+        
+        <div class="rights-grid">
+          <div class="right-card">
+            <i class="fas fa-eye"></i>
+            <h4>Right to Access</h4>
+            <p>Request a copy of your personal information.</p>
+          </div>
+          <div class="right-card">
+            <i class="fas fa-edit"></i>
+            <h4>Right to Rectification</h4>
+            <p>Correct inaccurate or incomplete information.</p>
+          </div>
+          <div class="right-card">
+            <i class="fas fa-trash-alt"></i>
+            <h4>Right to Erasure</h4>
+            <p>Request deletion of your information (subject to legal obligations).</p>
+          </div>
+          <div class="right-card">
+            <i class="fas fa-ban"></i>
+            <h4>Right to Object</h4>
+            <p>Object to processing of your information.</p>
+          </div>
+          <div class="right-card">
+            <i class="fas fa-database"></i>
+            <h4>Right to Portability</h4>
+            <p>Receive your data in a structured format.</p>
+          </div>
+          <div class="right-card">
+            <i class="fas fa-comment-dots"></i>
+            <h4>Right to Lodge Complaint</h4>
+            <p>File a complaint with the Office of the Data Protection Commissioner.</p>
+          </div>
+        </div>
+        
+        <p>To exercise these rights, please contact our Data Protection Officer at <a href="mailto:privacy@rentspace.co.ke">privacy@rentspace.co.ke</a>.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 7: Data Security -->
+      <div class="privacy-section" id="security">
+        <h2>7. Data Security</h2>
+        <p>We implement robust security measures to protect your information:</p>
+        <ul>
+          <li><strong>Encryption:</strong> 256-bit SSL encryption for all data transmission.</li>
+          <li><strong>Access Controls:</strong> Strict role-based access to personal information.</li>
+          <li><strong>Regular Audits:</strong> Continuous monitoring and security assessments.</li>
+          <li><strong>Staff Training:</strong> All team members undergo privacy and security training.</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>🔐 Security Commitment:</strong> While we implement industry-standard security measures, no system is 100% secure. We encourage you to protect your account credentials and contact us immediately if you suspect unauthorized access.</p>
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 8: Data Retention -->
+      <div class="privacy-section" id="retention">
+        <h2>8. Data Retention</h2>
+        <p>We retain your personal information only as long as necessary:</p>
+        <ul>
+          <li><strong>Active Clients:</strong> Information retained for the duration of our relationship.</li>
+          <li><strong>Inactive Clients:</strong> Data retained for up to 5 years after last interaction for legal and service continuity purposes.</li>
+          <li><strong>Legal Requirements:</strong> Some information may be retained longer to comply with legal obligations.</li>
+        </ul>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 9: Children's Privacy -->
+      <div class="privacy-section" id="children">
+        <h2>9. Children's Privacy</h2>
+        <p>RentSpace services are intended for adults. We do not knowingly collect information from individuals under 18 years of age. If we discover such information, we will delete it immediately. Parents or guardians who believe their child has provided us with personal information should contact us promptly.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 10: Changes to This Policy -->
+      <div class="privacy-section" id="changes">
+        <h2>10. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. Significant changes will be notified through our website or via email. We encourage you to review this policy regularly.</p>
+        <p>The "Last Updated" date at the top of this page indicates when the policy was last revised.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 11: Contact Us -->
+      <div class="privacy-section" id="contact">
+        <h2>11. Contact Information</h2>
+        <p>If you have questions about this Privacy Policy or wish to exercise your privacy rights, please contact us:</p>
+        
+        <div class="contact-card">
+          <h3>Data Protection Officer</h3>
+          <p>RentSpace Concierge Services</p>
+          <div class="contact-links">
+            <a href="mailto:privacy@rentspace.co.ke"><i class="fas fa-envelope"></i> privacy@rentspace.co.ke</a>
+            <a href="tel:+254723562484"><i class="fas fa-phone-alt"></i> +254 723 562 484</a>
+            <a href="/contact.html"><i class="fas fa-map-marker-alt"></i> Contact Form</a>
+          </div>
+          <p style="margin-top: 1rem; font-size: 12px;">Physical Address: Westlands, Nairobi, Kenya</p>
+          <p style="font-size: 11px; color: var(--text-muted); margin-top: 0.5rem;">Office of the Data Protection Commissioner: <a href="https://www.odpc.go.ke" target="_blank" style="color: var(--gold);">www.odpc.go.ke</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Elite Homes</h4>
+        <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/rentals.html">The Collection</a>
+        <a href="/movers.html">Bespoke Relocation</a>
+        <a href="https://your-fumigation-site.com">Sanctuary Prep</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> ELITE HOMES NAIROBI — ALL RIGHTS RESERVED</p>
+      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="/rentals.html"><i class="fas fa-search"></i> Explore</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ========== HAMBURGER MENU ==========
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('.toc-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (navMenu && navMenu.classList.contains('active')) {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

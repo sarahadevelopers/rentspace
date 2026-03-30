@@ -1,0 +1,2902 @@
+[
+  {
+    "id": 1,
+    "slug": "1-bedroom-apartment-in-ngong-1",
+    "title": "1 Bedroom Apartment in Ngong",
+    "type": "1 Bedroom",
+    "estate": "Ngong",
+    "price": 27453,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-ngong-1.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 2745,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 2,
+    "slug": "3-bedroom-bungalow-in-ruiru-2",
+    "title": "Spacious 3 Bedroom Bungalow in Ruiru",
+    "type": "Bungalow",
+    "estate": "Ruiru",
+    "price": 70175,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-ruiru-2.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 7017,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 3,
+    "slug": "studio-apartment-in-karen-3",
+    "title": "Studio Apartment in Karen",
+    "type": "Bedsitter",
+    "estate": "Karen",
+    "price": 42794,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/bedsitter-karen-3.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 4279,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in karen. Located in the prestigious Karen neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 4,
+    "slug": "3-bedroom-bungalow-in-ruiru-4",
+    "title": "Spacious 3 Bedroom Bungalow in Ruiru",
+    "type": "Bungalow",
+    "estate": "Ruiru",
+    "price": 52497,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-ruiru-4.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 5249,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 5,
+    "slug": "3-bedroom-bungalow-in-ngong-5",
+    "title": "Spacious 3 Bedroom Bungalow in Ngong",
+    "type": "Bungalow",
+    "estate": "Ngong",
+    "price": 82202,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-ngong-5.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 8220,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 6,
+    "slug": "3-bedroom-mansionette-in-ruiru-6",
+    "title": "Luxury 3 Bedroom Mansionette in Ruiru",
+    "type": "Mansionette",
+    "estate": "Ruiru",
+    "price": 96934,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/mansionette-ruiru-6.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 9693,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 7,
+    "slug": "3-bedroom-apartment-in-ngong-7",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 57156,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-7.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 5715,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 8,
+    "slug": "1-bedroom-apartment-in-kilimani-8",
+    "title": "1 Bedroom Apartment in Kilimani",
+    "type": "1 Bedroom",
+    "estate": "Kilimani",
+    "price": 50783,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-kilimani-8.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 5078,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 9,
+    "slug": "1-bedroom-apartment-in-hurlingham-9",
+    "title": "1 Bedroom Apartment in Hurlingham",
+    "type": "1 Bedroom",
+    "estate": "Hurlingham",
+    "price": 58194,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-hurlingham-9.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 5819,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 10,
+    "slug": "2-bedroom-apartment-in-kilimani-10",
+    "title": "2 Bedroom Apartment in Kilimani",
+    "type": "2 Bedroom",
+    "estate": "Kilimani",
+    "price": 121243,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-kilimani-10.jpg"
+    ],
+    "isFeatured": true,
+    "movingEstimate": 12124,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 11,
+    "slug": "1-bedroom-apartment-in-ngong-11",
+    "title": "1 Bedroom Apartment in Ngong",
+    "type": "1 Bedroom",
+    "estate": "Ngong",
+    "price": 18307,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-ngong-11.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 1830,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 12,
+    "slug": "3-bedroom-mansionette-in-kitengela-12",
+    "title": "Luxury 3 Bedroom Mansionette in Kitengela",
+    "type": "Mansionette",
+    "estate": "Kitengela",
+    "price": 115334,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/mansionette-kitengela-12.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 11533,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 13,
+    "slug": "2-bedroom-apartment-in-kilimani-13",
+    "title": "2 Bedroom Apartment in Kilimani",
+    "type": "2 Bedroom",
+    "estate": "Kilimani",
+    "price": 99730,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-kilimani-13.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 9973,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 14,
+    "slug": "3-bedroom-apartment-in-ruiru-14",
+    "title": "3 Bedroom Apartment in Ruiru",
+    "type": "3 Bedroom",
+    "estate": "Ruiru",
+    "price": 67849,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ruiru-14.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6784,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 15,
+    "slug": "3-bedroom-apartment-in-ngong-15",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 56919,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-15.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 5691,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 16,
+    "slug": "3-bedroom-bungalow-in-hurlingham-16",
+    "title": "Spacious 3 Bedroom Bungalow in Hurlingham",
+    "type": "Bungalow",
+    "estate": "Hurlingham",
+    "price": 218486,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-hurlingham-16.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 21848,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 17,
+    "slug": "2-bedroom-apartment-in-hurlingham-17",
+    "title": "2 Bedroom Apartment in Hurlingham",
+    "type": "2 Bedroom",
+    "estate": "Hurlingham",
+    "price": 123942,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-hurlingham-17.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 12394,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 18,
+    "slug": "3-bedroom-apartment-in-kilimani-18",
+    "title": "3 Bedroom Apartment in Kilimani",
+    "type": "3 Bedroom",
+    "estate": "Kilimani",
+    "price": 146092,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-kilimani-18.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 14609,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 19,
+    "slug": "studio-apartment-in-karen-19",
+    "title": "Studio Apartment in Karen",
+    "type": "Bedsitter",
+    "estate": "Karen",
+    "price": 37481,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/bedsitter-karen-19.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 3748,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in karen. Located in the prestigious Karen neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 20,
+    "slug": "3-bedroom-bungalow-in-karen-20",
+    "title": "Spacious 3 Bedroom Bungalow in Karen",
+    "type": "Bungalow",
+    "estate": "Karen",
+    "price": 313148,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-karen-20.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 31314,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 21,
+    "slug": "1-bedroom-apartment-in-hurlingham-21",
+    "title": "1 Bedroom Apartment in Hurlingham",
+    "type": "1 Bedroom",
+    "estate": "Hurlingham",
+    "price": 70858,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-hurlingham-21.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7085,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 22,
+    "slug": "2-bedroom-apartment-in-ngong-22",
+    "title": "2 Bedroom Apartment in Ngong",
+    "type": "2 Bedroom",
+    "estate": "Ngong",
+    "price": 44318,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-ngong-22.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 4431,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 23,
+    "slug": "3-bedroom-bungalow-in-hurlingham-23",
+    "title": "Spacious 3 Bedroom Bungalow in Hurlingham",
+    "type": "Bungalow",
+    "estate": "Hurlingham",
+    "price": 317413,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-hurlingham-23.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 31741,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 24,
+    "slug": "3-bedroom-bungalow-in-hurlingham-24",
+    "title": "Spacious 3 Bedroom Bungalow in Hurlingham",
+    "type": "Bungalow",
+    "estate": "Hurlingham",
+    "price": 251696,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-hurlingham-24.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 25169,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 25,
+    "slug": "2-bedroom-apartment-in-kitengela-25",
+    "title": "2 Bedroom Apartment in Kitengela",
+    "type": "2 Bedroom",
+    "estate": "Kitengela",
+    "price": 43634,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-kitengela-25.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 4363,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 26,
+    "slug": "3-bedroom-bungalow-in-karen-26",
+    "title": "Spacious 3 Bedroom Bungalow in Karen",
+    "type": "Bungalow",
+    "estate": "Karen",
+    "price": 292149,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-karen-26.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 29214,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 27,
+    "slug": "2-bedroom-apartment-in-ngong-27",
+    "title": "2 Bedroom Apartment in Ngong",
+    "type": "2 Bedroom",
+    "estate": "Ngong",
+    "price": 36018,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-ngong-27.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 3601,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 28,
+    "slug": "3-bedroom-apartment-in-ngong-28",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 67403,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-28.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6740,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 29,
+    "slug": "3-bedroom-apartment-in-ngong-29",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 66874,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-29.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6687,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 30,
+    "slug": "2-bedroom-apartment-in-kitengela-30",
+    "title": "2 Bedroom Apartment in Kitengela",
+    "type": "2 Bedroom",
+    "estate": "Kitengela",
+    "price": 35714,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-kitengela-30.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 3571,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 31,
+    "slug": "3-bedroom-mansionette-in-ngong-31",
+    "title": "Luxury 3 Bedroom Mansionette in Ngong",
+    "type": "Mansionette",
+    "estate": "Ngong",
+    "price": 81394,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/mansionette-ngong-31.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 8139,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 32,
+    "slug": "1-bedroom-apartment-in-hurlingham-32",
+    "title": "1 Bedroom Apartment in Hurlingham",
+    "type": "1 Bedroom",
+    "estate": "Hurlingham",
+    "price": 71649,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-hurlingham-32.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7164,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 33,
+    "slug": "3-bedroom-bungalow-in-kilimani-33",
+    "title": "Spacious 3 Bedroom Bungalow in Kilimani",
+    "type": "Bungalow",
+    "estate": "Kilimani",
+    "price": 219230,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-kilimani-33.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 21923,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 34,
+    "slug": "3-bedroom-mansionette-in-kitengela-34",
+    "title": "Luxury 3 Bedroom Mansionette in Kitengela",
+    "type": "Mansionette",
+    "estate": "Kitengela",
+    "price": 113183,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/mansionette-kitengela-34.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 11318,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 35,
+    "slug": "3-bedroom-apartment-in-kilimani-35",
+    "title": "3 Bedroom Apartment in Kilimani",
+    "type": "3 Bedroom",
+    "estate": "Kilimani",
+    "price": 234064,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-kilimani-35.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 23406,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 36,
+    "slug": "2-bedroom-apartment-in-kilimani-36",
+    "title": "2 Bedroom Apartment in Kilimani",
+    "type": "2 Bedroom",
+    "estate": "Kilimani",
+    "price": 116863,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-kilimani-36.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 11686,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 37,
+    "slug": "2-bedroom-apartment-in-hurlingham-37",
+    "title": "2 Bedroom Apartment in Hurlingham",
+    "type": "2 Bedroom",
+    "estate": "Hurlingham",
+    "price": 134030,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-hurlingham-37.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 13403,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 38,
+    "slug": "studio-apartment-in-hurlingham-38",
+    "title": "Studio Apartment in Hurlingham",
+    "type": "Bedsitter",
+    "estate": "Hurlingham",
+    "price": 37313,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/bedsitter-hurlingham-38.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 3731,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 39,
+    "slug": "1-bedroom-apartment-in-kilimani-39",
+    "title": "1 Bedroom Apartment in Kilimani",
+    "type": "1 Bedroom",
+    "estate": "Kilimani",
+    "price": 78797,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-kilimani-39.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7879,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 40,
+    "slug": "1-bedroom-apartment-in-kilimani-40",
+    "title": "1 Bedroom Apartment in Kilimani",
+    "type": "1 Bedroom",
+    "estate": "Kilimani",
+    "price": 73469,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-kilimani-40.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7346,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 41,
+    "slug": "2-bedroom-apartment-in-ngong-41",
+    "title": "2 Bedroom Apartment in Ngong",
+    "type": "2 Bedroom",
+    "estate": "Ngong",
+    "price": 49952,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-ngong-41.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 4995,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 42,
+    "slug": "3-bedroom-bungalow-in-kitengela-42",
+    "title": "Spacious 3 Bedroom Bungalow in Kitengela",
+    "type": "Bungalow",
+    "estate": "Kitengela",
+    "price": 66650,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-kitengela-42.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6665,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 43,
+    "slug": "studio-apartment-in-ruiru-43",
+    "title": "Studio Apartment in Ruiru",
+    "type": "Bedsitter",
+    "estate": "Ruiru",
+    "price": 13446,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/bedsitter-ruiru-43.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 1344,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 44,
+    "slug": "2-bedroom-apartment-in-kilimani-44",
+    "title": "2 Bedroom Apartment in Kilimani",
+    "type": "2 Bedroom",
+    "estate": "Kilimani",
+    "price": 137064,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-kilimani-44.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 13706,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 45,
+    "slug": "3-bedroom-mansionette-in-hurlingham-45",
+    "title": "Luxury 3 Bedroom Mansionette in Hurlingham",
+    "type": "Mansionette",
+    "estate": "Hurlingham",
+    "price": 250556,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/mansionette-hurlingham-45.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 25055,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 46,
+    "slug": "3-bedroom-bungalow-in-ruiru-46",
+    "title": "Spacious 3 Bedroom Bungalow in Ruiru",
+    "type": "Bungalow",
+    "estate": "Ruiru",
+    "price": 77001,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-ruiru-46.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7700,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 47,
+    "slug": "1-bedroom-apartment-in-ruiru-47",
+    "title": "1 Bedroom Apartment in Ruiru",
+    "type": "1 Bedroom",
+    "estate": "Ruiru",
+    "price": 24546,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-ruiru-47.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 2454,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 48,
+    "slug": "3-bedroom-bungalow-in-kilimani-48",
+    "title": "Spacious 3 Bedroom Bungalow in Kilimani",
+    "type": "Bungalow",
+    "estate": "Kilimani",
+    "price": 246256,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-kilimani-48.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 24625,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 49,
+    "slug": "2-bedroom-apartment-in-karen-49",
+    "title": "2 Bedroom Apartment in Karen",
+    "type": "2 Bedroom",
+    "estate": "Karen",
+    "price": 124965,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-karen-49.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 12496,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 50,
+    "slug": "2-bedroom-apartment-in-karen-50",
+    "title": "2 Bedroom Apartment in Karen",
+    "type": "2 Bedroom",
+    "estate": "Karen",
+    "price": 116361,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-karen-50.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 11636,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 51,
+    "slug": "3-bedroom-bungalow-in-ruiru-51",
+    "title": "Spacious 3 Bedroom Bungalow in Ruiru",
+    "type": "Bungalow",
+    "estate": "Ruiru",
+    "price": 81773,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-ruiru-51.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 8177,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 52,
+    "slug": "1-bedroom-apartment-in-ngong-52",
+    "title": "1 Bedroom Apartment in Ngong",
+    "type": "1 Bedroom",
+    "estate": "Ngong",
+    "price": 21166,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-ngong-52.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 2116,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 53,
+    "slug": "3-bedroom-apartment-in-ngong-53",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 68541,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-53.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6854,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 54,
+    "slug": "3-bedroom-mansionette-in-karen-54",
+    "title": "Luxury 3 Bedroom Mansionette in Karen",
+    "type": "Mansionette",
+    "estate": "Karen",
+    "price": 289836,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/mansionette-karen-54.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 28983,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 55,
+    "slug": "3-bedroom-apartment-in-kilimani-55",
+    "title": "3 Bedroom Apartment in Kilimani",
+    "type": "3 Bedroom",
+    "estate": "Kilimani",
+    "price": 146263,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-kilimani-55.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 14626,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 56,
+    "slug": "3-bedroom-apartment-in-ruiru-56",
+    "title": "3 Bedroom Apartment in Ruiru",
+    "type": "3 Bedroom",
+    "estate": "Ruiru",
+    "price": 68830,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ruiru-56.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6883,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 57,
+    "slug": "studio-apartment-in-karen-57",
+    "title": "Studio Apartment in Karen",
+    "type": "Bedsitter",
+    "estate": "Karen",
+    "price": 43776,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/bedsitter-karen-57.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 4377,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in karen. Located in the prestigious Karen neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 58,
+    "slug": "studio-apartment-in-ngong-58",
+    "title": "Studio Apartment in Ngong",
+    "type": "Bedsitter",
+    "estate": "Ngong",
+    "price": 10844,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/bedsitter-ngong-58.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 1084,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 59,
+    "slug": "3-bedroom-bungalow-in-ruiru-59",
+    "title": "Spacious 3 Bedroom Bungalow in Ruiru",
+    "type": "Bungalow",
+    "estate": "Ruiru",
+    "price": 57119,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-ruiru-59.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 5711,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 60,
+    "slug": "1-bedroom-apartment-in-kilimani-60",
+    "title": "1 Bedroom Apartment in Kilimani",
+    "type": "1 Bedroom",
+    "estate": "Kilimani",
+    "price": 82195,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-kilimani-60.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 8219,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 61,
+    "slug": "2-bedroom-apartment-in-ruiru-61",
+    "title": "2 Bedroom Apartment in Ruiru",
+    "type": "2 Bedroom",
+    "estate": "Ruiru",
+    "price": 46447,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-ruiru-61.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 4644,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 62,
+    "slug": "2-bedroom-apartment-in-kilimani-62",
+    "title": "2 Bedroom Apartment in Kilimani",
+    "type": "2 Bedroom",
+    "estate": "Kilimani",
+    "price": 122587,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-kilimani-62.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 12258,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 63,
+    "slug": "studio-apartment-in-ngong-63",
+    "title": "Studio Apartment in Ngong",
+    "type": "Bedsitter",
+    "estate": "Ngong",
+    "price": 12777,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/bedsitter-ngong-63.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 1277,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 64,
+    "slug": "2-bedroom-apartment-in-kitengela-64",
+    "title": "2 Bedroom Apartment in Kitengela",
+    "type": "2 Bedroom",
+    "estate": "Kitengela",
+    "price": 38802,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-kitengela-64.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 3880,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 65,
+    "slug": "1-bedroom-apartment-in-kitengela-65",
+    "title": "1 Bedroom Apartment in Kitengela",
+    "type": "1 Bedroom",
+    "estate": "Kitengela",
+    "price": 25595,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-kitengela-65.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 2559,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 66,
+    "slug": "3-bedroom-bungalow-in-ngong-66",
+    "title": "Spacious 3 Bedroom Bungalow in Ngong",
+    "type": "Bungalow",
+    "estate": "Ngong",
+    "price": 78345,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-ngong-66.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7834,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 67,
+    "slug": "3-bedroom-apartment-in-hurlingham-67",
+    "title": "3 Bedroom Apartment in Hurlingham",
+    "type": "3 Bedroom",
+    "estate": "Hurlingham",
+    "price": 150511,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-hurlingham-67.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 15051,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 68,
+    "slug": "3-bedroom-apartment-in-kitengela-68",
+    "title": "3 Bedroom Apartment in Kitengela",
+    "type": "3 Bedroom",
+    "estate": "Kitengela",
+    "price": 66157,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-kitengela-68.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6615,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 69,
+    "slug": "2-bedroom-apartment-in-ngong-69",
+    "title": "2 Bedroom Apartment in Ngong",
+    "type": "2 Bedroom",
+    "estate": "Ngong",
+    "price": 53835,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-ngong-69.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 5383,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 70,
+    "slug": "3-bedroom-mansionette-in-hurlingham-70",
+    "title": "Luxury 3 Bedroom Mansionette in Hurlingham",
+    "type": "Mansionette",
+    "estate": "Hurlingham",
+    "price": 469701,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/mansionette-hurlingham-70.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 46970,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 71,
+    "slug": "studio-apartment-in-ruiru-71",
+    "title": "Studio Apartment in Ruiru",
+    "type": "Bedsitter",
+    "estate": "Ruiru",
+    "price": 11490,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/bedsitter-ruiru-71.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 1149,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 72,
+    "slug": "3-bedroom-mansionette-in-ruiru-72",
+    "title": "Luxury 3 Bedroom Mansionette in Ruiru",
+    "type": "Mansionette",
+    "estate": "Ruiru",
+    "price": 103412,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/mansionette-ruiru-72.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 10341,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 73,
+    "slug": "3-bedroom-apartment-in-hurlingham-73",
+    "title": "3 Bedroom Apartment in Hurlingham",
+    "type": "3 Bedroom",
+    "estate": "Hurlingham",
+    "price": 225318,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-hurlingham-73.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 22531,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 74,
+    "slug": "3-bedroom-bungalow-in-kilimani-74",
+    "title": "Spacious 3 Bedroom Bungalow in Kilimani",
+    "type": "Bungalow",
+    "estate": "Kilimani",
+    "price": 323702,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-kilimani-74.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 32370,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 75,
+    "slug": "2-bedroom-apartment-in-ngong-75",
+    "title": "2 Bedroom Apartment in Ngong",
+    "type": "2 Bedroom",
+    "estate": "Ngong",
+    "price": 49316,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-ngong-75.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 4931,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 76,
+    "slug": "3-bedroom-bungalow-in-hurlingham-76",
+    "title": "Spacious 3 Bedroom Bungalow in Hurlingham",
+    "type": "Bungalow",
+    "estate": "Hurlingham",
+    "price": 225633,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-hurlingham-76.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 22563,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 77,
+    "slug": "3-bedroom-apartment-in-ngong-77",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 55277,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-77.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 5527,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 78,
+    "slug": "3-bedroom-apartment-in-kitengela-78",
+    "title": "3 Bedroom Apartment in Kitengela",
+    "type": "3 Bedroom",
+    "estate": "Kitengela",
+    "price": 68536,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-kitengela-78.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6853,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 79,
+    "slug": "studio-apartment-in-ngong-79",
+    "title": "Studio Apartment in Ngong",
+    "type": "Bedsitter",
+    "estate": "Ngong",
+    "price": 10334,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/bedsitter-ngong-79.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 1033,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 80,
+    "slug": "3-bedroom-bungalow-in-hurlingham-80",
+    "title": "Spacious 3 Bedroom Bungalow in Hurlingham",
+    "type": "Bungalow",
+    "estate": "Hurlingham",
+    "price": 323913,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-hurlingham-80.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 32391,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 81,
+    "slug": "1-bedroom-apartment-in-ngong-81",
+    "title": "1 Bedroom Apartment in Ngong",
+    "type": "1 Bedroom",
+    "estate": "Ngong",
+    "price": 23127,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-ngong-81.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 2312,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 82,
+    "slug": "3-bedroom-bungalow-in-karen-82",
+    "title": "Spacious 3 Bedroom Bungalow in Karen",
+    "type": "Bungalow",
+    "estate": "Karen",
+    "price": 226665,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-karen-82.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 22666,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 83,
+    "slug": "1-bedroom-apartment-in-ruiru-83",
+    "title": "1 Bedroom Apartment in Ruiru",
+    "type": "1 Bedroom",
+    "estate": "Ruiru",
+    "price": 23087,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-ruiru-83.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 2308,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 84,
+    "slug": "2-bedroom-apartment-in-hurlingham-84",
+    "title": "2 Bedroom Apartment in Hurlingham",
+    "type": "2 Bedroom",
+    "estate": "Hurlingham",
+    "price": 104968,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-hurlingham-84.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 10496,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 85,
+    "slug": "3-bedroom-apartment-in-ruiru-85",
+    "title": "3 Bedroom Apartment in Ruiru",
+    "type": "3 Bedroom",
+    "estate": "Ruiru",
+    "price": 61162,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ruiru-85.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 6116,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 86,
+    "slug": "1-bedroom-apartment-in-kitengela-86",
+    "title": "1 Bedroom Apartment in Kitengela",
+    "type": "1 Bedroom",
+    "estate": "Kitengela",
+    "price": 26806,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-kitengela-86.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 2680,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 87,
+    "slug": "1-bedroom-apartment-in-kilimani-87",
+    "title": "1 Bedroom Apartment in Kilimani",
+    "type": "1 Bedroom",
+    "estate": "Kilimani",
+    "price": 76953,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-kilimani-87.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7695,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 88,
+    "slug": "3-bedroom-apartment-in-ngong-88",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 59357,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-88.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 5935,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 89,
+    "slug": "3-bedroom-apartment-in-kitengela-89",
+    "title": "3 Bedroom Apartment in Kitengela",
+    "type": "3 Bedroom",
+    "estate": "Kitengela",
+    "price": 74998,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-kitengela-89.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7499,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 90,
+    "slug": "3-bedroom-mansionette-in-karen-90",
+    "title": "Luxury 3 Bedroom Mansionette in Karen",
+    "type": "Mansionette",
+    "estate": "Karen",
+    "price": 341345,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/mansionette-karen-90.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 34134,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 91,
+    "slug": "3-bedroom-bungalow-in-kitengela-91",
+    "title": "Spacious 3 Bedroom Bungalow in Kitengela",
+    "type": "Bungalow",
+    "estate": "Kitengela",
+    "price": 71906,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Compound Wall"
+    ],
+    "images": [
+      "/images/properties/bungalow-kitengela-91.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7190,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 92,
+    "slug": "3-bedroom-apartment-in-ngong-92",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 51785,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-92.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 5178,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 93,
+    "slug": "1-bedroom-apartment-in-karen-93",
+    "title": "1 Bedroom Apartment in Karen",
+    "type": "1 Bedroom",
+    "estate": "Karen",
+    "price": 70130,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-karen-93.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 7013,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 94,
+    "slug": "1-bedroom-apartment-in-ngong-94",
+    "title": "1 Bedroom Apartment in Ngong",
+    "type": "1 Bedroom",
+    "estate": "Ngong",
+    "price": 27229,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 550
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/1-bedroom-ngong-94.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 2722,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 1 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 95,
+    "slug": "3-bedroom-bungalow-in-kilimani-95",
+    "title": "Spacious 3 Bedroom Bungalow in Kilimani",
+    "type": "Bungalow",
+    "estate": "Kilimani",
+    "price": 304376,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "DSQ",
+      "Private Garden"
+    ],
+    "images": [
+      "/images/properties/bungalow-kilimani-95.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 30437,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 96,
+    "slug": "studio-apartment-in-kitengela-96",
+    "title": "Studio Apartment in Kitengela",
+    "type": "Bedsitter",
+    "estate": "Kitengela",
+    "price": 12644,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "parking": 0,
+      "sqft": 350
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/bedsitter-kitengela-96.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 1264,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful studio apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 97,
+    "slug": "3-bedroom-mansionette-in-ruiru-97",
+    "title": "Luxury 3 Bedroom Mansionette in Ruiru",
+    "type": "Mansionette",
+    "estate": "Ruiru",
+    "price": 110808,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/mansionette-ruiru-97.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 11080,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 98,
+    "slug": "3-bedroom-apartment-in-ngong-98",
+    "title": "3 Bedroom Apartment in Ngong",
+    "type": "3 Bedroom",
+    "estate": "Ngong",
+    "price": 54208,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-ngong-98.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 5420,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 99,
+    "slug": "3-bedroom-apartment-in-hurlingham-99",
+    "title": "3 Bedroom Apartment in Hurlingham",
+    "type": "3 Bedroom",
+    "estate": "Hurlingham",
+    "price": 188972,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "images": [
+      "/images/properties/3-bedroom-hurlingham-99.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 18897,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 3 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  },
+  {
+    "id": 100,
+    "slug": "2-bedroom-apartment-in-ruiru-100",
+    "title": "2 Bedroom Apartment in Ruiru",
+    "type": "2 Bedroom",
+    "estate": "Ruiru",
+    "price": 49398,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "sqft": 850
+    },
+    "features": [
+      "Tiled Floors",
+      "Water Heater",
+      "Secure Parking",
+      "Intercom",
+      "Common Area Backup"
+    ],
+    "images": [
+      "/images/properties/2-bedroom-ruiru-100.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 4939,
+    "fumigationLink": "https://your-fumigation-site.com",
+    "description": "Experience luxury living in this beautiful 2 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking."
+  }
+]

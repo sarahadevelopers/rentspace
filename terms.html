@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Terms of Service | RentSpace Nairobi</title>
+  <meta name="description" content="Review the terms and conditions governing the use of RentSpace services. Our commitment to transparency and professional standards.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Terms of Service | RentSpace Nairobi">
+  <meta property="og:description" content="Review the terms and conditions governing the use of RentSpace services.">
+  <meta property="og:type" content="website">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ============================================
+       TERMS PAGE - PREMIUM DARK THEME
+       ============================================ */
+    
+    :root {
+      --gold: #c9a45c;
+      --gold-dark: #b88f3c;
+      --bg-dark: #0a0a0a;
+      --bg-card: #111111;
+      --border: rgba(201, 164, 92, 0.2);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: radial-gradient(circle at 30% 10%, #1a1a1a 0%, #0a0a0a 100%);
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 100vh;
+      animation: pageFadeIn 1s ease;
+    }
+    
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* ========== EXECUTIVE NAVBAR ========== */
+    .exec-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    
+    .nav-logo span {
+      color: var(--gold);
+      font-weight: 400;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+    
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    
+    .nav-cta:hover {
+      background: var(--gold);
+      color: #000;
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1002;
+    }
+    
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    /* ========== PAGE HEADER ========== */
+    .page-header {
+      text-align: center;
+      padding: 140px 5% 60px;
+    }
+    
+    .page-subtitle {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+    
+    .page-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .last-updated {
+      margin-top: 1rem;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+    }
+    
+    /* ========== TERMS CONTENT ========== */
+    .terms-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 5% 80px;
+    }
+    
+    .terms-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+    }
+    
+    @media (max-width: 768px) {
+      .terms-content {
+        padding: 1.5rem;
+      }
+    }
+    
+    .terms-section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .terms-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .terms-section h2 {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: -0.3px;
+    }
+    
+    .terms-section h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      margin-top: 1rem;
+    }
+    
+    .terms-section p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    
+    .terms-section ul, 
+    .terms-section ol {
+      margin: 1rem 0 1rem 1.5rem;
+      color: var(--text-secondary);
+    }
+    
+    .terms-section li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .terms-section a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .terms-section a:hover {
+      text-decoration: underline;
+    }
+    
+    .highlight-box {
+      background: rgba(201, 164, 92, 0.05);
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+    
+    .highlight-box p {
+      margin-bottom: 0;
+      font-size: 13px;
+    }
+    
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+    
+    /* Table of Contents */
+    .toc {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .toc h3 {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .toc-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    
+    .toc-link {
+      background: rgba(201, 164, 92, 0.1);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .toc-link:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+    
+    /* Acceptance Banner */
+    .acceptance-banner {
+      background: rgba(201, 164, 92, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    .acceptance-banner p {
+      margin-bottom: 1rem;
+      font-size: 13px;
+    }
+    
+    .acceptance-banner .date {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    
+    /* ========== PREMIUM FOOTER ========== */
+    .premium-footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 4rem 5% 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-col h4 {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    
+    .footer-col p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+    }
+    
+    .footer-col a:hover {
+      color: var(--gold);
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+    
+    .footer-bottom i {
+      color: var(--gold);
+    }
+    
+    /* ========== MOBILE BOTTOM NAV ========== */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 999;
+    }
+    
+    .mobile-bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 10px;
+      transition: var(--transition);
+    }
+    
+    .mobile-bottom-nav a i {
+      font-size: 20px;
+    }
+    
+    .mobile-bottom-nav a.active {
+      color: var(--gold);
+    }
+    
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-cta {
+        display: none;
+      }
+      
+      .mobile-bottom-nav {
+        display: flex;
+      }
+      
+      body {
+        padding-bottom: 70px;
+      }
+      
+      .page-header {
+        padding: 120px 5% 40px;
+      }
+      
+      .toc-links {
+        gap: 0.5rem;
+      }
+      
+      .toc-link {
+        font-size: 10px;
+        padding: 4px 10px;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Executive Navbar -->
+  <nav class="exec-nav">
+    <a href="/index.html" class="nav-logo">ELITE<span>HOMES</span></a>
+    <ul class="nav-links">
+      <li><a href="/rentals.html">The Collection</a></li>
+      <li><a href="/movers.html">Relocation</a></li>
+      <li><a href="https://your-fumigation-site.com" target="_blank">Sanctuary Prep</a></li>
+    </ul>
+    <a href="/contact.html" class="nav-cta">Private Inquiry</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-subtitle">Legal Framework</div>
+    <h1>Terms of Service</h1>
+    <p class="page-description">Understanding the terms that govern our relationship and your use of RentSpace services.</p>
+    <div class="last-updated">Last Updated: March 2026</div>
+  </div>
+
+  <!-- Terms Container -->
+  <div class="terms-container">
+    <div class="terms-content">
+      
+      <!-- Table of Contents -->
+      <div class="toc">
+        <h3>Quick Navigation</h3>
+        <div class="toc-links">
+          <a href="#acceptance" class="toc-link">Acceptance</a>
+          <a href="#services" class="toc-link">Services</a>
+          <a href="#listings" class="toc-link">Property Listings</a>
+          <a href="#bookings" class="toc-link">Bookings & Payments</a>
+          <a href="#relocation" class="toc-link">Relocation Services</a>
+          <a href="#privacy" class="toc-link">Privacy</a>
+          <a href="#liability" class="toc-link">Liability</a>
+          <a href="#termination" class="toc-link">Termination</a>
+          <a href="#governing" class="toc-link">Governing Law</a>
+        </div>
+      </div>
+      
+      <!-- Section 1: Acceptance of Terms -->
+      <div class="terms-section" id="acceptance">
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using the RentSpace website, mobile application, or any of our services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+        <p>RentSpace reserves the right to modify these terms at any time. Changes become effective immediately upon posting. Your continued use of our services constitutes acceptance of any modified terms.</p>
+        <div class="highlight-box">
+          <p><strong>✓ Elite Commitment:</strong> We are dedicated to providing exceptional service. These terms are designed to protect both our clients and our commitment to excellence.</p>
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 2: Services Overview -->
+      <div class="terms-section" id="services">
+        <h2>2. Our Services</h2>
+        <p>RentSpace provides a curated platform for:</p>
+        <ul>
+          <li><strong>Property Listings:</strong> High-end rental properties across Nairobi's premier estates including Karen, Kilimani, Hurlingham, Ruiru, Ngong, and Kitengela.</li>
+          <li><strong>Relocation Services:</strong> Bespoke moving and transition services for residential and commercial clients.</li>
+          <li><strong>Sanctuary Preparation:</strong> Professional fumigation and deep cleaning services through our trusted partner network.</li>
+          <li><strong>Concierge Consultation:</strong> Personalized assistance for property viewings and residential transitions.</li>
+        </ul>
+        <p>All services are provided with the highest standards of professionalism and discretion.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 3: Property Listings -->
+      <div class="terms-section" id="listings">
+        <h2>3. Property Listings</h2>
+        <h3>3.1 Accuracy of Information</h3>
+        <p>While we strive to ensure all property listings are accurate and up-to-date, RentSpace does not guarantee the accuracy, completeness, or reliability of any listing information. Property details, including pricing, availability, and features, are provided by property owners and may change without notice.</p>
+        
+        <h3>3.2 Viewing Appointments</h3>
+        <p>Property viewings are conducted by appointment only. RentSpace reserves the right to verify client identity and conduct background checks for high-value property viewings. A minimum of 24 hours' notice is required for viewing arrangements.</p>
+        
+        <h3>3.3 Rental Agreements</h3>
+        <p>All rental agreements are between the property owner and the tenant. RentSpace acts as a facilitator and does not assume any responsibility for the terms, conditions, or execution of rental contracts.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 4: Bookings & Payments -->
+      <div class="terms-section" id="bookings">
+        <h2>4. Bookings & Payments</h2>
+        <h3>4.1 Holding Deposits</h3>
+        <p>To secure a property viewing or reservation, a holding deposit may be required. This deposit is refundable in accordance with our cancellation policy. Details will be provided at the time of booking.</p>
+        
+        <h3>4.2 Payment Terms</h3>
+        <p>All payments for relocation services or sanctuary preparation must be made in full prior to service delivery unless otherwise agreed in writing. We accept bank transfers and secure online payments.</p>
+        
+        <h3>4.3 Cancellation Policy</h3>
+        <p>Cancellations made more than 48 hours before a scheduled service will receive a full refund. Cancellations within 48 hours may incur a 50% cancellation fee. Same-day cancellations are non-refundable.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 5: Relocation Services -->
+      <div class="terms-section" id="relocation">
+        <h2>5. Relocation Services</h2>
+        <p>Our relocation services are designed to ensure a seamless transition for your property. By engaging our services, you agree to:</p>
+        <ul>
+          <li>Provide accurate information about the volume and nature of items to be moved.</li>
+          <li>Ensure all valuable items are declared prior to the move.</li>
+          <li>Secure necessary permits for parking and access at both origin and destination locations.</li>
+          <li>Be present or designate a representative during the move.</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>📦 Insurance Coverage:</strong> All relocation services include basic insurance coverage. Additional insurance for high-value items can be arranged upon request.</p>
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 6: Privacy & Data Protection -->
+      <div class="terms-section" id="privacy">
+        <h2>6. Privacy & Data Protection</h2>
+        <p>RentSpace is committed to protecting your privacy. We collect and process personal information in accordance with our Privacy Policy and applicable data protection laws, including the Kenya Data Protection Act, 2019.</p>
+        <p>Your information is used solely to facilitate our services and will never be shared with third parties without your explicit consent, except as required by law.</p>
+        <p>For full details, please review our <a href="/privacy.html">Privacy Policy</a>.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 7: Limitation of Liability -->
+      <div class="terms-section" id="liability">
+        <h2>7. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, RentSpace shall not be liable for:</p>
+        <ul>
+          <li>Any indirect, incidental, or consequential damages arising from your use of our services.</li>
+          <li>Losses resulting from property transactions between landlords and tenants.</li>
+          <li>Damage to property during relocation where proper documentation was not provided.</li>
+          <li>Third-party services recommended but not directly provided by RentSpace.</li>
+        </ul>
+        <p>Our total liability for any claim shall not exceed the amount paid for the specific service giving rise to the claim.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 8: Termination -->
+      <div class="terms-section" id="termination">
+        <h2>8. Termination of Services</h2>
+        <p>RentSpace reserves the right to suspend or terminate services to any client who:</p>
+        <ul>
+          <li>Violates these Terms of Service.</li>
+          <li>Provides false or misleading information.</li>
+          <li>Engages in fraudulent or abusive behavior.</li>
+          <li>Fails to make payments as agreed.</li>
+        </ul>
+        <p>Upon termination, any outstanding fees remain payable and deposits may be forfeited.</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- Section 9: Governing Law -->
+      <div class="terms-section" id="governing">
+        <h2>9. Governing Law</h2>
+        <p>These Terms of Service shall be governed by and construed in accordance with the laws of the Republic of Kenya. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Nairobi, Kenya.</p>
+        <p>If any provision of these terms is found to be unenforceable, the remaining provisions shall remain in full force and effect.</p>
+      </div>
+      
+      <!-- Acceptance Banner -->
+      <div class="acceptance-banner">
+        <p><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> By using RentSpace services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
+        <p class="date">For questions regarding these terms, please contact our legal team at legal@RentSpace.co.ke</p>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Elite Homes</h4>
+        <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/rentals.html">The Collection</a>
+        <a href="/movers.html">Bespoke Relocation</a>
+        <a href="https://your-fumigation-site.com">Sanctuary Prep</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/contact.html">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> ELITE HOMES NAIROBI — ALL RIGHTS RESERVED</p>
+      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="/rentals.html"><i class="fas fa-search"></i> Explore</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ========== HAMBURGER MENU ==========
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('.toc-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (navMenu && navMenu.classList.contains('active')) {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Private Concierge | RentSpace Nairobi</title>
+  <title>Explore Rentals | RentSpace Nairobi</title>
   <meta name="description" content="Connect with our private concierge team. Exclusive property viewings, bespoke relocation services, and sanctuary preparation for Nairobi's most discerning clients.">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Private Concierge | RentSpace Nairobi">
-  <meta property="og:description" content="Connect with our private concierge team for exclusive property viewings and bespoke relocation services.">
+  <meta property="og:title" content="Explore Rentals | RentSpace Nairobi">
+  <meta property="og:description" content="Connect with our team for exclusive property viewings and bespoke relocation services.">
   <meta property="og:type" content="website">
   
   <!-- Preconnect for fonts -->
@@ -96,6 +96,12 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links li {
+      position: relative;
     }
     
     .nav-links a {
@@ -105,10 +111,12 @@
       letter-spacing: 1px;
       font-weight: 400;
       transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover {
       color: var(--gold);
     }
     
@@ -145,6 +153,229 @@
       transition: all 0.3s ease;
     }
     
+    /* Menu Overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    
+    /* ========== DESKTOP DROPDOWN ========== */
+    @media (min-width: 769px) {
+      .dropdown {
+        position: relative;
+      }
+      
+      .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .dropdown-trigger i {
+        font-size: 10px;
+        transition: transform 0.3s ease;
+      }
+      
+      .dropdown:hover .dropdown-trigger i {
+        transform: rotate(180deg);
+      }
+      
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 220px;
+        background: #111111;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 8px 0;
+        margin-top: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.25s ease;
+        z-index: 1001;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+      
+      .dropdown:last-child .dropdown-menu {
+        left: auto;
+        right: 0;
+      }
+      
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .dropdown-menu li {
+        display: block;
+      }
+      
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 20px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      
+      .dropdown-menu a:hover {
+        background: rgba(201, 164, 92, 0.1);
+        color: var(--gold);
+        padding-left: 24px;
+      }
+      
+      .dropdown-menu li:not(:last-child) a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    }
+    
+    /* ========== MOBILE NAVIGATION ========== */
+    @media (max-width: 768px) {
+      .nav-cta {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 320px;
+        height: 100vh;
+        background: #0a0a0a;
+        flex-direction: column;
+        transition: right 0.3s ease;
+        z-index: 1001;
+        padding: 80px 24px 24px;
+        display: flex;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+        margin: 0;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .nav-links li {
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .nav-links a {
+        display: block;
+        padding: 14px 0;
+        font-size: 18px;
+        font-weight: 500;
+        color: #ffffff;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .nav-links a:hover {
+        color: var(--gold);
+        padding-left: 8px;
+      }
+      
+      .dropdown-trigger {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .dropdown-trigger i {
+        color: var(--gold);
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+      
+      .dropdown-menu {
+        background: rgba(255, 255, 255, 0.08);
+        border-left: 2px solid var(--gold);
+        padding: 0;
+        margin: 8px 0 8px 16px;
+        display: none;
+      }
+      
+      .dropdown-menu.open {
+        display: block;
+      }
+      
+      .dropdown-menu a {
+        padding: 10px 0 10px 16px;
+        font-size: 15px;
+        border-bottom: none;
+      }
+      
+      .dropdown-menu a:hover {
+        color: var(--gold);
+        padding-left: 20px;
+      }
+      
+      .dropdown.open .dropdown-trigger i {
+        transform: rotate(180deg);
+      }
+      
+      .mobile-bottom-nav {
+        display: flex;
+      }
+      
+      body {
+        padding-bottom: 70px;
+      }
+      
+      h1 {
+        font-size: 36px;
+      }
+      
+      .contact-form {
+        padding: 1.5rem;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none !important;
+      }
+    }
+    
     /* ========== PAGE HEADER ========== */
     .page-header {
       text-align: center;
@@ -171,12 +402,6 @@
       color: var(--text-secondary);
       max-width: 600px;
       margin: 0 auto;
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 36px;
-      }
     }
     
     /* ========== CONTENT LAYOUT ========== */
@@ -552,56 +777,150 @@
       font-size: 14px;
       letter-spacing: 2px;
     }
-    
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .hamburger {
-        display: flex;
-      }
-      
-      .nav-cta {
-        display: none;
-      }
-      
-      .mobile-bottom-nav {
-        display: flex;
-      }
-      
-      body {
-        padding-bottom: 70px;
-      }
-      
-      .page-header {
-        padding: 120px 5% 40px;
-      }
-      
-      .contact-form {
-        padding: 1.5rem;
-      }
-    }
-    
-    @media (min-width: 769px) {
-      .hamburger {
-        display: none !important;
-      }
-    }
+
+    /* ========== MOBILE BOTTOM NAVIGATION - PREMIUM GLASS ========== */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(201, 164, 92, 0.15);
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 12px 14px;
+  z-index: 999;
+  transition: var(--transition);
+}
+
+.mobile-bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  padding: 8px 16px;
+  border-radius: 40px;
+  position: relative;
+}
+
+.mobile-bottom-nav a i {
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.mobile-bottom-nav a span {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.mobile-bottom-nav a:hover {
+  color: var(--gold);
+  background: rgba(201, 164, 92, 0.1);
+}
+
+.mobile-bottom-nav a:hover i {
+  transform: translateY(-2px);
+}
+
+.mobile-bottom-nav a.active {
+  color: var(--gold);
+  background: rgba(201, 164, 92, 0.15);
+}
+
+/* Active indicator dot */
+.mobile-bottom-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* Show on mobile only */
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+  }
+  
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .mobile-bottom-nav {
+    padding: 6px 8px 10px;
+  }
+  
+  .mobile-bottom-nav a {
+    padding: 6px 12px;
+  }
+  
+  .mobile-bottom-nav a i {
+    font-size: 18px;
+  }
+  
+  .mobile-bottom-nav a span {
+    font-size: 9px;
+  }
+}
   </style>
 </head>
 <body>
 
   <!-- Executive Navbar -->
   <nav class="exec-nav">
-    <a href="/index.html" class="nav-logo">ELITE<span>HOMES</span></a>
+    <a href="/index.html" class="nav-logo">Rent<span>Space</span></a>
     <ul class="nav-links">
-      <li><a href="/rentals.html">The Collection</a></li>
-      <li><a href="/movers.html">Relocation</a></li>
-      <li><a href="https://your-fumigation-site.com" target="_blank">Sanctuary Prep</a></li>
+      <!-- Explore Rentals Dropdown -->
+      <li class="dropdown">
+        <a href="/rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="/rentals.html">All Rentals</a></li>
+          <li><a href="/rentals.html?location=Karen">Karen</a></li>
+          <li><a href="/rentals.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="/rentals.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="/rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="/rentals.html?location=Ngong">Ngong</a></li>
+          <li><a href="/rentals.html?location=Kitengela">Kitengela</a></li>
+          <li><a href="/rentals.html?location=Westlands">Westlands</a></li>
+          <li><a href="/rentals.html?location=Lavington">Lavington</a></li>
+          <li><a href="/rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <!-- Airbnb Dropdown -->
+      <li class="dropdown">
+        <a href="/airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="/airbnb.html">All Bnbs</a></li>
+          <li><a href="/airbnb.html?location=Karen">Karen</a></li>
+          <li><a href="/airbnb.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="/airbnb.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="/airbnb.html?location=Westlands">Westlands</a></li>
+          <li><a href="/airbnb.html?location=Lavington">Lavington</a></li>
+          <li><a href="/airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <li><a href="/movers.html">Movers & Packers</a></li>
+      <li><a href="/blog.html">Location Insights</a></li>
+      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
     </ul>
-    <a href="/contact.html" class="nav-cta">Private Inquiry</a>
+    <a href="/contact.html" class="nav-cta">Book a Viewing</a>
     <div class="hamburger" id="hamburger">
       <span></span>
       <span></span>
@@ -609,11 +928,14 @@
     </div>
   </nav>
 
+  <!-- Overlay for closing menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
   <!-- Page Header -->
   <div class="page-header">
-    <div class="page-subtitle">Private Concierge</div>
+    <div class="page-subtitle">Talk To Us</div>
     <h1>Connect With Us</h1>
-    <p class="page-description">Your journey to exceptional living begins here. Our private concierge team is at your service.</p>
+    <p class="page-description">Your journey to exceptional living begins here. Our team is at your service.</p>
   </div>
 
   <!-- Contact Container -->
@@ -622,13 +944,13 @@
       
       <!-- Left: Contact Information -->
       <div class="info-section">
-        <h2>Concierge Services</h2>
+        <h2>Get Services</h2>
         
         <div class="info-card">
           <div class="info-icon">
             <i class="fas fa-phone-alt"></i>
           </div>
-          <h3>Private Line</h3>
+          <h3>Phone Support</h3>
           <p>Available 24/7 for urgent inquiries</p>
           <a href="tel:+254723562484">+254 723 562 484</a>
         </div>
@@ -637,7 +959,7 @@
           <div class="info-icon">
             <i class="fab fa-whatsapp"></i>
           </div>
-          <h3>WhatsApp Concierge</h3>
+          <h3>WhatsApp Us</h3>
           <p>Quick responses for viewing requests</p>
           <a href="https://wa.me/254723562484" target="_blank">Message on WhatsApp</a>
         </div>
@@ -648,11 +970,11 @@
           </div>
           <h3>Email Correspondence</h3>
           <p>For detailed inquiries and documentation</p>
-          <a href="mailto:concierge@rentspace.co.ke">concierge@rentspace.co.ke</a>
+          <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
         </div>
         
         <div class="hours-card">
-          <h4>Concierge Hours</h4>
+          <h4>Working Hours</h4>
           <p>Monday - Friday: 8:00 AM - 8:00 PM</p>
           <p>Saturday: 9:00 AM - 6:00 PM</p>
           <p>Sunday: By Appointment Only</p>
@@ -721,15 +1043,14 @@
     
     <!-- Map Section -->
     <div class="map-section">
-      <h2>Visit Our Concierge</h2>
+      <h2>Visit Our Office</h2>
       <div class="map-container">
         <div class="map-placeholder">
           <i class="fas fa-map-marker-alt"></i>
-          <p>RentSpace Concierge</p>
+          <p>RentSpace Location</p>
           <p style="font-size: 12px;">Westlands, Nairobi, Kenya</p>
           <p style="font-size: 11px; margin-top: 10px;">By appointment only</p>
         </div>
-        <!-- Replace with actual Google Maps embed when you have the location -->
       </div>
     </div>
   </div>
@@ -738,32 +1059,34 @@
   <footer class="premium-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Elite Homes</h4>
+        <h4>Rent Space</h4>
         <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
-        <a href="/rentals.html">The Collection</a>
-        <a href="/movers.html">Bespoke Relocation</a>
-        <a href="https://your-fumigation-site.com">Sanctuary Prep</a>
+        <a href="/rentals.html">Explore Rentals</a>
+        <a href="/movers.html">Movers & Packers</a>
+        <a href="https://fumigo.co.ke">Fumigation</a>
       </div>
       <div class="footer-col">
-        <h4>Concierge</h4>
+        <h4>Get In Touch</h4>
         <a href="tel:+254723562484">+254 723 562 484</a>
-        <a href="mailto:concierge@rentspace.co.ke">concierge@rentspace.co.ke</a>
-        <a href="/contact.html">Private Viewings</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="/contact.html">Contact Us</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span id="year"></span> RENTSPACE NAIROBI — ALL RIGHTS RESERVED</p>
-      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+      <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
 
   <!-- Mobile Bottom Navigation -->
   <div class="mobile-bottom-nav">
     <a href="/index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="/rentals.html"><i class="fas fa-search"></i> Explore</a>
+    <a href="/rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="/airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="/blog.html"><i class="fas fa-newspaper"></i> Insights</a>
     <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 
@@ -773,79 +1096,179 @@
     <p>Connecting to Concierge...</p>
   </div>
 
-  <script>
-    // Dynamic year
+<script>
+    // ============================================
+    // CONTACT PAGE - COMPLETE FUNCTIONALITY
+    // ============================================
+    
+    // Dynamic copyright year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ========== HAMBURGER MENU ==========
+    // ============================================
+    // HAMBURGER MENU WITH OVERLAY
+    // ============================================
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.querySelector('.nav-links');
+    const menuOverlay = document.getElementById('menuOverlay');
 
-    if (hamburger) {
-      hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-      });
+    function closeMenu() {
+        navMenu?.classList.remove('active');
+        hamburger?.classList.remove('active');
+        menuOverlay?.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
-    // ========== FORM SUBMISSION ==========
+    function openMenu() {
+        navMenu?.classList.add('active');
+        hamburger?.classList.add('active');
+        menuOverlay?.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Toggle menu on hamburger click
+    if (hamburger) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu?.classList.contains('active') ? closeMenu() : openMenu();
+        });
+    }
+
+    // Close menu when clicking overlay
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu when clicking any navigation link
+    if (navMenu) {
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => link.addEventListener('click', closeMenu));
+    }
+
+    // Close menu on window resize (desktop view)
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navMenu?.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    // ============================================
+    // MOBILE DROPDOWNS (TOUCH-FRIENDLY)
+    // ============================================
+    function initMobileDropdowns() {
+        if (window.innerWidth > 768) return;
+        
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const trigger = dropdown.querySelector('.dropdown-trigger');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            if (trigger && menu) {
+                // Remove existing listeners to avoid duplicates
+                const newTrigger = trigger.cloneNode(true);
+                trigger.parentNode.replaceChild(newTrigger, trigger);
+                
+                newTrigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdown.classList.toggle('open');
+                    menu.classList.toggle('open');
+                });
+            }
+        });
+    }
+
+    // Initialize mobile dropdowns
+    initMobileDropdowns();
+    window.addEventListener('resize', initMobileDropdowns);
+
+    // ============================================
+    // CONTACT FORM - WHATSAPP SUBMISSION
+    // ============================================
     const contactForm = document.getElementById('contactForm');
-    const overlay = document.getElementById('connectingOverlay');
+    const connectingOverlay = document.getElementById('connectingOverlay');
 
     if (contactForm) {
-      contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const name = document.getElementById('fullName')?.value || '';
-        const email = document.getElementById('email')?.value || '';
-        const phone = document.getElementById('phone')?.value || '';
-        const inquiryType = document.getElementById('inquiryType')?.value || '';
-        const estates = document.getElementById('estates')?.value || '';
-        const message = document.getElementById('message')?.value || '';
-        
-        // Validate
-        if (!name || !email) {
-          alert('Please provide your name and email address.');
-          return;
-        }
-        
-        // Build WhatsApp message
-        let whatsappMessage = '*ELITE HOMES INQUIRY*%0A%0A';
-        whatsappMessage += `*Name:* ${name}%0A`;
-        whatsappMessage += `*Email:* ${email}%0A`;
-        if (phone) whatsappMessage += `*Phone:* ${phone}%0A`;
-        whatsappMessage += `*Inquiry Type:* ${inquiryType}%0A`;
-        if (estates !== 'Any') whatsappMessage += `*Preferred Estates:* ${estates}%0A`;
-        whatsappMessage += `*Message:* ${message || 'No message provided.'}%0A%0A`;
-        whatsappMessage += `Please reach out to discuss this inquiry.`;
-        
-        // Show connecting overlay
-        overlay.classList.add('active');
-        
-        // Redirect to WhatsApp after delay
-        setTimeout(() => {
-          window.location.href = `https://wa.me/254723562484?text=${whatsappMessage}`;
-        }, 800);
-      });
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values with proper trimming
+            const name = document.getElementById('fullName')?.value.trim();
+            const email = document.getElementById('email')?.value.trim();
+            const phone = document.getElementById('phone')?.value.trim();
+            const inquiryType = document.getElementById('inquiryType')?.value;
+            const preferredEstates = document.getElementById('estates')?.value;
+            const message = document.getElementById('message')?.value.trim();
+            
+            // Validate required fields
+            if (!name) {
+                alert('❌ Please provide your full name.');
+                document.getElementById('fullName')?.focus();
+                return;
+            }
+            
+            if (!email) {
+                alert('❌ Please provide your email address.');
+                document.getElementById('email')?.focus();
+                return;
+            }
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('❌ Please enter a valid email address.');
+                document.getElementById('email')?.focus();
+                return;
+            }
+            
+            // Build formatted WhatsApp message
+            let whatsappMessage = '*🏠 RENTSPACE INQUIRY*%0A';
+            whatsappMessage += `%0A*📋 CLIENT DETAILS*%0A`;
+            whatsappMessage += `────────────────%0A`;
+            whatsappMessage += `*👤 Name:* ${name}%0A`;
+            whatsappMessage += `*📧 Email:* ${email}%0A`;
+            if (phone) whatsappMessage += `*📞 Phone:* ${phone}%0A`;
+            whatsappMessage += `%0A*🔍 INQUIRY DETAILS*%0A`;
+            whatsappMessage += `────────────────%0A`;
+            whatsappMessage += `*📌 Type:* ${inquiryType}%0A`;
+            if (preferredEstates !== 'Any') whatsappMessage += `*📍 Estates:* ${preferredEstates}%0A`;
+            whatsappMessage += `%0A*💬 MESSAGE*%0A`;
+            whatsappMessage += `────────────────%0A`;
+            whatsappMessage += `${message || 'No message provided.'}%0A%0A`;
+            whatsappMessage += `────────────────%0A`;
+            whatsappMessage += `_Sent via RentSpace Website_`;
+            
+            // Show connecting overlay
+            if (connectingOverlay) {
+                connectingOverlay.classList.add('active');
+            }
+            
+            // Redirect to WhatsApp after a brief delay
+            setTimeout(() => {
+                window.location.href = `https://wa.me/254723562484?text=${whatsappMessage}`;
+            }, 800);
+        });
     }
     
-    // Close overlay if clicked
-    if (overlay) {
-      overlay.addEventListener('click', () => {
-        overlay.classList.remove('active');
-      });
+    // Close connecting overlay when clicked
+    if (connectingOverlay) {
+        connectingOverlay.addEventListener('click', () => {
+            connectingOverlay.classList.remove('active');
+        });
     }
     
-    // Close menu when clicking outside
+    // ============================================
+    // CLOSE MENU WHEN CLICKING OUTSIDE (MOBILE)
+    // ============================================
     document.addEventListener('click', (e) => {
-      if (navMenu && navMenu.classList.contains('active')) {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-          navMenu.classList.remove('active');
-          hamburger.classList.remove('active');
+        if (navMenu?.classList.contains('active')) {
+            const isClickInsideNav = navMenu.contains(e.target);
+            const isClickOnHamburger = hamburger?.contains(e.target);
+            
+            if (!isClickInsideNav && !isClickOnHamburger) {
+                closeMenu();
+            }
         }
-      }
     });
-  </script>
+</script>
 </body>
 </html>

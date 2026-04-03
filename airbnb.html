@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Short-stay & Airbnb | RentSpace Nairobi</title>
+  <meta name="description" content="Discover fully furnished short-stay rentals and Airbnb properties in Nairobi's prime locations. Perfect for tourists, business travelers, and temporary stays.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Short-stay & Airbnb | RentSpace Nairobi">
+  <meta property="og:description" content="Discover fully furnished short-stay rentals and Airbnb properties in Nairobi's prime locations.">
+  <meta property="og:type" content="website">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <style>
+    /* ============================================
+       AIRBNB PAGE - PREMIUM DARK THEME
+       ============================================ */
+    
+    :root {
+      --gold: #c9a45c;
+      --airbnb: #FF5A5F;
+      --airbnb-dark: #E04E52;
+      --bg-dark: #0a0a0a;
+      --bg-card: #111111;
+      --border: rgba(201, 164, 92, 0.2);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: radial-gradient(circle at 30% 10%, #1a1a1a 0%, #0a0a0a 100%);
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 100vh;
+      animation: pageFadeIn 1s ease;
+    }
+    
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* ========== EXECUTIVE NAVBAR ========== */
+    .exec-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    
+    .nav-logo span {
+      color: var(--gold);
+      font-weight: 400;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+    
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    
+    .nav-cta:hover {
+      background: var(--gold);
+      color: #000;
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1002;
+    }
+    
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    /* ========== PAGE HEADER ========== */
+    .page-header {
+      text-align: center;
+      padding: 140px 5% 60px;
+      background: linear-gradient(135deg, rgba(255, 90, 95, 0.1), transparent);
+    }
+    
+    .page-subtitle {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--airbnb);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+    
+    .page-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .airbnb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--airbnb);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 12px;
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+    }
+    
+    /* ========== FEATURE HIGHLIGHTS ========== */
+    .features-highlight {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 2rem 5%;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    
+    .feature-item {
+      text-align: center;
+    }
+    
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 90, 95, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.75rem;
+    }
+    
+    .feature-icon i {
+      font-size: 24px;
+      color: var(--airbnb);
+    }
+    
+    .feature-item h4 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    
+    .feature-item p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    /* ========== LOCATION QUICK NAV ========== */
+    .location-nav {
+      max-width: 1200px;
+      margin: 0 auto 30px;
+      padding: 0 5%;
+      text-align: center;
+    }
+    
+    .location-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    
+    .location-nav-link {
+      background: rgba(255, 90, 95, 0.1);
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .location-nav-link:hover {
+      background: var(--airbnb);
+      color: white;
+      border-color: var(--airbnb);
+      transform: translateY(-2px);
+    }
+    
+    /* ========== FILTER STRIP ========== */
+    .filter-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      padding: 0 5%;
+    }
+    
+    @media (max-width: 768px) {
+      .filter-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .filter-btn {
+      background: rgba(20, 20, 20, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .filter-btn i {
+      color: var(--airbnb);
+      font-size: 12px;
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--airbnb);
+      color: var(--airbnb);
+    }
+    
+    /* ========== PROPERTY GRID ========== */
+    .property-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      padding: 20px 5% 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 1024px) {
+      .property-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .property-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .property-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .property-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .property-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--airbnb);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-image-wrapper {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    
+    .property-card:hover .card-image {
+      transform: scale(1.08);
+    }
+    
+    .card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--airbnb);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .card-badge i {
+      font-size: 10px;
+    }
+    
+    .card-price {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    
+    .card-info {
+      padding: 16px;
+    }
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+    
+    .card-location {
+      font-size: 12px;
+      color: var(--airbnb);
+      margin-bottom: 8px;
+    }
+    
+    .card-features {
+      display: flex;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .card-features span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .card-features i {
+      font-size: 10px;
+    }
+    
+    .card-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    
+    .card-rating i {
+      color: #FF5A5F;
+      font-size: 12px;
+    }
+    
+    .card-rating span {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    .card-rating .reviews {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    
+    .card-cta {
+      background: var(--airbnb);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border-radius: 8px;
+    }
+    
+    .property-card:hover .card-cta {
+      background: var(--airbnb-dark);
+    }
+    
+    /* ========== RESULT COUNT ========== */
+    .result-count {
+      padding: 0 5% 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .result-count span {
+      color: var(--airbnb);
+      font-weight: 500;
+    }
+    
+    /* ========== LOADING & EMPTY STATES ========== */
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 400px;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border);
+      border-top-color: var(--airbnb);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 80px 5%;
+      display: none;
+    }
+    
+    .empty-state-icon {
+      font-size: 48px;
+      color: var(--airbnb);
+      opacity: 0.5;
+      margin-bottom: 1rem;
+    }
+    
+    .empty-state h3 {
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    
+    .empty-state p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+    
+    .empty-state-btn {
+      background: transparent;
+      border: 1px solid var(--airbnb);
+      color: var(--airbnb);
+      padding: 12px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 12px;
+      transition: var(--transition);
+      display: inline-block;
+    }
+    
+    .empty-state-btn:hover {
+      background: var(--airbnb);
+      color: #000;
+    }
+    
+    /* ========== PAGINATION ========== */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 40px;
+      padding: 20px 0 60px;
+    }
+    
+    .page-link {
+      background: rgba(30, 30, 30, 0.8);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .page-link:hover,
+    .page-link.active {
+      background: var(--airbnb);
+      border-color: var(--airbnb);
+      color: white;
+    }
+    
+    /* ========== PREMIUM FOOTER ========== */
+    .premium-footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 4rem 5% 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-col h4 {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    
+    .footer-col p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+    }
+    
+    .footer-col a:hover {
+      color: var(--gold);
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+    
+    .footer-bottom i {
+      color: var(--gold);
+    }
+    
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 999;
+    }
+    
+    .mobile-bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 10px;
+    }
+    
+    .mobile-bottom-nav a i {
+      font-size: 20px;
+    }
+    
+    .mobile-bottom-nav a.active {
+      color: var(--airbnb);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-cta { display: none; }
+      .mobile-bottom-nav { display: flex; }
+      body { padding-bottom: 70px; }
+    }
+    
+    @media (min-width: 769px) {
+      .hamburger { display: none !important; }
+    }
+
+    /* ========== EXECUTIVE NAVBAR ========== */
+.exec-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.nav-logo {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.nav-logo span {
+    color: var(--gold);
+    font-weight: 400;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--gold);
+}
+
+.nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+.nav-cta:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+/* ========== DROPDOWN MENU STYLES ========== */
+.dropdown-trigger i {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Desktop hover styles */
+@media (min-width: 769px) {
+    .dropdown:hover .dropdown-trigger i {
+        transform: rotate(180deg);
+    }
+    
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 180px;
+        background: rgba(15, 15, 15, 0.98);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 0.75rem 0;
+        margin-top: 0.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1001;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        margin-top: 0;
+    }
+    
+    .dropdown-menu li {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .dropdown-menu a {
+        display: block;
+        padding: 8px 20px;
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+    }
+    
+    .dropdown-menu a:hover {
+        background: rgba(201, 164, 92, 0.1);
+        color: var(--gold);
+        padding-left: 24px;
+    }
+}
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+@media (max-width: 768px) {
+    /* Mobile Navigation Panel */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 320px;
+        height: 100vh;
+        background: #0a0a0a;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0;
+        transition: right 0.4s ease;
+        z-index: 1001;
+        padding: 80px 1.5rem 2rem;
+        overflow-y: auto;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-cta {
+        display: none;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .nav-links li.dropdown {
+        position: static;
+    }
+    
+    .nav-links a {
+        padding: 12px 0;
+        font-size: 16px;
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    /* Mobile Dropdown Menu */
+    .dropdown-menu {
+        position: static !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        border-left: 2px solid var(--gold) !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 0 0 1rem !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: none !important;
+        box-shadow: none !important;
+        width: calc(100% - 1rem) !important;
+    }
+    
+    .dropdown-menu.open {
+        display: block !important;
+    }
+    
+    .dropdown-menu li {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .dropdown-menu a {
+        padding: 10px 0 10px 1rem !important;
+        font-size: 14px !important;
+        white-space: normal !important;
+        color: var(--text-secondary) !important;
+    }
+    
+    .dropdown-menu a:hover {
+        padding-left: 1.25rem !important;
+        color: var(--gold) !important;
+    }
+    
+    .dropdown-trigger i {
+        transition: transform 0.3s ease;
+    }
+    
+    .dropdown.open .dropdown-trigger i {
+        transform: rotate(180deg);
+    }
+}
+
+/* Desktop hide hamburger */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+    }
+}
+
+/* ========== ADDITIONAL MOBILE STYLES ========== */
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border);
+        justify-content: space-around;
+        padding: 12px 0;
+        z-index: 999;
+    }
+    
+    .mobile-bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 10px;
+        transition: var(--transition);
+    }
+    
+    .mobile-bottom-nav a i {
+        font-size: 20px;
+    }
+    
+    .mobile-bottom-nav a.active {
+        color: var(--gold);
+    }
+    
+    body {
+        padding-bottom: 70px;
+    }
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-menu {
+    animation: fadeIn 0.2s ease;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Executive Navbar -->
+  <nav class="exec-nav">
+  <a href="/index.html" class="nav-logo">Rent<span>Space</span></a>
+  <ul class="nav-links">
+    <!-- Explore Rentals Dropdown -->
+    <li class="dropdown">
+      <a href="/rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="/rentals.html">All Rentals</a></li>
+        <li><a href="/rentals.html?location=Karen">Karen</a></li>
+        <li><a href="/rentals.html?location=Kilimani">Kilimani</a></li>
+        <li><a href="/rentals.html?location=Hurlingham">Hurlingham</a></li>
+        <li><a href="/rentals.html?location=Ruiru">Ruiru</a></li>
+        <li><a href="/rentals.html?location=Ngong">Ngong</a></li>
+        <li><a href="/rentals.html?location=Kitengela">Kitengela</a></li>
+        <li><a href="/rentals.html?location=Westlands">Westlands</a></li>
+        <li><a href="/rentals.html?location=Lavington">Lavington</a></li>
+        <li><a href="/rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+      </ul>
+    </li>
+    
+    <!-- Airbnb Dropdown -->
+    <li class="dropdown">
+      <a href="/airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="/airbnb.html">All Bnbs</a></li>
+        <li><a href="/airbnb.html?location=Karen">Karen</a></li>
+        <li><a href="/airbnb.html?location=Kilimani">Kilimani</a></li>
+        <li><a href="/airbnb.html?location=Hurlingham">Hurlingham</a></li>
+        <li><a href="/airbnb.html?location=Westlands">Westlands</a></li>
+        <li><a href="/airbnb.html?location=Lavington">Lavington</a></li>
+        <li><a href="/airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+      </ul>
+    </li>
+    
+     <li><a href="/movers.html">Movers & Packers</a></li>
+    <li><a href="/blog.html">Location Insights</a></li>
+    <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+  </ul>
+  <a href="/contact.html" class="nav-cta">Book a Viewing</a>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-subtitle">Short-stay Collection</div>
+    <h1>Premium Short-stay & Airbnb</h1>
+    <p class="page-description">Fully furnished properties perfect for business travelers, tourists, and temporary stays. Experience Nairobi like a local.</p>
+    <div class="airbnb-badge">
+      <i class="fab fa-airbnb"></i> Curated Airbnb-ready properties
+    </div>
+  </div>
+
+  <!-- Feature Highlights -->
+  <div class="features-highlight">
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+      <h4>Flexible Stays</h4>
+      <p>1 night to 3 months</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-couch"></i></div>
+      <h4>Fully Furnished</h4>
+      <p>Ready to move in</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-star"></i></div>
+      <h4>Premium Locations</h4>
+      <p>Kilimani, Karen, Westlands</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-headset"></i></div>
+      <h4>24/7 Support</h4>
+      <p>Client support</p>
+    </div>
+  </div>
+
+  <!-- Location Quick Navigation -->
+  <div class="location-nav"> 
+    <div class="location-nav-links">
+      <a href="#kilimani" class="location-nav-link" data-location="Kilimani">Kilimani</a>
+      <a href="#karen" class="location-nav-link" data-location="Karen">Karen</a>
+      <a href="#hurlingham" class="location-nav-link" data-location="Hurlingham">Hurlingham</a>
+      <a href="#westlands" class="location-nav-link" data-location="Westlands">Westlands</a>
+    </div>
+  </div>
+
+  <!-- Filter Strip -->
+  <div class="filter-strip">
+    <button class="filter-btn" id="filterLocationBtn">
+      Location <i class="fas fa-chevron-down"></i>
+    </button>
+    <button class="filter-btn" id="filterPriceBtn">
+      Price Range <i class="fas fa-chevron-down"></i>
+    </button>
+    <button class="filter-btn" id="filterGuestsBtn">
+      Guests <i class="fas fa-chevron-down"></i>
+    </button>
+    <button class="filter-btn refine-btn" id="openFilterBtn">
+      <i class="fas fa-sliders-h"></i> Filter
+    </button>
+  </div>
+
+  <!-- Result Count -->
+  <div class="result-count" id="resultCount">
+    Loading <span id="countValue">0</span> exceptional short-stay properties
+  </div>
+
+  <!-- Property Grid -->
+  <div class="loading-spinner" id="loadingSpinner">
+    <div class="spinner"></div>
+  </div>
+  <div class="property-grid" id="propertyGrid" style="display: none;"></div>
+  <div class="pagination" id="pagination" style="display: none;"></div>
+  <div class="empty-state" id="emptyState">
+    <div class="empty-state-icon">
+      <i class="fab fa-airbnb"></i>
+    </div>
+    <h3>No Short-stay Properties Found</h3>
+    <p>We're adding new Airbnb-ready properties regularly. Check back soon or contact our concierge for personalized assistance.</p>
+    <a href="/contact.html" class="empty-state-btn">Contact Concierge →</a>
+  </div>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>RentSpace</h4>
+        <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/rentals.html">Long-term Rentals</a>
+        <a href="/airbnb.html">Short-stay / Airbnb</a>
+        <a href="/movers.html">Movers & Packers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <a href="tel:+254723562484">+254 723 562 484</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="/contact.html">Contact Us</a>
+      </div>
+    </div>
+  <div class="footer-bottom">
+      <p>© <span id="year"></span> RentSpace  — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+  <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="/rentals.html"><i class="fas fa-building"></i> Rentals</a>
+  <a href="/airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+  <a href="/blog.html"><i class="fas fa-newspaper"></i> Insights</a>
+  <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+</div>
+
+  <script>
+    // ========== AUTO-FILTER AIRBNB FROM URL ==========
+    function getLocationFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('location');
+    }
+
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    }
+
+    // ========== AIRBNB PROPERTIES VARIABLES ==========
+    let allAirbnbProperties = []; // Store all Airbnb properties
+    let currentFilteredProperties = []; // Store currently filtered properties
+    let currentPage = 1;
+    const itemsPerPage = 12;
+
+    // ========== RENDER PROPERTY CARDS ==========
+    function renderProperties(properties) {
+        const grid = document.getElementById('propertyGrid');
+        const paginationDiv = document.getElementById('pagination');
+        
+        if (!grid) return;
+        
+        if (!properties || properties.length === 0) {
+            grid.style.display = 'none';
+            if (paginationDiv) paginationDiv.style.display = 'none';
+            document.getElementById('emptyState').style.display = 'block';
+            const resultSpan = document.getElementById('countValue');
+            if (resultSpan) resultSpan.textContent = '0';
+            return;
+        }
+        
+        grid.style.display = 'grid';
+        document.getElementById('emptyState').style.display = 'none';
+        const resultSpan = document.getElementById('countValue');
+        if (resultSpan) resultSpan.textContent = properties.length;
+        
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginated = properties.slice(start, end);
+        const totalPages = Math.ceil(properties.length / itemsPerPage);
+        
+        grid.innerHTML = paginated.map(prop => `
+            <a href="/property/${prop.slug}.html" class="property-card">
+                <div class="card-image-wrapper">
+                    <img class="card-image" src="${prop.images?.[0] || '/images/placeholder.jpg'}" alt="${prop.title}" loading="lazy">
+                    <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
+                    <div class="card-price">KES ${prop.price_night?.toLocaleString() || prop.price.toLocaleString()}<span>/night</span></div>
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">${escapeHtml(prop.title)}</h3>
+                    <div class="card-location">${prop.estate}, Nairobi</div>
+                    <div class="card-features">
+                        <span><i class="fas fa-bed"></i> ${prop.specs?.bedrooms || 0}</span>
+                        <span><i class="fas fa-bath"></i> ${prop.specs?.bathrooms || 0}</span>
+                        <span><i class="fas fa-users"></i> ${(prop.specs?.bedrooms || 0) * 2} guests</span>
+                    </div>
+                    ${prop.airbnb_rating ? `
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i>
+                        <span>${prop.airbnb_rating}</span>
+                        <span class="reviews">(${prop.airbnb_reviews} reviews)</span>
+                    </div>
+                    ` : ''}
+                    <div class="card-cta">Book Now →</div>
+                </div>
+            </a>
+        `).join('');
+        
+        // Pagination
+        if (totalPages <= 1) {
+            paginationDiv.style.display = 'none';
+            return;
+        }
+        
+        paginationDiv.style.display = 'flex';
+        let paginationHTML = '';
+        
+        if (currentPage > 1) {
+            paginationHTML += `<a href="#" class="page-link" data-page="${currentPage - 1}"><i class="fas fa-chevron-left"></i></a>`;
+        }
+        
+        for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+            paginationHTML += `<a href="#" class="page-link ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
+        }
+        
+        if (currentPage < totalPages) {
+            paginationHTML += `<a href="#" class="page-link" data-page="${currentPage + 1}"><i class="fas fa-chevron-right"></i></a>`;
+        }
+        
+        paginationDiv.innerHTML = paginationHTML;
+        
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = parseInt(link.dataset.page);
+                if (!isNaN(page)) {
+                    currentPage = page;
+                    renderProperties(currentFilteredProperties);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+
+    // Escape HTML helper
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // ========== FILTER PROPERTIES BY LOCATION ==========
+    function filterByLocation(location) {
+        if (!location || location === 'all') {
+            currentFilteredProperties = [...allAirbnbProperties];
+            // Reset filter button
+            const filterLocationBtn = document.getElementById('filterLocationBtn');
+            if (filterLocationBtn) {
+                filterLocationBtn.innerHTML = `Location <i class="fas fa-chevron-down"></i>`;
+                filterLocationBtn.style.borderColor = '';
+                filterLocationBtn.style.color = '';
+            }
+        } else {
+            currentFilteredProperties = allAirbnbProperties.filter(p => 
+                p.estate && p.estate.toLowerCase() === location.toLowerCase()
+            );
+            
+            // Update the filter button to show active filter
+            const filterLocationBtn = document.getElementById('filterLocationBtn');
+            if (filterLocationBtn) {
+                filterLocationBtn.innerHTML = `${location} <i class="fas fa-chevron-down"></i>`;
+                filterLocationBtn.style.borderColor = '#FF5A5F';
+                filterLocationBtn.style.color = '#FF5A5F';
+            }
+        }
+        
+        // Reset to page 1 and render
+        currentPage = 1;
+        renderProperties(currentFilteredProperties);
+        
+        console.log(`📍 Showing ${currentFilteredProperties.length} properties for: ${location || 'all'}`);
+    }
+
+    // ========== LOAD ALL AIRBNB PROPERTIES ==========
+    async function loadAirbnbProperties() {
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const propertyGrid = document.getElementById('propertyGrid');
+        
+        try {
+            const response = await fetch('/data/properties.json');
+            const allProperties = await response.json();
+            
+            // Store all Airbnb properties
+            allAirbnbProperties = allProperties.filter(prop => 
+                prop.available_for && prop.available_for.includes('short_term')
+            );
+            
+            // Check URL for location filter
+            const locationFromURL = getLocationFromURL();
+            
+            if (locationFromURL) {
+                // Apply filter immediately
+                filterByLocation(locationFromURL);
+            } else {
+                // Show all properties
+                currentFilteredProperties = [...allAirbnbProperties];
+                renderProperties(currentFilteredProperties);
+            }
+            
+            // Hide spinner, show grid
+            if (loadingSpinner) loadingSpinner.style.display = 'none';
+            if (propertyGrid) propertyGrid.style.display = 'grid';
+            
+            // Update result count
+            const resultSpan = document.getElementById('countValue');
+            if (resultSpan) resultSpan.textContent = currentFilteredProperties.length;
+            
+        } catch (error) {
+            console.error('Error loading properties:', error);
+            if (loadingSpinner) {
+                loadingSpinner.innerHTML = `
+                    <div style="text-align: center;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 48px; color: #FF5A5F; margin-bottom: 20px;"></i>
+                        <h3 style="font-weight: 400;">Unable to load properties</h3>
+                        <p style="color: var(--text-muted);">Please check back later.</p>
+                    </div>
+                `;
+            }
+        }
+    }
+
+    // ========== LOCATION QUICK NAVIGATION ==========
+    function initLocationNav() {
+        const locationLinks = document.querySelectorAll('.location-nav-link');
+        locationLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const location = link.dataset.location;
+                if (location) {
+                    // Filter and show only that location
+                    filterByLocation(location);
+                    window.scrollTo({ top: 400, behavior: 'smooth' });
+                    
+                    // Update active state on location links
+                    locationLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // ========== FILTER BUTTON HANDLER ==========
+    function initFilterButtons() {
+        // This would connect to your filter drawer if needed
+        // For now, just log that it's available
+        console.log('Filter buttons initialized');
+    }
+
+    // ========== CLOSE MENU WHEN CLICKING OUTSIDE ==========
+    function initCloseMenuOnOutsideClick() {
+        document.addEventListener('click', (e) => {
+            if (navMenu && navMenu.classList.contains('active')) {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // ========== INITIALIZE ==========
+    async function init() {
+        await loadAirbnbProperties();
+        initLocationNav();
+        initFilterButtons();
+        initCloseMenuOnOutsideClick();
+    }
+    
+    // Start initialization
+    init();
+</script>
+</body>
+</html>

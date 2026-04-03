@@ -1,11 +1,11 @@
 /* ==============================
-   EliteHomes – Premium Property Page
+   RentSpace – Premium Property Page
    Dark Luxury Theme | Jost Font
    ============================== */
 
 :root {
   --gold: #c9a45c;
-  --gold-light: rgba(201, 164, 92, 0.15);
+  --gold-dark: #b88f3c;
   --dark-bg: radial-gradient(circle at 30% 10%, #1c1c1c 0%, #0a0a0a 100%);
   --card-bg: rgba(20, 20, 20, 0.6);
   --border: rgba(201, 164, 92, 0.2);
@@ -30,6 +30,7 @@ body {
   line-height: 1.7;
   font-size: 14px;
   overflow-x: hidden;
+  padding-bottom: 80px;
 }
 
 /* Typography */
@@ -38,7 +39,7 @@ h2 { font-size: 28px; font-weight: 500; letter-spacing: -0.3px; margin-bottom: 1
 h3, h4, h5, h6 { font-size: 22px; font-weight: 500; margin-bottom: 1rem; }
 p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.7; }
 
-/* ========== Executive Navigation ========== */
+/* ========== EXECUTIVE NAVBAR ========== */
 .exec-nav {
   position: fixed;
   top: 0;
@@ -77,11 +78,59 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   font-weight: 500;
   letter-spacing: 4px;
   color: var(--text-primary);
+  text-decoration: none;
 }
 
 .nav-logo span {
   color: var(--gold);
   font-weight: 400;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-cta {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: var(--transition);
+}
+
+.nav-cta:hover {
+  background: var(--gold);
+  color: #000;
 }
 
 .nav-inquire {
@@ -102,7 +151,270 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   color: #000;
 }
 
-/* ========== Cinematic Gallery ========== */
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Menu Overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========== DROPDOWN MENU STYLES ========== */
+.dropdown-trigger i {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Desktop hover styles */
+@media (min-width: 769px) {
+  .dropdown:hover .dropdown-trigger i {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background: rgba(15, 15, 15, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.75rem 0;
+    margin-top: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+  }
+  
+  .dropdown-menu li {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 8px 20px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    background: rgba(201, 164, 92, 0.1);
+    color: var(--gold);
+    padding-left: 24px;
+  }
+}
+
+/* ========== MOBILE RESPONSIVE (CONSOLIDATED) ========== */
+@media (max-width: 768px) {
+  /* Hide desktop elements */
+  .nav-cta,
+  .nav-inquire {
+    display: none;
+  }
+  
+  /* Show hamburger */
+  .hamburger {
+    display: flex;
+  }
+  
+  /* Mobile Navigation Panel */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background: #0a0a0a;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    transition: right 0.4s ease;
+    z-index: 1001;
+    padding: 80px 1.5rem 2rem;
+    overflow-y: auto;
+    display: flex !important;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .nav-links.active {
+    right: 0;
+  }
+  
+  /* Menu items */
+  .nav-links li {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .nav-links li.dropdown {
+    position: static;
+  }
+  
+  .nav-links a {
+    padding: 12px 0;
+    font-size: 16px;
+    justify-content: space-between;
+    width: 100%;
+    color: #ffffff;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .nav-links a:hover {
+    color: var(--gold);
+  }
+  
+  /* Dropdown trigger chevron */
+  .dropdown-trigger i {
+    color: var(--gold);
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Mobile Dropdown Menu */
+  .dropdown-menu {
+    position: static;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: none;
+    border: none;
+    border-left: 2px solid var(--gold);
+    border-radius: 0;
+    padding: 0;
+    margin: 8px 0 8px 1rem;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+    box-shadow: none;
+    width: calc(100% - 1rem);
+  }
+  
+  .dropdown-menu.open {
+    display: block;
+  }
+  
+  .dropdown-menu li {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dropdown-menu a {
+    padding: 10px 0 10px 1rem;
+    font-size: 14px;
+    white-space: normal;
+    color: rgba(255, 255, 255, 0.8);
+    justify-content: flex-start;
+  }
+  
+  .dropdown-menu a:hover {
+    padding-left: 1.25rem;
+    color: var(--gold);
+  }
+  
+  /* Chevron rotation when dropdown is open */
+  .dropdown.open .dropdown-trigger i {
+    transform: rotate(180deg);
+  }
+  
+  /* Gallery and other responsive adjustments */
+  .gallery-item {
+    height: 45vh;
+  }
+  
+  .spec-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .concierge-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .concierge-text {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .recommendation-cards {
+    gap: 12px;
+  }
+  
+  .rec-card {
+    min-width: 240px;
+  }
+  
+  .sticky-price {
+    font-size: 16px;
+  }
+  
+  .sticky-call-btn, .sticky-inquiry-btn {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+  
+  .sticky-call-btn i, .sticky-inquiry-btn i {
+    font-size: 12px;
+  }
+  
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* Desktop hide hamburger */
+@media (min-width: 769px) {
+  .hamburger {
+    display: none !important;
+  }
+}
+
+/* ========== CINEMATIC GALLERY ========== */
 .gallery-container {
   margin-top: 70px;
   position: relative;
@@ -160,7 +472,7 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   letter-spacing: 1px;
 }
 
-/* ========== Main Content ========== */
+/* ========== MAIN CONTENT ========== */
 .content-wrap {
   max-width: 1200px;
   margin: 0 auto;
@@ -207,7 +519,7 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   max-width: 800px;
 }
 
-/* ========== Luxury Spec Grid ========== */
+/* ========== LUXURY SPEC GRID ========== */
 .spec-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -257,7 +569,7 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   color: var(--text-muted);
 }
 
-/* ========== Features Section ========== */
+/* ========== FEATURES SECTION ========== */
 .features-section {
   margin: 3rem 0;
 }
@@ -293,7 +605,7 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   color: var(--gold);
 }
 
-/* ========== Concierge Section ========== */
+/* ========== CONCIERGE SECTION ========== */
 .concierge-section {
   margin: 4rem 0;
   background: var(--glass);
@@ -358,7 +670,7 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   color: #000;
 }
 
-/* ========== Recommendations Section ========== */
+/* ========== RECOMMENDATIONS SECTION ========== */
 .recommendations {
   margin: 4rem 0;
 }
@@ -445,7 +757,7 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   margin: 0;
 }
 
-/* ========== Testimonials Section ========== */
+/* ========== TESTIMONIALS SECTION ========== */
 .testimonials {
   margin: 4rem 0;
 }
@@ -503,7 +815,7 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   letter-spacing: 1px;
 }
 
-/* ========== Premium Footer ========== */
+/* ========== PREMIUM FOOTER ========== */
 .elite-footer {
   background: #080808;
   border-top: 1px solid var(--border);
@@ -515,9 +827,23 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
   margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 }
 
 .footer-logo {
@@ -606,116 +932,160 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   color: var(--gold);
 }
 
-/* ========== WhatsApp Floating Button ========== */
-.wa-float {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #25D366;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 28px;
+.footer-bottom a {
+  color: var(--gold);
   text-decoration: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: var(--transition);
-  z-index: 1000;
 }
 
-.wa-float:hover {
-  transform: scale(1.05);
-  background: #128C7E;
+.footer-bottom a:hover {
+  text-decoration: underline;
 }
 
-/* ========== Mobile Bottom Navigation ========== */
-.mobile-bottom-nav {
-  display: none;
+/* ========== STICKY CONTACT BAR ========== */
+.sticky-contact-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(12px);
   border-top: 1px solid var(--border);
-  justify-content: space-around;
-  padding: 12px 0;
-  z-index: 999;
-}
-
-.mobile-bottom-nav a {
+  padding: 12px 5%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 4px;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 10px;
-  transition: var(--transition);
+  z-index: 1000;
 }
 
-.mobile-bottom-nav a i {
+.sticky-price {
   font-size: 20px;
-}
-
-.mobile-bottom-nav a:hover,
-.mobile-bottom-nav a.active {
+  font-weight: 700;
   color: var(--gold);
 }
 
-@media (max-width: 768px) {
-  .mobile-bottom-nav {
-    display: flex;
-  }
-  
-  body {
-    padding-bottom: 70px;
-  }
-  
-  .gallery-item {
-    height: 45vh;
-  }
-  
-  .spec-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .concierge-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .concierge-text {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .recommendation-cards {
-    gap: 12px;
-  }
-  
-  .rec-card {
-    min-width: 240px;
-  }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2rem;
-  }
-  
-  .footer-col a {
-    justify-content: center;
-  }
-  
-  .social-links {
-    justify-content: center;
-  }
+.sticky-price span {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-muted);
 }
 
+.sticky-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.sticky-call-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 10px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.sticky-call-btn:hover {
+  background: rgba(201, 164, 92, 0.1);
+  transform: translateY(-2px);
+}
+
+.sticky-inquiry-btn {
+  background: #25D366;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+  font-family: 'Jost', sans-serif;
+}
+
+.sticky-inquiry-btn:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+}
+
+/* ========== CONTACT REVEAL FEATURE ========== */
+.contact-buttons-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.reveal-contact-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Jost', sans-serif;
+}
+
+.reveal-contact-btn:hover {
+  background: rgba(201, 164, 92, 0.1);
+}
+
+.contact-info-revealed {
+  display: none;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contact-call-btn {
+  background: var(--gold);
+  color: #000;
+  padding: 8px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-call-btn:hover {
+  background: var(--gold-dark);
+  transform: translateY(-2px);
+}
+
+.whatsapp-inquiry-btn {
+  background: #25D366;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.whatsapp-inquiry-btn:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+}
+
+/* ========== EXTRA SMALL SCREENS ========== */
 @media (max-width: 480px) {
   h1 { font-size: 32px; }
   h2 { font-size: 24px; }
@@ -735,5 +1105,188 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
   
   .rec-card-image {
     height: 160px;
+  }
+  
+  .sticky-contact-bar {
+    padding: 10px 4%;
+  }
+  
+  .sticky-price {
+    font-size: 14px;
+  }
+  
+  .sticky-call-btn, .sticky-inquiry-btn {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+}
+
+/* Menu Overlay - should ONLY show when active */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none; /* Prevents interaction when hidden */
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* Allows interaction when visible */
+}
+
+/* ========== MOBILE RESPONSIVE (CONSOLIDATED) ========== */
+@media (max-width: 768px) {
+  /* Hide desktop elements */
+  .nav-cta,
+  .nav-inquire {
+    display: none;
+  }
+  
+  /* Show hamburger */
+  .hamburger {
+    display: flex;
+  }
+  
+  /* Mobile Navigation Panel - PREPARE for animation */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background: #0a0a0a;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    transition: right 0.3s ease;
+    z-index: 1001;
+    padding: 80px 1.5rem 2rem;
+    overflow-y: auto;
+    display: flex !important;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    list-style: none;
+    /* Ensure content is visible */
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* When active - slide in */
+  .nav-links.active {
+    right: 0;
+  }
+  
+  /* Menu items - make them visible at all times */
+  .nav-links li {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav-links li.dropdown {
+    position: static;
+  }
+  
+  .nav-links a {
+    padding: 12px 0;
+    font-size: 16px;
+    justify-content: space-between;
+    width: 100%;
+    color: #ffffff;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .nav-links a:hover {
+    color: var(--gold);
+  }
+  
+  /* Dropdown trigger chevron */
+  .dropdown-trigger i {
+    color: var(--gold);
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Mobile Dropdown Menu */
+  .dropdown-menu {
+    position: static;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: none;
+    border: none;
+    border-left: 2px solid var(--gold);
+    border-radius: 0;
+    padding: 0;
+    margin: 8px 0 8px 1rem;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+    box-shadow: none;
+    width: calc(100% - 1rem);
+  }
+  
+  .dropdown-menu.open {
+    display: block;
+  }
+  
+  .dropdown-menu li {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dropdown-menu a {
+    padding: 10px 0 10px 1rem;
+    font-size: 14px;
+    white-space: normal;
+    color: rgba(255, 255, 255, 0.8);
+    justify-content: flex-start;
+  }
+  
+  .dropdown-menu a:hover {
+    padding-left: 1.25rem;
+    color: var(--gold);
+  }
+  
+  /* Chevron rotation when dropdown is open */
+  .dropdown.open .dropdown-trigger i {
+    transform: rotate(180deg);
+  }
+  
+  /* Overlay */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }

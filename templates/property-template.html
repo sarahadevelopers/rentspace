@@ -25,17 +25,59 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="/css/property.css">
+<!-- TEMPORARY TEST - Force menu visible -->
+
 </head>
 <body>
 
   <!-- Executive Navigation -->
-  <nav class="exec-nav">
-    <a href="/index.html" class="nav-back">
-      <i class="fas fa-arrow-left"></i> <span>Catalog</span>
-    </a>
-    <div class="nav-logo">ELITE<span>HOMES</span></div>
-    <a href="#inquire" class="nav-inquire">Inquire</a>
-  </nav>
+ <nav class="exec-nav">
+  <a href="/location/{{location_slug}}.html" class="nav-back">
+    <i class="fas fa-arrow-left"></i> <span>Back to {{estate}}</span>
+  </a>
+  
+  <div class="nav-logo">Rent<span>Space</span></div>
+  
+  <ul class="nav-links">
+    <!-- Explore Rentals Dropdown -->
+    <li class="dropdown">
+      <a href="/rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="/rentals.html?location=Karen">Karen</a></li>
+        <li><a href="/rentals.html?location=Kilimani">Kilimani</a></li>
+        <li><a href="/rentals.html?location=Hurlingham">Hurlingham</a></li>
+        <li><a href="/rentals.html?location=Ruiru">Ruiru</a></li>
+        <li><a href="/rentals.html?location=Ngong">Ngong</a></li>
+        <li><a href="/rentals.html?location=Kitengela">Kitengela</a></li>
+      </ul>
+    </li>
+    
+    <!-- Airbnb Dropdown -->
+    <li class="dropdown">
+      <a href="/airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="/airbnb.html?location=Karen">Karen</a></li>
+        <li><a href="/airbnb.html?location=Kilimani">Kilimani</a></li>
+        <li><a href="/airbnb.html?location=Hurlingham">Hurlingham</a></li>
+      </ul>
+    </li>
+    
+     <li><a href="/movers.html">Movers & Packers</a></li>
+    <li><a href="/blog.html">Location Insights</a></li>
+    <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+  </ul>
+  
+  <a href="/contact.html" class="nav-cta">Book a Viewing</a>
+  
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- THIS IS CRITICAL - ADD THE OVERLAY -->
+<div class="menu-overlay" id="menuOverlay"></div>
 
   <!-- Cinematic Gallery with Peek Effect -->
   <div class="gallery-container">
@@ -112,15 +154,15 @@
       <div class="concierge-content">
         <div class="concierge-text">
           <i class="fas fa-concierge-bell"></i>
-          <h4>Lifestyle Concierge</h4>
+          <h4>Our Services</h4>
           <p>Curated moving and sanctuary preparation services for discerning clients.</p>
         </div>
         <div class="concierge-actions">
           <a href="/movers.html?destination={{encodedTitle}}" class="btn-concierge">
-            <i class="fas fa-truck"></i> Relocation
+            <i class="fas fa-truck"></i> Mover Services
           </a>
           <a href="{{fumigationLink}}" target="_blank" class="btn-concierge">
-            <i class="fas fa-leaf"></i> Sanctuary Prep
+            <i class="fas fa-leaf"></i> Fumigation
           </a>
         </div>
       </div>
@@ -178,26 +220,28 @@
   <footer class="elite-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <div class="footer-logo">ELITE<span>HOMES</span></div>
+        <div class="footer-logo">Rent<span>Space</span></div>
         <p>Providing Nairobi's most discerning clients with bespoke residential experiences since 2018.</p>
       </div>
       <div class="footer-col">
         <h4>Portfolio</h4>
-        <a href="/rentals.html?estate=Karen">Karen Collection</a>
-        <a href="/rentals.html?estate=Kilimani">Kilimani Reserve</a>
-        <a href="/rentals.html?estate=Hurlingham">Hurlingham Heights</a>
-        <a href="/rentals.html?estate=Ruiru">Ruiru Gardens</a>
+        <a href="/location/karen.html">Karen Collection</a>
+        <a href="/location/kilimani.html">Kilimani Reserve</a>
+        <a href="/location/hurlingham.html">Hurlingham Heights</a>
+        <a href="/location/ruiru.html">Ruiru Gardens</a>
+        <a href="/location/ngong.html">Ngong Views</a>
+        <a href="/location/kitengela.html">Kitengela Homes</a>
       </div>
       <div class="footer-col">
-        <h4>Concierge</h4>
-        <a href="/movers.html">Relocation Services</a>
-        <a href="https://your-fumigation-site.com">Sanctuary Preparation</a>
-        <a href="/contact.html">Private Viewings</a>
+        <h4>Services</h4>
+        <a href="/movers.html">Movers & Packers</a>
+        <a href="https://fumigo.co.ke">Fumigation</a>
+        <a href="/contact.html">Book a Viewing</a>
       </div>
       <div class="footer-col">
         <h4>Inquiries</h4>
         <a href="tel:+254723562484"><i class="fas fa-phone"></i> +254 723 562 484</a>
-        <a href="mailto:concierge@rentspace.co.ke"><i class="fas fa-envelope"></i> concierge@rentspace.co.ke</a>
+        <a href="mailto:info@rentspace.co.ke"><i class="fas fa-envelope"></i> info@rentspace.co.ke</a>
         <div class="social-links">
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -206,19 +250,30 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span id="year"></span> RENTSPACE NAIROBI — ALL RIGHTS RESERVED</p>
-      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+      <p>© <span id="year"></span> RentSpace  — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
 
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/254723562484?text=I'm%20interested%20in%20{{encodedTitle}}%20in%20{{estate}}" class="wa-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  <!-- Sticky Contact Bar (Always Visible) -->
+  <div class="sticky-contact-bar">
+    <div class="sticky-price">
+      KES {{price}}<span>/mo</span>
+    </div>
+    <div class="sticky-actions">
+      <a href="tel:+254723562484" class="sticky-call-btn">
+        <i class="fas fa-phone-alt"></i> Call
+      </a>
+      <button class="sticky-inquiry-btn" id="stickyInquiryBtn">
+        <i class="fab fa-whatsapp"></i> Inquire
+      </button>
+    </div>
+  </div>
 
   <script>
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
+    
 
     // Gallery counter and scroll tracking
     const gallery = document.getElementById('galleryStage');
@@ -229,7 +284,7 @@
     if (gallery && counter && total > 0) {
       function updateCounter() {
         const scrollLeft = gallery.scrollLeft;
-        const itemWidth = items[0].offsetWidth + 12; // width + gap
+        const itemWidth = items[0].offsetWidth + 12;
         const activeIndex = Math.round(scrollLeft / itemWidth) + 1;
         counter.textContent = Math.min(activeIndex, total);
       }
@@ -243,6 +298,26 @@
       e.preventDefault();
       document.querySelector('.concierge-section')?.scrollIntoView({ behavior: 'smooth' });
     });
+
+    // Sticky inquiry button
+    const stickyInquiryBtn = document.getElementById('stickyInquiryBtn');
+    if (stickyInquiryBtn) {
+      stickyInquiryBtn.addEventListener('click', () => {
+        const title = document.querySelector('.property-title')?.textContent || 'Property';
+        const estate = document.querySelector('.location-meta')?.textContent.replace(/[^\w\s]/g, '').trim() || 'Nairobi';
+        const price = document.querySelector('.price-tag')?.textContent || '';
+        const url = window.location.href;
+        
+        const message = `*RENTSPACE PROPERTY INQUIRY*%0A%0A` +
+                        `*Property:* ${title}%0A` +
+                        `*Location:* ${estate}, Nairobi%0A` +
+                        `*Price:* ${price}%0A` +
+                        `*Listing:* ${url}%0A%0A` +
+                        `Hello, I'm interested in this property. Please share more details.`;
+        
+        window.open(`https://wa.me/254723562484?text=${message}`, '_blank');
+      });
+    }
   </script>
   <script src="/js/properties.js"></script>
 </body>

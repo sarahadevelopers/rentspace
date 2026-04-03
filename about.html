@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-  <style>
+<style>
     /* ============================================
        ABOUT PAGE - PREMIUM DARK THEME
        ============================================ */
@@ -96,6 +96,12 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links li {
+      position: relative;
     }
     
     .nav-links a {
@@ -105,6 +111,9 @@
       letter-spacing: 1px;
       font-weight: 400;
       transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     
     .nav-links a:hover,
@@ -145,6 +154,64 @@
       transition: all 0.3s ease;
     }
     
+    /* ========== DROPDOWN MENU STYLES ========== */
+    .dropdown-trigger i {
+      font-size: 10px;
+      transition: transform 0.3s ease;
+    }
+    
+    /* Desktop hover styles */
+    @media (min-width: 769px) {
+      .dropdown:hover .dropdown-trigger i {
+        transform: rotate(180deg);
+      }
+      
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 180px;
+        background: rgba(15, 15, 15, 0.98);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 0.75rem 0;
+        margin-top: 0.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1001;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        margin-top: 0;
+      }
+      
+      .dropdown-menu li {
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .dropdown-menu a {
+        display: block;
+        padding: 8px 20px;
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+      }
+      
+      .dropdown-menu a:hover {
+        background: rgba(201, 164, 92, 0.1);
+        color: var(--gold);
+        padding-left: 24px;
+      }
+    }
+    
     /* ========== PAGE HEADER ========== */
     .page-header {
       text-align: center;
@@ -171,12 +238,6 @@
       color: var(--text-secondary);
       max-width: 600px;
       margin: 0 auto;
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 36px;
-      }
     }
     
     /* ========== MAIN CONTENT ========== */
@@ -244,13 +305,6 @@
       text-align: center;
     }
     
-    @media (max-width: 768px) {
-      .stats-section {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-      }
-    }
-    
     .stat-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -295,13 +349,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
       margin-top: 50px;
-    }
-    
-    @media (max-width: 768px) {
-      .values-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
     }
     
     .value-card {
@@ -362,13 +409,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
       margin-top: 50px;
-    }
-    
-    @media (max-width: 768px) {
-      .team-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
     }
     
     .team-card {
@@ -580,10 +620,29 @@
       color: var(--gold);
     }
     
-    /* ========== RESPONSIVE ========== */
+    /* ========== MOBILE RESPONSIVE STYLES ========== */
     @media (max-width: 768px) {
+      /* Mobile Navigation Panel */
       .nav-links {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 320px;
+        height: 100vh;
+        background: #0a0a0a;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0;
+        transition: right 0.4s ease;
+        z-index: 1001;
+        padding: 80px 1.5rem 2rem;
+        overflow-y: auto;
+      }
+      
+      .nav-links.active {
+        right: 0;
       }
       
       .hamburger {
@@ -602,16 +661,93 @@
         padding-bottom: 70px;
       }
       
+      .nav-links li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .nav-links li.dropdown {
+        position: static;
+      }
+      
+      .nav-links a {
+        padding: 12px 0;
+        font-size: 16px;
+        justify-content: space-between;
+        width: 100%;
+      }
+      
+      /* Mobile Dropdown Menu - This makes the dropdown visible! */
+      .dropdown-menu {
+        position: static !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        border-left: 2px solid var(--gold) !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 0 0 1rem !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: none !important;
+        box-shadow: none !important;
+        width: calc(100% - 1rem) !important;
+      }
+      
+      .dropdown-menu.open {
+        display: block !important;
+      }
+      
+      .dropdown-menu li {
+        padding: 0;
+        margin: 0;
+      }
+      
+      .dropdown-menu a {
+        padding: 10px 0 10px 1rem !important;
+        font-size: 14px !important;
+        white-space: normal !important;
+        color: var(--text-secondary) !important;
+      }
+      
+      .dropdown-menu a:hover {
+        padding-left: 1.25rem !important;
+        color: var(--gold) !important;
+      }
+      
+      .dropdown-trigger i {
+        transition: transform 0.3s ease;
+      }
+      
+      .dropdown.open .dropdown-trigger i {
+        transform: rotate(180deg);
+      }
+      
+      /* Page Header */
+      h1 {
+        font-size: 36px;
+      }
+      
       .page-header {
         padding: 120px 5% 40px;
       }
       
+      /* Stats Section */
       .stats-section {
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
       }
       
       .stat-number {
         font-size: 32px;
+      }
+      
+      /* Values & Team Grids */
+      .values-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
       }
     }
     
@@ -620,25 +756,52 @@
         display: none !important;
       }
     }
-  </style>
+</style>
 </head>
 <body>
 
   <!-- Executive Navbar -->
-  <nav class="exec-nav">
-    <a href="/index.html" class="nav-logo">ELITE<span>HOMES</span></a>
-    <ul class="nav-links">
-      <li><a href="/rentals.html">The Collection</a></li>
-      <li><a href="/movers.html">Relocation</a></li>
-      <li><a href="https://your-fumigation-site.com" target="_blank">Sanctuary Prep</a></li>
-    </ul>
-    <a href="/contact.html" class="nav-cta">Private Inquiry</a>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </nav>
+<nav class="exec-nav">
+  <a href="/index.html" class="nav-logo">Rent<span>Space</span></a>
+  <ul class="nav-links">
+    <!-- Explore Rentals Dropdown -->
+    <li class="dropdown">
+      <a href="/rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="/rentals.html?location=Karen">Karen</a></li>
+        <li><a href="/rentals.html?location=Kilimani">Kilimani</a></li>
+        <li><a href="/rentals.html?location=Hurlingham">Hurlingham</a></li>
+        <li><a href="/rentals.html?location=Ruiru">Ruiru</a></li>
+        <li><a href="/rentals.html?location=Ngong">Ngong</a></li>
+        <li><a href="/rentals.html?location=Kitengela">Kitengela</a></li>
+       
+      </ul>
+    </li>
+    
+    <!-- Airbnb Dropdown -->
+    <li class="dropdown">
+      <a href="/airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="/airbnb.html?location=Karen">Karen</a></li>
+        <li><a href="/airbnb.html?location=Kilimani">Kilimani</a></li>
+        <li><a href="/airbnb.html?location=Hurlingham">Hurlingham</a></li>
+        <li><a href="/airbnb.html?location=Ngong">Ngong</a></li>
+        <li><a href="/airbnb.html?location=Ruiru">Ruiru</a></li>
+        <li><a href="/airbnb.html?location=Kitengela">Kitengela</a></li>
+      </ul>
+    </li>
+    
+     <li><a href="/movers.html">Movers & Packers</a></li>
+    <li><a href="/blog.html">Location Insights</a></li>
+    <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+  </ul>
+  <a href="/contact.html" class="nav-cta">Book a Viewing</a>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
 
   <!-- Page Header -->
   <div class="page-header">
@@ -681,7 +844,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-number">24/7</div>
-        <div class="stat-label">Concierge Access</div>
+        <div class="stat-label">Client Support</div>
       </div>
     </div>
     
@@ -719,7 +882,7 @@
     
     <!-- Team Section -->
     <div class="team-section">
-      <h2>The Concierge Team</h2>
+      <h2>Our Team</h2>
       <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Meet the experts dedicated to your residential journey</p>
       
       <div class="team-grid">
@@ -740,7 +903,7 @@
           </div>
           <div class="team-info">
             <h3>Sarah Wanjiku</h3>
-            <p>Senior Concierge</p>
+            <p>Office Administrator</p>
             <p class="bio">Sarah's attention to detail and client-first approach ensures every transition is flawless.</p>
           </div>
         </div>
@@ -764,7 +927,7 @@
       <p>Experience the RentSpace difference. Let us curate your next chapter.</p>
       <div class="cta-buttons">
         <a href="/contact.html" class="btn-primary">Request Consultation</a>
-        <a href="/rentals.html" class="btn-secondary">Explore The Collection</a>
+        <a href="/rentals.html" class="btn-secondary">Explore Rentals</a>
       </div>
     </div>
   </div>
@@ -773,34 +936,39 @@
   <footer class="premium-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Elite Homes</h4>
+        <h4>Rent Space</h4>
         <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
-        <a href="/rentals.html">The Collection</a>
-        <a href="/movers.html">Bespoke Relocation</a>
-        <a href="https://your-fumigation-site.com">Sanctuary Prep</a>
-      </div>
+    <h4>Services</h4>
+    <a href="/rentals.html">Explore Rentals</a>
+    <a href="/airbnb.html">Airbnb</a>
+    <a href="/movers.html">Movers & Packers</a>
+    <a href="/blog.html">Location Insights</a>
+    <a href="/fumigation.html">Fumigation Services</a>
+
+  </div>
       <div class="footer-col">
-        <h4>Concierge</h4>
+        <h4>Contacts</h4>
         <a href="tel:+254723562484">+254 723 562 484</a>
-        <a href="mailto:concierge@rentspace.co.ke">concierge@rentspace.co.ke</a>
-        <a href="/contact.html">Private Viewings</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="/contact.html">Contact Us</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span id="year"></span> RENTSPACE NAIROBI — ALL RIGHTS RESERVED</p>
-      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+      <p>© <span id="year"></span> RentSpace  — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
 
   <!-- Mobile Bottom Navigation -->
   <div class="mobile-bottom-nav">
-    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="/rentals.html"><i class="fas fa-search"></i> Explore</a>
-    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  </div>
+  <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="/rentals.html"><i class="fas fa-building"></i> Rentals</a>
+  <a href="/airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+  <a href="/blog.html"><i class="fas fa-newspaper"></i> Insights</a>
+  <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+</div>
 
   <script>
     // Dynamic year
@@ -826,6 +994,41 @@
         }
       }
     });
+
+    // Mobile dropdown toggle
+// Mobile dropdown toggle - FIXED VERSION
+function initMobileDropdowns() {
+  const dropdowns = document.querySelectorAll('.dropdown');
+  
+  dropdowns.forEach(dropdown => {
+    const trigger = dropdown.querySelector('.dropdown-trigger');
+    const menu = dropdown.querySelector('.dropdown-menu');
+    
+    if (trigger && menu && window.innerWidth <= 768) {
+      // Remove any existing listeners to avoid duplicates
+      const newTrigger = trigger.cloneNode(true);
+      trigger.parentNode.replaceChild(newTrigger, trigger);
+      
+      newTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+        if (menu) {
+          menu.classList.toggle('open');
+        }
+      });
+    }
+  });
+}
+
+// Call on load and resize
+document.addEventListener('DOMContentLoaded', () => {
+  initMobileDropdowns();
+});
+
+window.addEventListener('resize', () => {
+  initMobileDropdowns();
+});
   </script>
 </body>
 </html>

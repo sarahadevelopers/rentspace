@@ -96,6 +96,12 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links li {
+      position: relative;
     }
     
     .nav-links a {
@@ -105,10 +111,12 @@
       letter-spacing: 1px;
       font-weight: 400;
       transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover {
       color: var(--gold);
     }
     
@@ -143,6 +151,238 @@
       height: 2px;
       background: var(--text-primary);
       transition: all 0.3s ease;
+    }
+    
+    /* Menu Overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    
+    /* ========== DESKTOP DROPDOWN ========== */
+    @media (min-width: 769px) {
+      .dropdown {
+        position: relative;
+      }
+      
+      .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .dropdown-trigger i {
+        font-size: 10px;
+        transition: transform 0.3s ease;
+      }
+      
+      .dropdown:hover .dropdown-trigger i {
+        transform: rotate(180deg);
+      }
+      
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 220px;
+        background: #111111;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 8px 0;
+        margin-top: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.25s ease;
+        z-index: 1001;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+      
+      .dropdown:last-child .dropdown-menu {
+        left: auto;
+        right: 0;
+      }
+      
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .dropdown-menu li {
+        display: block;
+      }
+      
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 20px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      
+      .dropdown-menu a:hover {
+        background: rgba(201, 164, 92, 0.1);
+        color: var(--gold);
+        padding-left: 24px;
+      }
+      
+      .dropdown-menu li:not(:last-child) a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    }
+    
+    /* ========== MOBILE NAVIGATION ========== */
+    @media (max-width: 768px) {
+      .nav-cta {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 320px;
+        height: 100vh;
+        background: #0a0a0a;
+        flex-direction: column;
+        transition: right 0.3s ease;
+        z-index: 1001;
+        padding: 80px 24px 24px;
+        display: flex;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+        margin: 0;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .nav-links li {
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .nav-links a {
+        display: block;
+        padding: 14px 0;
+        font-size: 18px;
+        font-weight: 500;
+        color: #ffffff;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .nav-links a:hover {
+        color: var(--gold);
+        padding-left: 8px;
+      }
+      
+      .dropdown-trigger {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .dropdown-trigger i {
+        color: var(--gold);
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+      
+      .dropdown-menu {
+        background: rgba(255, 255, 255, 0.08);
+        border-left: 2px solid var(--gold);
+        padding: 0;
+        margin: 8px 0 8px 16px;
+        display: none;
+      }
+      
+      .dropdown-menu.open {
+        display: block;
+      }
+      
+      .dropdown-menu a {
+        padding: 10px 0 10px 16px;
+        font-size: 15px;
+        border-bottom: none;
+      }
+      
+      .dropdown-menu a:hover {
+        color: var(--gold);
+        padding-left: 20px;
+      }
+      
+      .dropdown.open .dropdown-trigger i {
+        transform: rotate(180deg);
+      }
+      
+      .mobile-bottom-nav {
+        display: flex;
+      }
+      
+      body {
+        padding-bottom: 70px;
+      }
+      
+      h1 {
+        font-size: 36px;
+      }
+      
+      .terms-content {
+        padding: 1.5rem;
+      }
+      
+      .toc-links {
+        gap: 0.5rem;
+      }
+      
+      .toc-link {
+        font-size: 10px;
+        padding: 4px 10px;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none !important;
+      }
     }
     
     /* ========== PAGE HEADER ========== */
@@ -180,12 +420,6 @@
       letter-spacing: 1px;
     }
     
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 36px;
-      }
-    }
-    
     /* ========== TERMS CONTENT ========== */
     .terms-container {
       max-width: 1000px;
@@ -198,12 +432,6 @@
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 3rem;
-    }
-    
-    @media (max-width: 768px) {
-      .terms-content {
-        padding: 1.5rem;
-      }
     }
     
     .terms-section {
@@ -427,67 +655,160 @@
     .mobile-bottom-nav a.active {
       color: var(--gold);
     }
-    
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .hamburger {
-        display: flex;
-      }
-      
-      .nav-cta {
-        display: none;
-      }
-      
-      .mobile-bottom-nav {
-        display: flex;
-      }
-      
-      body {
-        padding-bottom: 70px;
-      }
-      
-      .page-header {
-        padding: 120px 5% 40px;
-      }
-      
-      .toc-links {
-        gap: 0.5rem;
-      }
-      
-      .toc-link {
-        font-size: 10px;
-        padding: 4px 10px;
-      }
-    }
-    
-    @media (min-width: 769px) {
-      .hamburger {
-        display: none !important;
-      }
-    }
+
+    /* ========== MOBILE BOTTOM NAVIGATION ========== */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 12px 14px;
+  z-index: 999;
+  transition: var(--transition);
+}
+
+.mobile-bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  padding: 6px 12px;
+  border-radius: 30px;
+  position: relative;
+}
+
+.mobile-bottom-nav a i {
+  font-size: 20px;
+  margin-bottom: 2px;
+  transition: transform 0.2s ease;
+}
+
+.mobile-bottom-nav a span {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.mobile-bottom-nav a:hover {
+  color: var(--gold);
+  background: rgba(201, 164, 92, 0.1);
+}
+
+.mobile-bottom-nav a:hover i {
+  transform: translateY(-2px);
+}
+
+.mobile-bottom-nav a.active {
+  color: var(--gold);
+  background: rgba(201, 164, 92, 0.15);
+}
+
+/* Active indicator dot */
+.mobile-bottom-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* Show on mobile only */
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+  }
+  
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .mobile-bottom-nav {
+    padding: 8px 8px 12px;
+  }
+  
+  .mobile-bottom-nav a {
+    padding: 4px 8px;
+  }
+  
+  .mobile-bottom-nav a i {
+    font-size: 18px;
+  }
+  
+  .mobile-bottom-nav a span {
+    font-size: 9px;
+  }
+}
   </style>
 </head>
 <body>
 
   <!-- Executive Navbar -->
   <nav class="exec-nav">
-    <a href="/index.html" class="nav-logo">ELITE<span>HOMES</span></a>
+    <a href="/index.html" class="nav-logo">Rent<span>Space</span></a>
     <ul class="nav-links">
-      <li><a href="/rentals.html">The Collection</a></li>
-      <li><a href="/movers.html">Relocation</a></li>
-      <li><a href="https://your-fumigation-site.com" target="_blank">Sanctuary Prep</a></li>
+      <!-- Explore Rentals Dropdown -->
+      <li class="dropdown">
+        <a href="/rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="/rentals.html">All Rentals</a></li>
+          <li><a href="/rentals.html?location=Karen">Karen</a></li>
+          <li><a href="/rentals.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="/rentals.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="/rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="/rentals.html?location=Ngong">Ngong</a></li>
+          <li><a href="/rentals.html?location=Kitengela">Kitengela</a></li>
+          <li><a href="/rentals.html?location=Westlands">Westlands</a></li>
+          <li><a href="/rentals.html?location=Lavington">Lavington</a></li>
+          <li><a href="/rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <!-- Airbnb Dropdown -->
+      <li class="dropdown">
+        <a href="/airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="/airbnb.html">All Bnbs</a></li>
+          <li><a href="/airbnb.html?location=Karen">Karen</a></li>
+          <li><a href="/airbnb.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="/airbnb.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="/airbnb.html?location=Westlands">Westlands</a></li>
+          <li><a href="/airbnb.html?location=Lavington">Lavington</a></li>
+          <li><a href="/airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+       <li><a href="/movers.html">Movers & Packers</a></li>
+      <li><a href="/blog.html">Location Insights</a></li>
+      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
     </ul>
-    <a href="/contact.html" class="nav-cta">Private Inquiry</a>
+    <a href="/contact.html" class="nav-cta">Book a Viewing</a>
     <div class="hamburger" id="hamburger">
       <span></span>
       <span></span>
       <span></span>
     </div>
   </nav>
+
+  <!-- Overlay for closing menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
 
   <!-- Page Header -->
   <div class="page-header">
@@ -651,14 +972,14 @@
   <footer class="premium-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Elite Homes</h4>
+        <h4>Rent Space</h4>
         <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
-        <a href="/rentals.html">The Collection</a>
-        <a href="/movers.html">Bespoke Relocation</a>
-        <a href="https://your-fumigation-site.com">Sanctuary Prep</a>
+        <a href="/rentals.html">Explore Rentals</a>
+        <a href="/movers.html">Movers & Packers</a>
+        <a href="https://fumigo.co.ke">Fumigation Experts</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
@@ -668,15 +989,17 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span id="year"></span> ELITE HOMES NAIROBI — ALL RIGHTS RESERVED</p>
-      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+      <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
 
   <!-- Mobile Bottom Navigation -->
   <div class="mobile-bottom-nav">
     <a href="/index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="/rentals.html"><i class="fas fa-search"></i> Explore</a>
+    <a href="/rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="/airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="/blog.html"><i class="fas fa-newspaper"></i> Insights</a>
     <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 
@@ -684,16 +1007,79 @@
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ========== HAMBURGER MENU ==========
+    // ========== HAMBURGER MENU WITH OVERLAY ==========
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.querySelector('.nav-links');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function closeMenu() {
+      if (navMenu) navMenu.classList.remove('active');
+      if (hamburger) hamburger.classList.remove('active');
+      if (menuOverlay) menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openMenu() {
+      if (navMenu) navMenu.classList.add('active');
+      if (hamburger) hamburger.classList.add('active');
+      if (menuOverlay) menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
     if (hamburger) {
-      hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (navMenu && navMenu.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
       });
     }
+
+    if (menuOverlay) {
+      menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu when clicking a link
+    if (navMenu) {
+      const navLinks = navMenu.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+
+    // Close menu on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+
+    // ========== MOBILE DROPDOWNS (ONLY ON MOBILE) ==========
+    function initMobileDropdowns() {
+      if (window.innerWidth > 768) return;
+      
+      const dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (trigger && menu) {
+          const newTrigger = trigger.cloneNode(true);
+          trigger.parentNode.replaceChild(newTrigger, trigger);
+          
+          newTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+            menu.classList.toggle('open');
+          });
+        }
+      });
+    }
+
+    initMobileDropdowns();
+    window.addEventListener('resize', initMobileDropdowns);
 
     // Smooth scroll for anchor links
     document.querySelectorAll('.toc-link').forEach(link => {
@@ -705,16 +1091,6 @@
           targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (navMenu && navMenu.classList.contains('active')) {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-          navMenu.classList.remove('active');
-          hamburger.classList.remove('active');
-        }
-      }
     });
   </script>
 </body>

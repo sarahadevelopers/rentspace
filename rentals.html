@@ -3,93 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Elite Collection | Luxury Rentals in Nairobi</title>
-  <meta name="description" content="Discover Nairobi's most prestigious properties. Curated selection of luxury homes in Karen, Kilimani, Hurlingham, and beyond.">
   
-  <!-- Open Graph -->
-  <meta property="og:title" content="Elite Collection | Luxury Rentals in Nairobi">
-  <meta property="og:description" content="Discover Nairobi's most prestigious properties. Curated selection of luxury homes.">
+  <title>Beautiful Homes | Houses & Apartments to Let in Nairobi</title>
+  <meta name="description" content="Find your next home with RentSpace. Explore beautiful houses and apartments to let in Karen, Kilimani, Kitengela, and Ruiru. Handpicked listings for a fresh start.">
+  
+  <meta property="og:title" content="Beautiful Homes | Houses to Let in Nairobi">
+  <meta property="og:description" content="Explore our handpicked collection of beautiful rentals in Nairobi's best neighborhoods.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-rentals.jpg">
   
-  <!-- Preconnect for fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/rentals.css">
+  
+  
 </head>
+
 <body>
 
   <!-- Executive Navbar -->
- <!-- Executive Navbar -->
-<!-- Executive Navbar -->
-<nav class="exec-nav">
-  <a href="/index.html" class="nav-logo">ELITE<span>HOMES</span></a>
-  
-  <!-- Navigation Links - Mobile Menu with Close Button -->
-  <ul class="nav-links" id="navLinks">
-    <!-- Close button (X) inside menu for easy closing -->
-    <div class="menu-close" id="menuCloseBtn">
-      <i class="fas fa-times"></i>
+  <nav class="exec-nav">
+    <a href="/index.html" class="nav-logo">Rent<span>Space</span></a>
+    <ul class="nav-links">
+      <!-- Explore Rentals Dropdown -->
+      <li class="dropdown">
+        <a href="/rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="/rentals.html">All Rentals</a></li>
+          <li><a href="/rentals.html?location=Karen">Karen</a></li>
+          <li><a href="/rentals.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="/rentals.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="/rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="/rentals.html?location=Ngong">Ngong</a></li>
+          <li><a href="/rentals.html?location=Kitengela">Kitengela</a></li>
+          <li><a href="/rentals.html?location=Westlands">Westlands</a></li>
+          <li><a href="/rentals.html?location=Lavington">Lavington</a></li>
+          <li><a href="/rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <!-- Airbnb Dropdown -->
+      <li class="dropdown">
+        <a href="/airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="/airbnb.html">All Bnbs</a></li>
+          <li><a href="/airbnb.html?location=Karen">Karen</a></li>
+          <li><a href="/airbnb.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="/airbnb.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="/airbnb.html?location=Westlands">Westlands</a></li>
+          <li><a href="/airbnb.html?location=Lavington">Lavington</a></li>
+          <li><a href="/airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+       <li><a href="/movers.html">Movers & Packers</a></li>
+      <li><a href="/blog.html">Location Insights</a></li>
+      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+    </ul>
+   <a href="/contact.html" class="nav-cta">Book a Viewing</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    
-    <!-- Optional: Brand inside menu for consistency -->
-    <div class="menu-brand">ELITE<span>HOMES</span></div>
-    
-    <li><a href="/rentals.html" class="active">The Collection</a></li>
-    <li><a href="/movers.html">Relocation</a></li>
-    <li><a href="https://your-fumigation-site.com" target="_blank">Sanctuary Prep</a></li>
-    
-    <!-- Mobile CTA Button (visible only on mobile) -->
-    <li class="mobile-cta">
-      <a href="/contact.html" class="menu-cta-btn">Private Inquiry</a>
-    </li>
-  </ul>
-  
-  <!-- Desktop CTA Button -->
-  <a href="/contact.html" class="nav-cta">Private Inquiry</a>
-  
-  <!-- Hamburger Icon -->
-  <div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</nav>
+  </nav>
 
-<!-- Overlay for closing menu when clicking outside -->
-<div class="menu-overlay" id="menuOverlay"></div>
+  <!-- Overlay for closing menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
 
-  <!-- Page Header (No Hero) -->
+  <!-- Page Header -->
   <div class="page-header">
-    <div class="page-subtitle">CURRENT CURATIONS</div>
-    <h1 class="page-title">Nairobi's Finest Residences</h1>
-    <p class="page-description">A hand-picked selection of elite homes across the city's most prestigious estates.</p>
+    <div class="page-subtitle">VERIFIED LISTINGS</div>
+    <h1 class="page-title">Nairobi's Best Rentals</h1>
+    <p class="page-description">Simple, beautiful & verified homes in the neighborhoods you actually want to live in.</p>
   </div>
 
   <!-- Filter Strip -->
   <div class="filter-strip">
-    <button class="filter-btn" id="filterNeighborhoodBtn">
-      Neighborhood <i class="fas fa-chevron-down"></i>
-    </button>
-    <button class="filter-btn" id="filterTypeBtn">
-      Property Type <i class="fas fa-chevron-down"></i>
-    </button>
-    <button class="filter-btn" id="filterBudgetBtn">
-      Budget <i class="fas fa-chevron-down"></i>
-    </button>
-    <button class="filter-btn refine-btn" id="openDrawerBtn">
-      <i class="fas fa-sliders-h"></i> Refine Search
-    </button>
+    <button class="filter-btn" id="filterNeighborhoodBtn">Location <i class="fas fa-chevron-down"></i></button>
+    <button class="filter-btn" id="filterTypeBtn">Property Type <i class="fas fa-chevron-down"></i></button>
+    <button class="filter-btn" id="filterBudgetBtn">Budget <i class="fas fa-chevron-down"></i></button>
+    <button class="filter-btn refine-btn" id="openDrawerBtn"><i class="fas fa-sliders-h"></i> Refine Search</button>
   </div>
 
   <!-- Result Count -->
   <div class="result-count" id="resultCount">
-    Loading <span id="countValue">0</span> exceptional properties
+    Loading <span id="countValue">0</span> verified properties
   </div>
 
-  <!-- Property Grid (Dynamic) -->
+  <!-- Property Grid -->
   <div id="propertyGrid" class="property-grid"></div>
 
   <!-- Skeleton Loader -->
@@ -103,17 +108,13 @@
 
   <!-- Empty State -->
   <div id="emptyState" class="empty-state">
-    <div class="empty-state-icon">
-      <i class="fas fa-home"></i>
-    </div>
+    <div class="empty-state-icon"><i class="fas fa-home"></i></div>
     <h3>No Properties Match These Criteria</h3>
     <p>Our private portfolio may have off-market options that suit your needs.</p>
-    <a href="https://wa.me/254723562484?text=I'm%20interested%20in%20a%20private%20consultation" class="empty-state-btn">
-      Request Private Consultation
-    </a>
+    <a href="https://wa.me/254723562484?text=I'm%20interested%20in%20a%20private%20consultation" class="empty-state-btn">Request Private Consultation</a>
   </div>
 
-  <!-- Premium Filter Drawer -->
+  <!-- Filter Drawer -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <div class="filter-drawer" id="filterDrawer">
     <div class="drawer-header">
@@ -165,41 +166,121 @@
   <footer class="premium-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Elite Homes</h4>
+        <h4>Rent Space</h4>
         <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
       </div>
       <div class="footer-col">
         <h4>Portfolio</h4>
-        <a href="/rentals.html">The Collection</a>
-        <a href="/movers.html">Relocation Services</a>
-        <a href="https://your-fumigation-site.com">Sanctuary Preparation</a>
+        <a href="/rentals.html">Explore Rentals</a>
+        <a href="/movers.html">Movers & Packers</a>
+        <a href="https://fumigo.co.ke">Fumigation Experts</a>
+        <a href="/blog.html">Insights</a>
       </div>
       <div class="footer-col">
-        <h4>Concierge</h4>
+        <h4>Explore by Area</h4>
+        <a href="/location/karen.html">Karen Properties</a>
+        <a href="/location/kilimani.html">Kilimani Properties</a>
+        <a href="/location/hurlingham.html">Hurlingham Properties</a>
+        <a href="/location/ruiru.html">Ruiru Properties</a>
+        <a href="/location/ngong.html">Ngong Properties</a>
+        <a href="/location/kitengela.html">Kitengela Properties</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
         <a href="tel:+254723562484">+254 723 562 484</a>
-        <a href="mailto:concierge@rentspace.co.ke">concierge@rentspace.co.ke</a>
-        <a href="/contact.html">Private Viewings</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="/contact.html">Book a Viewing</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
-        <a href="/about.html">About the Brand</a>
+        <a href="/about.html">About Us</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span id="year"></span> ELITE HOMES NAIROBI — ALL RIGHTS RESERVED</p>
-      <p>Designed with <i class="fas fa-heart"></i> for discerning clients</p>
+      <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
 
   <!-- Mobile Bottom Navigation -->
   <div class="mobile-bottom-nav">
     <a href="/index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="/rentals.html" class="active"><i class="fas fa-search"></i> Explore</a>
+    <a href="/rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="/airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="/blog.html"><i class="fas fa-newspaper"></i> Insights</a>
     <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 
   <script src="js/rentals.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function closeMenu() {
+      navMenu?.classList.remove('active');
+      hamburger?.classList.remove('active');
+      menuOverlay?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openMenu() {
+      navMenu?.classList.add('active');
+      hamburger?.classList.add('active');
+      menuOverlay?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (navMenu?.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
+
+    if (menuOverlay) {
+      menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu when clicking a link
+    if (navMenu) {
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+
+    // Mobile dropdowns
+    function initMobileDropdowns() {
+      const dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (trigger && menu && window.innerWidth <= 768) {
+          // Remove existing listeners to avoid duplicates
+          const newTrigger = trigger.cloneNode(true);
+          trigger.parentNode.replaceChild(newTrigger, trigger);
+          
+          newTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+            menu.classList.toggle('open');
+          });
+        }
+      });
+    }
+
+    initMobileDropdowns();
+    window.addEventListener('resize', initMobileDropdowns);
+  </script>
 </body>
 </html>

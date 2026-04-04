@@ -141,52 +141,223 @@
       transition: all 0.3s ease;
     }
     
-    /* ========== PAGE HEADER ========== */
-    .page-header {
-      text-align: center;
-      padding: 140px 5% 60px;
-      background: linear-gradient(135deg, rgba(255, 90, 95, 0.1), transparent);
-    }
-    
-    .page-subtitle {
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: var(--airbnb);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    
-    h1 {
-      font-size: 48px;
-      font-weight: 500;
-      letter-spacing: -1px;
-      margin-bottom: 1rem;
-    }
-    
-    .page-description {
-      font-size: 16px;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    .airbnb-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--airbnb);
-      color: white;
-      padding: 6px 16px;
-      border-radius: 40px;
-      font-size: 12px;
-      margin-top: 1rem;
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 36px;
-      }
-    }
+  /* ========== PREMIUM AIRBNB HEADER ========== */
+.airbnb-header {
+  padding: 140px 5% 60px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Premium Background Image Layer */
+.airbnb-header .header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920');
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+}
+
+/* Dark gradient overlay with Airbnb pink accent */
+.airbnb-header .header-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.88) 0%, rgba(10, 10, 10, 0.75) 100%);
+}
+
+/* Subtle vignette effect */
+.airbnb-header .header-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.airbnb-header .header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Desktop: Split layout */
+@media (min-width: 768px) {
+  .airbnb-header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 60px;
+  }
+  
+  .airbnb-header .header-left {
+    flex: 1;
+  }
+  
+  .airbnb-header .header-right {
+    flex: 0 0 380px;
+    text-align: right;
+  }
+}
+
+.airbnb-header .page-subtitle {
+  color: #FF5A5F;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.airbnb-header .page-title {
+  color: var(--text-primary);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+  animation: fadeInUp 0.6s ease 0.15s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.airbnb-header .page-title span {
+  font-style: italic;
+  font-weight: 300;
+  color: #FF5A5F;
+  position: relative;
+  display: inline-block;
+}
+
+.airbnb-header .page-title span::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #FF5A5F;
+  opacity: 0.4;
+}
+
+.airbnb-header .page-description {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0 0 25px 0;
+  animation: fadeInUp 0.6s ease 0.3s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.airbnb-header .airbnb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FF5A5F;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 25px;
+  animation: fadeInUp 0.6s ease 0.45s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.airbnb-header .airbnb-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 90, 95, 0.3);
+}
+
+.airbnb-header .airbnb-badge i {
+  font-size: 14px;
+}
+
+.airbnb-header .header-accent-line {
+  width: 40px;
+  height: 1px;
+  background: #FF5A5F;
+  margin-left: auto;
+  opacity: 0.6;
+  transition: width 0.4s ease;
+}
+
+.airbnb-header .header-right:hover .header-accent-line {
+  width: 60px;
+  opacity: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .airbnb-header {
+    padding: 100px 5% 40px;
+  }
+  
+  .airbnb-header .header-bg {
+    background-position: center 30%;
+  }
+  
+  .airbnb-header .page-subtitle {
+    letter-spacing: 0.4em;
+    font-size: 10px;
+  }
+  
+  .airbnb-header .page-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .airbnb-header .page-description {
+    font-size: 13px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .airbnb-header .airbnb-badge {
+    margin-bottom: 20px;
+  }
+  
+  .airbnb-header .header-accent-line {
+    margin-left: 0;
+  }
+  
+  .airbnb-header .header-right {
+    margin-top: 20px;
+  }
+}
+
+/* Fade-in animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
     
     /* ========== FEATURE HIGHLIGHTS ========== */
     .features-highlight {
@@ -1110,38 +1281,26 @@
   </nav>
 
   <!-- Page Header -->
-  <div class="page-header">
-    <div class="page-subtitle">Short-stay Collection</div>
-    <h1>Premium Short-stay & Airbnb</h1>
-    <p class="page-description">Fully furnished properties perfect for business travelers, tourists, and temporary stays. Experience Nairobi like a local.</p>
-    <div class="airbnb-badge">
-      <i class="fab fa-airbnb"></i> Curated Airbnb-ready properties
+ <header class="airbnb-header">
+  <div class="header-bg"></div>
+  <div class="header-container">
+    <div class="header-left">
+      <div class="page-subtitle">SHORT-STAY LISTINGS</div>
+      <h1 class="page-title">Premium <span>Airbnb</span></h1>
+    </div>
+    <div class="header-right">
+      <p class="page-description">
+        Fully furnished properties perfect for business travelers, tourists, and short stays. 
+        
+      </p>
+      <div class="airbnb-badge">
+        <i class="fab fa-airbnb"></i> Curated Airbnb-ready properties
+      </div>
+      <div class="header-accent-line"></div>
     </div>
   </div>
-
-  <!-- Feature Highlights -->
-  <div class="features-highlight">
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
-      <h4>Flexible Stays</h4>
-      <p>1 night to 3 months</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-couch"></i></div>
-      <h4>Fully Furnished</h4>
-      <p>Ready to move in</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-star"></i></div>
-      <h4>Premium Locations</h4>
-      <p>Kilimani, Karen, Westlands</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-headset"></i></div>
-      <h4>24/7 Support</h4>
-      <p>Client support</p>
-    </div>
-  </div>
+</header>
+ 
 
   <!-- Location Quick Navigation -->
   <div class="location-nav"> 
@@ -1149,7 +1308,9 @@
       <a href="#kilimani" class="location-nav-link" data-location="Kilimani">Kilimani</a>
       <a href="#karen" class="location-nav-link" data-location="Karen">Karen</a>
       <a href="#hurlingham" class="location-nav-link" data-location="Hurlingham">Hurlingham</a>
-      <a href="#westlands" class="location-nav-link" data-location="Westlands">Westlands</a>
+      <a href="#kitengela" class="location-nav-link" data-location="Kitengela">Kitengela</a>
+      <a href="#ruiru" class="location-nav-link" data-location="Ruiru">Ruiru</a>
+      <a href="#ngong" class="location-nav-link" data-location="Ngong">Ngong</a>
     </div>
   </div>
 
@@ -1187,6 +1348,29 @@
     <h3>No Short-stay Properties Found</h3>
     <p>We're adding new Airbnb-ready properties regularly. Check back soon or contact our concierge for personalized assistance.</p>
     <a href="contact.html" class="empty-state-btn">Contact Concierge →</a>
+  </div>
+   <!-- Feature Highlights -->
+  <div class="features-highlight">
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+      <h4>Flexible Stays</h4>
+      <p>1 night to 3 months</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-couch"></i></div>
+      <h4>Fully Furnished</h4>
+      <p>Ready to move in</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-star"></i></div>
+      <h4>Premium Locations</h4>
+      <p>Kilimani, Karen, Westlands</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-headset"></i></div>
+      <h4>24/7 Support</h4>
+      <p>Client support</p>
+    </div>
   </div>
 
   <!-- Premium Footer -->

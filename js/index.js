@@ -1,3 +1,7 @@
+// ============================================
+// RENTSPACE - PREMIUM INDEX PAGE
+// ============================================
+
 // Dynamic year
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -18,6 +22,55 @@ function hideSplash() {
 function updateGreeting() {
   const hour = new Date().getHours();
   // Optional: update a greeting element if you add one
+}
+
+// ========== PREMIUM HERO SLIDER ==========
+function initHeroSlider() {
+  const slides = document.querySelectorAll('.slide');
+  const progressBar = document.getElementById('progressBar');
+  
+  if (!slides.length || !progressBar) return;
+  
+  let currentSlide = 0;
+  const slideDuration = 7000; // 7 seconds per slide
+  
+  function nextSlide() {
+    // Reset progress bar
+    progressBar.style.transition = 'none';
+    progressBar.style.width = '0%';
+    
+    // Switch slides
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+    
+    // Force reflow to ensure transition restarts
+    void progressBar.offsetWidth;
+    
+    // Start progress bar animation
+    setTimeout(() => {
+      progressBar.style.transition = `width ${slideDuration}ms linear`;
+      progressBar.style.width = '100%';
+    }, 50);
+  }
+  
+  // Start the progress bar
+  progressBar.style.transition = `width ${slideDuration}ms linear`;
+  progressBar.style.width = '100%';
+  
+  // Set interval for slide switching
+  setInterval(nextSlide, slideDuration);
+  
+  // Smooth scroll for scroll indicator
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+      const dashboard = document.querySelector('.dashboard');
+      if (dashboard) {
+        dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
 }
 
 // ========== HAMBURGER MENU WITH OVERLAY ==========
@@ -116,12 +169,13 @@ async function loadFeaturedProperties() {
   }
 }
 
-// ========== INITIALIZE ==========
+// ========== INITIALIZE EVERYTHING ==========
 document.addEventListener('DOMContentLoaded', () => {
   updateGreeting();
   loadFeaturedProperties();
   hideSplash();
   initMobileDropdowns();
+  initHeroSlider(); // Initialize the premium hero slider
 });
 
 // Re-initialize dropdowns on resize

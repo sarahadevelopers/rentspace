@@ -1064,15 +1064,15 @@
       </div>
       <div class="footer-col">
         <h4>Services</h4>
-        <a href="/rentals.html">Explore Rentals</a>
-        <a href="/movers.html">Movers & Packers</a>
+        <a href="rentals.html">Explore Rentals</a>
+        <a href="movers.html">Movers & Packers</a>
         <a href="https://fumigo.co.ke">Fumigation</a>
       </div>
       <div class="footer-col">
         <h4>Get In Touch</h4>
         <a href="tel:+254723562484">+254 723 562 484</a>
         <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
-        <a href="/contact.html">Contact Us</a>
+        <a href="contact.html">Contact Us</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1083,10 +1083,10 @@
 
   <!-- Mobile Bottom Navigation -->
   <div class="mobile-bottom-nav">
-    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="/rentals.html"><i class="fas fa-building"></i> Rentals</a>
-    <a href="/airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
-    <a href="/blog.html"><i class="fas fa-newspaper"></i> Insights</a>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="blog.html"><i class="fas fa-newspaper"></i> Insights</a>
     <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 
@@ -1123,13 +1123,22 @@
         hamburger?.classList.add('active');
         menuOverlay?.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Re-initialize dropdowns after menu opens (critical for mobile)
+        setTimeout(() => {
+            initMobileDropdowns();
+        }, 100);
     }
 
     // Toggle menu on hamburger click
     if (hamburger) {
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
-            navMenu?.classList.contains('active') ? closeMenu() : openMenu();
+            if (navMenu?.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
     }
 
@@ -1149,37 +1158,55 @@
         if (window.innerWidth > 768 && navMenu?.classList.contains('active')) {
             closeMenu();
         }
+        // Re-initialize dropdowns on resize
+        initMobileDropdowns();
     });
 
     // ============================================
     // MOBILE DROPDOWNS (TOUCH-FRIENDLY)
     // ============================================
     function initMobileDropdowns() {
+        // Only run on mobile
         if (window.innerWidth > 768) return;
         
+        console.log('Initializing mobile dropdowns...');
+        
         const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
+        console.log('Found dropdowns:', dropdowns.length);
+        
+        dropdowns.forEach((dropdown, index) => {
             const trigger = dropdown.querySelector('.dropdown-trigger');
             const menu = dropdown.querySelector('.dropdown-menu');
             
-            if (trigger && menu) {
-                // Remove existing listeners to avoid duplicates
-                const newTrigger = trigger.cloneNode(true);
-                trigger.parentNode.replaceChild(newTrigger, trigger);
-                
-                newTrigger.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dropdown.classList.toggle('open');
-                    menu.classList.toggle('open');
-                });
+            if (!trigger || !menu) {
+                console.log(`Dropdown ${index}: missing trigger or menu`);
+                return;
             }
+            
+            console.log(`Dropdown ${index}: initializing`);
+            
+            // Remove any existing click listeners to avoid duplicates
+            const newTrigger = trigger.cloneNode(true);
+            trigger.parentNode.replaceChild(newTrigger, trigger);
+            
+            // Add click event listener
+            newTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Dropdown clicked, toggling open class');
+                
+                // Toggle open class on dropdown and menu
+                dropdown.classList.toggle('open');
+                menu.classList.toggle('open');
+            });
         });
     }
 
-    // Initialize mobile dropdowns
-    initMobileDropdowns();
-    window.addEventListener('resize', initMobileDropdowns);
+    // Initialize dropdowns when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        initMobileDropdowns();
+    });
 
     // ============================================
     // CONTACT FORM - WHATSAPP SUBMISSION

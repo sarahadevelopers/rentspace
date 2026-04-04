@@ -991,16 +991,16 @@
       </div>
       <div class="footer-col">
         <h4>Services</h4>
-        <a href="/rentals.html">Explore Rentals</a>
-        <a href="/movers.html">Movers & Packers</a>
-        <a href="/blog.html">Location Insights</a>
-        <a href="/fumigation.html">Fumigation</a>
+        <a href="rentals.html">Explore Rentals</a>
+        <a href="movers.html">Movers & Packers</a>
+        <a href="blog.html">Location Insights</a>
+        <a href="fumigation.html">Fumigation</a>
       </div>
       <div class="footer-col">
         <h4>Contacts</h4>
         <a href="tel:+254723562484">+254 723 562 484</a>
         <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
-        <a href="/contact.html">Talk to Us</a>
+        <a href="contact.html">Talk to Us</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1011,14 +1011,14 @@
 
   <!-- Mobile Bottom Navigation -->
   <div class="mobile-bottom-nav">
-    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="/rentals.html"><i class="fas fa-building"></i> Rentals</a>
-    <a href="/airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
-    <a href="/blog.html"><i class="fas fa-newspaper"></i> Insights</a>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="blog.html"><i class="fas fa-newspaper"></i> Insights</a>
     <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 
-  <script>
+ <script>
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1028,73 +1028,102 @@
     const menuOverlay = document.getElementById('menuOverlay');
 
     function closeMenu() {
-      if (navMenu) navMenu.classList.remove('active');
-      if (hamburger) hamburger.classList.remove('active');
-      if (menuOverlay) menuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
+        if (navMenu) navMenu.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        if (menuOverlay) menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
     function openMenu() {
-      if (navMenu) navMenu.classList.add('active');
-      if (hamburger) hamburger.classList.add('active');
-      if (menuOverlay) menuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+        if (navMenu) navMenu.classList.add('active');
+        if (hamburger) hamburger.classList.add('active');
+        if (menuOverlay) menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Re-initialize dropdowns after menu opens (important for mobile)
+        setTimeout(() => {
+            initMobileDropdowns();
+        }, 100);
     }
 
     if (hamburger) {
-      hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (navMenu && navMenu.classList.contains('active')) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      });
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (navMenu && navMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
     }
 
     if (menuOverlay) {
-      menuOverlay.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
     }
 
     // Close menu when clicking a link
     if (navMenu) {
-      const navLinks = navMenu.querySelectorAll('a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
     }
 
     // Close menu on window resize
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
-        closeMenu();
-      }
+        if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
     });
 
-    // ========== MOBILE DROPDOWNS (ONLY ON MOBILE) ==========
+    // ========== MOBILE DROPDOWNS (FIXED) ==========
     function initMobileDropdowns() {
-      if (window.innerWidth > 768) return;
-      
-      const dropdowns = document.querySelectorAll('.dropdown');
-      dropdowns.forEach(dropdown => {
-        const trigger = dropdown.querySelector('.dropdown-trigger');
-        const menu = dropdown.querySelector('.dropdown-menu');
-        if (trigger && menu) {
-          const newTrigger = trigger.cloneNode(true);
-          trigger.parentNode.replaceChild(newTrigger, trigger);
-          
-          newTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-            menu.classList.toggle('open');
-          });
-        }
-      });
+        // Only run on mobile
+        if (window.innerWidth > 768) return;
+        
+        console.log('Initializing mobile dropdowns...');
+        
+        const dropdowns = document.querySelectorAll('.dropdown');
+        console.log('Found dropdowns:', dropdowns.length);
+        
+        dropdowns.forEach((dropdown, index) => {
+            const trigger = dropdown.querySelector('.dropdown-trigger');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            if (!trigger || !menu) {
+                console.log(`Dropdown ${index}: missing trigger or menu`);
+                return;
+            }
+            
+            console.log(`Dropdown ${index}: initializing`);
+            
+            // Remove any existing click listeners to avoid duplicates
+            const newTrigger = trigger.cloneNode(true);
+            trigger.parentNode.replaceChild(newTrigger, trigger);
+            
+            // Add click event listener
+            newTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Dropdown clicked, toggling open class');
+                
+                // Toggle open class on dropdown and menu
+                dropdown.classList.toggle('open');
+                menu.classList.toggle('open');
+            });
+        });
     }
 
-    initMobileDropdowns();
-    window.addEventListener('resize', initMobileDropdowns);
+    // Initialize dropdowns on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        initMobileDropdowns();
+    });
+    
+    // Re-initialize dropdowns on window resize
+    window.addEventListener('resize', function() {
+        initMobileDropdowns();
+    });
 
     // ========== BLOG DATA (Auto-loaded from posts.json) ==========
     let blogPosts = [];
@@ -1104,258 +1133,261 @@
 
     // Update category counts
     function updateCategoryCounts() {
-      const counts = {
-        kitengela: 0,
-        ngong: 0,
-        ruiru: 0,
-        karen: 0,
-        kilimani: 0,
-        hurlingham: 0,
-        guides: 0
-      };
-      
-      blogPosts.forEach(post => {
-        if (counts[post.category] !== undefined) {
-          counts[post.category]++;
-        }
-      });
-      
-      document.getElementById('kitengelaCount').textContent = counts.kitengela || 0;
-      document.getElementById('ngongCount').textContent = counts.ngong || 0;
-      document.getElementById('ruiruCount').textContent = counts.ruiru || 0;
-      document.getElementById('karenCount').textContent = counts.karen || 0;
-      document.getElementById('kilimaniCount').textContent = counts.kilimani || 0;
-      document.getElementById('hurlinghamCount').textContent = counts.hurlingham || 0;
+        const counts = {
+            kitengela: 0,
+            ngong: 0,
+            ruiru: 0,
+            karen: 0,
+            kilimani: 0,
+            hurlingham: 0,
+            guides: 0
+        };
+        
+        blogPosts.forEach(post => {
+            if (counts[post.category] !== undefined) {
+                counts[post.category]++;
+            }
+        });
+        
+        document.getElementById('kitengelaCount').textContent = counts.kitengela || 0;
+        document.getElementById('ngongCount').textContent = counts.ngong || 0;
+        document.getElementById('ruiruCount').textContent = counts.ruiru || 0;
+        document.getElementById('karenCount').textContent = counts.karen || 0;
+        document.getElementById('kilimaniCount').textContent = counts.kilimani || 0;
+        document.getElementById('hurlinghamCount').textContent = counts.hurlingham || 0;
     }
 
     // Render blog posts
     function renderBlogPosts() {
-      let filteredPosts = blogPosts;
-      
-      if (currentCategory !== 'all') {
-        filteredPosts = blogPosts.filter(post => post.category === currentCategory);
-      }
-      
-      const start = (currentPage - 1) * postsPerPage;
-      const end = start + postsPerPage;
-      const paginatedPosts = filteredPosts.slice(start, end);
-      const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-      
-      const blogGrid = document.getElementById('blogGrid');
-      const paginationDiv = document.getElementById('pagination');
-      
-      if (paginatedPosts.length === 0) {
-        blogGrid.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
-            <i class="fas fa-newspaper" style="font-size: 48px; color: var(--gold); opacity: 0.5; margin-bottom: 20px;"></i>
-            <h3 style="font-weight: 400;">No posts found</h3>
-            <p style="color: var(--text-muted);">Check back soon for new insights!</p>
-          </div>
-        `;
-        paginationDiv.style.display = 'none';
-        return;
-      }
-      
-      blogGrid.innerHTML = paginatedPosts.map(post => `
-        <a href="/blog/${post.slug}.html" class="blog-card">
-          <img src="${post.image}" alt="${post.title}" class="blog-image" onerror="this.src='https://placehold.co/600x400/1a1a1a/c9a45c?text=${encodeURIComponent(post.title)}'">
-          <div class="blog-content">
-            <span class="blog-category">${post.category.toUpperCase()}</span>
-            <h3 class="blog-title">${post.title}</h3>
-            <p class="blog-excerpt">${post.excerpt.substring(0, 120)}${post.excerpt.length > 120 ? '...' : ''}</p>
-            <div class="blog-meta">
-              <span><i class="far fa-calendar-alt"></i> ${post.date}</span>
-              <span><i class="far fa-clock"></i> ${post.readTime}</span>
-              <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
-      `).join('');
-      
-      // Render pagination
-      let paginationHTML = '';
-      
-      if (currentPage > 1) {
-        paginationHTML += `<a href="#" class="page-link" data-page="${currentPage - 1}"><i class="fas fa-chevron-left"></i></a>`;
-      }
-      
-      const startPage = Math.max(1, currentPage - 2);
-      const endPage = Math.min(totalPages, currentPage + 2);
-      
-      if (startPage > 1) {
-        paginationHTML += `<a href="#" class="page-link" data-page="1">1</a>`;
-        if (startPage > 2) paginationHTML += `<span class="page-dots">...</span>`;
-      }
-      
-      for (let i = startPage; i <= endPage; i++) {
-        paginationHTML += `<a href="#" class="page-link ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
-      }
-      
-      if (endPage < totalPages) {
-        if (endPage < totalPages - 1) paginationHTML += `<span class="page-dots">...</span>`;
-        paginationHTML += `<a href="#" class="page-link" data-page="${totalPages}">${totalPages}</a>`;
-      }
-      
-      if (currentPage < totalPages) {
-        paginationHTML += `<a href="#" class="page-link" data-page="${currentPage + 1}"><i class="fas fa-chevron-right"></i></a>`;
-      }
-      
-      paginationDiv.innerHTML = paginationHTML;
-      paginationDiv.style.display = 'flex';
-      
-      // Add event listeners to pagination links
-      document.querySelectorAll('.page-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const page = parseInt(link.dataset.page);
-          if (!isNaN(page)) {
-            currentPage = page;
-            renderBlogPosts();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        });
-      });
-    }
-    
-    // Popular posts
-    function renderPopularPosts() {
-      const popular = [...blogPosts].sort((a, b) => b.views - a.views).slice(0, 3);
-      const container = document.getElementById('popularPosts');
-      if (popular.length === 0) {
-        container.innerHTML = '<p style="color: var(--text-muted);">No posts yet</p>';
-        return;
-      }
-      container.innerHTML = popular.map(post => `
-        <a href="/blog/${post.slug}.html" class="popular-post">
-          <img src="${post.image}" alt="${post.title}" onerror="this.src='https://placehold.co/60x60/1a1a1a/c9a45c?text='">
-          <div>
-            <h4>${post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title}</h4>
-            <p>${post.date} · ${post.readTime}</p>
-          </div>
-        </a>
-      `).join('');
-    }
-    
-    // Category filter buttons
-    function initCategoryFilters() {
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentCategory = btn.dataset.category;
-          currentPage = 1;
-          renderBlogPosts();
-        });
-      });
-      
-      document.querySelectorAll('#categoryList a').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const category = link.dataset.category;
-          document.querySelectorAll('.category-btn').forEach(btn => {
-            if (btn.dataset.category === category) {
-              btn.classList.add('active');
-            } else {
-              btn.classList.remove('active');
-            }
-          });
-          currentCategory = category;
-          currentPage = 1;
-          renderBlogPosts();
-        });
-      });
-    }
-    
-    // Search functionality
-    function initSearch() {
-      const searchInput = document.getElementById('searchInput');
-      if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-          const searchTerm = e.target.value.toLowerCase();
-          let filteredPosts = blogPosts;
-          if (currentCategory !== 'all') {
-            filteredPosts = filteredPosts.filter(post => post.category === currentCategory);
-          }
-          const searched = filteredPosts.filter(post => 
-            post.title.toLowerCase().includes(searchTerm) || 
-            post.excerpt.toLowerCase().includes(searchTerm)
-          );
-          
-          if (searchTerm.length > 0) {
-            const paginatedPosts = searched.slice(0, postsPerPage);
-            const blogGrid = document.getElementById('blogGrid');
-            const paginationDiv = document.getElementById('pagination');
-            
-            if (paginatedPosts.length === 0) {
-              blogGrid.innerHTML = `
+        let filteredPosts = blogPosts;
+        
+        if (currentCategory !== 'all') {
+            filteredPosts = blogPosts.filter(post => post.category === currentCategory);
+        }
+        
+        const start = (currentPage - 1) * postsPerPage;
+        const end = start + postsPerPage;
+        const paginatedPosts = filteredPosts.slice(start, end);
+        const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+        
+        const blogGrid = document.getElementById('blogGrid');
+        const paginationDiv = document.getElementById('pagination');
+        
+        if (paginatedPosts.length === 0) {
+            blogGrid.innerHTML = `
                 <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
-                  <i class="fas fa-search" style="font-size: 48px; color: var(--gold); opacity: 0.5; margin-bottom: 20px;"></i>
-                  <h3 style="font-weight: 400;">No results found</h3>
-                  <p style="color: var(--text-muted);">Try a different search term</p>
+                    <i class="fas fa-newspaper" style="font-size: 48px; color: var(--gold); opacity: 0.5; margin-bottom: 20px;"></i>
+                    <h3 style="font-weight: 400;">No posts found</h3>
+                    <p style="color: var(--text-muted);">Check back soon for new insights!</p>
                 </div>
-              `;
-              paginationDiv.style.display = 'none';
-            } else {
-              blogGrid.innerHTML = paginatedPosts.map(post => `
-                <a href="/blog/${post.slug}.html" class="blog-card">
-                  <img src="${post.image}" alt="${post.title}" class="blog-image" onerror="this.src='https://placehold.co/600x400/1a1a1a/c9a45c?text=${encodeURIComponent(post.title)}'">
-                  <div class="blog-content">
+            `;
+            paginationDiv.style.display = 'none';
+            return;
+        }
+        
+        blogGrid.innerHTML = paginatedPosts.map(post => `
+            <a href="/blog/${post.slug}.html" class="blog-card">
+                <img src="${post.image}" alt="${post.title}" class="blog-image" onerror="this.src='https://placehold.co/600x400/1a1a1a/c9a45c?text=${encodeURIComponent(post.title)}'">
+                <div class="blog-content">
                     <span class="blog-category">${post.category.toUpperCase()}</span>
                     <h3 class="blog-title">${post.title}</h3>
                     <p class="blog-excerpt">${post.excerpt.substring(0, 120)}${post.excerpt.length > 120 ? '...' : ''}</p>
                     <div class="blog-meta">
-                      <span><i class="far fa-calendar-alt"></i> ${post.date}</span>
-                      <span><i class="far fa-clock"></i> ${post.readTime}</span>
-                      <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                        <span><i class="far fa-calendar-alt"></i> ${post.date}</span>
+                        <span><i class="far fa-clock"></i> ${post.readTime}</span>
+                        <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
                     </div>
-                  </div>
-                </a>
-              `).join('');
-              paginationDiv.style.display = 'none';
-            }
-          } else {
-            renderBlogPosts();
-          }
+                </div>
+            </a>
+        `).join('');
+        
+        // Render pagination
+        let paginationHTML = '';
+        
+        if (currentPage > 1) {
+            paginationHTML += `<a href="#" class="page-link" data-page="${currentPage - 1}"><i class="fas fa-chevron-left"></i></a>`;
+        }
+        
+        const startPage = Math.max(1, currentPage - 2);
+        const endPage = Math.min(totalPages, currentPage + 2);
+        
+        if (startPage > 1) {
+            paginationHTML += `<a href="#" class="page-link" data-page="1">1</a>`;
+            if (startPage > 2) paginationHTML += `<span class="page-dots">...</span>`;
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHTML += `<a href="#" class="page-link ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
+        }
+        
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) paginationHTML += `<span class="page-dots">...</span>`;
+            paginationHTML += `<a href="#" class="page-link" data-page="${totalPages}">${totalPages}</a>`;
+        }
+        
+        if (currentPage < totalPages) {
+            paginationHTML += `<a href="#" class="page-link" data-page="${currentPage + 1}"><i class="fas fa-chevron-right"></i></a>`;
+        }
+        
+        paginationDiv.innerHTML = paginationHTML;
+        paginationDiv.style.display = 'flex';
+        
+        // Add event listeners to pagination links
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = parseInt(link.dataset.page);
+                if (!isNaN(page)) {
+                    currentPage = page;
+                    renderBlogPosts();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
         });
-      }
+    }
+    
+    // Popular posts
+    function renderPopularPosts() {
+        const popular = [...blogPosts].sort((a, b) => b.views - a.views).slice(0, 3);
+        const container = document.getElementById('popularPosts');
+        if (popular.length === 0) {
+            container.innerHTML = '<p style="color: var(--text-muted);">No posts yet</p>';
+            return;
+        }
+        container.innerHTML = popular.map(post => `
+            <a href="/blog/${post.slug}.html" class="popular-post">
+                <img src="${post.image}" alt="${post.title}" onerror="this.src='https://placehold.co/60x60/1a1a1a/c9a45c?text='">
+                <div>
+                    <h4>${post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title}</h4>
+                    <p>${post.date} · ${post.readTime}</p>
+                </div>
+            </a>
+        `).join('');
+    }
+    
+    // Category filter buttons
+    function initCategoryFilters() {
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                currentPage = 1;
+                renderBlogPosts();
+            });
+        });
+        
+        document.querySelectorAll('#categoryList a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = link.dataset.category;
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    if (btn.dataset.category === category) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                currentCategory = category;
+                currentPage = 1;
+                renderBlogPosts();
+            });
+        });
+    }
+    
+    // Search functionality
+    function initSearch() {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                let filteredPosts = blogPosts;
+                if (currentCategory !== 'all') {
+                    filteredPosts = filteredPosts.filter(post => post.category === currentCategory);
+                }
+                const searched = filteredPosts.filter(post => 
+                    post.title.toLowerCase().includes(searchTerm) || 
+                    post.excerpt.toLowerCase().includes(searchTerm)
+                );
+                
+                if (searchTerm.length > 0) {
+                    const paginatedPosts = searched.slice(0, postsPerPage);
+                    const blogGrid = document.getElementById('blogGrid');
+                    const paginationDiv = document.getElementById('pagination');
+                    
+                    if (paginatedPosts.length === 0) {
+                        blogGrid.innerHTML = `
+                            <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+                                <i class="fas fa-search" style="font-size: 48px; color: var(--gold); opacity: 0.5; margin-bottom: 20px;"></i>
+                                <h3 style="font-weight: 400;">No results found</h3>
+                                <p style="color: var(--text-muted);">Try a different search term</p>
+                            </div>
+                        `;
+                        paginationDiv.style.display = 'none';
+                    } else {
+                        blogGrid.innerHTML = paginatedPosts.map(post => `
+                            <a href="/blog/${post.slug}.html" class="blog-card">
+                                <img src="${post.image}" alt="${post.title}" class="blog-image" onerror="this.src='https://placehold.co/600x400/1a1a1a/c9a45c?text=${encodeURIComponent(post.title)}'">
+                                <div class="blog-content">
+                                    <span class="blog-category">${post.category.toUpperCase()}</span>
+                                    <h3 class="blog-title">${post.title}</h3>
+                                    <p class="blog-excerpt">${post.excerpt.substring(0, 120)}${post.excerpt.length > 120 ? '...' : ''}</p>
+                                    <div class="blog-meta">
+                                        <span><i class="far fa-calendar-alt"></i> ${post.date}</span>
+                                        <span><i class="far fa-clock"></i> ${post.readTime}</span>
+                                        <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </a>
+                        `).join('');
+                        paginationDiv.style.display = 'none';
+                    }
+                } else {
+                    renderBlogPosts();
+                }
+            });
+        }
     }
     
     // Load posts from JSON file
     async function loadPosts() {
-      try {
-        const response = await fetch('/data/posts.json');
-        if (!response.ok) {
-          throw new Error('Failed to load posts');
+        try {
+            const response = await fetch('/data/posts.json');
+            if (!response.ok) {
+                throw new Error('Failed to load posts');
+            }
+            blogPosts = await response.json();
+            
+            // Hide spinner, show content
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('blogGrid').style.display = 'grid';
+            
+            // Update category counts
+            updateCategoryCounts();
+            
+            // Render all components
+            renderBlogPosts();
+            renderPopularPosts();
+            initCategoryFilters();
+            initSearch();
+            
+        } catch (error) {
+            console.error('Error loading posts:', error);
+            document.getElementById('loadingSpinner').innerHTML = `
+                <div style="text-align: center;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 48px; color: var(--gold); margin-bottom: 20px;"></i>
+                    <h3 style="font-weight: 400;">Unable to load blog posts</h3>
+                    <p style="color: var(--text-muted);">Please check back later.</p>
+                </div>
+            `;
         }
-        blogPosts = await response.json();
-        
-        // Hide spinner, show content
-        document.getElementById('loadingSpinner').style.display = 'none';
-        document.getElementById('blogGrid').style.display = 'grid';
-        
-        // Update category counts
-        updateCategoryCounts();
-        
-        // Render all components
-        renderBlogPosts();
-        renderPopularPosts();
-        initCategoryFilters();
-        initSearch();
-        
-      } catch (error) {
-        console.error('Error loading posts:', error);
-        document.getElementById('loadingSpinner').innerHTML = `
-          <div style="text-align: center;">
-            <i class="fas fa-exclamation-circle" style="font-size: 48px; color: var(--gold); margin-bottom: 20px;"></i>
-            <h3 style="font-weight: 400;">Unable to load blog posts</h3>
-            <p style="color: var(--text-muted);">Please check back later.</p>
-          </div>
-        `;
-      }
     }
     
-    // Initialize
-    loadPosts();
-  </script>
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPosts();
+        initMobileDropdowns();
+    });
+</script>
 </body>
 </html>

@@ -10,7 +10,7 @@
   <meta property="og:title" content="Luxury 3 Bedroom Mansionette in Hurlingham | RentSpace">
   <meta property="og:description" content="Experience luxury living in this beautiful luxury 3 bedroom mansionette in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
   <meta property="og:image" content="{{images.0}}">
-  <meta property="og:url" content="https://www.rentspace.co.ke/property/{{slug}}.html">
+  <meta property="og:url" content="https://www.rentspace.co.ke/property/3-bedroom-mansionette-in-hurlingham-70.html">
   <meta property="og:type" content="website">
   
   <!-- Twitter Card -->
@@ -19,31 +19,69 @@
   <meta name="twitter:description" content="Experience luxury living in this beautiful luxury 3 bedroom mansionette in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
   <meta name="twitter:image" content="{{images.0}}">
   
-  <link rel="canonical" href="https://www.rentspace.co.ke/property/{{slug}}.html">
+  <link rel="canonical" href="https://www.rentspace.co.ke/property/3-bedroom-mansionette-in-hurlingham-70.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="/css/property.css">
-  
+  <link rel="stylesheet" href="../css/property.css">
 </head>
 <body>
 
   <!-- Executive Navigation -->
   <nav class="exec-nav">
-    <a href="/location/hurlingham.html" class="nav-back">
-      <i class="fas fa-arrow-left"></i> <span>Back to Hurlingham</span>
-    </a>
-    <div class="nav-logo">Rent<span>Space</span></div>
-    <a href="#inquire" class="nav-inquire">Inquire</a>
+    <a href="../index.html" class="nav-logo">Rent<span>Space</span></a>
+    <ul class="nav-links">
+      <!-- Explore Rentals Dropdown -->
+      <li class="dropdown">
+        <a href="../rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="../rentals.html">All Rentals</a></li>
+          <li><a href="../rentals.html?location=Karen">Karen</a></li>
+          <li><a href="../rentals.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="../rentals.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="../rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="../rentals.html?location=Ngong">Ngong</a></li>
+          <li><a href="../rentals.html?location=Kitengela">Kitengela</a></li>
+          <li><a href="../rentals.html?location=Westlands">Westlands</a></li>
+          <li><a href="../rentals.html?location=Lavington">Lavington</a></li>
+          <li><a href="../rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <!-- Airbnb Dropdown -->
+      <li class="dropdown">
+        <a href="../airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="../airbnb.html">All Bnbs</a></li>
+          <li><a href="../airbnb.html?location=Karen">Karen</a></li>
+          <li><a href="../airbnb.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="../airbnb.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="../airbnb.html?location=Westlands">Westlands</a></li>
+          <li><a href="../airbnb.html?location=Lavington">Lavington</a></li>
+          <li><a href="../airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <li><a href="../movers.html">Movers & Packers</a></li>
+      <li><a href="../blog.html">Location Insights</a></li>
+      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+    </ul>
+    <a href="../contact.html" class="nav-cta">Book a Viewing</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </nav>
+
+  <!-- Overlay for closing menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
 
   <!-- Cinematic Gallery with Peek Effect -->
   <div class="gallery-container">
     <div class="gallery-stage" id="galleryStage">
-      {{#each images}}
-      <img src="{{this}}" class="gallery-item" alt="Property view {{@index}}" loading="lazy">
-      {{/each}}
+      <img src="/images/properties/mansionette-hurlingham-70.jpg" class="gallery-item" alt="Luxury 3 Bedroom Mansionette in Hurlingham" loading="lazy">
     </div>
     <div class="gallery-counter" id="galleryCounter">
       <span id="currentIndex">1</span> / <span id="totalCount">{{images.length}}</span>
@@ -57,7 +95,7 @@
         <i class="fas fa-map-marker-alt"></i> Hurlingham, Nairobi
       </div>
       <h1 class="property-title">Luxury 3 Bedroom Mansionette in Hurlingham</h1>
-      <div class="price-tag">KES 469,701 <span>/ month</span></div>
+      <div class="price-tag">KES 416,642 <span>/ month</span></div>
     </div>
 
     <!-- Description -->
@@ -104,7 +142,7 @@
         <li>3 Bedrooms</li>
         <li>2 Bathrooms</li>
         <li>2 Parking Spaces</li>
-        {{#each features}}<li>{{this}}</li>{{/each}}
+        <li>Tiled Floors</li><li>Water Heater</li><li>Secure Parking</li><li>DSQ</li><li>Private Garden</li>
       </ul>
     </div>
 
@@ -113,15 +151,15 @@
       <div class="concierge-content">
         <div class="concierge-text">
           <i class="fas fa-concierge-bell"></i>
-          <h4>Lifestyle Concierge</h4>
+          <h4>Our Services</h4>
           <p>Curated moving and sanctuary preparation services for discerning clients.</p>
         </div>
         <div class="concierge-actions">
-          <a href="/movers.html?destination=Luxury%203%20Bedroom%20Mansionette%20in%20Hurlingham" class="btn-concierge">
-            <i class="fas fa-truck"></i> Relocation
+          <a href="../movers.html?destination=Luxury%203%20Bedroom%20Mansionette%20in%20Hurlingham" class="btn-concierge">
+            <i class="fas fa-truck"></i> Movers & Packers
           </a>
-          <a href="https://your-fumigation-site.com" target="_blank" class="btn-concierge">
-            <i class="fas fa-leaf"></i> Sanctuary Prep
+          <a href="https://fumigo.co.ke" target="_blank" class="btn-concierge">
+            <i class="fas fa-leaf"></i> Fumigation
           </a>
         </div>
       </div>
@@ -135,17 +173,43 @@
         <div class="section-line"></div>
       </div>
       <div class="recommendation-cards" id="recCards">
-        {{#each recommendations}}
-        <a href="/property/{{slug}}.html" class="rec-card">
-          <div class="rec-card-image">
-            <img src="{{image}}" alt="Luxury 3 Bedroom Mansionette in Hurlingham">
-          </div>
-          <div class="rec-card-info">
-            <h4>Luxury 3 Bedroom Mansionette in Hurlingham</h4>
-            <p>Hurlingham · KES 469,701 / mo</p>
-          </div>
+        
+        <a href="../property/2-bedroom-apartment-in-hurlingham-7.html" class="rec-card">
+            <div class="rec-card-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlkK2vHrEw4drxwCLDMGo7UGsrC5xZvQedyg&s" alt="2 Bedroom Apartment in Hurlingham">
+            </div>
+            <div class="rec-card-info">
+                <h4>2 Bedroom Apartment in Hurlingham</h4>
+                <p>Hurlingham · KES 101,680 / mo</p>
+            </div>
         </a>
-        {{/each}}
+        <a href="../property/3-bedroom-mansionette-in-hurlingham-17.html" class="rec-card">
+            <div class="rec-card-image">
+                <img src="/images/properties/mansionette-hurlingham-17.jpg" alt="Luxury 3 Bedroom Mansionette in Hurlingham">
+            </div>
+            <div class="rec-card-info">
+                <h4>Luxury 3 Bedroom Mansionette in Hurlingham</h4>
+                <p>Hurlingham · KES 466,915 / mo</p>
+            </div>
+        </a>
+        <a href="../property/3-bedroom-mansionette-in-hurlingham-32.html" class="rec-card">
+            <div class="rec-card-image">
+                <img src="/images/properties/mansionette-hurlingham-32.jpg" alt="Luxury 3 Bedroom Mansionette in Hurlingham">
+            </div>
+            <div class="rec-card-info">
+                <h4>Luxury 3 Bedroom Mansionette in Hurlingham</h4>
+                <p>Hurlingham · KES 398,502 / mo</p>
+            </div>
+        </a>
+        <a href="../property/3-bedroom-bungalow-in-hurlingham-38.html" class="rec-card">
+            <div class="rec-card-image">
+                <img src="/images/properties/bungalow-hurlingham-38.jpg" alt="Spacious 3 Bedroom Bungalow in Hurlingham">
+            </div>
+            <div class="rec-card-info">
+                <h4>Spacious 3 Bedroom Bungalow in Hurlingham</h4>
+                <p>Hurlingham · KES 292,199 / mo</p>
+            </div>
+        </a>
       </div>
     </section>
     {{/if}}
@@ -158,18 +222,7 @@
         <div class="section-line"></div>
       </div>
       <div class="testimonials-list">
-        {{#each reviews}}
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <i class="fas fa-quote-left"></i>
-            <p>"{{comment}}"</p>
-          </div>
-          <div class="testimonial-author">
-            <strong>{{name}}</strong>
-            <span>Private Client</span>
-          </div>
-        </div>
-        {{/each}}
+        
       </div>
     </section>
     {{/if}}
@@ -184,23 +237,23 @@
       </div>
       <div class="footer-col">
         <h4>Portfolio</h4>
-        <a href="/location/karen.html">Karen Collection</a>
-        <a href="/location/kilimani.html">Kilimani Reserve</a>
-        <a href="/location/hurlingham.html">Hurlingham Heights</a>
-        <a href="/location/ruiru.html">Ruiru Gardens</a>
-        <a href="/location/ngong.html">Ngong Views</a>
-        <a href="/location/kitengela.html">Kitengela Homes</a>
+        <a href="../location/karen.html">Karen Collection</a>
+        <a href="../location/kilimani.html">Kilimani Reserve</a>
+        <a href="../location/hurlingham.html">Hurlingham Heights</a>
+        <a href="../location/ruiru.html">Ruiru Gardens</a>
+        <a href="../location/ngong.html">Ngong Views</a>
+        <a href="../location/kitengela.html">Kitengela Homes</a>
       </div>
       <div class="footer-col">
-        <h4>Concierge</h4>
-        <a href="/movers.html">Relocation Services</a>
-        <a href="https://your-fumigation-site.com">Sanctuary Preparation</a>
-        <a href="/contact.html">Private Viewings</a>
+        <h4>Services</h4>
+        <a href="../movers.html">Movers & Packers</a>
+        <a href="https://fumigo.co.ke">Fumigation</a>
+        <a href="../contact.html">Book a Viewing</a>
       </div>
       <div class="footer-col">
         <h4>Inquiries</h4>
         <a href="tel:+254723562484"><i class="fas fa-phone"></i> +254 723 562 484</a>
-        <a href="mailto:concierge@rentspace.co.ke"><i class="fas fa-envelope"></i> concierge@rentspace.co.ke</a>
+        <a href="mailto:info@rentspace.co.ke"><i class="fas fa-envelope"></i> info@rentspace.co.ke</a>
         <div class="social-links">
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -209,7 +262,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <span id="year"></span> RentSpace  — All Rights Reserved</p>
+      <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
       <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
@@ -217,7 +270,7 @@
   <!-- Sticky Contact Bar (Always Visible) -->
   <div class="sticky-contact-bar">
     <div class="sticky-price">
-      KES 469,701<span>/mo</span>
+      KES 416,642<span>/mo</span>
     </div>
     <div class="sticky-actions">
       <a href="tel:+254723562484" class="sticky-call-btn">
@@ -232,6 +285,80 @@
   <script>
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // ========== HAMBURGER MENU WITH OVERLAY ==========
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function closeMenu() {
+      if (navMenu) navMenu.classList.remove('active');
+      if (hamburger) hamburger.classList.remove('active');
+      if (menuOverlay) menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openMenu() {
+      if (navMenu) navMenu.classList.add('active');
+      if (hamburger) hamburger.classList.add('active');
+      if (menuOverlay) menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (navMenu && navMenu.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
+
+    if (menuOverlay) {
+      menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu when clicking a link
+    if (navMenu) {
+      const navLinks = navMenu.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+
+    // Close menu on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+
+    // ========== MOBILE DROPDOWNS (ONLY ON MOBILE) ==========
+    function initMobileDropdowns() {
+      if (window.innerWidth > 768) return;
+      
+      const dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (trigger && menu) {
+          const newTrigger = trigger.cloneNode(true);
+          trigger.parentNode.replaceChild(newTrigger, trigger);
+          
+          newTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+            menu.classList.toggle('open');
+          });
+        }
+      });
+    }
+
+    initMobileDropdowns();
+    window.addEventListener('resize', initMobileDropdowns);
 
     // Gallery counter and scroll tracking
     const gallery = document.getElementById('galleryStage');
@@ -250,12 +377,6 @@
       gallery.addEventListener('scroll', updateCounter);
       updateCounter();
     }
-
-    // Smooth scroll for navigation
-    document.querySelector('.nav-inquire')?.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.querySelector('.concierge-section')?.scrollIntoView({ behavior: 'smooth' });
-    });
 
     // Sticky inquiry button
     const stickyInquiryBtn = document.getElementById('stickyInquiryBtn');
@@ -277,6 +398,6 @@
       });
     }
   </script>
-  <script src="/js/property.js"></script>
+  <script src="../js/properties.js"></script>
 </body>
 </html>

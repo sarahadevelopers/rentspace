@@ -54,7 +54,7 @@ function addAirbnbData(property, isAirbnb) {
       ...property,
       // Rental type classification
       rental_type: 'short_term',
-      available_for: ['short_term'],
+      available_for: 'short_term',  // ← CHANGED from array to string for easier filtering
       is_airbnb_ready: true,
       
       // Short-term pricing
@@ -84,7 +84,7 @@ function addAirbnbData(property, isAirbnb) {
       ...property,
       // Rental type classification
       rental_type: 'long_term',
-      available_for: ['long_term'],
+      available_for: 'long_term',  // ← CHANGED from array to string
       is_airbnb_ready: false,
       
       // Long-term pricing
@@ -150,7 +150,7 @@ const reviewTemplates = {
 function generateReviewsForProperty(property) {
   const estate = property.estate;
   const type = property.type;
-  const isShortStay = property.available_for && property.available_for.includes('short_term');
+  const isShortStay = property.available_for === 'short_term';
   
   // Determine review pool based on estate
   let reviewPool = [];
@@ -185,16 +185,10 @@ function generateReviewsForProperty(property) {
 
 // Helper: generate recommendations (similar properties)
 function getSimilarProperties(property, allProps, max = 4) {
-  // First try same estate and same rental type (using safe check)
+  // First try same estate and same rental type
   let similar = allProps.filter(p => {
-    // Skip self
     if (p.id === property.id) return false;
-    
-    // Check if rental types match (safe check)
-    const propRentalType = property.available_for ? property.available_for[0] : 'long_term';
-    const pRentalType = p.available_for ? p.available_for[0] : 'long_term';
-    
-    return p.estate === property.estate && propRentalType === pRentalType;
+    return p.estate === property.estate && p.rental_type === property.rental_type;
   });
   
   // If not enough, add same price range
@@ -202,12 +196,8 @@ function getSimilarProperties(property, allProps, max = 4) {
     const priceRange = property.price;
     const samePrice = allProps.filter(p => {
       if (p.id === property.id) return false;
-      
-      const propRentalType = property.available_for ? property.available_for[0] : 'long_term';
-      const pRentalType = p.available_for ? p.available_for[0] : 'long_term';
-      
       return p.estate !== property.estate && 
-             propRentalType === pRentalType &&
+             p.rental_type === property.rental_type &&
              Math.abs(p.price - priceRange) < 50000;
     });
     similar = [...similar, ...samePrice];
@@ -216,16 +206,11 @@ function getSimilarProperties(property, allProps, max = 4) {
   // If still not enough, add random from same area type
   if (similar.length < max) {
     const areaType = AIRBNB_ELIGIBLE_ESTATES.includes(property.estate) ? 'high-end' : 'mid-range';
-    const propRentalType = property.available_for ? property.available_for[0] : 'long_term';
-    
     const areaMatch = allProps.filter(p => {
       if (p.id === property.id) return false;
-      
       const isHighEnd = AIRBNB_ELIGIBLE_ESTATES.includes(p.estate);
-      const pRentalType = p.available_for ? p.available_for[0] : 'long_term';
-      
       return ((areaType === 'high-end' && isHighEnd) || (areaType === 'mid-range' && !isHighEnd)) &&
-             propRentalType === pRentalType;
+             p.rental_type === property.rental_type;
     });
     similar = [...similar, ...areaMatch];
   }
@@ -269,7 +254,7 @@ function generateRecommendations(recommendations) {
   if (!recommendations || recommendations.length === 0) return '';
   
   const cards = recommendations.map(rec => {
-    const isShortStay = rec.available_for && rec.available_for.includes('short_term');
+    const isShortStay = rec.rental_type === 'short_term';
     const priceDisplay = isShortStay ? `KES ${rec.price_night?.toLocaleString()}/night` : `KES ${rec.price.toLocaleString()}/mo`;
     
     return `
@@ -337,7 +322,7 @@ function computeAverageRating(reviews) {
 
 // Helper: generate short-term/Airbnb section HTML
 function generateShortTermSection(property) {
-  if (!property.available_for || !property.available_for.includes('short_term')) {
+  if (property.rental_type !== 'short_term') {
     return '';
   }
   
@@ -415,26 +400,13 @@ function getLocationSlug(estate) {
 
 // Helper: get rental type display
 function getRentalTypeDisplay(property) {
-  if (property.available_for && property.available_for.includes('short_term')) {
-    return 'short-stay';
-  }
-  return 'long-term';
+  return property.rental_type === 'short_term' ? 'short-stay' : 'long-term';
 }
 
-// STEP 1: Add Airbnb data to ALL properties first
+// ========== MAIN GENERATION PROCESS ==========
 console.log('📊 Adding rental type data to all properties...\n');
 
-// First, add basic rental type to all properties (temporary)
-const propertiesWithBasicData = originalProperties.map(prop => {
-  const isEligible = isAirbnbEligible(prop);
-  return {
-    ...prop,
-    available_for: isEligible ? ['temp'] : ['temp'], // temporary placeholder
-    rental_type_temp: isEligible ? 'eligible' : 'not_eligible'
-  };
-});
-
-// STEP 2: Select 20 properties to become Airbnb
+// STEP 1: Find eligible properties for Airbnb
 const eligibleProperties = originalProperties.filter(p => isAirbnbEligible(p));
 const shuffledEligible = [...eligibleProperties];
 for (let i = shuffledEligible.length - 1; i > 0; i--) {
@@ -447,18 +419,23 @@ console.log(`📊 Selected ${selectedAirbnbIds.length} properties for Airbnb/Sho
 console.log(`   Long-term properties: ${originalProperties.length - selectedAirbnbIds.length}`);
 console.log(`   Total: ${originalProperties.length} properties\n`);
 
-// STEP 3: Add full Airbnb data to all properties
+// STEP 2: Add full Airbnb data to all properties
 const allProperties = originalProperties.map(prop => {
   const isAirbnb = selectedAirbnbIds.includes(prop.id);
   return addAirbnbData(prop, isAirbnb);
 });
+
+// ✅ STEP 3: SAVE THE UPDATED PROPERTIES BACK TO JSON FILE
+// This is the CRITICAL FIX - saves the Airbnb flags to properties.json
+fs.writeFileSync(DATA_PATH, JSON.stringify(allProperties, null, 2));
+console.log('✅ Updated properties.json with Airbnb/rental flags\n');
 
 // STEP 4: Generate each property page
 let shortStayCount = 0;
 let longTermCount = 0;
 
 allProperties.forEach(prop => {
-  if (prop.available_for.includes('short_term')) shortStayCount++;
+  if (prop.rental_type === 'short_term') shortStayCount++;
   else longTermCount++;
   
   // Auto-generate reviews
@@ -524,7 +501,7 @@ allProperties.forEach(prop => {
   const outputPath = path.join(OUTPUT_DIR, filename);
   fs.writeFileSync(outputPath, content);
   
-  const stayType = prop.available_for.includes('short_term') ? '✨ Airbnb/Short-stay' : '🏠 Long-term';
+  const stayType = prop.rental_type === 'short_term' ? '✨ Airbnb/Short-stay' : '🏠 Long-term';
   console.log(`✅ Generated: /property/${filename} | ${stayType} | ${reviews.length} reviews | ${recommendations.length} recs`);
 });
 
@@ -535,3 +512,4 @@ console.log(`      ✨ Short-stay / Airbnb: ${shortStayCount} properties`);
 console.log(`\n   📍 Airbnb-eligible estates: ${AIRBNB_ELIGIBLE_ESTATES.join(', ')}`);
 console.log(`   🏷️  Airbnb-eligible types: ${AIRBNB_PROPERTY_TYPES.join(', ')}`);
 console.log(`\n   💡 Tip: Airbnb properties have nightly rates and special amenities!`);
+console.log(`\n   ✅ Airbnb flags saved to properties.json - Your airbnb.html will now show these properties!`);

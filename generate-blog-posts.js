@@ -46,6 +46,7 @@ function formatPriceRange(min, max) {
 // Helper: Get properties by location (long-term)
 function getPropertiesByLocation(locationName, limit = 3) {
   if (!allProperties.length) return [];
+  if (!locationName) return [];
   
   const locationLower = locationName.toLowerCase();
   const filtered = allProperties.filter(p => 
@@ -59,6 +60,7 @@ function getPropertiesByLocation(locationName, limit = 3) {
 // Helper: Get Airbnb properties by location
 function getAirbnbPropertiesByLocation(locationName, limit = 3) {
   if (!allProperties.length) return [];
+  if (!locationName) return [];
   
   const locationLower = locationName.toLowerCase();
   let filtered = allProperties.filter(p => 
@@ -70,7 +72,7 @@ function getAirbnbPropertiesByLocation(locationName, limit = 3) {
   if (filtered.length < limit) {
     const nearbyEstates = getNearbyEstates(locationLower);
     const nearbyProps = allProperties.filter(p => 
-      nearbyEstates.includes(p.estate?.toLowerCase()) &&
+      p.estate && nearbyEstates.includes(p.estate.toLowerCase()) &&
       p.available_for && p.available_for.includes('short_term')
     );
     filtered = [...filtered, ...nearbyProps];
@@ -115,7 +117,7 @@ function generatePropertyRecommendationsHTML(properties, locationName) {
         <a href="/property/${prop.slug}.html" class="rec-property-card">
           <img src="${prop.images?.[0] || '/images/placeholder.jpg'}" alt="${prop.title}" class="rec-property-image" loading="lazy">
           <div class="rec-property-info">
-            <h4 class="rec-property-title">${prop.title}</h4>
+            <h4 class="rec-property-title">${escapeHtml(prop.title)}</h4>
             <div class="rec-property-location">${prop.estate}, Nairobi</div>
             <div class="rec-property-features">
               <span><i class="fas fa-bed"></i> ${prop.specs?.bedrooms || 0}</span>
@@ -153,7 +155,7 @@ function generateAirbnbRecommendationsHTML(properties, locationName) {
             <span class="airbnb-badge"><i class="fab fa-airbnb"></i> Short-stay</span>
           </div>
           <div class="airbnb-card-info">
-            <h4>${prop.title}</h4>
+            <h4>${escapeHtml(prop.title)}</h4>
             <p class="airbnb-location"><i class="fas fa-map-marker-alt"></i> ${prop.estate}, Nairobi</p>
             <div class="airbnb-features">
               <span><i class="fas fa-bed"></i> ${prop.specs?.bedrooms || 0}</span>
@@ -181,9 +183,9 @@ function generateRentTable(config, location) {
   const ranges = config.rentRanges;
   let tableHtml = `
     <div class="price-table">
-       <table>
+      <table>
         <thead>
-           <tr><th>Property Type</th><th>Average Rent (KES)</th><th>Popular Locations</th></tr>
+          <tr><th>Property Type</th><th>Average Rent (KES)</th><th>Popular Locations</th></tr>
         </thead>
         <tbody>
   `;
@@ -379,41 +381,52 @@ function getAllPosts() {
   return generatedPosts;
 }
 
+// Escape HTML helper
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
+}
+
 // Generate a single blog post
 function generateBlogPost(location, postType, index) {
   const config = blogConfig.locations[location];
   const year = new Date().getFullYear();
   const slug = `${location}-${postType}-${index}`;
-  const locationName = location.name;
-  const locationSlug = location.slug;
+  const locationName = config.name;
+  const locationSlug = config.slug;
   
   // Generate title based on post type
   let title = '';
   switch(postType) {
     case 'guide':
-      title = `The Ultimate Guide to Renting in ${location.name}: ${year} Edition`;
+      title = `The Ultimate Guide to Renting in ${config.name}: ${year} Edition`;
       break;
     case 'estate':
       const estate = randomItem(config.estates);
-      title = `${estate}: The Premier Residential Area in ${location.name} You Need to Know`;
+      title = `${estate}: The Premier Residential Area in ${config.name} You Need to Know`;
       break;
     case 'budget':
       const propertyTypes = Object.keys(config.rentRanges);
       const propType = randomItem(propertyTypes);
       const budget = Math.floor(config.rentRanges[propType][1] / 1000) * 1000;
-      title = `Affordable ${propType.replace(/([A-Z])/g, ' $1').trim()} in ${location.name} Under ${budget.toLocaleString()}k`;
+      title = `Affordable ${propType.replace(/([A-Z])/g, ' $1').trim()} in ${config.name} Under ${budget.toLocaleString()}k`;
       break;
     case 'comparison':
       const estate1 = randomItem(config.estates);
       const estate2 = randomItem(config.estates.filter(e => e !== estate1));
-      title = `${estate1} vs ${estate2}: Which ${location.name} Neighborhood Suits Your Lifestyle?`;
+      title = `${estate1} vs ${estate2}: Which ${config.name} Neighborhood Suits Your Lifestyle?`;
       break;
     default:
-      title = `${location.name} Real Estate Guide: ${year} Edition`;
+      title = `${config.name} Real Estate Guide: ${year} Edition`;
   }
   
-  const description = `Discover everything you need to know about renting in ${location.name}. Complete guide to rent prices, best estates, security, schools, and amenities in ${year}.`;
-  const keywords = `${config.baseKeywords.join(', ')}, ${location.name} rentals ${year}, ${location.name} real estate guide`;
+  const description = `Discover everything you need to know about renting in ${config.name}. Complete guide to rent prices, best estates, security, schools, and amenities in ${year}.`;
+  const keywords = `${config.baseKeywords.join(', ')}, ${config.name} rentals ${year}, ${config.name} real estate guide`;
   const image = blogConfig.locationImages[location]?.hero || `/images/blog/placeholder-${location}.jpg`;
   const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   const readTime = `${Math.floor(Math.random() * 10) + 5} min read`;
@@ -439,7 +452,7 @@ function generateBlogPost(location, postType, index) {
     .replace(/{{keywords}}/g, keywords)
     .replace(/{{image}}/g, image)
     .replace(/{{slug}}/g, slug)
-    .replace(/{{category}}/g, location.name.toUpperCase())
+    .replace(/{{category}}/g, config.name.toUpperCase())
     .replace(/{{category_name}}/g, locationName)
     .replace(/{{category_slug}}/g, locationSlug)
     .replace(/{{date}}/g, date)
@@ -506,8 +519,7 @@ async function generateAllPosts() {
   const postTypes = ['guide', 'estate', 'budget', 'comparison'];
   
   // Generate posts per location - adjust for desired total
-  const postsPerLocation = 170; // 6 locations × 170 = 1020 posts
-  // For 1000+ posts, set postsPerLocation = 170
+  const postsPerLocation = 170; // 6 locations × 170 = 1020 posts (adjust to 170 for now, change to 170 for 1000+)
   
   console.log(`📊 Will generate ${postsPerLocation} posts per location (${locations.length} locations) = ${postsPerLocation * locations.length} total posts\n`);
   console.log(`📊 Airbnb recommendations will be pulled from properties.json\n`);

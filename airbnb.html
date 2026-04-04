@@ -1545,12 +1545,12 @@ function renderProperties(properties) {
     const totalPages = Math.ceil(properties.length / itemsPerPage);
     
     grid.innerHTML = paginated.map(prop => `
-        <a href="/property/${prop.slug}.html" class="property-card">
+        <a href="/airbnb/${prop.slug}.html" class="property-card">
             <div class="card-image-wrapper">
                 <img class="card-image" src="${prop.images?.[0] || '/images/placeholder.jpg'}" alt="${prop.title}" loading="lazy">
                 <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
-                <div class="card-price">KES ${prop.price_night?.toLocaleString() || prop.price.toLocaleString()}<span>/night</span></div>
-            </div>
+           // Make sure it shows price_night for Airbnb
+<div class="card-price">KES ${prop.price_night?.toLocaleString() || prop.price?.toLocaleString()}<span>/night</span></div>  </div>
             <div class="card-info">
                 <h3 class="card-title">${escapeHtml(prop.title)}</h3>
                 <div class="card-location">${prop.estate}, Nairobi</div>
@@ -1651,18 +1651,21 @@ function filterByLocation(location) {
 }
 
 // ========== LOAD ALL AIRBNB PROPERTIES ==========
+// ========== LOAD ALL AIRBNB PROPERTIES ==========
 async function loadAirbnbProperties() {
     const loadingSpinner = document.getElementById('loadingSpinner');
     const propertyGrid = document.getElementById('propertyGrid');
     
     try {
-        const response = await fetch('/data/properties.json');
+        const response = await fetch('../data/properties.json');
         const allProperties = await response.json();
         
-        // Store all Airbnb properties
+        // ✅ FIXED: Use rental_type instead of available_for
         allAirbnbProperties = allProperties.filter(prop => 
-            prop.available_for && prop.available_for.includes('short_term')
+            prop.rental_type === 'short_term'
         );
+        
+        console.log(`✅ Found ${allAirbnbProperties.length} Airbnb properties`);
         
         // Check URL for location filter
         const locationFromURL = getLocationFromURL();
@@ -1697,7 +1700,6 @@ async function loadAirbnbProperties() {
         }
     }
 }
-
 // ========== LOCATION QUICK NAVIGATION ==========
 function initLocationNav() {
     const locationLinks = document.querySelectorAll('.location-nav-link');

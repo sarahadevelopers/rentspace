@@ -1,7 +1,16 @@
 // ============================================
 // RENTALS PORTAL - COMPLETE FUNCTIONALITY
 // ============================================
-
+// ========== DYNAMIC PATH HELPER ==========
+const getBasePath = () => {
+    // GitHub Pages
+    if (window.location.hostname === 'sarahadevelopers.github.io') {
+        return '/rentspace';
+    }
+    // Local development
+    return '';
+};
+const basePath = getBasePath();
 // ========== AUTO-FILTER FROM URL PARAMETERS ==========
 function getLocationFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -595,7 +604,7 @@ if (applyBtn) {
 // ========== LOAD PROPERTIES ==========
 async function loadProperties() {
     try {
-        const response = await fetch('/rentspace/data/properties.json');
+        const response = await fetch(`${basePath}/data/properties.json`);
         allProperties = await response.json();
         
         if (skeletonLoader) skeletonLoader.style.display = 'none';

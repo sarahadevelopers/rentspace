@@ -4,7 +4,16 @@
 
 // Dynamic year
 document.getElementById('year').textContent = new Date().getFullYear();
-
+// ========== DYNAMIC PATH HELPER ==========
+const getBasePath = () => {
+    // GitHub Pages
+    if (window.location.hostname === 'sarahadevelopers.github.io') {
+        return '/rentspace';
+    }
+    // Local development
+    return '';
+};
+const basePath = getBasePath();
 // ========== SPLASH SCREEN ==========
 function hideSplash() {
   setTimeout(() => {
@@ -147,7 +156,7 @@ function initMobileDropdowns() {
 // ========== LOAD FEATURED PROPERTIES ==========
 async function loadFeaturedProperties() {
   try {
-    const response = await fetch('/rentspace/data/properties.json');
+    const response = await fetch(`${basePath}/data/properties.json`);
     const properties = await response.json();
     
     const featured = properties.filter(p => p.isFeatured).slice(0, 4);
@@ -155,8 +164,8 @@ async function loadFeaturedProperties() {
     const featuredScroll = document.getElementById('featuredScroll');
     if (featuredScroll && featured.length > 0) {
       featuredScroll.innerHTML = featured.map(prop => `
-        <a href="/property/${prop.slug}.html" class="featured-card">
-          <img src="${prop.images?.[0] || '/images/placeholder.jpg'}" alt="${prop.title}">
+        <a href="${basePath}/property/${prop.slug}.html" class="featured-card">
+          <img src="${prop.images?.[0] || `${basePath}/images/placeholder.jpg`}" alt="${prop.title}">
           <div class="featured-info">
             <h4>${prop.title}</h4>
             <p>${prop.estate} · KES ${prop.price.toLocaleString()}/mo</p>

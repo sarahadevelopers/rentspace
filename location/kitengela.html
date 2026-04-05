@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Kitengela Properties | RentSpace</title>
-  <meta name="description" content="Discover the best Kitengela properties for rent. 13+ luxury homes, apartments, and bungalows in Kitengela. Find your perfect home today.">
+  <meta name="description" content="Discover the best Kitengela properties for rent. 15+ luxury homes, apartments, and bungalows in Kitengela. Find your perfect home today.">
   <meta name="keywords" content="houses for rent in kitengela, kitengela rentals, kitengela properties, {{estate_names}}">
   
   <!-- Open Graph -->
@@ -1039,7 +1039,7 @@
     <div class="location-badge">Kitengela • Premier Residences</div>
     <h1 class="location-title">Homes for Rent in Kitengela</h1>
     <p class="location-description">Experience affordable luxury in Kitengela, Nairobi's fastest-growing satellite town. Spacious homes, modern amenities, and easy access via the Nairobi Expressway.</p>
-    <div class="property-count">13+ Properties Available</div>
+    <div class="property-count">15+ Properties Available</div>
   </div>
 
   <!-- Location Stats -->
@@ -1057,7 +1057,7 @@
       <div class="stat-label">Estates</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">13</div>
+      <div class="stat-number">15</div>
       <div class="stat-label">Active Listings</div>
     </div>
   </div>
@@ -1137,6 +1137,16 @@
   </div>
 
   <script>
+    // Dynamic base path for GitHub Pages
+const getBasePath = () => {
+    if (window.location.hostname === 'sarahadevelopers.github.io') {
+        return '/rentspace';
+    }
+    return '';
+};
+const basePath = getBasePath();
+
+    
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1328,7 +1338,7 @@
       const emptyStateDiv = document.getElementById('emptyState');
       
       try {
-        const response = await fetch('/rentspace/data/properties.json');
+        const response = await fetch(`${basePath}/data/properties.json`);;
         const properties = await response.json();
         
         const filtered = properties.filter(prop => 

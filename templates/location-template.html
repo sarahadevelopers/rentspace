@@ -1121,6 +1121,16 @@
   </div>
 
   <script>
+    // Dynamic base path for GitHub Pages
+const getBasePath = () => {
+    if (window.location.hostname === 'sarahadevelopers.github.io') {
+        return '/rentspace';
+    }
+    return '';
+};
+const basePath = getBasePath();
+
+    
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1312,7 +1322,7 @@
       const emptyStateDiv = document.getElementById('emptyState');
       
       try {
-        const response = await fetch('/rentspace/data/properties.json');
+        const response = await fetch(`${basePath}/data/properties.json`);;
         const properties = await response.json();
         
         const filtered = properties.filter(prop => 

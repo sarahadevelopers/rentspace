@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Karen Properties | RentSpace</title>
-  <meta name="description" content="Discover the best Karen properties for rent. 11+ luxury homes, apartments, and bungalows in Karen. Find your perfect home today.">
+  <meta name="description" content="Discover the best Karen properties for rent. 21+ luxury homes, apartments, and bungalows in Karen. Find your perfect home today.">
   <meta name="keywords" content="houses for rent in karen, karen rentals, karen properties, {{estate_names}}">
   
   <!-- Open Graph -->
@@ -1039,7 +1039,7 @@
     <div class="location-badge">Karen • Premier Residences</div>
     <h1 class="location-title">Homes for Rent in Karen</h1>
     <p class="location-description">Nairobi's most prestigious leafy suburb. Luxury villas, ambassadorial homes, and exclusive gated communities with unparalleled privacy.</p>
-    <div class="property-count">11+ Properties Available</div>
+    <div class="property-count">21+ Properties Available</div>
   </div>
 
   <!-- Location Stats -->
@@ -1057,7 +1057,7 @@
       <div class="stat-label">Estates</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">11</div>
+      <div class="stat-number">21</div>
       <div class="stat-label">Active Listings</div>
     </div>
   </div>
@@ -1135,6 +1135,16 @@
   </div>
 
   <script>
+    // Dynamic base path for GitHub Pages
+const getBasePath = () => {
+    if (window.location.hostname === 'sarahadevelopers.github.io') {
+        return '/rentspace';
+    }
+    return '';
+};
+const basePath = getBasePath();
+
+    
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1326,7 +1336,7 @@
       const emptyStateDiv = document.getElementById('emptyState');
       
       try {
-        const response = await fetch('/rentspace/data/properties.json');
+        const response = await fetch(`${basePath}/data/properties.json`);;
         const properties = await response.json();
         
         const filtered = properties.filter(prop => 

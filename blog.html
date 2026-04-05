@@ -1190,6 +1190,16 @@
   </div>
 
  <script>
+    // Dynamic base path for GitHub Pages
+const getBasePath = () => {
+    if (window.location.hostname === 'sarahadevelopers.github.io') {
+        return '/rentspace';
+    }
+    return '';
+};
+const basePath = getBasePath();
+
+    
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1523,7 +1533,7 @@
     // Load posts from JSON file
     async function loadPosts() {
         try {
-            const response = await fetch('/data/posts.json');
+            const response = await fetch(${basePath}/data/posts.json);
             if (!response.ok) {
                 throw new Error('Failed to load posts');
             }

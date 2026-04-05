@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>1 Bedroom Apartment in Karen | RentSpace</title>
+  <meta name="description" content="Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="1 Bedroom Apartment in Karen | RentSpace">
+  <meta property="og:description" content="Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
+  <meta property="og:image" content="{{images.0}}">
+  <meta property="og:url" content="https://www.rentspace.co.ke/property/{{slug}}.html">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="1 Bedroom Apartment in Karen | RentSpace">
+  <meta name="twitter:description" content="Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
+  <meta name="twitter:image" content="{{images.0}}">
+  
+  <link rel="canonical" href="https://www.rentspace.co.ke/property/{{slug}}.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../css/property.css">
+</head>
+<body>
+
+  <!-- Executive Navigation -->
+  <nav class="exec-nav">
+    <a href="../index.html" class="nav-logo">Rent<span>Space</span></a>
+    <ul class="nav-links">
+      <!-- Explore Rentals Dropdown -->
+      <li class="dropdown">
+        <a href="../rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="../rentals.html">All Rentals</a></li>
+          <li><a href="../rentals.html?location=Karen">Karen</a></li>
+          <li><a href="../rentals.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="../rentals.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="../rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="../rentals.html?location=Ngong">Ngong</a></li>
+          <li><a href="../rentals.html?location=Kitengela">Kitengela</a></li>
+          <li><a href="../rentals.html?location=Westlands">Westlands</a></li>
+          <li><a href="../rentals.html?location=Lavington">Lavington</a></li>
+          <li><a href="../rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <!-- Airbnb Dropdown -->
+      <li class="dropdown">
+        <a href="../airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="../airbnb.html">All Bnbs</a></li>
+          <li><a href="../airbnb.html?location=Karen">Karen</a></li>
+          <li><a href="../airbnb.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="../airbnb.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="../airbnb.html?location=Westlands">Westlands</a></li>
+          <li><a href="../airbnb.html?location=Lavington">Lavington</a></li>
+          <li><a href="../airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <li><a href="../movers.html">Movers & Packers</a></li>
+      <li><a href="../blog.html">Location Insights</a></li>
+      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+    </ul>
+    <a href="../contact.html" class="nav-cta">Book a Viewing</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Overlay for closing menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+
+
+  <main class="content-wrap">
+    <!-- Property Header -->
+    <div class="property-header">
+      <div class="location-meta">
+        <i class="fas fa-map-marker-alt"></i> Karen, Nairobi
+      </div>
+      <h1 class="property-title">1 Bedroom Apartment in Karen</h1>
+      <div class="price-tag">KES 78,307 <span>/ month</span></div>
+    </div>
+
+      <!-- Cinematic Gallery with Peek Effect -->
+   <!-- Gallery Section -->
+  <div class="gallery-container">
+    <div class="main-slide" id="mainSlide">
+      {{mainImage}}
+      <button class="gallery-arrow prev" id="galleryPrevBtn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="gallery-arrow next" id="galleryNextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+    <div class="thumbnail-track" id="thumbTrack">
+      {{thumbnails}}
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-arrow prev" id="lightboxPrev">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="lightbox-arrow next" id="lightboxNext">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+
+    <!-- Description -->
+    <p class="property-description">Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.</p>
+
+    <!-- Luxury Spec Grid -->
+    <div class="spec-grid">
+      <div class="spec-item">
+        <i class="fas fa-bed"></i>
+        <span class="spec-value">1</span>
+        <span class="spec-label">Bedrooms</span>
+      </div>
+      <div class="spec-item">
+        <i class="fas fa-bath"></i>
+        <span class="spec-value">1</span>
+        <span class="spec-label">Bathrooms</span>
+      </div>
+      <div class="spec-item">
+        <i class="fas fa-ruler-combined"></i>
+        <span class="spec-value">550</span>
+        <span class="spec-label">Sq Ft</span>
+      </div>
+      <div class="spec-item">
+        <i class="fas fa-parking"></i>
+        <span class="spec-value">1</span>
+        <span class="spec-label">Parking</span>
+      </div>
+      <div class="spec-item">
+        <i class="fas fa-shield-alt"></i>
+        <span class="spec-value">24/7</span>
+        <span class="spec-label">Security</span>
+      </div>
+      <div class="spec-item">
+        <i class="fas fa-leaf"></i>
+        <span class="spec-value">Premium</span>
+        <span class="spec-label">Finishes</span>
+      </div>
+    </div>
+
+    <!-- Key Features List -->
+    <div class="features-section">
+      <h3>Architectural Features</h3>
+      <ul class="features-list">
+        <li>1 Bedrooms</li>
+        <li>1 Bathrooms</li>
+        <li>1 Parking Spaces</li>
+        {{#each features}}<li>{{this}}</li>{{/each}}
+      </ul>
+    </div>
+
+    <!-- Concierge Services (Movers & Fumigation) -->
+    <div class="concierge-section">
+      <div class="concierge-content">
+        <div class="concierge-text">
+          <i class="fas fa-concierge-bell"></i>
+          <h4>Our Services</h4>
+          <p>Curated moving and sanctuary preparation services for discerning clients.</p>
+        </div>
+        <div class="concierge-actions">
+          <a href="../movers.html?destination=1%20Bedroom%20Apartment%20in%20Karen" class="btn-concierge">
+            <i class="fas fa-truck"></i> Movers & Packers
+          </a>
+          <a href="https://your-fumigation-site.com" target="_blank" class="btn-concierge">
+            <i class="fas fa-leaf"></i> Fumigation
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommendations Section -->
+    {{#if recommendations.length}}
+    <section class="recommendations">
+      <div class="section-header">
+        <h2>Similar Curations</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="recommendation-cards" id="recCards">
+        {{#each recommendations}}
+        <a href="../property/{{slug}}.html" class="rec-card">
+          <div class="rec-card-image">
+            <img src="{{image}}" alt="1 Bedroom Apartment in Karen">
+          </div>
+          <div class="rec-card-info">
+            <h4>1 Bedroom Apartment in Karen</h4>
+            <p>Karen · KES 78,307 / mo</p>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+
+    <!-- Testimonials Section -->
+    {{#if reviews.length}}
+    <section class="testimonials">
+      <div class="section-header">
+        <h2>The Experience</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="testimonials-list">
+        {{#each reviews}}
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <i class="fas fa-quote-left"></i>
+            <p>"{{comment}}"</p>
+          </div>
+          <div class="testimonial-author">
+            <strong>{{name}}</strong>
+            <span>Private Client</span>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
+  </main>
+
+  <!-- Premium Footer -->
+  <footer class="elite-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">Rent<span>Space</span></div>
+        <p>Providing Nairobi's most discerning clients with bespoke residential experiences since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio</h4>
+        <a href="../location/karen.html">Karen Collection</a>
+        <a href="../location/kilimani.html">Kilimani Reserve</a>
+        <a href="../location/hurlingham.html">Hurlingham Heights</a>
+        <a href="../location/ruiru.html">Ruiru Gardens</a>
+        <a href="../location/ngong.html">Ngong Views</a>
+        <a href="../location/kitengela.html">Kitengela Homes</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="../movers.html">Movers & Packers</a>
+        <a href="https://fumigo.co.ke">Fumigation</a>
+        <a href="../contact.html">Book a Viewing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Inquiries</h4>
+        <a href="tel:+254723562484"><i class="fas fa-phone"></i> +254 723 562 484</a>
+        <a href="mailto:info@rentspace.co.ke"><i class="fas fa-envelope"></i> info@rentspace.co.ke</a>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
+    </div>
+  </footer>
+
+  <!-- Sticky Contact Bar (Always Visible) -->
+  <div class="sticky-contact-bar">
+    <div class="sticky-price">
+      KES 78,307<span>/mo</span>
+    </div>
+    <div class="sticky-actions">
+      <a href="tel:+254723562484" class="sticky-call-btn">
+        <i class="fas fa-phone-alt"></i> Call
+      </a>
+      <button class="sticky-inquiry-btn" id="stickyInquiryBtn">
+        <i class="fab fa-whatsapp"></i> Inquire
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // ========== HAMBURGER MENU WITH OVERLAY ==========
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function closeMenu() {
+      if (navMenu) navMenu.classList.remove('active');
+      if (hamburger) hamburger.classList.remove('active');
+      if (menuOverlay) menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openMenu() {
+      if (navMenu) navMenu.classList.add('active');
+      if (hamburger) hamburger.classList.add('active');
+      if (menuOverlay) menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (navMenu && navMenu.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
+
+    if (menuOverlay) {
+      menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu when clicking a link
+    if (navMenu) {
+      const navLinks = navMenu.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+
+    // Close menu on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+
+    // ========== MOBILE DROPDOWNS (ONLY ON MOBILE) ==========
+    function initMobileDropdowns() {
+      if (window.innerWidth > 768) return;
+      
+      const dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (trigger && menu) {
+          const newTrigger = trigger.cloneNode(true);
+          trigger.parentNode.replaceChild(newTrigger, trigger);
+          
+          newTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+            menu.classList.toggle('open');
+          });
+        }
+      });
+    }
+
+    initMobileDropdowns();
+    window.addEventListener('resize', initMobileDropdowns);
+
+    // Gallery counter and scroll tracking
+    const gallery = document.getElementById('galleryStage');
+    const counter = document.getElementById('currentIndex');
+    const items = document.querySelectorAll('.gallery-item');
+    const total = items.length;
+
+    if (gallery && counter && total > 0) {
+      function updateCounter() {
+        const scrollLeft = gallery.scrollLeft;
+        const itemWidth = items[0].offsetWidth + 12;
+        const activeIndex = Math.round(scrollLeft / itemWidth) + 1;
+        counter.textContent = Math.min(activeIndex, total);
+      }
+      
+      gallery.addEventListener('scroll', updateCounter);
+      updateCounter();
+    }
+
+    // Sticky inquiry button
+    const stickyInquiryBtn = document.getElementById('stickyInquiryBtn');
+    if (stickyInquiryBtn) {
+      stickyInquiryBtn.addEventListener('click', () => {
+        const title = document.querySelector('.property-title')?.textContent || 'Property';
+        const estate = document.querySelector('.location-meta')?.textContent.replace(/[^\w\s]/g, '').trim() || 'Nairobi';
+        const price = document.querySelector('.price-tag')?.textContent || '';
+        const url = window.location.href;
+        
+        const message = `*RENTSPACE PROPERTY INQUIRY*%0A%0A` +
+                        `*Property:* ${title}%0A` +
+                        `*Location:* ${estate}, Nairobi%0A` +
+                        `*Price:* ${price}%0A` +
+                        `*Listing:* ${url}%0A%0A` +
+                        `Hello, I'm interested in this property. Please share more details.`;
+        
+        window.open(`https://wa.me/254723562484?text=${message}`, '_blank');
+      });
+    }
+  </script>
+  <script src="../js/properties.js"></script>
+</body>
+</html>

@@ -476,6 +476,72 @@
       color: var(--airbnb);
     }
     
+    /* Filter Dropdown Styles - ADDED */
+    .filter-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+      min-width: 180px;
+      z-index: 100;
+      margin-top: 8px;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .filter-dropdown.show {
+      display: flex;
+    }
+    
+    .filter-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    
+    .filter-option:hover {
+      background: rgba(255, 90, 95, 0.1);
+      color: var(--airbnb);
+    }
+    
+    .filter-option.active {
+      background: var(--airbnb);
+      color: white;
+    }
+    
+    .filter-wrapper {
+      position: relative;
+    }
+    
+    /* Reset button style */
+    .reset-btn {
+      background: rgba(20, 20, 20, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    
+    .reset-btn:hover {
+      border-color: var(--airbnb);
+      color: var(--airbnb);
+    }
+    
     /* ========== PROPERTY GRID ========== */
     .property-grid {
       display: grid;
@@ -1302,7 +1368,7 @@
 </header>
  
 
-  <!-- Location Quick Navigation -->
+  <!-- Location Quick Navigation 
   <div class="location-nav"> 
     <div class="location-nav-links">
       <a href="#kilimani" class="location-nav-link" data-location="Kilimani">Kilimani</a>
@@ -1313,20 +1379,56 @@
       <a href="#ngong" class="location-nav-link" data-location="Ngong">Ngong</a>
     </div>
   </div>
-
-  <!-- Filter Strip -->
+-->
+  <!-- Filter Strip - UPDATED with dropdown wrappers and reset button -->
   <div class="filter-strip">
-    <button class="filter-btn" id="filterLocationBtn">
-      Location <i class="fas fa-chevron-down"></i>
-    </button>
-    <button class="filter-btn" id="filterPriceBtn">
-      Price Range <i class="fas fa-chevron-down"></i>
-    </button>
-    <button class="filter-btn" id="filterGuestsBtn">
-      Guests <i class="fas fa-chevron-down"></i>
-    </button>
-    <button class="filter-btn refine-btn" id="openFilterBtn">
-      <i class="fas fa-sliders-h"></i> Filter
+    <div class="filter-wrapper">
+      <button class="filter-btn" id="filterLocationBtn">
+        Location <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="filter-dropdown" id="locationDropdown">
+        <div class="filter-option" data-location="all">All Locations</div>
+        <div class="filter-option" data-location="Kilimani">Kilimani</div>
+        <div class="filter-option" data-location="Karen">Karen</div>
+        <div class="filter-option" data-location="Hurlingham">Hurlingham</div>
+        <div class="filter-option" data-location="Westlands">Westlands</div>
+        <div class="filter-option" data-location="Lavington">Lavington</div>
+        <div class="filter-option" data-location="Kileleshwa">Kileleshwa</div>
+        <div class="filter-option" data-location="Ruiru">Ruiru</div>
+        <div class="filter-option" data-location="Ngong">Ngong</div>
+        <div class="filter-option" data-location="Kitengela">Kitengela</div>
+      </div>
+    </div>
+
+    <div class="filter-wrapper">
+      <button class="filter-btn" id="filterPriceBtn">
+        Price Range <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="filter-dropdown" id="priceDropdown">
+        <div class="filter-option" data-price="all">All Prices</div>
+        <div class="filter-option" data-price="0-3000">Under KES 3,000/night</div>
+        <div class="filter-option" data-price="3000-5000">KES 3,000 - 5,000/night</div>
+        <div class="filter-option" data-price="5000-8000">KES 5,000 - 8,000/night</div>
+        <div class="filter-option" data-price="8000-15000">KES 8,000 - 15,000/night</div>
+        <div class="filter-option" data-price="15000+">KES 15,000+/night</div>
+      </div>
+    </div>
+
+    <div class="filter-wrapper">
+      <button class="filter-btn" id="filterGuestsBtn">
+        Guests <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="filter-dropdown" id="guestsDropdown">
+        <div class="filter-option" data-guests="all">Any Guests</div>
+        <div class="filter-option" data-guests="1">1 Guest</div>
+        <div class="filter-option" data-guests="2">2 Guests</div>
+        <div class="filter-option" data-guests="4">4 Guests</div>
+        <div class="filter-option" data-guests="6">6+ Guests</div>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="resetFiltersBtn">
+      Reset <i class="fas fa-undo-alt"></i>
     </button>
   </div>
 
@@ -1518,6 +1620,52 @@ let currentFilteredProperties = []; // Store currently filtered properties
 let currentPage = 1;
 const itemsPerPage = 12;
 
+// ========== FILTER STATE ==========
+let currentLocationFilter = 'all';
+let currentPriceFilter = 'all';
+let currentGuestsFilter = 'all';
+
+// ========== FILTER FUNCTION ==========
+function applyAllFilters() {
+    let filtered = [...allAirbnbProperties];
+    
+    // Apply location filter
+    if (currentLocationFilter !== 'all') {
+        filtered = filtered.filter(p => p.estate === currentLocationFilter);
+    }
+    
+    // Apply price filter
+    if (currentPriceFilter !== 'all') {
+        filtered = filtered.filter(p => {
+            const price = p.price_night || Math.round(p.price / 30);
+            if (currentPriceFilter === '0-3000') return price < 3000;
+            if (currentPriceFilter === '3000-5000') return price >= 3000 && price < 5000;
+            if (currentPriceFilter === '5000-8000') return price >= 5000 && price < 8000;
+            if (currentPriceFilter === '8000-15000') return price >= 8000 && price < 15000;
+            if (currentPriceFilter === '15000+') return price >= 15000;
+            return true;
+        });
+    }
+    
+    // Apply guests filter
+    if (currentGuestsFilter !== 'all') {
+        const guestNum = parseInt(currentGuestsFilter);
+        filtered = filtered.filter(p => {
+            const guestCapacity = (p.specs?.bedrooms || 1) * 2;
+            if (currentGuestsFilter === '6') return guestCapacity >= 6;
+            return guestCapacity >= guestNum;
+        });
+    }
+    
+    currentFilteredProperties = filtered;
+    currentPage = 1;
+    renderProperties(currentFilteredProperties);
+    
+    // Update result count
+    const resultSpan = document.getElementById('countValue');
+    if (resultSpan) resultSpan.textContent = currentFilteredProperties.length;
+}
+
 // ========== RENDER PROPERTY CARDS ==========
 function renderProperties(properties) {
     const grid = document.getElementById('propertyGrid');
@@ -1549,8 +1697,8 @@ function renderProperties(properties) {
             <div class="card-image-wrapper">
                 <img class="card-image" src="${prop.images?.[0] || '/images/placeholder.jpg'}" alt="${prop.title}" loading="lazy">
                 <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
-           // Make sure it shows price_night for Airbnb
-<div class="card-price">KES ${prop.price_night?.toLocaleString() || prop.price?.toLocaleString()}<span>/night</span></div>  </div>
+                <div class="card-price">KES ${(prop.price_night || Math.round(prop.price / 30)).toLocaleString()}<span>/night</span></div>
+            </div>
             <div class="card-info">
                 <h3 class="card-title">${escapeHtml(prop.title)}</h3>
                 <div class="card-location">${prop.estate}, Nairobi</div>
@@ -1618,39 +1766,101 @@ function escapeHtml(str) {
     });
 }
 
-// ========== FILTER PROPERTIES BY LOCATION ==========
-function filterByLocation(location) {
-    if (!location || location === 'all') {
-        currentFilteredProperties = [...allAirbnbProperties];
-        // Reset filter button
-        const filterLocationBtn = document.getElementById('filterLocationBtn');
-        if (filterLocationBtn) {
-            filterLocationBtn.innerHTML = `Location <i class="fas fa-chevron-down"></i>`;
-            filterLocationBtn.style.borderColor = '';
-            filterLocationBtn.style.color = '';
-        }
-    } else {
-        currentFilteredProperties = allAirbnbProperties.filter(p => 
-            p.estate && p.estate.toLowerCase() === location.toLowerCase()
-        );
-        
-        // Update the filter button to show active filter
-        const filterLocationBtn = document.getElementById('filterLocationBtn');
-        if (filterLocationBtn) {
-            filterLocationBtn.innerHTML = `${location} <i class="fas fa-chevron-down"></i>`;
-            filterLocationBtn.style.borderColor = '#FF5A5F';
-            filterLocationBtn.style.color = '#FF5A5F';
-        }
-    }
+// ========== FILTER DROPDOWN HANDLERS ==========
+function initFilterDropdowns() {
+    // Location dropdown
+    const locationBtn = document.getElementById('filterLocationBtn');
+    const locationDropdown = document.getElementById('locationDropdown');
+    locationBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllDropdowns();
+        locationDropdown.classList.toggle('show');
+        locationBtn.classList.toggle('active');
+    });
     
-    // Reset to page 1 and render
-    currentPage = 1;
-    renderProperties(currentFilteredProperties);
+    document.querySelectorAll('#locationDropdown .filter-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            currentLocationFilter = opt.dataset.location;
+            updateFilterButtonText('filterLocationBtn', currentLocationFilter === 'all' ? 'Location' : currentLocationFilter);
+            applyAllFilters();
+            locationDropdown.classList.remove('show');
+            locationBtn.classList.remove('active');
+        });
+    });
     
-    console.log(`📍 Showing ${currentFilteredProperties.length} properties for: ${location || 'all'}`);
+    // Price dropdown
+    const priceBtn = document.getElementById('filterPriceBtn');
+    const priceDropdown = document.getElementById('priceDropdown');
+    priceBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllDropdowns();
+        priceDropdown.classList.toggle('show');
+        priceBtn.classList.toggle('active');
+    });
+    
+    document.querySelectorAll('#priceDropdown .filter-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            currentPriceFilter = opt.dataset.price;
+            const displayText = opt.textContent;
+            updateFilterButtonText('filterPriceBtn', displayText === 'All Prices' ? 'Price Range' : displayText);
+            applyAllFilters();
+            priceDropdown.classList.remove('show');
+            priceBtn.classList.remove('active');
+        });
+    });
+    
+    // Guests dropdown
+    const guestsBtn = document.getElementById('filterGuestsBtn');
+    const guestsDropdown = document.getElementById('guestsDropdown');
+    guestsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllDropdowns();
+        guestsDropdown.classList.toggle('show');
+        guestsBtn.classList.toggle('active');
+    });
+    
+    document.querySelectorAll('#guestsDropdown .filter-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            currentGuestsFilter = opt.dataset.guests;
+            const displayText = opt.textContent;
+            updateFilterButtonText('filterGuestsBtn', displayText === 'Any Guests' ? 'Guests' : displayText);
+            applyAllFilters();
+            guestsDropdown.classList.remove('show');
+            guestsBtn.classList.remove('active');
+        });
+    });
+    
+    // Reset button
+    const resetBtn = document.getElementById('resetFiltersBtn');
+    resetBtn.addEventListener('click', () => {
+        currentLocationFilter = 'all';
+        currentPriceFilter = 'all';
+        currentGuestsFilter = 'all';
+        updateFilterButtonText('filterLocationBtn', 'Location');
+        updateFilterButtonText('filterPriceBtn', 'Price Range');
+        updateFilterButtonText('filterGuestsBtn', 'Guests');
+        applyAllFilters();
+        closeAllDropdowns();
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', () => {
+        closeAllDropdowns();
+    });
 }
 
-// ========== LOAD ALL AIRBNB PROPERTIES ==========
+function closeAllDropdowns() {
+    document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('show'));
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+}
+
+function updateFilterButtonText(btnId, text) {
+    const btn = document.getElementById(btnId);
+    if (btn) {
+        btn.innerHTML = `${text} <i class="fas fa-chevron-down"></i>`;
+    }
+}
+
 // ========== LOAD ALL AIRBNB PROPERTIES ==========
 async function loadAirbnbProperties() {
     const loadingSpinner = document.getElementById('loadingSpinner');
@@ -1660,7 +1870,6 @@ async function loadAirbnbProperties() {
         const response = await fetch('../data/properties.json');
         const allProperties = await response.json();
         
-        // ✅ FIXED: Use rental_type instead of available_for
         allAirbnbProperties = allProperties.filter(prop => 
             prop.rental_type === 'short_term'
         );
@@ -1669,23 +1878,15 @@ async function loadAirbnbProperties() {
         
         // Check URL for location filter
         const locationFromURL = getLocationFromURL();
-        
         if (locationFromURL) {
-            // Apply filter immediately
-            filterByLocation(locationFromURL);
-        } else {
-            // Show all properties
-            currentFilteredProperties = [...allAirbnbProperties];
-            renderProperties(currentFilteredProperties);
+            currentLocationFilter = locationFromURL;
+            updateFilterButtonText('filterLocationBtn', locationFromURL);
         }
         
-        // Hide spinner, show grid
+        applyAllFilters();
+        
         if (loadingSpinner) loadingSpinner.style.display = 'none';
         if (propertyGrid) propertyGrid.style.display = 'grid';
-        
-        // Update result count
-        const resultSpan = document.getElementById('countValue');
-        if (resultSpan) resultSpan.textContent = currentFilteredProperties.length;
         
     } catch (error) {
         console.error('Error loading properties:', error);
@@ -1700,6 +1901,7 @@ async function loadAirbnbProperties() {
         }
     }
 }
+
 // ========== LOCATION QUICK NAVIGATION ==========
 function initLocationNav() {
     const locationLinks = document.querySelectorAll('.location-nav-link');
@@ -1708,21 +1910,15 @@ function initLocationNav() {
             e.preventDefault();
             const location = link.dataset.location;
             if (location) {
-                // Filter and show only that location
-                filterByLocation(location);
+                currentLocationFilter = location;
+                updateFilterButtonText('filterLocationBtn', location);
+                applyAllFilters();
                 window.scrollTo({ top: 400, behavior: 'smooth' });
-                
-                // Update active state on location links
                 locationLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
             }
         });
     });
-}
-
-// ========== FILTER BUTTON HANDLER ==========
-function initFilterButtons() {
-    console.log('Filter buttons initialized');
 }
 
 // ========== CLOSE MENU WHEN CLICKING OUTSIDE ==========
@@ -1738,24 +1934,17 @@ function initCloseMenuOnOutsideClick() {
 
 // ========== INITIALIZE ==========
 async function init() {
-    // Initialize mobile dropdowns
     initMobileDropdowns();
-    
-    // Load Airbnb properties
+    initFilterDropdowns();
     await loadAirbnbProperties();
-    
-    // Initialize other components
     initLocationNav();
-    initFilterButtons();
     initCloseMenuOnOutsideClick();
 }
 
-// Re-initialize dropdowns on window resize
 window.addEventListener('resize', function() {
     initMobileDropdowns();
 });
 
-// Start initialization when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     init();
 });

@@ -1025,6 +1025,7 @@
     }
     
     // ========== LOAD AIRBNB / SHORT-STAY RECOMMENDATIONS ==========
+       // ========== LOAD AIRBNB / SHORT-STAY RECOMMENDATIONS ==========
     async function loadAirbnbRecommendations() {
       const container = document.getElementById('airbnbGrid');
       if (!container) return;
@@ -1033,9 +1034,9 @@
         const response = await fetch('../data/properties.json');
         const allProperties = await response.json();
         
-        // Filter Airbnb properties
+        // Filter Airbnb properties using rental_type === 'short_term'
         const airbnbProperties = allProperties.filter(p => 
-          p.available_for && p.available_for.includes('short_term')
+          p.rental_type === 'short_term' || (p.available_for && p.available_for.includes('short_term'))
         );
         
         // Filter by category (estate)
@@ -1061,8 +1062,14 @@
         if (recommendations.length > 0) {
           container.innerHTML = `
             <div class="airbnb-recommendation-grid">
-              ${recommendations.map(prop => `
-                <a href="../property/${prop.slug}.html" class="airbnb-card">
+              ${recommendations.map(prop => {
+                // Calculate nightly rate correctly
+                const nightlyRate = prop.price_night || Math.round(prop.price / 30);
+                const rating = prop.airbnb_rating || '4.9';
+                const reviews = prop.airbnb_reviews || 25;
+                
+                return `
+                <a href="../airbnb/${prop.slug}.html" class="airbnb-card">
                   <div class="airbnb-card-image">
                     <img src="${prop.images?.[0] || '../images/placeholder.jpg'}" alt="${prop.title}" loading="lazy">
                     <span class="airbnb-badge"><i class="fab fa-airbnb"></i> Short-stay</span>
@@ -1077,16 +1084,16 @@
                     </div>
                     <div class="airbnb-rating">
                       <i class="fas fa-star"></i>
-                      <span>${prop.airbnb_rating || '4.9'}</span>
-                      <span class="reviews">(${prop.airbnb_reviews || 25} reviews)</span>
+                      <span>${rating}</span>
+                      <span class="reviews">(${reviews} reviews)</span>
                     </div>
                     <div class="airbnb-price">
-                      <span class="nightly">KES ${prop.price_night?.toLocaleString() || prop.price.toLocaleString()}<span>/night</span></span>
+                      <span class="nightly">KES ${nightlyRate.toLocaleString()}<span>/night</span></span>
                       <span class="book-btn">Book Now →</span>
                     </div>
                   </div>
                 </a>
-              `).join('')}
+              `}).join('')}
             </div>
           `;
         } else {

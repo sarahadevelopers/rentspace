@@ -78,15 +78,7 @@
   <!-- Overlay for closing menu -->
   <div class="menu-overlay" id="menuOverlay"></div>
 
-  <!-- Cinematic Gallery with Peek Effect -->
-  <div class="gallery-container">
-    <div class="gallery-stage" id="galleryStage">
-      <img src="/images/properties/mansionette-ruiru-27.jpg" class="gallery-item" alt="Luxury 3 Bedroom Mansionette in Ruiru" loading="lazy">
-    </div>
-    <div class="gallery-counter" id="galleryCounter">
-      <span id="currentIndex">1</span> / <span id="totalCount">{{images.length}}</span>
-    </div>
-  </div>
+
 
   <main class="content-wrap">
     <!-- Property Header -->
@@ -95,8 +87,42 @@
         <i class="fas fa-map-marker-alt"></i> Ruiru, Nairobi
       </div>
       <h1 class="property-title">Luxury 3 Bedroom Mansionette in Ruiru</h1>
-      <div class="price-tag">KES 103,443 <span>/ month</span></div>
+      <div class="price-tag">KES 84,911 <span>/ month</span></div>
     </div>
+
+      <!-- Cinematic Gallery with Peek Effect -->
+   <!-- Gallery Section -->
+  <div class="gallery-container">
+    <div class="main-slide" id="mainSlide">
+      <img src="/images/properties/mansionette-ruiru-27.jpg" alt="Luxury 3 Bedroom Mansionette in Ruiru" id="mainGalleryImg" loading="lazy">
+      <button class="gallery-arrow prev" id="galleryPrevBtn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="gallery-arrow next" id="galleryNextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+    <div class="thumbnail-track" id="thumbTrack">
+      
+            <div class="thumb" data-index="0">
+                <img src="/images/properties/mansionette-ruiru-27.jpg" alt="View 0" loading="lazy">
+            </div>
+        
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-arrow prev" id="lightboxPrev">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="lightbox-arrow next" id="lightboxNext">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
 
     <!-- Description -->
     <p class="property-description">Experience luxury living in this beautiful luxury 3 bedroom mansionette in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.</p>
@@ -158,7 +184,7 @@
           <a href="../movers.html?destination=Luxury%203%20Bedroom%20Mansionette%20in%20Ruiru" class="btn-concierge">
             <i class="fas fa-truck"></i> Movers & Packers
           </a>
-          <a href="https://fumigo.co.ke" target="_blank" class="btn-concierge">
+          <a href="https://your-fumigation-site.com" target="_blank" class="btn-concierge">
             <i class="fas fa-leaf"></i> Fumigation
           </a>
         </div>
@@ -174,40 +200,40 @@
       </div>
       <div class="recommendation-cards" id="recCards">
         
-        <a href="../property/3-bedroom-mansionette-in-ruiru-10.html" class="rec-card">
+        <a href="../property/3-bedroom-apartment-in-ruiru-1.html" class="rec-card">
             <div class="rec-card-image">
-                <img src="/images/properties/mansionette-ruiru-10.jpg" alt="Luxury 3 Bedroom Mansionette in Ruiru">
+                <img src="/images/properties/3-bedroom-ruiru-1.jpg" alt="3 Bedroom Apartment in Ruiru">
             </div>
             <div class="rec-card-info">
-                <h4>Luxury 3 Bedroom Mansionette in Ruiru</h4>
-                <p>Ruiru · KES 86,196 / mo</p>
+                <h4>3 Bedroom Apartment in Ruiru</h4>
+                <p>Ruiru · KES 74,447 / mo</p>
             </div>
         </a>
-        <a href="../property/3-bedroom-bungalow-in-ruiru-11.html" class="rec-card">
+        <a href="../property/2-bedroom-apartment-in-ruiru-4.html" class="rec-card">
             <div class="rec-card-image">
-                <img src="/images/properties/bungalow-ruiru-11.jpg" alt="Spacious 3 Bedroom Bungalow in Ruiru">
+                <img src="/images/properties/2-bedroom-ruiru-4.jpg" alt="2 Bedroom Apartment in Ruiru">
+            </div>
+            <div class="rec-card-info">
+                <h4>2 Bedroom Apartment in Ruiru</h4>
+                <p>Ruiru · KES 39,252 / mo</p>
+            </div>
+        </a>
+        <a href="../property/3-bedroom-bungalow-in-ruiru-37.html" class="rec-card">
+            <div class="rec-card-image">
+                <img src="/images/properties/bungalow-ruiru-37.jpg" alt="Spacious 3 Bedroom Bungalow in Ruiru">
             </div>
             <div class="rec-card-info">
                 <h4>Spacious 3 Bedroom Bungalow in Ruiru</h4>
-                <p>Ruiru · KES 61,427 / mo</p>
+                <p>Ruiru · KES 72,839 / mo</p>
             </div>
         </a>
-        <a href="../property/3-bedroom-apartment-in-ruiru-15.html" class="rec-card">
+        <a href="../property/studio-apartment-in-ruiru-47.html" class="rec-card">
             <div class="rec-card-image">
-                <img src="/images/properties/3-bedroom-ruiru-15.jpg" alt="3 Bedroom Apartment in Ruiru">
+                <img src="/images/properties/bedsitter-ruiru-47.jpg" alt="Studio Apartment in Ruiru">
             </div>
             <div class="rec-card-info">
-                <h4>3 Bedroom Apartment in Ruiru</h4>
-                <p>Ruiru · KES 56,779 / mo</p>
-            </div>
-        </a>
-        <a href="../property/3-bedroom-apartment-in-ruiru-18.html" class="rec-card">
-            <div class="rec-card-image">
-                <img src="/images/properties/3-bedroom-ruiru-18.jpg" alt="3 Bedroom Apartment in Ruiru">
-            </div>
-            <div class="rec-card-info">
-                <h4>3 Bedroom Apartment in Ruiru</h4>
-                <p>Ruiru · KES 69,263 / mo</p>
+                <h4>Studio Apartment in Ruiru</h4>
+                <p>Ruiru · KES 14,243 / mo</p>
             </div>
         </a>
       </div>
@@ -270,7 +296,7 @@
   <!-- Sticky Contact Bar (Always Visible) -->
   <div class="sticky-contact-bar">
     <div class="sticky-price">
-      KES 103,443<span>/mo</span>
+      KES 84,911<span>/mo</span>
     </div>
     <div class="sticky-actions">
       <a href="tel:+254723562484" class="sticky-call-btn">

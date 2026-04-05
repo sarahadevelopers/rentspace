@@ -31,7 +31,7 @@
   <!-- Executive Navigation -->
   <nav class="exec-nav">
     <a href="../index.html" class="nav-logo">Rent<span>Space</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li class="dropdown">
         <a href="../rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
         <ul class="dropdown-menu">
@@ -75,7 +75,7 @@
 
   <div class="menu-overlay" id="menuOverlay"></div>
 
-  <!-- Airbnb Property Header with Rating -->
+  <!-- Airbnb Property Header -->
   <div class="airbnb-property-header">
     <div class="header-bg"></div>
     <div class="header-content">
@@ -100,16 +100,33 @@
     </div>
   </div>
 
-  <!-- Cinematic Gallery -->
+  <!-- IMPROVED GALLERY - Natural aspect ratio, proportional thumbnails -->
+   <!-- Gallery Section -->
   <div class="gallery-container">
-    <div class="gallery-stage" id="galleryStage">
-      {{#each images}}
-      <img src="{{this}}" class="gallery-item" alt="Property view {{@index}}" loading="lazy">
-      {{/each}}
+    <div class="main-slide" id="mainSlide">
+      {{mainImage}}
+      <button class="gallery-arrow prev" id="galleryPrevBtn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="gallery-arrow next" id="galleryNextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
-    <div class="gallery-counter" id="galleryCounter">
-      <span id="currentIndex">1</span> / <span id="totalCount">{{images.length}}</span>
+    <div class="thumbnail-track" id="thumbTrack">
+      {{thumbnails}}
     </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-arrow prev" id="lightboxPrev">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="lightbox-arrow next" id="lightboxNext">
+      <i class="fas fa-chevron-right"></i>
+    </button>
   </div>
 
   <main class="content-wrap">
@@ -146,7 +163,7 @@
       </div>
     </div>
 
-    <!-- Airbnb Spec Grid -->
+    <!-- Spec Grid -->
     <div class="spec-grid">
       <div class="spec-item">
         <i class="fas fa-bed"></i>
@@ -242,14 +259,14 @@
       </div>
     </div>
 
-    <!-- Similar Airbnb Recommendations - FIXED LINKS TO /airbnb/ -->
+    <!-- Similar Stays -->
     {{#if recommendations.length}}
     <section class="recommendations">
       <div class="section-header">
         <h2>Similar Stays</h2>
         <div class="section-line"></div>
       </div>
-      <div class="recommendation-cards" id="recCards">
+      <div class="recommendation-cards">
         {{#each recommendations}}
         <a href="../airbnb/{{slug}}.html" class="rec-card">
           <div class="rec-card-image">
@@ -258,11 +275,6 @@
           <div class="rec-card-info">
             <h4>{{title}}</h4>
             <p>{{estate}} · KES {{price_night}} / night</p>
-            {{#if airbnb_rating}}
-            <div class="rec-rating">
-              <i class="fas fa-star"></i> {{airbnb_rating}}
-            </div>
-            {{/if}}
           </div>
         </a>
         {{/each}}
@@ -295,7 +307,7 @@
     {{/if}}
   </main>
 
-  <!-- Premium Footer -->
+  <!-- Footer -->
   <footer class="elite-footer">
     <div class="footer-grid">
       <div class="footer-col">
@@ -338,12 +350,21 @@
     </div>
   </div>
 
-  <script>
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+    <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="../rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="../airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="../blog.html"><i class="fas fa-newspaper"></i> Insights</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+ <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Mobile menu
+    // ========== MOBILE MENU ==========
     const hamburger = document.getElementById('hamburger');
-    const navMenu = document.querySelector('.nav-links');
+    const navMenu = document.getElementById('navLinks');
     const menuOverlay = document.getElementById('menuOverlay');
 
     function closeMenu() {
@@ -375,7 +396,147 @@
       menuOverlay.addEventListener('click', closeMenu);
     }
 
-    // Mobile dropdowns
+    if (navMenu) {
+      const navLinks = navMenu.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+
+    // ========== SIMPLE WORKING GALLERY ==========
+    const mainImg = document.getElementById('mainGalleryImg');
+    const thumbs = document.querySelectorAll('.thumb');
+    const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+    const galleryNextBtn = document.getElementById('galleryNextBtn');
+    
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    
+    let currentIndex = 0;
+    const totalImages = thumbs.length;
+    
+    console.log('Found', totalImages, 'thumbnails');
+    
+    // Function to update the main image
+    function updateMainImage(index) {
+      if (index < 0) index = 0;
+      if (index >= totalImages) index = totalImages - 1;
+      
+      currentIndex = index;
+      const newSrc = thumbs[currentIndex].querySelector('img').src;
+      
+      // Update both main and lightbox images
+      mainImg.src = newSrc;
+      lightboxImg.src = newSrc;
+      
+      // Update active class on thumbnails
+      thumbs.forEach(t => t.classList.remove('active'));
+      thumbs[currentIndex].classList.add('active');
+      
+      // Scroll thumbnail into view
+      const activeThumb = thumbs[currentIndex];
+      const thumbTrack = document.querySelector('.thumbnail-track');
+      if (thumbTrack && activeThumb) {
+        activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+      
+      console.log('Changed to image', currentIndex, newSrc);
+    }
+    
+    // Click on thumbnails
+    thumbs.forEach((thumb, i) => {
+      thumb.addEventListener('click', function() {
+        console.log('Thumbnail clicked:', i);
+        updateMainImage(i);
+      });
+    });
+    
+    // Prev/Next buttons for main gallery
+    function nextImage() {
+      console.log('Next clicked');
+      updateMainImage(currentIndex + 1);
+    }
+    
+    function prevImage() {
+      console.log('Prev clicked');
+      updateMainImage(currentIndex - 1);
+    }
+    
+    if (galleryPrevBtn) galleryPrevBtn.addEventListener('click', prevImage);
+    if (galleryNextBtn) galleryNextBtn.addEventListener('click', nextImage);
+    
+    // Mobile swipe for main gallery
+    let startX = 0;
+    let isDragging = false;
+    const mainSlide = document.getElementById('mainSlide');
+    
+    if (mainSlide) {
+      mainSlide.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      });
+      
+      mainSlide.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            nextImage();
+          } else {
+            prevImage();
+          }
+        }
+        isDragging = false;
+      });
+    }
+    
+    // ========== LIGHTBOX FUNCTIONS ==========
+    function openLightbox() {
+      console.log('Opening lightbox');
+      lightbox.classList.add('show');
+      lightboxImg.src = mainImg.src;
+    }
+    
+    function closeLightbox() {
+      lightbox.classList.remove('show');
+    }
+    
+    function lightboxNextImage() {
+      updateMainImage(currentIndex + 1);
+      lightboxImg.src = mainImg.src;
+    }
+    
+    function lightboxPrevImage() {
+      updateMainImage(currentIndex - 1);
+      lightboxImg.src = mainImg.src;
+    }
+    
+    // Lightbox event listeners
+    if (mainImg) mainImg.addEventListener('click', openLightbox);
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', lightboxPrevImage);
+    if (lightboxNext) lightboxNext.addEventListener('click', lightboxNextImage);
+    
+    // Keyboard navigation for lightbox
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('show')) {
+        if (e.key === 'ArrowLeft') lightboxPrevImage();
+        if (e.key === 'ArrowRight') lightboxNextImage();
+        if (e.key === 'Escape') closeLightbox();
+      }
+    });
+    
+    // ========== MOBILE DROPDOWNS ==========
     function initMobileDropdowns() {
       if (window.innerWidth > 768) return;
       const dropdowns = document.querySelectorAll('.dropdown');
@@ -394,28 +555,16 @@
         }
       });
     }
-
+    
     initMobileDropdowns();
     window.addEventListener('resize', initMobileDropdowns);
-
-    // Gallery scroll counter
-    const gallery = document.getElementById('galleryStage');
-    const counter = document.getElementById('currentIndex');
-    const items = document.querySelectorAll('.gallery-item');
-    const total = items.length;
-
-    if (gallery && counter && total > 0) {
-      function updateCounter() {
-        const scrollLeft = gallery.scrollLeft;
-        const itemWidth = items[0]?.offsetWidth + 12 || 0;
-        const activeIndex = Math.round(scrollLeft / itemWidth) + 1;
-        counter.textContent = Math.min(activeIndex, total);
-      }
-      gallery.addEventListener('scroll', updateCounter);
-      updateCounter();
+    
+    // Set first thumbnail as active on page load
+    if (thumbs.length > 0) {
+      updateMainImage(0);
     }
-
-    // Booking buttons - WhatsApp inquiry
+    
+    // ========== BOOKING BUTTONS ==========
     function createBookingMessage() {
       const title = document.querySelector('.property-title')?.textContent || 'Property';
       const estate = document.querySelector('.location-meta')?.textContent.replace(/[^\w\s]/g, '').trim() || 'Nairobi';
@@ -428,21 +577,20 @@
              `*Listing:* ${url}%0A%0A` +
              `Hello, I'm interested in booking this property. Please share availability and check-in details.`;
     }
-
+    
     const bookBtn = document.getElementById('stickyBookBtn');
     if (bookBtn) {
       bookBtn.addEventListener('click', () => {
         window.open(`https://wa.me/254723562484?text=${createBookingMessage()}`, '_blank');
       });
     }
-
+    
     const whatsappBtn = document.getElementById('whatsappInquiryBtn');
     if (whatsappBtn) {
       whatsappBtn.addEventListener('click', () => {
         window.open(`https://wa.me/254723562484?text=${createBookingMessage()}`, '_blank');
       });
     }
-  </script>
-  <script src="../js/airbnb-property.js"></script>
+</script>
 </body>
 </html>

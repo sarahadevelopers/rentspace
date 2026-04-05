@@ -381,3 +381,70 @@ window.addEventListener('resize', () => {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { initGallery, initSmoothScroll, initMobileMenu, initMobileDropdowns };
 }
+
+// ========== GALLERY FUNCTIONALITY ==========
+function initGallery() {
+  const mainImg = document.getElementById('mainGalleryImg');
+  const thumbs = document.querySelectorAll('.thumb');
+  const prevBtn = document.getElementById('galleryPrevBtn');
+  const nextBtn = document.getElementById('galleryNextBtn');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  
+  if (!mainImg || thumbs.length === 0) return;
+  
+  let currentIndex = 0;
+  
+  function updateMainImage(index) {
+    if (index < 0) index = 0;
+    if (index >= thumbs.length) index = thumbs.length - 1;
+    currentIndex = index;
+    const newSrc = thumbs[currentIndex].querySelector('img').src;
+    mainImg.src = newSrc;
+    if (lightboxImg) lightboxImg.src = newSrc;
+    
+    thumbs.forEach(t => t.classList.remove('active'));
+    thumbs[currentIndex].classList.add('active');
+  }
+  
+  thumbs.forEach((thumb, i) => {
+    thumb.addEventListener('click', () => updateMainImage(i));
+  });
+  
+  if (prevBtn) prevBtn.addEventListener('click', () => updateMainImage(currentIndex - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => updateMainImage(currentIndex + 1));
+  
+  if (mainImg && lightbox) {
+    mainImg.addEventListener('click', () => {
+      lightbox.classList.add('show');
+      lightboxImg.src = mainImg.src;
+    });
+  }
+  
+  if (lightboxClose) lightboxClose.addEventListener('click', () => lightbox.classList.remove('show'));
+  
+  if (lightboxPrev) lightboxPrev.addEventListener('click', () => updateMainImage(currentIndex - 1));
+  if (lightboxNext) lightboxNext.addEventListener('click', () => updateMainImage(currentIndex + 1));
+  
+  document.addEventListener('keydown', (e) => {
+    if (lightbox && lightbox.classList.contains('show')) {
+      if (e.key === 'ArrowLeft') updateMainImage(currentIndex - 1);
+      if (e.key === 'ArrowRight') updateMainImage(currentIndex + 1);
+      if (e.key === 'Escape') lightbox.classList.remove('show');
+    }
+  });
+  
+  // Set first thumbnail active
+  if (thumbs.length > 0) {
+    updateMainImage(0);
+  }
+}
+
+// Call initGallery in DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  // ... existing code ...
+  initGallery();
+});

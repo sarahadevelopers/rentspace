@@ -44,7 +44,7 @@ function escapeHtml(str) {
     });
 }
 
-// Generate Rental Pages (to /property/)
+// ========== GENERATE RENTAL PAGES (to /property/) ==========
 console.log('\n📝 Generating Rental Pages...');
 rentals.forEach(prop => {
     let page = rentalTemplate;
@@ -71,14 +71,28 @@ rentals.forEach(prop => {
     }
     page = page.replace(/\{\{#each features\}\}[\s\S]*?\{\{\/each\}\}/, featuresHtml);
     
-    // Images
-    let imagesHtml = '';
+    // ========== FIXED: Generate Gallery HTML for Rental Pages ==========
+    let mainImageHtml = '';
+    let thumbnailsHtml = '';
+    
     if (prop.images && prop.images.length) {
-        imagesHtml = prop.images.map(img => `<img src="${img}" class="gallery-item" alt="${escapeHtml(prop.title)}" loading="lazy">`).join('');
+        // Main image (first one)
+        mainImageHtml = `<img src="${prop.images[0]}" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
+        
+        // Thumbnails (all images)
+        thumbnailsHtml = prop.images.map((img, idx) => `
+            <div class="thumb" data-index="${idx}">
+                <img src="${img}" alt="View ${idx}" loading="lazy">
+            </div>
+        `).join('');
     } else {
-        imagesHtml = `<img src="/images/placeholder-rental.jpg" class="gallery-item" alt="${escapeHtml(prop.title)}" loading="lazy">`;
+        mainImageHtml = `<img src="/images/placeholder.jpg" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
+        thumbnailsHtml = `<div class="thumb" data-index="0"><img src="/images/placeholder.jpg" alt="View 0" loading="lazy"></div>`;
     }
-    page = page.replace(/\{\{#each images\}\}[\s\S]*?\{\{\/each\}\}/, imagesHtml);
+    
+    // Replace gallery placeholders
+    page = page.replace(/\{\{mainImage\}\}/, mainImageHtml);
+    page = page.replace(/\{\{thumbnails\}\}/, thumbnailsHtml);
     
     // Recommendations
     const similarRentals = rentals.filter(r => r.id !== prop.id && r.estate === prop.estate).slice(0, 4);
@@ -120,7 +134,7 @@ rentals.forEach(prop => {
     console.log(`   ✅ Rental: ${prop.slug}.html`);
 });
 
-// Generate Airbnb Pages (to /airbnb/)
+// ========== GENERATE AIRBNB PAGES (to /airbnb/) ==========
 console.log('\n📝 Generating Airbnb Pages...');
 airbnbs.forEach(prop => {
     let page = airbnbTemplate;
@@ -151,14 +165,28 @@ airbnbs.forEach(prop => {
     page = page.replace(/\{\{check_out_time\}\}/g, prop.check_out_time || '10:00 AM');
     page = page.replace(/\{\{cancellation_policy\}\}/g, prop.cancellation_policy || 'Free cancellation for 48 hours');
     
-    // Images
-    let imagesHtml = '';
+    // ========== Generate Gallery HTML for Airbnb Pages ==========
+    let mainImageHtml = '';
+    let thumbnailsHtml = '';
+    
     if (prop.images && prop.images.length) {
-        imagesHtml = prop.images.map(img => `<img src="${img}" class="gallery-item" alt="${escapeHtml(prop.title)}" loading="lazy">`).join('');
+        // Main image (first one)
+        mainImageHtml = `<img src="${prop.images[0]}" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
+        
+        // Thumbnails (all images)
+        thumbnailsHtml = prop.images.map((img, idx) => `
+            <div class="thumb" data-index="${idx}">
+                <img src="${img}" alt="View ${idx}" loading="lazy">
+            </div>
+        `).join('');
     } else {
-        imagesHtml = `<img src="/images/placeholder-airbnb.jpg" class="gallery-item" alt="${escapeHtml(prop.title)}" loading="lazy">`;
+        mainImageHtml = `<img src="/images/placeholder.jpg" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
+        thumbnailsHtml = `<div class="thumb" data-index="0"><img src="/images/placeholder.jpg" alt="View 0" loading="lazy"></div>`;
     }
-    page = page.replace(/\{\{#each images\}\}[\s\S]*?\{\{\/each\}\}/, imagesHtml);
+    
+    // Replace gallery placeholders
+    page = page.replace(/\{\{mainImage\}\}/, mainImageHtml);
+    page = page.replace(/\{\{thumbnails\}\}/, thumbnailsHtml);
     
     // Features
     let featuresHtml = '';

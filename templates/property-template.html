@@ -78,17 +78,7 @@
   <!-- Overlay for closing menu -->
   <div class="menu-overlay" id="menuOverlay"></div>
 
-  <!-- Cinematic Gallery with Peek Effect -->
-  <div class="gallery-container">
-    <div class="gallery-stage" id="galleryStage">
-      {{#each images}}
-      <img src="{{this}}" class="gallery-item" alt="Property view {{@index}}" loading="lazy">
-      {{/each}}
-    </div>
-    <div class="gallery-counter" id="galleryCounter">
-      <span id="currentIndex">1</span> / <span id="totalCount">{{images.length}}</span>
-    </div>
-  </div>
+
 
   <main class="content-wrap">
     <!-- Property Header -->
@@ -99,6 +89,36 @@
       <h1 class="property-title">{{title}}</h1>
       <div class="price-tag">KES {{price}} <span>/ month</span></div>
     </div>
+
+      <!-- Cinematic Gallery with Peek Effect -->
+   <!-- Gallery Section -->
+  <div class="gallery-container">
+    <div class="main-slide" id="mainSlide">
+      {{mainImage}}
+      <button class="gallery-arrow prev" id="galleryPrevBtn">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="gallery-arrow next" id="galleryNextBtn">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+    <div class="thumbnail-track" id="thumbTrack">
+      {{thumbnails}}
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-arrow prev" id="lightboxPrev">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="lightbox-arrow next" id="lightboxNext">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
 
     <!-- Description -->
     <p class="property-description">{{description}}</p>

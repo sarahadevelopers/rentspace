@@ -1867,7 +1867,7 @@ async function loadAirbnbProperties() {
     const propertyGrid = document.getElementById('propertyGrid');
     
     try {
-        const response = await fetch('../data/properties.json');
+        const response = await fetch('/rentspace/data/properties.json');
         const allProperties = await response.json();
         
         allAirbnbProperties = allProperties.filter(prop => 

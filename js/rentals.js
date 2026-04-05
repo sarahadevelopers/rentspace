@@ -595,7 +595,7 @@ if (applyBtn) {
 // ========== LOAD PROPERTIES ==========
 async function loadProperties() {
     try {
-        const response = await fetch('/data/properties.json');
+        const response = await fetch('/rentspace/data/properties.json');
         allProperties = await response.json();
         
         if (skeletonLoader) skeletonLoader.style.display = 'none';

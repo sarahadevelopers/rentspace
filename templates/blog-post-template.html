@@ -974,7 +974,7 @@
     // ========== LOAD LONG-TERM PROPERTY RECOMMENDATIONS ==========
     async function loadPropertyRecommendations() {
       try {
-        const response = await fetch('../data/properties.json');
+        const response = await fetch('/rentspace/data/properties.json');
         const properties = await response.json();
         
         // Filter long-term properties by category/estate
@@ -1031,7 +1031,7 @@
       if (!container) return;
       
       try {
-        const response = await fetch('../data/properties.json');
+        const response = await fetch('/rentspace/data/properties.json');
         const allProperties = await response.json();
         
         // Filter Airbnb properties using rental_type === 'short_term'

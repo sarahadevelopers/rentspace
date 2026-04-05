@@ -147,7 +147,7 @@ function initMobileDropdowns() {
 // ========== LOAD FEATURED PROPERTIES ==========
 async function loadFeaturedProperties() {
   try {
-    const response = await fetch('/data/properties.json');
+    const response = await fetch('/rentspace/data/properties.json');
     const properties = await response.json();
     
     const featured = properties.filter(p => p.isFeatured).slice(0, 4);

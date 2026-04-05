@@ -226,7 +226,7 @@ function trackUserInteraction() {
 // Dynamic recommendations enhancement
 async function loadMoreRecommendations(currentEstate, currentId) {
   try {
-    const response = await fetch('/data/properties.json');
+    const response = await fetch('/rentspace/data/properties.json');
     const properties = await response.json();
     const similar = properties
       .filter(p => p.estate === currentEstate && p.id !== currentId)

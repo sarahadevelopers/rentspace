@@ -88,7 +88,7 @@ function getNearbyEstates(category) {
   const nearbyMap = {
     'kitengela': ['athi river', 'syokimau', 'machakos'],
     'ngong': ['kibiko', 'matasia', 'karen'],
-    'ruiru': ['kamakis', 'tatu city', 'juja'],
+    'syokimau': ['katani', 'gateway mall', 'greatwall'],
     'karen': ['langata', 'hardy', 'miotoni'],
     'kilimani': ['hurlingham', 'lavington', 'kileleshwa'],
     'hurlingham': ['kilimani', 'upper hill', 'cbd']
@@ -266,12 +266,12 @@ function generateBlogContent(location, postType, postData = {}) {
   const year = new Date().getFullYear();
   const distance = location === 'kitengela' ? '30 kilometers' : 
                    location === 'ngong' ? '25 kilometers' :
-                   location === 'ruiru' ? '20 kilometers' :
+                   location === 'syokimau' ? '20 kilometers' :
                    location === 'karen' ? '15 kilometers' :
                    location === 'kilimani' ? '5 kilometers' : '3 kilometers';
   
   const livingType = location === 'karen' || location === 'kilimani' ? 'luxury residential destination' :
-                     location === 'ruiru' ? 'fast-growing satellite town' :
+                     location === 'syokimau' ? 'fast-growing satellite town' :
                      location === 'ngong' ? 'serene commuter hub' : 'vibrant residential hub';
   
   let content = '';

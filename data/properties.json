@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "slug": "3-bedroom-apartment-in-ruiru-1",
-    "title": "3 Bedroom Apartment in Ruiru",
+    "slug": "3-bedroom-apartment-in-syokimau-1",
+    "title": "3 BEDROOM DUPLEX TO LET IN SYOKIMAU",
     "type": "3 Bedroom",
-    "estate": "Ruiru",
-    "price": 74447,
+    "estate": "Syokimau",
+    "price": 35000,
     "currency": "KES",
     "specs": {
       "bedrooms": 3,
@@ -21,12 +21,18 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/3-bedroom-ruiru-1.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776431455/property-by-fridah/jodpyksmefhfbpl5ebrx.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776431456/property-by-fridah/zieldyrhiolng7grizmi.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776431457/property-by-fridah/d3pbbwshj0spnxmuifss.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776431459/property-by-fridah/t0dsagxiejmrxu8dnjvj.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776431460/property-by-fridah/grcmg6cavjcycxxniusp.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776431463/property-by-fridah/u3g58gescr41ddpvonpa.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776431464/property-by-fridah/syrw1gfhicjxeojrzjcg.jpg"
     ],
     "isFeatured": true,
-    "movingEstimate": 7444,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 3 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "#syokimau #syokimaurentals 🏡 3 Bedroom Master En-Suite Duplex for Rent In Syokimau 📞 Call or WhatsApp: 0723562484 💰 Rent: #35k per month - Perfect for families seeking comfort, privacy, and convenience. ✔️ 3 Bedrooms (Master En-Suite) ✔️ Spacious kitchen with cabinets. ✔️ Lounge cum dining area ✔️ Guest cloakroom ✔️ Master bedroom with en-suite bathroom & large wardrobes ✔️ Gated court with shared security guard ✔️ Quiet, well-maintained compound",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -43,16 +49,16 @@
   },
   {
     "id": 2,
-    "slug": "studio-apartment-in-hurlingham-2",
-    "title": "Studio Apartment in Hurlingham",
-    "type": "Bedsitter",
-    "estate": "Hurlingham",
-    "price": 32428,
+    "slug": "3-bedroom-apartment-in-syokimau-2",
+    "title": "3BEDROOM APARTMENT TO LET IN SYOKIMAU",
+    "type": "3 Bedroom",
+    "estate": "Syokimau",
+    "price": 55000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "parking": 0,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 1,
       "sqft": 350
     },
     "features": [
@@ -63,12 +69,16 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/bedsitter-hurlingham-2.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776370756/property-by-fridah/wqxqlyjwhexocvfx5gcg.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776370757/property-by-fridah/txp0ivodrwvcfwhiwwra.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776370759/property-by-fridah/lqgpnf0dhdjjlaojznl3.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776370761/property-by-fridah/ipw7kfpmzfb8qcmrsgt0.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1776370762/property-by-fridah/zszy0vznamz6hqpebfvw.jpg"
     ],
     "isFeatured": true,
-    "movingEstimate": 3242,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful studio apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "3 Bedroom Apartment to Let – Syokimau | KSh 55,000 Spacious and modern 3-bedroom apartment featuring a master ensuite, fitted wardrobes, spacious living room, modern kitchen, ample parking, and 24/7 security. Located in a secure and serene area close to SGR, JKIA, Gateway Mall, and major roads. Ideal for family living. Contact for viewing.0723562484",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -85,32 +95,37 @@
   },
   {
     "id": 3,
-    "slug": "studio-apartment-in-kitengela-3",
-    "title": "Studio Apartment in Kitengela",
-    "type": "Bedsitter",
+    "slug": "4-bedroom-mansion-in-kitengela-3",
+    "title": "4BEDROOM MANSION TO LET IN KITENGELA",
+    "type": "Mansionette",
     "estate": "Kitengela",
-    "price": 12647,
+    "price": 55000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "parking": 0,
-      "sqft": 350
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "parking": 3,
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
       "Secure Parking",
-      "Intercom",
-      "Common Area Backup"
+      "Intercom"
     ],
     "images": [
-      "/images/properties/bedsitter-kitengela-3.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930837/property-by-fridah/z7nssqb7bttgbgxhrveh.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930838/property-by-fridah/zxxh7d8uweblhnows1nd.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930839/property-by-fridah/rpxm2b7gtg3ronsgz9p4.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930840/property-by-fridah/zr9kyudeaj8wx5ctlexf.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930842/property-by-fridah/msiu6egekwn2jmiheoa1.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930843/property-by-fridah/xtn2zagyr9jptjl7zhub.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930844/property-by-fridah/uhwslqxqpjfmsoc93esz.jpg"
     ],
     "isFeatured": true,
-    "movingEstimate": 1264,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful studio apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "#kitengela 4 Bedroom Master En-suite For Rent in Kitengela, Yukos Area- 200M off tamarc Monthly Rent #55k Call or WhatsApp 0723562484 - Spacious 4 Master Ensuite bedrooms with a separate guest washroom. - From the main door one opens into the lounge and a dining area which is attached to the kitchen, pantry and backyard laundry area at the back. - Spacious Kitchen with a separate pantry. - Ample Cabro floored parking with a shade for cars. - Pressure pump refills the top tank automatically. - Reliable water supply available 24/7. - Gated court - Security lights all round the compound . -Sits on a 50 by 100 plot of land.",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -127,17 +142,17 @@
   },
   {
     "id": 4,
-    "slug": "2-bedroom-apartment-in-ruiru-4",
-    "title": "2 Bedroom Apartment in Ruiru",
-    "type": "2 Bedroom",
-    "estate": "Ruiru",
-    "price": 39252,
+    "slug": "4-bedroom-maisonette-in-kitengela-4",
+    "title": "4BEDROOM MAISONETTE TO LET IN KITENGELA",
+    "type": "Mansionette",
+    "estate": "Kitengela",
+    "price": 80000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 2,
-      "bathrooms": 2,
-      "parking": 1,
-      "sqft": 850
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "parking": 3,
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
@@ -147,12 +162,21 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/2-bedroom-ruiru-4.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930396/property-by-fridah/haqapvlkts35torgwpxt.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930397/property-by-fridah/ro8ru3djma7qfboqdav9.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930398/property-by-fridah/locvp7srszqpx8dhtm3q.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930399/property-by-fridah/oyik2zfuiddmdajd1vm9.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930399/property-by-fridah/eyknbgiu0ikzngkacpq2.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930400/property-by-fridah/yxl3hlyqqpjvzflung1u.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930401/property-by-fridah/tyisonmxle4cellw1pc1.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930402/property-by-fridah/xcmguvlzengptvxqaxir.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930403/property-by-fridah/gieln9jmwsytpvirreum.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775930404/property-by-fridah/athdhmpgj2hqzxspmmcg.jpg"
     ],
     "isFeatured": true,
-    "movingEstimate": 3925,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 2 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "#kitengela 4 Bedroom All En-suite For Rent in Kitengela, Yukos Area Call or WhatsApp 0723562484 - Rent at 80k -This is a well-designed semi-detached 4 Bedroom master ensuite bungalow in a gated community of 8 units. The homes are located about 1km from the Kitengela/ Namanga road making it a convenient place to live. -Features; Cloakroom, Dining Area, En-suite, Laundry Area, Live fence, Spacious Lounge. •4Bedrooms with 3 Bathrooms. • Spacious living space with Dining area. • Kitchen with granite tops and cabinets • Visitors cloak room • Ample parking space • Perimeter wall with electric fence • Adequate water storage tanks • 24-hour Security",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -169,85 +193,87 @@
   },
   {
     "id": 5,
-    "slug": "studio-apartment-in-kilimani-5",
-    "title": "Studio Apartment in Kilimani",
-    "type": "Bedsitter",
-    "estate": "Kilimani",
-    "price": 36372,
+    "slug": "5-bedroom-mansion-in-kitengela-5",
+    "title": "MODERN 5-BEDROOM TO LET IN KITENGELA",
+    "type": "Mansionette",
+    "estate": "Kitengela",
+    "price": 70000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "parking": 0,
-      "sqft": 350
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "parking": 5,
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/bedsitter-kilimani-5.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926443/property-by-fridah/nmyneituziqoflajerp9.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926444/property-by-fridah/jc4j782oq043yf8ubjdk.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926445/property-by-fridah/y64xk18ttxgrwmbrsqds.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926446/property-by-fridah/g73thfizfrpvlb2ttiwd.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926447/property-by-fridah/vyvm4gwqwshgo0oa0jzh.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926447/property-by-fridah/qras9ziwcpauy06pgjh5.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926449/property-by-fridah/n8vx7qbjxde7m3tq3zmp.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926449/property-by-fridah/i3tb01k9hxmuqmdbnnzl.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926450/property-by-fridah/hheh9hdrlmadxxa7es4a.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775926451/property-by-fridah/hqfnafzezp9f3wvmozpv.jpg"
     ],
     "isFeatured": true,
     "movingEstimate": 3637,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful studio apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "short_term",
-    "available_for": "short_term",
-    "is_airbnb_ready": true,
-    "price_night": 3500,
-    "price_week": 21000,
-    "price_month_short": 87500,
-    "min_stay_nights": 2,
-    "airbnb_rating": "4.9",
-    "airbnb_reviews": 42,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "Kitengela - 5 Beds - 5 Baths - Muingai Area This modern 5-bedroom all-en-suite home is designed for comfort, space, and functionality. It features expansive living and dining areas filled with natural light, a well-appointed modern kitchen, and a generously sized compound with ample parking and landscaped gardens. A unique bonus is the two self-contained bedsitters at the rear, ideal for generating rental income, accommodating extended family, or providing staff accommodation. Additional highlights include a secure perimeter wall with electric and razor wire fencing, paved driveways and walkways, car shade, and well-maintained green spaces, creating a safe, stylish, and practical home for modern family living. For Rent: Ksh 70,000/- Contacts: 0723562484",
+    "rental_type": "long_term",
+    "available_for": "long_term",
+    "is_airbnb_ready": false,
+    "price_night": null,
+    "price_week": null,
+    "price_month_short": null,
+    "min_stay_nights": null,
+    "airbnb_rating": null,
+    "airbnb_reviews": null,
     "airbnb_superhost": false,
-    "furnishing_level": "fully_furnished",
-    "is_furnished": true,
-    "short_stay_amenities": [
-      "High-speed WiFi",
-      "Smart TV",
-      "Fully equipped kitchen",
-      "Air conditioning",
-      "Washer/Dryer",
-      "Fresh linens",
-      "Toiletries",
-      "24/7 check-in",
-      "Self check-in",
-      "Workspace"
-    ]
+    "furnishing_level": "partially_furnished",
+    "is_furnished": false,
+    "short_stay_amenities": []
   },
   {
     "id": 6,
-    "slug": "1-bedroom-apartment-in-hurlingham-6",
-    "title": "1 Bedroom Apartment in Hurlingham",
-    "type": "1 Bedroom",
-    "estate": "Hurlingham",
-    "price": 59112,
+    "slug": "3-bedroom-bungalow-in-kitengela-6",
+    "title": "3BEDROOM BUNGALOW TO LET IN KITENGELA",
+    "type": "Bungalow",
+    "estate": "Kitengela",
+    "price": 50000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "parking": 1,
-      "sqft": 550
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "parking": 2,
+      "sqft": 1200
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/1-bedroom-hurlingham-6.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925027/property-by-fridah/gh0ou5rz2sg2e5hhk6tc.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925027/property-by-fridah/uawj4i7wdistltv62ukh.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925028/property-by-fridah/adytlqryq3dmizftkwfi.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925029/property-by-fridah/ua8pupc8vnwrw5twpldw.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925030/property-by-fridah/qadv0igk4xtqnqhb7e0o.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925031/property-by-fridah/wqw2ltbki4bzbpzgg4pr.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925031/property-by-fridah/bzpyd1r8zz7v8uh9ngnv.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925032/property-by-fridah/cjxhwqsmmtbnkite5zqw.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775925033/property-by-fridah/b08e9sugmzf4se9jmyux.jpg"
     ],
     "isFeatured": true,
     "movingEstimate": 5911,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 1 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "📍 Kitengela – 3 Bedroom Bungalow + DSQ To Let 💰 Rent: KSh 55,000/month (inclusive) Modern and well-designed 3-bedroom bungalow in a gated community of 16 units, each sitting on a 1/8 acre with a private lawn, DSQ, and ample parking. Key Features: • 3 Bedrooms (Master Ensuite) • Attached DSQ (Ensuite) • Private compound & parking • Borehole water supply • Solar water heating (pressurized system) • Spacious lounge with quality finishes • Gypsum ceilings with LED lighting • Modern kitchen & high-quality sanitary fittings • Secure: perimeter wall, electric fence & razor wire • Cabro paved driveway 📞 Call/WhatsApp: 0723562484 Ideal for comfortable family living in a serene environment.",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -264,17 +290,17 @@
   },
   {
     "id": 7,
-    "slug": "3-bedroom-bungalow-in-kitengela-7",
-    "title": "Spacious 3 Bedroom Bungalow in Kitengela",
+    "slug": "5-bedroom-townhouse-in-syokimau-7",
+    "title": "5BEDROOM PLUS SQ TOWNHOUSE FOR RENT IN SYOKIMAU",
     "type": "Bungalow",
-    "estate": "Kitengela",
-    "price": 57655,
+    "estate": "Syokimau",
+    "price": 150000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 3,
-      "bathrooms": 2,
+      "bedrooms": 5,
+      "bathrooms": 5,
       "parking": 2,
-      "sqft": 1200
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
@@ -284,12 +310,18 @@
       "Compound Wall"
     ],
     "images": [
-      "/images/properties/bungalow-kitengela-7.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775922261/property-by-fridah/lxoxudcjfmrindk6k79i.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775922262/property-by-fridah/dofv6qhegfz4oo5c3vpm.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775922262/property-by-fridah/wsohmgzeywezrocfbel3.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775922263/property-by-fridah/vlr2rcdwkf3msf5ulzqo.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775922265/property-by-fridah/kc4ljvbidcxzrhqqy0up.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775922266/property-by-fridah/beyig6hzjnafhzdbr9hx.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775922267/property-by-fridah/docgseummq0nhvn2awxt.jpg"
     ],
     "isFeatured": true,
-    "movingEstimate": 5765,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "🚨 HOUSE FOR RENT – SYOKIMAU (OFF MOMBASA ROAD) 🚨 🏡 Elegant 5 Bedroom Townhouse + DSQ 💰 Rent: KSh #150k per month 📞 Call / WhatsApp to Book a Viewing: 0723562484 Looking for a spacious, secure, and elegant home near Mombasa Road? This beautiful 2-level townhouse in Syokimau offers luxury living in a quiet, well-developed neighborhood just 2km from Mombasa Road with easy access to Nairobi CBD and JKIA. ✨ Key Features: ✔️ 5 Bedrooms – All En-suite ✔️ Spacious Master Bedroom with Walk-in Closet ✔️ Family Room ✔️ Self-contained DSQ ✔️ Garden with grass & flowers ✔️ Panoramic Balcony with scenic views ✔️ Parking for 4 Cars ✔️ Children’s Play Area 🔒 Security & Amenities: • CCTV Surveillance • Electric Fence & Perimeter Wall • 24-Hour Manned Security • Cable TV & Internet Ready • Hairdressing & Car Wash Facilities 📍 Prime Location: Syokimau – Close to Mombasa Road, JKIA & Nairobi CBD. 🏠 Perfect for families seeking comfort, space, and security.",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -306,32 +338,39 @@
   },
   {
     "id": 8,
-    "slug": "studio-apartment-in-karen-8",
-    "title": "Studio Apartment in Karen",
-    "type": "Bedsitter",
-    "estate": "Karen",
-    "price": 42813,
+    "slug": "6-bedroom-maisonette-in-kitengela-8",
+    "title": "6 BEDROOM MAISONETTE TO LET IN KITENGELA",
+    "type": "Mansionette",
+    "estate": "Kitengela",
+    "price": 80000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "parking": 0,
-      "sqft": 350
+      "bedrooms": 6,
+      "bathrooms": 6,
+      "parking": 8,
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/bedsitter-karen-8.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920660/property-by-fridah/bry6tfvfhqkpdutyc8gq.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920661/property-by-fridah/ss9ph20qsqvmromnkcvw.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920661/property-by-fridah/krfurwkgpe3mgetonjim.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920662/property-by-fridah/ukfyhhlzlsqptshukrqr.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920663/property-by-fridah/juq5zmxjfgp1fdfdt31g.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920664/property-by-fridah/ygxs0yrayslhkwiihek0.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920665/property-by-fridah/ceobblnfleuh2xgf3vlo.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920665/property-by-fridah/x1feolsler5njvx6dryh.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920666/property-by-fridah/enwoxcoj33tjraxqmman.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775920667/property-by-fridah/f2hulgu9xk77nafyof2x.jpg"
     ],
     "isFeatured": true,
-    "movingEstimate": 4281,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful studio apartment in karen. Located in the prestigious Karen neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "#kitengelahouses 6 Bedroom Master En-suite Plus Dsq in Kitengela, Chuna Estate Call or WhatsApp 0723562484 Rent #80k -good neighborhood in Chuna Estate. -ample parking for at least 8 cars -spacious lounge -spacious dinning and a modern kitchen -master bedroom is en-suite -decra roofing -gated community -Borehole Water. -high class fittings.",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -348,32 +387,36 @@
   },
   {
     "id": 9,
-    "slug": "3-bedroom-bungalow-in-karen-9",
-    "title": "Spacious 3 Bedroom Bungalow in Karen",
-    "type": "Bungalow",
-    "estate": "Karen",
-    "price": 325422,
+    "slug": "5-bedroom-maisonette-in-syokimau-9",
+    "title": "5BEDROOM MAISONETTE TO LET IN SYOKIMAU",
+    "type": "Mansionette",
+    "estate": "Syokimau",
+    "price": 120000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 3,
-      "bathrooms": 2,
+      "bedrooms": 5,
+      "bathrooms": 5,
       "parking": 2,
-      "sqft": 1200
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "DSQ",
-      "Private Garden"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/bungalow-karen-9.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775917280/property-by-fridah/qewrqnddnjhprdfupth7.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775917280/property-by-fridah/uwxsumlcghypgn8klmqw.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775917281/property-by-fridah/lnledjoz9oadpzehzaia.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775917282/property-by-fridah/bmb9ku9khjoux5k4zwse.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775917283/property-by-fridah/tcm7z17hsvusv7tfjy1n.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775917285/property-by-fridah/wpzkiuka9jbkbe1sqn6o.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775917286/property-by-fridah/weww20ofod0kljuwqsqu.jpg"
     ],
     "isFeatured": true,
-    "movingEstimate": 32542,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "#syokimauhouses #syokimau 🌟 Elegant 5 Bedroom All En-suite Maisonette + Basement & Attic For Rent/Sale – Mwananchi Road 📞 Call or WhatsApp 0721911181 💰 Rent: Ksh #120k per month - Looking for space, elegance, and privacy? This stunning 5-bedroom all en-suite maisonette located in the serene and secure neighborhood of Syokimau is the perfect family home. - Designed with comfort and luxury in mind, this beautifully finished residence offers generous living spaces across multiple levels. ✨ Key Features: ✔️ 5 Spacious All En-suite Bedrooms ✔️ Basement / Underground Space ✔️ Attic Room + Private Family Room ✔️ Modern Kitchen with Pantry ✔️ Bright Lounge & Dining Area ✔️ Study Space ✔️ Mature, Well-Manicured Garden ✔️ Ample Closet Space in Every Bedroom ✔️ Cabro-Paved Parking (4+ Cars) ✔️ Borehole Water Supply ✔️ Secure & Peaceful Neighborhood 📍 Prime location with easy access to the Nairobi–Mombasa Highway, close to Nairobi CBD and Jomo Kenyatta International Airport. This home offers the perfect balance of luxury, convenience, and tranquility.",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -390,85 +433,86 @@
   },
   {
     "id": 10,
-    "slug": "2-bedroom-apartment-in-kilimani-10",
-    "title": "2 Bedroom Apartment in Kilimani",
-    "type": "2 Bedroom",
-    "estate": "Kilimani",
-    "price": 125589,
+    "slug": "3-bedroom-bungalow-in-kitengela-10",
+    "title": "3BEDROOM BUNGALOW TO LET IN KITENGELA",
+    "type": "Bungalow",
+    "estate": "Kitengela",
+    "price": 45000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 2,
-      "bathrooms": 2,
+      "bedrooms": 3,
+      "bathrooms": 3,
       "parking": 1,
-      "sqft": 850
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/2-bedroom-kilimani-10.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914936/property-by-fridah/zeybf2rnygazpfaowiy8.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914937/property-by-fridah/pxigii43qsai9qiq7nwq.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914938/property-by-fridah/alyizwphsvd9fy8kdhco.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914939/property-by-fridah/ikkprc814tzl9tuusipt.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914939/property-by-fridah/cqjne7yu4sg7pova2dj8.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914940/property-by-fridah/dk352h6ifyscee6ejshq.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914941/property-by-fridah/eobbvj7g8nl6xpwkby6a.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914941/property-by-fridah/r1iolglniatkqmipjnww.jpg"
     ],
     "isFeatured": true,
-    "movingEstimate": 12558,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 2 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "short_term",
-    "available_for": "short_term",
-    "is_airbnb_ready": true,
-    "price_night": 8500,
-    "price_week": 51000,
-    "price_month_short": 212500,
-    "min_stay_nights": 2,
-    "airbnb_rating": "4.9",
-    "airbnb_reviews": 115,
-    "airbnb_superhost": true,
-    "furnishing_level": "fully_furnished",
-    "is_furnished": true,
-    "short_stay_amenities": [
-      "High-speed WiFi",
-      "Smart TV",
-      "Fully equipped kitchen",
-      "Air conditioning",
-      "Washer/Dryer",
-      "Fresh linens",
-      "Toiletries",
-      "24/7 check-in",
-      "Self check-in",
-      "Workspace"
-    ]
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "3 Bedroom Master Bungalow For Rent in Kitengela This is a well-designed 3 Bedroom master ensuite Bungalow in a gated community of 8 units. Located in Kitengela, Milimani making it a convenient place to live. Call or WhatsApp 0721911181 Rent per month 45k • 3 Bedrooms with 2 Bathrooms. • Spacious living space with Dining area. • Open plan kitchen with granite tops. • Visitors cloak room • Solar water heater • Well-manicured lawns • Ample parking space • Tarmacked drive ways and paved walk ways • Perimeter wall with electric fence • Adequate water storage tanks • 24-hour Security",
+    "rental_type": "long_term",
+    "available_for": "long_term",
+    "is_airbnb_ready": false,
+    "price_night": null,
+    "price_week": null,
+    "price_month_short": null,
+    "min_stay_nights": null,
+    "airbnb_rating": null,
+    "airbnb_reviews": null,
+    "airbnb_superhost": false,
+    "furnishing_level": "partially_furnished",
+    "is_furnished": false,
+    "short_stay_amenities": []
   },
   {
     "id": 11,
-    "slug": "3-bedroom-mansionette-in-kilimani-11",
-    "title": "Luxury 3 Bedroom Mansionette in Kilimani",
-    "type": "Mansionette",
-    "estate": "Kilimani",
-    "price": 298267,
+    "slug": "3-bedroom-bungalow-in-kitengela-11",
+    "title": "3BEDROOM BUNGALOW TO LET IN KITENGELA",
+    "type": "Bungalow",
+    "estate": "Kitengela",
+    "price": 45000,
     "currency": "KES",
     "specs": {
       "bedrooms": 3,
       "bathrooms": 2,
       "parking": 2,
-      "sqft": 1200
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "DSQ",
-      "Private Garden"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/mansionette-kilimani-11.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914215/property-by-fridah/xt9fitdbsvizjju3n0xt.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914216/property-by-fridah/ljnojcgothvyk9cjepyy.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914217/property-by-fridah/qgaaro9lpye0qpfmyqei.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914218/property-by-fridah/xvph8msubm8kjxhzupu7.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914219/property-by-fridah/kgwrpjvx0qyvtmkwop2f.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914220/property-by-fridah/jiziujhoxjgxxjzq9asq.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914220/property-by-fridah/kgeiypw7jszqtmrf7a3l.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914221/property-by-fridah/l4kl70dhxzbs4exggaxl.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914222/property-by-fridah/z5djyvlrlkdlcfpai58x.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775914223/property-by-fridah/bgulg1gnllbmajzeoo1n.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 29826,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "KITENGELA, YUKOS AREA 3 Bedroom Master En-suite Bungalow For Rent In Kitengela, Yukos Area-200M off tamarc Call or Whatsapp 0721911181 Rent 45k *Gated court with security. *Cabro Paved parking space. *Wall and razor wire all round the house. *Large living area with separate dinning area *Kitchen with in-built cabinets. *Master bedroom en-suit with the 2 bedrooms sharing separate toilet and bathroom. *All bedrooms fitted with wardrobes *Each unit has its own private compound within the estate - The units are 10min from Kitengela International Schools and Acacia Crest Academy 5 min from Quickmatt supermarket And, 2 minutes from Halisi Family Hospital.",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -485,85 +529,87 @@
   },
   {
     "id": 12,
-    "slug": "1-bedroom-apartment-in-hurlingham-12",
-    "title": "1 Bedroom Apartment in Hurlingham",
-    "type": "1 Bedroom",
-    "estate": "Hurlingham",
-    "price": 62305,
+    "slug": "5-bedroom-maisonette-in-syokimau-12",
+    "title": "5BEDROOM MAISONETTE TO LET IN SYOKIMAU",
+    "type": "5-bedroom Mansionette",
+    "estate": "Syokimau",
+    "price": 80000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "parking": 1,
-      "sqft": 550
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "parking": 3,
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/1-bedroom-hurlingham-12.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913932/property-by-fridah/hqpke73ljhxkyg5itgep.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913933/property-by-fridah/cie7nzdzijwaylr3v71a.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913934/property-by-fridah/fxganms0hkofsv1tvnjd.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913935/property-by-fridah/xmcschxnthqpmty4evpo.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913936/property-by-fridah/enehqvww1ciet4w5s4ab.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913937/property-by-fridah/iue2xd260ra9i01cqbzx.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913938/property-by-fridah/nir58khfe5menmjfmfy7.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913938/property-by-fridah/j1mr5lu7wibl4zs0pgsk.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913939/property-by-fridah/wnx0tgputnnfcsymkflp.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775913940/property-by-fridah/b7qyv3vojwgmv4d34pcb.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 6230,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 1 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "short_term",
-    "available_for": "short_term",
-    "is_airbnb_ready": true,
-    "price_night": 5500,
-    "price_week": 33000,
-    "price_month_short": 137500,
-    "min_stay_nights": 2,
-    "airbnb_rating": "4.8",
-    "airbnb_reviews": 97,
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "#syokimau 5 Bedroom All En-suite Townhouse for Rent in Syokimau, Off Mombasa Road 📞 Call or WhatsApp 0721911181 💰 Rent: Ksh #80k per month - The home is conveniently located near the Nairobi-Mombasa Highway, Nairobi CBD, and JKIA. 5 Bedrooms (all bedrooms En-suite) Spacious Master Bedroom with Closet and balcony Panoramic Balconies with Views 3 Parking Space with cabro paved Cable TV & Internet Infrastructure Boundary Wall 24-Hour Manned Security at the gate. A perfect blend of luxury, security, and convenience — ideal for families seeking upscale living in a prime location.",
+    "rental_type": "long_term",
+    "available_for": "long_term",
+    "is_airbnb_ready": false,
+    "price_night": null,
+    "price_week": null,
+    "price_month_short": null,
+    "min_stay_nights": null,
+    "airbnb_rating": null,
+    "airbnb_reviews": null,
     "airbnb_superhost": false,
-    "furnishing_level": "fully_furnished",
-    "is_furnished": true,
-    "short_stay_amenities": [
-      "High-speed WiFi",
-      "Smart TV",
-      "Fully equipped kitchen",
-      "Air conditioning",
-      "Washer/Dryer",
-      "Fresh linens",
-      "Toiletries",
-      "24/7 check-in",
-      "Self check-in",
-      "Workspace"
-    ]
+    "furnishing_level": "partially_furnished",
+    "is_furnished": false,
+    "short_stay_amenities": []
   },
   {
     "id": 13,
-    "slug": "3-bedroom-apartment-in-karen-13",
-    "title": "3 Bedroom Apartment in Karen",
-    "type": "3 Bedroom",
-    "estate": "Karen",
-    "price": 199503,
+    "slug": "2-bedroom-apartment-in-kitengela-13",
+    "title": "2BEDROOM APARTMENT TO LET IN KITENGELA",
+    "type": "2-bedroom apartment",
+    "estate": "Kitengela",
+    "price": 23000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 3,
+      "bedrooms": 2,
       "bathrooms": 2,
-      "parking": 2,
+      "parking": 1,
       "sqft": 1200
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/3-bedroom-karen-13.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910888/property-by-fridah/crqgvr4md8bmoao0ve8y.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910889/property-by-fridah/zuzj8hfwvnuveqenjzwf.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910890/property-by-fridah/swt4kybihln4ycsw7rn3.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910891/property-by-fridah/rhgoevpwddqwqkjdecaz.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910892/property-by-fridah/dtdr1wnaof4s47cfo5pk.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910893/property-by-fridah/q0dlj0vmy4z9f1pusrls.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910893/property-by-fridah/x3oaipagvnhdfx6mzpjr.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910894/property-by-fridah/vknkyajpkihxw6sdupj2.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910895/property-by-fridah/si59hnxl5yfkplcxhoro.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 19950,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 3 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "KITENGELA 2 Bedroom Master En-suite For Rent in Kitengela, Milimani Area Call or WhatsApp 0721911181 Rent 23k - Located in Kitengela 3km from Namanga road. - From the main door one opens into the lounge and a dining area which is attached to the kitchen and backyard laundry area at the back. - Spacious, modern Kitchen with cabinets. - Cabro floored parking. - Reliable water supply available 24/7. - Common perimeter electric fence. - Security lights all round the compound.",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -580,17 +626,17 @@
   },
   {
     "id": 14,
-    "slug": "studio-apartment-in-kitengela-14",
-    "title": "Studio Apartment in Kitengela",
-    "type": "Bedsitter",
-    "estate": "Kitengela",
-    "price": 14562,
+    "slug": "3bedroom-apartment-in-syokimau-14",
+    "title": "3BEDROOM APARTMENT TO LET IN SYOKIMAU",
+    "type": "3-bedroom apartment",
+    "estate": "Syokimau",
+    "price": 70000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "parking": 0,
-      "sqft": 350
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "parking": 2,
+      "sqft": 600
     },
     "features": [
       "Tiled Floors",
@@ -600,12 +646,21 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/bedsitter-kitengela-14.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910274/property-by-fridah/pz2elhbwhjwvb71fxpqf.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910275/property-by-fridah/zpacqwqpawglzj3gylgx.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910276/property-by-fridah/mwcnrpebcthegv5bbfmt.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910277/property-by-fridah/xale9wlyz1xbrlah0bu0.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910278/property-by-fridah/mk09aqrgqg9utmewy7uh.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910279/property-by-fridah/nao8b1hdan5h9xzuiibu.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910280/property-by-fridah/nlfmeyivukd52zhu6pom.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910281/property-by-fridah/onrx79evinequwozxsg0.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910282/property-by-fridah/qxii78rqif0l0jpfv4nl.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775910283/property-by-fridah/rmte8btewhqrevdnlka9.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 1456,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful studio apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "SYOKIMAU HOMES Modern 3 Bedroom All En-suite Plus Dsq Apartment For Rent In Syokimau -This Apartments comprises of 2, 3 , 3 Dsq Bedrooms Call or Whatsapp 0721911181 Rent 2bd 60k, 3bd 70k, 3bd Dsq 90k - Spacious 3 Bedrooms all bedrooms en-suite. - Entrance opens to the spacious lounge cum dining area with large balcony fronting the Nairobi National park with a wide view of the Park. - Spacious master bedroom en-suite with wardrobes. - Open plan plan kitchen with cabinets. Features And Amenities * High Speed Lifts * Outdoor Swimming Pool (Adult pool 115 metres & Kids' pool 10 metres) * Kids' Playground * A basketball Pitch * Borehole to supplement the County Water Supply * Well equipped Gym * Manned Security Gate, Perimeter Wall, and Electric Fence * Intercom Services * Internet and Dstv connected",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -622,32 +677,37 @@
   },
   {
     "id": 15,
-    "slug": "studio-apartment-in-kitengela-15",
-    "title": "Studio Apartment in Kitengela",
-    "type": "Bedsitter",
+    "slug": "4bedroom-mini-flat-apartment-to-let-in-kitengela-15",
+    "title": "4BEDROOM MINI-FLAT APARTMENT TO LET IN KITENGELA",
+    "type": "4-bedroom mini-apartment",
     "estate": "Kitengela",
-    "price": 14318,
+    "price": 55000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "parking": 0,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "parking": 2,
       "sqft": 350
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "Intercom",
-      "Common Area Backup"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/bedsitter-kitengela-15.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775858468/property-by-fridah/q39mm8ruvmmgu6tew263.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775858470/property-by-fridah/qcorhv9hcqo7skszemi1.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775858471/property-by-fridah/bk5obljpg6rkxkigetfs.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775858472/property-by-fridah/fpzw3ebwmbzfxwpjrmka.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775858474/property-by-fridah/w7tpth9x91kqaie4szgi.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775858475/property-by-fridah/qa3df9h83et1y4dmt8pu.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775858476/property-by-fridah/yygti8kh3sfyfhxsflrm.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775858478/property-by-fridah/a4moxbgde8k4lcnved61.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 1431,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful studio apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "3 Bedroom Bungalow To Let – Kitengela ➤ 4bedroom mini-apartment to let,2units in one compound. ➤ Master bedroom en-suite ➤ Spacious and well-lit rooms ➤ Secure and family-friendly environment ➤ Located just 1.5km off tarmac. 💰 Rent: Ksh 55,000/month 📞 Call/WhatsApp: 0721911181",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -664,85 +724,89 @@
   },
   {
     "id": 16,
-    "slug": "studio-apartment-in-hurlingham-16",
-    "title": "Studio Apartment in Hurlingham",
-    "type": "Bedsitter",
-    "estate": "Hurlingham",
-    "price": 38236,
+    "slug": "furnished-3-bedroom-bungalow-to-let-in-kitengela-16",
+    "title": "Furnished 3-Bedroom Bungalow To Let in Kitengela",
+    "type": "3-bedroom bungalow",
+    "estate": "Kitengela",
+    "price": 800000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "parking": 0,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "parking": 2,
       "sqft": 350
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
       "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "Cabro-paved"
     ],
     "images": [
-      "/images/properties/bedsitter-hurlingham-16.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856884/property-by-fridah/gei4kvdaiue2ixbrql65.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856885/property-by-fridah/jfywzd5wj9q9o0mi0axb.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856886/property-by-fridah/knxxgp8c9hz4k0i9bete.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856887/property-by-fridah/cabe4cjxqrersbgytocl.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856888/property-by-fridah/z23vq9bfxhzlsyzidun7.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856889/property-by-fridah/hsp8shf1gxzhbsujvxo6.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856890/property-by-fridah/qa1gi9vmzoqnptg4a9ai.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856891/property-by-fridah/uskz23irkcjgsp1la0co.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856894/property-by-fridah/trfh0avrnusjiqggvuzw.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856895/property-by-fridah/hiefpssyhnyskzsqmjup.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 3823,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful studio apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "short_term",
-    "available_for": "short_term",
-    "is_airbnb_ready": true,
-    "price_night": 3500,
-    "price_week": 21000,
-    "price_month_short": 87500,
-    "min_stay_nights": 2,
-    "airbnb_rating": "5.0",
-    "airbnb_reviews": 79,
-    "airbnb_superhost": true,
-    "furnishing_level": "fully_furnished",
-    "is_furnished": true,
-    "short_stay_amenities": [
-      "High-speed WiFi",
-      "Smart TV",
-      "Fully equipped kitchen",
-      "Air conditioning",
-      "Washer/Dryer",
-      "Fresh linens",
-      "Toiletries",
-      "24/7 check-in",
-      "Self check-in",
-      "Workspace"
-    ]
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "3 Bedroom Bungalow fully Furnished – Kitengela ➤ 3-bedroom bungalow in a gated community,fully furnished ➤ All en-suite ➤ Spacious and well-lit rooms ➤ Secure and family-friendly environment ➤ Located just 500 metres off tarmac for easy access 💰 Rent: Ksh 80,000/month 📞 Call/WhatsApp: 0721911181",
+    "rental_type": "long_term",
+    "available_for": "long_term",
+    "is_airbnb_ready": false,
+    "price_night": null,
+    "price_week": null,
+    "price_month_short": null,
+    "min_stay_nights": null,
+    "airbnb_rating": null,
+    "airbnb_reviews": null,
+    "airbnb_superhost": false,
+    "furnishing_level": "partially_furnished",
+    "is_furnished": false,
+    "short_stay_amenities": []
   },
   {
     "id": 17,
-    "slug": "3-bedroom-mansionette-in-ngong-17",
-    "title": "Luxury 3 Bedroom Mansionette in Ngong",
+    "slug": "4-bedroom-mansion-to-let-in-kitengela-17",
+    "title": "4BEDROOM MANSION TO LET IN KITENGELA",
     "type": "Mansionette",
-    "estate": "Ngong",
-    "price": 94456,
+    "estate": "Kitengela",
+    "price": 65000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 3,
-      "bathrooms": 2,
+      "bedrooms": 4,
+      "bathrooms": 5,
       "parking": 2,
-      "sqft": 1200
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "Intercom",
-      "Common Area Backup"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-17.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856510/property-by-fridah/bhmzap04kd2ya7s34o40.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856511/property-by-fridah/uw0t7dwx9pvvbt5bhbw8.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856512/property-by-fridah/smnfxeb770xv6ipjs0r9.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856514/property-by-fridah/b5jvnlg3sp9fyrachzpe.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856515/property-by-fridah/tw8ltlkkjqkc6oewz3ut.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856516/property-by-fridah/vng3bfb4ueh2ty8z91ol.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856517/property-by-fridah/iqoapptclxkzznnb1koy.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856518/property-by-fridah/n3culdbnad89e4cmwdda.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856519/property-by-fridah/ucossowfineoddluuldc.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856521/property-by-fridah/izdea9kfvbd60tbfcms0.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 9445,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "4 Bedroom Mansion To Let – Kitengela ➤ Elegant 4-bedroom mansion, all en-suite ➤ Spacious and modern design with high-quality finishes ➤ Bright and airy living and dining areas ➤ Large bedrooms with ample closet space ➤ Modern kitchen with plenty of storage ➤ Located in a secure gated community ➤ Serene and family-friendly environment with good access roads 💰 Rent: Ksh 65,000/month 📞 Call/WhatsApp: 0721911181",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -759,85 +823,87 @@
   },
   {
     "id": 18,
-    "slug": "1-bedroom-apartment-in-karen-18",
-    "title": "1 Bedroom Apartment in Karen",
-    "type": "1 Bedroom",
-    "estate": "Karen",
-    "price": 66240,
-    "currency": "KES",
-    "specs": {
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "parking": 1,
-      "sqft": 550
-    },
-    "features": [
-      "Tiled Floors",
-      "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
-    ],
-    "images": [
-      "/images/properties/1-bedroom-karen-18.jpg"
-    ],
-    "isFeatured": false,
-    "movingEstimate": 6624,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "short_term",
-    "available_for": "short_term",
-    "is_airbnb_ready": true,
-    "price_night": 5500,
-    "price_week": 33000,
-    "price_month_short": 137500,
-    "min_stay_nights": 2,
-    "airbnb_rating": "4.6",
-    "airbnb_reviews": 95,
-    "airbnb_superhost": true,
-    "furnishing_level": "fully_furnished",
-    "is_furnished": true,
-    "short_stay_amenities": [
-      "High-speed WiFi",
-      "Smart TV",
-      "Fully equipped kitchen",
-      "Air conditioning",
-      "Washer/Dryer",
-      "Fresh linens",
-      "Toiletries",
-      "24/7 check-in",
-      "Self check-in",
-      "Workspace"
-    ]
-  },
-  {
-    "id": 19,
-    "slug": "3-bedroom-mansionette-in-hurlingham-19",
-    "title": "Luxury 3 Bedroom Mansionette in Hurlingham",
-    "type": "Mansionette",
-    "estate": "Hurlingham",
-    "price": 443801,
+    "slug": "3-bedroom-mini-flat-to-let-in-kitengela-18",
+    "title": "3-BEDROOM MINI-FLAT TO LET IN KITENGELA",
+    "type": "3 Bedroom",
+    "estate": "Kitengela",
+    "price": 35000,
     "currency": "KES",
     "specs": {
       "bedrooms": 3,
       "bathrooms": 2,
       "parking": 2,
-      "sqft": 1200
+      "sqft": 5000
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
-      "Secure Parking",
-      "DSQ",
-      "Private Garden"
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/mansionette-hurlingham-19.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856199/property-by-fridah/fnzf3x5pgl84rrcnrqmi.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856201/property-by-fridah/wdux9nbetgdi8pai5qot.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856202/property-by-fridah/bn900ilgfvgb8n3vrj3j.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856203/property-by-fridah/ai5z6yobmbqzthga3pud.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856204/property-by-fridah/tzdvucacf1orlsjvbup1.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856206/property-by-fridah/ufg9daxa97gtaihbmhw0.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856207/property-by-fridah/suzqwdhaiklyuho7gzha.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856208/property-by-fridah/odlq7b12ytnvdqneq0en.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775856211/property-by-fridah/qtdrhfyoqrawt6wdnnyf.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 44380,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "3 Bedroom Mini-flat To Let – Kitengela ➤ 3-bedroom mini-flat,4tenants in one compound ➤ Master bedroom en-suite ➤ Spacious and well-lit rooms ➤ Secure and family-friendly environment ➤ Located just 200 metres off tarmac for easy access 💰 Rent: Ksh 40,000/month 📞 Call/WhatsApp: 0721911181",
+    "rental_type": "long_term",
+    "available_for": "long_term",
+    "is_airbnb_ready": false,
+    "price_night": null,
+    "price_week": null,
+    "price_month_short": null,
+    "min_stay_nights": null,
+    "airbnb_rating": null,
+    "airbnb_reviews": null,
+    "airbnb_superhost": false,
+    "furnishing_level": "partially_furnished",
+    "is_furnished": false,
+    "short_stay_amenities": []
+  },
+  {
+    "id": 19,
+    "slug": "3-bedroom-bungalow-to-let-in-kitengela-19",
+    "title": "3BEDROOM BUNGALOW TO LET IN KITENGELA",
+    "type": "3 Bedroom",
+    "estate": "Kitengela",
+    "price": 40000,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "parking": 2,
+      "sqft": 1200
+    },
+    "features": [
+      "Tiled Floors",
+      "1/8 acre of land",
+      "Secure Parking"
+    ],
+    "images": [
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855554/property-by-fridah/fzhrc0murns9qldsczn4.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855555/property-by-fridah/ndk2q7zg87beit1enbsq.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855556/property-by-fridah/tnlnxfgwz4vpjjxdvbp4.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855557/property-by-fridah/msdans31ayvvde66vdzh.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855558/property-by-fridah/tjdzebslvwkqkxnuzvtb.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855559/property-by-fridah/ypjq6zwmthvtjrkb3ad0.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855561/property-by-fridah/buo2kia46oobveu1ou2y.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855562/property-by-fridah/nhfvzagsidkrxfxchmmd.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855563/property-by-fridah/qfffvk2ecjjgxlo48ymy.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855564/property-by-fridah/ofi54hodvsif52ywail8.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "3 Bedroom Bungalow To Let – Kitengela ➤ 3-bedroom bungalow in a gated community ➤ Master bedroom en-suite ➤ Spacious and well-lit rooms ➤ Secure and family-friendly environment ➤ Located just 400 metres off tarmac for easy access 💰 Rent: Ksh 40,000/month 📞 Call/WhatsApp: 0721911181",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -854,15 +920,15 @@
   },
   {
     "id": 20,
-    "slug": "3-bedroom-bungalow-in-kitengela-20",
-    "title": "Spacious 3 Bedroom Bungalow in Kitengela",
-    "type": "Bungalow",
+    "slug": "3-bedroom-bungalow-to-let-in-kitengela-20",
+    "title": "3BEDROOM BUNGALOW TO LET IN KITENGELA",
+    "type": "3-bedroom bungalow",
     "estate": "Kitengela",
-    "price": 58001,
+    "price": 40000,
     "currency": "KES",
     "specs": {
       "bedrooms": 3,
-      "bathrooms": 2,
+      "bathrooms": 3,
       "parking": 2,
       "sqft": 1200
     },
@@ -870,16 +936,23 @@
       "Tiled Floors",
       "Water Heater",
       "Secure Parking",
-      "DSQ",
       "Compound Wall"
     ],
     "images": [
-      "/images/properties/bungalow-kitengela-20.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855339/property-by-fridah/xd2ws6yoidmqcgd3q8hk.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855340/property-by-fridah/y8v72fyz5zywtokoargk.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855342/property-by-fridah/qxgtmrkwthmblwkennnv.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855343/property-by-fridah/clwwsitjj1yobzftwk4x.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855344/property-by-fridah/aztj4vzadbfpja3cznsb.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855345/property-by-fridah/s76hotptptqonvflx4zu.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855346/property-by-fridah/agkj6wetkg4izgywmsbs.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855347/property-by-fridah/pfpfo0aysgxc7n5t4d9r.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775855348/property-by-fridah/nucsk1doxanev58ix4kf.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 5800,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "3 Bedroom Bungalow To Let – Kitengela ➤ 3-bedroom bungalow in a gated community ➤ Master bedroom en-suite ➤ Spacious and well-lit rooms ➤ Secure and family-friendly environment ➤ Located just 400 metres off tarmac for easy access 💰 Rent: Ksh 40,000/month 📞 Call/WhatsApp: 0721911181",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -896,85 +969,92 @@
   },
   {
     "id": 21,
-    "slug": "studio-apartment-in-kilimani-21",
-    "title": "Studio Apartment in Kilimani",
-    "type": "Bedsitter",
-    "estate": "Kilimani",
-    "price": 28492,
+    "slug": "3-bedroom-mini-flat-to-let-in-kitengela-21",
+    "title": "3 BEDROOM MINI-FLAT TO LET IN KITENGELA",
+    "type": "3 Bedroom",
+    "estate": "Kitengela",
+    "price": 40000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 0,
-      "bathrooms": 1,
-      "parking": 0,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "parking": 2,
       "sqft": 350
     },
     "features": [
       "Tiled Floors",
       "Water Heater",
       "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "Cabro-paved",
+      "1/8 acre of land"
     ],
     "images": [
-      "/images/properties/bedsitter-kilimani-21.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854797/property-by-fridah/henx91umkgoir09ybza5.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854799/property-by-fridah/r6fran1qwtkptkievrom.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854801/property-by-fridah/ajmr0wakcrzr9necgquq.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854802/property-by-fridah/qcuzzsuyyfe3iuiznwdz.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854803/property-by-fridah/jl7rjowvt9ymalhqj3we.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854804/property-by-fridah/kjaegeaaclkqdjwdkzc3.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854806/property-by-fridah/kcgyxbh0f1v90kz16g5t.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854807/property-by-fridah/zescpwnogtin04ijmrax.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854808/property-by-fridah/t1tbflk1elborzoxh1t2.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775854810/property-by-fridah/dzg6vvwpktngjodbm1f6.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 2849,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful studio apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "short_term",
-    "available_for": "short_term",
-    "is_airbnb_ready": true,
-    "price_night": 3500,
-    "price_week": 21000,
-    "price_month_short": 87500,
-    "min_stay_nights": 2,
-    "airbnb_rating": "4.8",
-    "airbnb_reviews": 67,
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "3 Bedroom House To Let – Kitengela ➤ Spacious 3-bedroom house ideal for family living ➤ All en-suite ➤ Well-lit rooms with a practical layout ➤ Sitting on a 50×100 plot with ample outdoor space ➤ Enough parking and space for kids’ play area ➤ Two tenants in one compound ➤ Easy access to main roads and essential amenities 💰 Rent: Ksh 40,000/month 📞 Call/WhatsApp: 0721911181",
+    "rental_type": "long_term",
+    "available_for": "long_term",
+    "is_airbnb_ready": false,
+    "price_night": null,
+    "price_week": null,
+    "price_month_short": null,
+    "min_stay_nights": null,
+    "airbnb_rating": null,
+    "airbnb_reviews": null,
     "airbnb_superhost": false,
-    "furnishing_level": "fully_furnished",
-    "is_furnished": true,
-    "short_stay_amenities": [
-      "High-speed WiFi",
-      "Smart TV",
-      "Fully equipped kitchen",
-      "Air conditioning",
-      "Washer/Dryer",
-      "Fresh linens",
-      "Toiletries",
-      "24/7 check-in",
-      "Self check-in",
-      "Workspace"
-    ]
+    "furnishing_level": "partially_furnished",
+    "is_furnished": false,
+    "short_stay_amenities": []
   },
   {
     "id": 22,
-    "slug": "3-bedroom-apartment-in-kitengela-22",
-    "title": "3 Bedroom Apartment in Kitengela",
-    "type": "3 Bedroom",
+    "slug": "4-bedroom-mansionette-in-kitengela-22",
+    "title": "4BEDROOM MANSIONETTE TO LET IN KITENGELA",
+    "type": "4 Bedroom mansionette",
     "estate": "Kitengela",
-    "price": 55846,
+    "price": 45000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 3,
-      "bathrooms": 2,
+      "bedrooms": 4,
+      "bathrooms": 3,
       "parking": 2,
       "sqft": 1200
     },
     "features": [
       "Tiled Floors",
-      "Water Heater",
+      "1/8 acre of land",
       "Secure Parking",
       "Intercom",
-      "Common Area Backup"
+      "DSQ"
     ],
     "images": [
-      "/images/properties/3-bedroom-kitengela-22.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815371/property-by-fridah/nje6e4nxrf2kod3qunjd.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815373/property-by-fridah/n4yrmfef2znznthkjut6.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815374/property-by-fridah/e9wudjrwwryzyd8bwl6l.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815376/property-by-fridah/weuffhbylcb3bcg6wqp9.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815377/property-by-fridah/msjdjmfbiktf6hbvfwun.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815378/property-by-fridah/pzyedbbrlsz11lfbmq1l.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815379/property-by-fridah/bgopkyz3qivu86bbplb7.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815381/property-by-fridah/ufdzx2ijqdokjbptboop.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815382/property-by-fridah/sheyjb9ztvrdw7ekxzl1.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775815384/property-by-fridah/mv7hhdknkuxkt9jsvlw3.jpg"
     ],
     "isFeatured": false,
     "movingEstimate": 5584,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 3 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "4 Bedroom House To Let – Kitengela ➤ Spacious 4-bedroom house ideal for family living ➤ Master bedroom en-suite ➤ Well-lit rooms with a practical layout ➤ Sitting on a 50×100 plot with ample outdoor space ➤ Enough parking and space for kids’ play area ➤ Located in a serene and secure neighborhood ➤ Easy access to main roads and essential amenities 💰 Rent: Ksh 45,000/month 📞 Call/WhatsApp: 0721911181",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -991,32 +1071,39 @@
   },
   {
     "id": 23,
-    "slug": "1-bedroom-apartment-in-karen-23",
-    "title": "1 Bedroom Apartment in Karen",
-    "type": "1 Bedroom",
-    "estate": "Karen",
-    "price": 68565,
+    "slug": "5-bedroom-mansionette-in-kitengela-23",
+    "title": "5BEDROOM MANSIONETTE TO LET IN KITENGELA",
+    "type": "5-bedroom Mansionette",
+    "estate": "Kitengela",
+    "price": 60000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "parking": 1,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "parking": 4,
       "sqft": 550
     },
     "features": [
       "Tiled Floors",
-      "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "1/2 acre of land",
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/1-bedroom-karen-23.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766189/property-by-fridah/awy57ajmyfkanlp4puvp.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766190/property-by-fridah/ckzgpyeesfgtbwuollrw.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766192/property-by-fridah/vivbtz29whoiwasbymo8.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766193/property-by-fridah/rq2epso7olspcdjg6mn0.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766194/property-by-fridah/wtrv9a9dmrdldnqwvyva.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766195/property-by-fridah/j4uvh9zujvpqfnczlvnr.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766196/property-by-fridah/cig36iitvptmdyfrp1ig.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766197/property-by-fridah/yykyc1utaxfaptoinjs0.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766199/property-by-fridah/wuxrjtbga54jhmdg9y14.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775766201/property-by-fridah/ot6v0zmclj6vpu3aaqte.jpg"
     ],
     "isFeatured": false,
     "movingEstimate": 6856,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "🏡 5 Bedroom MansionetteTo Let Spacious 5 bedroom mansionate Sitted in a 1/4 acre in Kitengela within a serene neighborhood. ✨ Master ensuite ✨ Spacious living & dining area ✨ Modern kitchen ✨ Ample parking ✨ Secure & serene environment 💰 Rent: Ksh 38,000/month 📞 0721911181",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -1033,32 +1120,39 @@
   },
   {
     "id": 24,
-    "slug": "3-bedroom-apartment-in-karen-24",
-    "title": "3 Bedroom Apartment in Karen",
-    "type": "3 Bedroom",
-    "estate": "Karen",
-    "price": 136851,
+    "slug": "4-bedroom-mansion-in-kitengela-24",
+    "title": "4BEDROOM MANSION TO LET IN KITENGELA",
+    "type": "4 Bedroom mansionette",
+    "estate": "Kitengela",
+    "price": 65000,
     "currency": "KES",
     "specs": {
-      "bedrooms": 3,
-      "bathrooms": 2,
+      "bedrooms": 4,
+      "bathrooms": 4,
       "parking": 2,
       "sqft": 1200
     },
     "features": [
       "Tiled Floors",
-      "Water Heater",
-      "Secure Parking",
-      "Gym",
-      "Swimming Pool"
+      "1/8 acre of land",
+      "Secure Parking"
     ],
     "images": [
-      "/images/properties/3-bedroom-karen-24.jpg"
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758531/property-by-fridah/x6gmwkpipdg7fjuaccxe.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758533/property-by-fridah/smsknhv2qhidnjsuqtl1.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758534/property-by-fridah/swethujwarpijt4buf41.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758535/property-by-fridah/ojtqjmpwssynzrfxnwfr.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758537/property-by-fridah/grehjliqx4j4hdcpvvea.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758539/property-by-fridah/ltcfbqhu6kfcn2r05gkj.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758540/property-by-fridah/ktf6chsxns7qfsz3tcpu.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758542/property-by-fridah/tnacrrkoxljraiy1hb5l.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758543/property-by-fridah/lvdvwvmsaqosqcmreeng.jpg",
+      "https://res.cloudinary.com/dhl0at14z/image/upload/v1775758545/property-by-fridah/vnc6iyt6df8wh8m5hpbg.jpg"
     ],
     "isFeatured": false,
-    "movingEstimate": 13685,
-    "fumigationLink": "https://your-fumigation-site.com",
-    "description": "Experience luxury living in this beautiful 3 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "🏡 4BEDROOM MANSIONETTE TO LET Spacious 4 bedroom mansionette located in EPZ Sitted on its own compound . ✨ Master ensuite ✨ Spacious living & dining area ✨ Modern kitchen ✨ Ample parking ✨ Secure & serene environment 💰 Rent: Ksh 65,000/month 📞 0721911181",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -1095,11 +1189,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/2-bedroom-kilimani-25.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 11428,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -1109,7 +1207,7 @@
     "price_month_short": 212500,
     "min_stay_nights": 2,
     "airbnb_rating": "4.9",
-    "airbnb_reviews": 55,
+    "airbnb_reviews": 40,
     "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -1148,11 +1246,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/1-bedroom-ngong-26.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 2698,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1173,7 +1275,7 @@
     "slug": "3-bedroom-mansionette-in-ruiru-27",
     "title": "Luxury 3 Bedroom Mansionette in Ruiru",
     "type": "Mansionette",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 84911,
     "currency": "KES",
     "specs": {
@@ -1190,11 +1292,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ruiru-27.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 8491,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1232,11 +1338,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-28.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 11495,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1274,25 +1384,40 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/bedsitter-karen-29.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 3014,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in karen. Located in the prestigious Karen neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "long_term",
-    "available_for": "long_term",
-    "is_airbnb_ready": false,
-    "price_night": null,
-    "price_week": null,
-    "price_month_short": null,
-    "min_stay_nights": null,
-    "airbnb_rating": null,
-    "airbnb_reviews": null,
+    "rental_type": "short_term",
+    "available_for": "short_term",
+    "is_airbnb_ready": true,
+    "price_night": 3500,
+    "price_week": 21000,
+    "price_month_short": 87500,
+    "min_stay_nights": 2,
+    "airbnb_rating": "4.7",
+    "airbnb_reviews": 112,
     "airbnb_superhost": false,
-    "furnishing_level": "partially_furnished",
-    "is_furnished": false,
-    "short_stay_amenities": []
+    "furnishing_level": "fully_furnished",
+    "is_furnished": true,
+    "short_stay_amenities": [
+      "High-speed WiFi",
+      "Smart TV",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Washer/Dryer",
+      "Fresh linens",
+      "Toiletries",
+      "24/7 check-in",
+      "Self check-in",
+      "Workspace"
+    ]
   },
   {
     "id": 30,
@@ -1316,11 +1441,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/3-bedroom-kitengela-30.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 5359,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1358,11 +1487,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/mansionette-hurlingham-31.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 35936,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1400,11 +1533,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-32.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 11487,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1442,11 +1579,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/mansionette-kilimani-33.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 26460,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1484,11 +1625,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-kitengela-34.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 11318,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1526,11 +1671,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/2-bedroom-karen-35.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 12317,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -1541,7 +1690,7 @@
     "min_stay_nights": 2,
     "airbnb_rating": "4.9",
     "airbnb_reviews": 26,
-    "airbnb_superhost": true,
+    "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
     "short_stay_amenities": [
@@ -1579,11 +1728,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/2-bedroom-kitengela-36.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 3940,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1604,7 +1757,7 @@
     "slug": "3-bedroom-bungalow-in-ruiru-37",
     "title": "Spacious 3 Bedroom Bungalow in Ruiru",
     "type": "Bungalow",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 72839,
     "currency": "KES",
     "specs": {
@@ -1621,11 +1774,15 @@
       "Compound Wall"
     ],
     "images": [
-      "/images/properties/bungalow-ruiru-37.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 7283,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1663,25 +1820,40 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/2-bedroom-hurlingham-38.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 9882,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "long_term",
-    "available_for": "long_term",
-    "is_airbnb_ready": false,
-    "price_night": null,
-    "price_week": null,
-    "price_month_short": null,
-    "min_stay_nights": null,
-    "airbnb_rating": null,
-    "airbnb_reviews": null,
+    "rental_type": "short_term",
+    "available_for": "short_term",
+    "is_airbnb_ready": true,
+    "price_night": 8500,
+    "price_week": 51000,
+    "price_month_short": 212500,
+    "min_stay_nights": 2,
+    "airbnb_rating": "4.6",
+    "airbnb_reviews": 117,
     "airbnb_superhost": false,
-    "furnishing_level": "partially_furnished",
-    "is_furnished": false,
-    "short_stay_amenities": []
+    "furnishing_level": "fully_furnished",
+    "is_furnished": true,
+    "short_stay_amenities": [
+      "High-speed WiFi",
+      "Smart TV",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Washer/Dryer",
+      "Fresh linens",
+      "Toiletries",
+      "24/7 check-in",
+      "Self check-in",
+      "Workspace"
+    ]
   },
   {
     "id": 39,
@@ -1705,11 +1877,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/bedsitter-kitengela-39.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 889,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1747,25 +1923,40 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/1-bedroom-karen-40.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 5749,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "long_term",
-    "available_for": "long_term",
-    "is_airbnb_ready": false,
-    "price_night": null,
-    "price_week": null,
-    "price_month_short": null,
-    "min_stay_nights": null,
-    "airbnb_rating": null,
-    "airbnb_reviews": null,
+    "rental_type": "short_term",
+    "available_for": "short_term",
+    "is_airbnb_ready": true,
+    "price_night": 5500,
+    "price_week": 33000,
+    "price_month_short": 137500,
+    "min_stay_nights": 2,
+    "airbnb_rating": "4.6",
+    "airbnb_reviews": 116,
     "airbnb_superhost": false,
-    "furnishing_level": "partially_furnished",
-    "is_furnished": false,
-    "short_stay_amenities": []
+    "furnishing_level": "fully_furnished",
+    "is_furnished": true,
+    "short_stay_amenities": [
+      "High-speed WiFi",
+      "Smart TV",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Washer/Dryer",
+      "Fresh linens",
+      "Toiletries",
+      "24/7 check-in",
+      "Self check-in",
+      "Workspace"
+    ]
   },
   {
     "id": 41,
@@ -1789,11 +1980,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/1-bedroom-ngong-41.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 2751,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1831,11 +2026,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/2-bedroom-ngong-42.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 4566,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1873,11 +2072,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-43.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 8146,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1919,7 +2122,7 @@
     ],
     "isFeatured": false,
     "movingEstimate": 14528,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1957,11 +2160,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/2-bedroom-ngong-45.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 4139,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -1999,11 +2206,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/bedsitter-karen-46.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 3496,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in karen. Located in the prestigious Karen neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -2012,8 +2223,8 @@
     "price_week": 21000,
     "price_month_short": 87500,
     "min_stay_nights": 2,
-    "airbnb_rating": "4.9",
-    "airbnb_reviews": 89,
+    "airbnb_rating": "4.5",
+    "airbnb_reviews": 85,
     "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -2035,7 +2246,7 @@
     "slug": "studio-apartment-in-ruiru-47",
     "title": "Studio Apartment in Ruiru",
     "type": "Bedsitter",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 14243,
     "currency": "KES",
     "specs": {
@@ -2056,7 +2267,7 @@
     ],
     "isFeatured": false,
     "movingEstimate": 1424,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2077,7 +2288,7 @@
     "slug": "3-bedroom-bungalow-in-ruiru-48",
     "title": "Spacious 3 Bedroom Bungalow in Ruiru",
     "type": "Bungalow",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 66104,
     "currency": "KES",
     "specs": {
@@ -2094,11 +2305,15 @@
       "Compound Wall"
     ],
     "images": [
-      "/images/properties/bungalow-ruiru-48.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 6610,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2136,25 +2351,40 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/1-bedroom-hurlingham-49.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 5596,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "long_term",
-    "available_for": "long_term",
-    "is_airbnb_ready": false,
-    "price_night": null,
-    "price_week": null,
-    "price_month_short": null,
-    "min_stay_nights": null,
-    "airbnb_rating": null,
-    "airbnb_reviews": null,
+    "rental_type": "short_term",
+    "available_for": "short_term",
+    "is_airbnb_ready": true,
+    "price_night": 5500,
+    "price_week": 33000,
+    "price_month_short": 137500,
+    "min_stay_nights": 2,
+    "airbnb_rating": "4.6",
+    "airbnb_reviews": 37,
     "airbnb_superhost": false,
-    "furnishing_level": "partially_furnished",
-    "is_furnished": false,
-    "short_stay_amenities": []
+    "furnishing_level": "fully_furnished",
+    "is_furnished": true,
+    "short_stay_amenities": [
+      "High-speed WiFi",
+      "Smart TV",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Washer/Dryer",
+      "Fresh linens",
+      "Toiletries",
+      "24/7 check-in",
+      "Self check-in",
+      "Workspace"
+    ]
   },
   {
     "id": 50,
@@ -2178,11 +2408,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/2-bedroom-hurlingham-50.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 13477,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -2192,8 +2426,8 @@
     "price_month_short": 212500,
     "min_stay_nights": 2,
     "airbnb_rating": "4.7",
-    "airbnb_reviews": 43,
-    "airbnb_superhost": false,
+    "airbnb_reviews": 60,
+    "airbnb_superhost": true,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
     "short_stay_amenities": [
@@ -2214,7 +2448,7 @@
     "slug": "studio-apartment-in-ruiru-51",
     "title": "Studio Apartment in Ruiru",
     "type": "Bedsitter",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 11449,
     "currency": "KES",
     "specs": {
@@ -2231,11 +2465,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/bedsitter-ruiru-51.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 1144,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2273,11 +2511,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/bedsitter-karen-52.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 3761,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in karen. Located in the prestigious Karen neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -2287,7 +2529,7 @@
     "price_month_short": 87500,
     "min_stay_nights": 2,
     "airbnb_rating": "4.7",
-    "airbnb_reviews": 115,
+    "airbnb_reviews": 72,
     "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -2326,11 +2568,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-53.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 11959,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2351,7 +2597,7 @@
     "slug": "2-bedroom-apartment-in-ruiru-54",
     "title": "2 Bedroom Apartment in Ruiru",
     "type": "2 Bedroom",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 39135,
     "currency": "KES",
     "specs": {
@@ -2368,11 +2614,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/2-bedroom-ruiru-54.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 3913,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2410,11 +2660,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/bungalow-kilimani-55.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 32936,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2452,11 +2706,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-56.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 8520,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2494,11 +2752,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/bungalow-hurlingham-57.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 29474,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2536,11 +2798,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/2-bedroom-karen-58.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 12682,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -2549,8 +2815,8 @@
     "price_week": 51000,
     "price_month_short": 212500,
     "min_stay_nights": 2,
-    "airbnb_rating": "4.7",
-    "airbnb_reviews": 85,
+    "airbnb_rating": "4.8",
+    "airbnb_reviews": 80,
     "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -2589,11 +2855,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/3-bedroom-karen-59.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 14879,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2631,11 +2901,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/1-bedroom-ngong-60.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 2261,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2673,11 +2947,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/mansionette-karen-61.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 40816,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2715,11 +2993,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/3-bedroom-ngong-62.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 6213,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2757,11 +3039,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/1-bedroom-kitengela-63.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 2718,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2799,11 +3085,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/bungalow-hurlingham-64.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 23955,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2841,11 +3131,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/bungalow-hurlingham-65.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 30652,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2866,7 +3160,7 @@
     "slug": "3-bedroom-apartment-in-ruiru-66",
     "title": "3 Bedroom Apartment in Ruiru",
     "type": "3 Bedroom",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 50181,
     "currency": "KES",
     "specs": {
@@ -2883,11 +3177,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/3-bedroom-ruiru-66.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 5018,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2925,11 +3223,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-67.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 9082,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -2967,11 +3269,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/2-bedroom-hurlingham-68.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 13883,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -2980,8 +3286,8 @@
     "price_week": 51000,
     "price_month_short": 212500,
     "min_stay_nights": 2,
-    "airbnb_rating": "4.9",
-    "airbnb_reviews": 70,
+    "airbnb_rating": "4.8",
+    "airbnb_reviews": 87,
     "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -3020,11 +3326,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/bungalow-hurlingham-69.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 19469,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3062,11 +3372,15 @@
       "Compound Wall"
     ],
     "images": [
-      "/images/properties/bungalow-kitengela-70.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 4754,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3104,11 +3418,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/2-bedroom-karen-71.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 9228,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -3117,8 +3435,8 @@
     "price_week": 51000,
     "price_month_short": 212500,
     "min_stay_nights": 2,
-    "airbnb_rating": "5.0",
-    "airbnb_reviews": 30,
+    "airbnb_rating": "4.8",
+    "airbnb_reviews": 113,
     "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -3140,7 +3458,7 @@
     "slug": "3-bedroom-apartment-in-ruiru-72",
     "title": "3 Bedroom Apartment in Ruiru",
     "type": "3 Bedroom",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 71531,
     "currency": "KES",
     "specs": {
@@ -3157,11 +3475,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/3-bedroom-ruiru-72.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 7153,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3199,11 +3521,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-kitengela-73.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 9878,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3241,11 +3567,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/bedsitter-hurlingham-74.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 4258,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -3254,9 +3584,9 @@
     "price_week": 21000,
     "price_month_short": 87500,
     "min_stay_nights": 2,
-    "airbnb_rating": "4.8",
-    "airbnb_reviews": 107,
-    "airbnb_superhost": true,
+    "airbnb_rating": "4.5",
+    "airbnb_reviews": 105,
+    "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
     "short_stay_amenities": [
@@ -3294,11 +3624,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/3-bedroom-hurlingham-75.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 20341,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3336,11 +3670,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/1-bedroom-kitengela-76.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 2573,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3378,11 +3716,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/1-bedroom-karen-77.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 7830,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -3391,9 +3733,9 @@
     "price_week": 33000,
     "price_month_short": 137500,
     "min_stay_nights": 2,
-    "airbnb_rating": "4.9",
-    "airbnb_reviews": 36,
-    "airbnb_superhost": false,
+    "airbnb_rating": "5.0",
+    "airbnb_reviews": 105,
+    "airbnb_superhost": true,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
     "short_stay_amenities": [
@@ -3414,7 +3756,7 @@
     "slug": "3-bedroom-bungalow-in-ruiru-78",
     "title": "Spacious 3 Bedroom Bungalow in Ruiru",
     "type": "Bungalow",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 73639,
     "currency": "KES",
     "specs": {
@@ -3431,11 +3773,15 @@
       "Compound Wall"
     ],
     "images": [
-      "/images/properties/bungalow-ruiru-78.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 7363,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3473,11 +3819,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/bedsitter-ngong-79.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 1322,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3515,25 +3865,40 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/1-bedroom-karen-80.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 8141,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
-    "rental_type": "long_term",
-    "available_for": "long_term",
-    "is_airbnb_ready": false,
-    "price_night": null,
-    "price_week": null,
-    "price_month_short": null,
-    "min_stay_nights": null,
-    "airbnb_rating": null,
-    "airbnb_reviews": null,
-    "airbnb_superhost": false,
-    "furnishing_level": "partially_furnished",
-    "is_furnished": false,
-    "short_stay_amenities": []
+    "rental_type": "short_term",
+    "available_for": "short_term",
+    "is_airbnb_ready": true,
+    "price_night": 5500,
+    "price_week": 33000,
+    "price_month_short": 137500,
+    "min_stay_nights": 2,
+    "airbnb_rating": "4.6",
+    "airbnb_reviews": 38,
+    "airbnb_superhost": true,
+    "furnishing_level": "fully_furnished",
+    "is_furnished": true,
+    "short_stay_amenities": [
+      "High-speed WiFi",
+      "Smart TV",
+      "Fully equipped kitchen",
+      "Air conditioning",
+      "Washer/Dryer",
+      "Fresh linens",
+      "Toiletries",
+      "24/7 check-in",
+      "Self check-in",
+      "Workspace"
+    ]
   },
   {
     "id": 81,
@@ -3557,11 +3922,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/bungalow-hurlingham-81.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 20825,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3582,7 +3951,7 @@
     "slug": "2-bedroom-apartment-in-ruiru-82",
     "title": "2 Bedroom Apartment in Ruiru",
     "type": "2 Bedroom",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 54459,
     "currency": "KES",
     "specs": {
@@ -3599,11 +3968,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/2-bedroom-ruiru-82.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 5445,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3641,11 +4014,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/mansionette-karen-83.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 48674,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3683,11 +4060,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/bungalow-hurlingham-84.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 20222,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful spacious 3 bedroom bungalow in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3725,11 +4106,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/1-bedroom-kilimani-85.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 5992,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -3738,8 +4123,8 @@
     "price_week": 33000,
     "price_month_short": 137500,
     "min_stay_nights": 2,
-    "airbnb_rating": "4.5",
-    "airbnb_reviews": 50,
+    "airbnb_rating": "4.9",
+    "airbnb_reviews": 91,
     "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -3778,11 +4163,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/bedsitter-ngong-86.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 1116,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3820,11 +4209,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-87.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 10910,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3862,11 +4255,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-ngong-88.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 11882,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in ngong. Located in the prestigious Ngong neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3904,11 +4301,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/mansionette-kilimani-89.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 38638,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3929,7 +4330,7 @@
     "slug": "studio-apartment-in-ruiru-90",
     "title": "Studio Apartment in Ruiru",
     "type": "Bedsitter",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 10019,
     "currency": "KES",
     "specs": {
@@ -3946,11 +4347,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/bedsitter-ruiru-90.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 1001,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -3971,7 +4376,7 @@
     "slug": "3-bedroom-apartment-in-ruiru-91",
     "title": "3 Bedroom Apartment in Ruiru",
     "type": "3 Bedroom",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 57357,
     "currency": "KES",
     "specs": {
@@ -3988,11 +4393,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/3-bedroom-ruiru-91.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 5735,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -4030,11 +4439,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/mansionette-hurlingham-92.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 29723,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -4072,11 +4485,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/mansionette-kitengela-93.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 9456,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -4114,11 +4531,15 @@
       "Private Garden"
     ],
     "images": [
-      "/images/properties/mansionette-kilimani-94.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 33543,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful luxury 3 bedroom mansionette in kilimani. Located in the prestigious Kilimani neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -4156,11 +4577,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/2-bedroom-karen-95.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 14349,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in karen. Located in the prestigious Karen neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -4169,9 +4594,9 @@
     "price_week": 51000,
     "price_month_short": 212500,
     "min_stay_nights": 2,
-    "airbnb_rating": "4.8",
-    "airbnb_reviews": 27,
-    "airbnb_superhost": false,
+    "airbnb_rating": "4.9",
+    "airbnb_reviews": 108,
+    "airbnb_superhost": true,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
     "short_stay_amenities": [
@@ -4209,11 +4634,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/bedsitter-karen-96.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 3033,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in karen. Located in the prestigious Karen neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -4222,8 +4651,8 @@
     "price_week": 21000,
     "price_month_short": 87500,
     "min_stay_nights": 2,
-    "airbnb_rating": "4.5",
-    "airbnb_reviews": 105,
+    "airbnb_rating": "4.8",
+    "airbnb_reviews": 40,
     "airbnb_superhost": false,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -4262,11 +4691,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/1-bedroom-hurlingham-97.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 6086,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 1 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 1 bedrooms, 1 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "short_term",
     "available_for": "short_term",
@@ -4275,8 +4708,8 @@
     "price_week": 33000,
     "price_month_short": 137500,
     "min_stay_nights": 2,
-    "airbnb_rating": "5.0",
-    "airbnb_reviews": 42,
+    "airbnb_rating": "4.5",
+    "airbnb_reviews": 79,
     "airbnb_superhost": true,
     "furnishing_level": "fully_furnished",
     "is_furnished": true,
@@ -4315,11 +4748,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/bedsitter-ngong-98.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 1072,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful studio apartment in ngong. Located in the prestigious Ngong neighborhood, this property offers 0 bedrooms, 1 bathrooms, and 0 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -4340,7 +4777,7 @@
     "slug": "2-bedroom-apartment-in-ruiru-99",
     "title": "2 Bedroom Apartment in Ruiru",
     "type": "2 Bedroom",
-    "estate": "Ruiru",
+    "estate": "Syokimau",
     "price": 42110,
     "currency": "KES",
     "specs": {
@@ -4357,11 +4794,15 @@
       "Common Area Backup"
     ],
     "images": [
-      "/images/properties/2-bedroom-ruiru-99.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 4211,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 2 bedroom apartment in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 2 bedrooms, 2 bathrooms, and 1 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",
@@ -4399,11 +4840,15 @@
       "Swimming Pool"
     ],
     "images": [
-      "/images/properties/3-bedroom-hurlingham-100.jpg"
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "isFeatured": false,
     "movingEstimate": 13875,
-    "fumigationLink": "https://your-fumigation-site.com",
+    "fumigationLink": "https://fumigo.co.ke",
     "description": "Experience luxury living in this beautiful 3 bedroom apartment in hurlingham. Located in the prestigious Hurlingham neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.",
     "rental_type": "long_term",
     "available_for": "long_term",

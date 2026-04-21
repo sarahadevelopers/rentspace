@@ -39,12 +39,12 @@ const blogConfig = {
       commute: "45-60 minutes via Ngong Road",
       uniqueFeatures: ["scenic views", "tranquil living", "cooler temperatures", "mountain proximity"]
     },
-    ruiru: {
-      name: "Ruiru",
-      slug: "ruiru",
+    syokimau: {
+      name: "Syokimau",
+      slug: "syokimau",
       color: "#c9a45c",
       imageStyle: "urban-growth",
-      baseKeywords: ["houses for rent in Ruiru", "Ruiru rentals", "Kamakis Ruiru", "Tatu City Ruiru"],
+      baseKeywords:  ["Katani", "Gateway Mall area", "Greatwall estate", "Lukenya", "Kwa Jomvu", "Syokimau Heights"],
       rentRanges: {
         bedsitter: [8000, 12000],
         oneBedroom: [13000, 20000],

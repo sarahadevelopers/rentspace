@@ -40,7 +40,7 @@
           <li><a href="../rentals.html?location=Karen">Karen</a></li>
           <li><a href="../rentals.html?location=Kilimani">Kilimani</a></li>
           <li><a href="../rentals.html?location=Hurlingham">Hurlingham</a></li>
-          <li><a href="../rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="../rentals.html?location=Syokimau">Syokimau</a></li>
           <li><a href="../rentals.html?location=Ngong">Ngong</a></li>
           <li><a href="../rentals.html?location=Kitengela">Kitengela</a></li>
           <li><a href="../rentals.html?location=Westlands">Westlands</a></li>
@@ -158,16 +158,12 @@
     </div>
 
     <!-- Key Features List -->
-    <div class="features-section">
-      <h3>Architectural Features</h3>
-      <ul class="features-list">
-        <li>{{bedrooms}} Bedrooms</li>
-        <li>{{bathrooms}} Bathrooms</li>
-        <li>{{parking}} Parking Spaces</li>
-        {{#each features}}<li>{{this}}</li>{{/each}}
-      </ul>
-    </div>
-
+   <div class="features-section">
+  <h3>Architectural Features</h3>
+  <ul class="features-list">
+    {{featuresList}}
+  </ul>
+</div>
     <!-- Concierge Services (Movers & Fumigation) -->
     <div class="concierge-section">
       <div class="concierge-content">
@@ -188,51 +184,26 @@
     </div>
 
     <!-- Recommendations Section -->
-    {{#if recommendations.length}}
-    <section class="recommendations">
-      <div class="section-header">
-        <h2>Similar Curations</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="recommendation-cards" id="recCards">
-        {{#each recommendations}}
-        <a href="../property/{{slug}}.html" class="rec-card">
-          <div class="rec-card-image">
-            <img src="{{image}}" alt="{{title}}">
-          </div>
-          <div class="rec-card-info">
-            <h4>{{title}}</h4>
-            <p>{{estate}} · KES {{price}} / mo</p>
-          </div>
-        </a>
-        {{/each}}
-      </div>
-    </section>
-    {{/if}}
+   <section class="recommendations">
+  <div class="section-header">
+    <h2>Similar Curations</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="recommendation-cards" id="recCards">
+    {{recommendations}}
+  </div>
+</section>
 
     <!-- Testimonials Section -->
-    {{#if reviews.length}}
-    <section class="testimonials">
-      <div class="section-header">
-        <h2>The Experience</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="testimonials-list">
-        {{#each reviews}}
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <i class="fas fa-quote-left"></i>
-            <p>"{{comment}}"</p>
-          </div>
-          <div class="testimonial-author">
-            <strong>{{name}}</strong>
-            <span>Private Client</span>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </section>
-    {{/if}}
+   <section class="testimonials">
+  <div class="section-header">
+    <h2>The Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="testimonials-list">
+    {{reviews}}
+  </div>
+</section>
   </main>
 
   <!-- Premium Footer -->
@@ -247,7 +218,7 @@
         <a href="../location/karen.html">Karen Collection</a>
         <a href="../location/kilimani.html">Kilimani Reserve</a>
         <a href="../location/hurlingham.html">Hurlingham Heights</a>
-        <a href="../location/ruiru.html">Ruiru Gardens</a>
+        <a href="../location/syokimau.html">Gateway Mall</a>
         <a href="../location/ngong.html">Ngong Views</a>
         <a href="../location/kitengela.html">Kitengela Homes</a>
       </div>
@@ -290,121 +261,199 @@
   </div>
 
   <script>
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // ========== HAMBURGER MENU WITH OVERLAY ==========
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.querySelector('.nav-links');
-    const menuOverlay = document.getElementById('menuOverlay');
+  // Dynamic year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    function closeMenu() {
-      if (navMenu) navMenu.classList.remove('active');
-      if (hamburger) hamburger.classList.remove('active');
-      if (menuOverlay) menuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+  // ========== HAMBURGER MENU WITH OVERLAY ==========
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('.nav-links');
+  const menuOverlay = document.getElementById('menuOverlay');
 
-    function openMenu() {
-      if (navMenu) navMenu.classList.add('active');
-      if (hamburger) hamburger.classList.add('active');
-      if (menuOverlay) menuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+  function closeMenu() {
+    if (navMenu) navMenu.classList.remove('active');
+    if (hamburger) hamburger.classList.remove('active');
+    if (menuOverlay) menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
-    if (hamburger) {
-      hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (navMenu && navMenu.classList.contains('active')) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      });
-    }
+  function openMenu() {
+    if (navMenu) navMenu.classList.add('active');
+    if (hamburger) hamburger.classList.add('active');
+    if (menuOverlay) menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-    if (menuOverlay) {
-      menuOverlay.addEventListener('click', closeMenu);
-    }
-
-    // Close menu when clicking a link
-    if (navMenu) {
-      const navLinks = navMenu.querySelectorAll('a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-    }
-
-    // Close menu on window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+  if (hamburger) {
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (navMenu && navMenu.classList.contains('active')) {
         closeMenu();
+      } else {
+        openMenu();
       }
     });
+  }
 
-    // ========== MOBILE DROPDOWNS (ONLY ON MOBILE) ==========
-    function initMobileDropdowns() {
-      if (window.innerWidth > 768) return;
-      
-      const dropdowns = document.querySelectorAll('.dropdown');
-      dropdowns.forEach(dropdown => {
-        const trigger = dropdown.querySelector('.dropdown-trigger');
-        const menu = dropdown.querySelector('.dropdown-menu');
-        if (trigger && menu) {
-          const newTrigger = trigger.cloneNode(true);
-          trigger.parentNode.replaceChild(newTrigger, trigger);
-          
-          newTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-            menu.classList.toggle('open');
-          });
-        }
-      });
+  if (menuOverlay) {
+    menuOverlay.addEventListener('click', closeMenu);
+  }
+
+  // Close menu when clicking a link
+  if (navMenu) {
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => link.addEventListener('click', closeMenu));
+  }
+
+  // Close menu on window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+      closeMenu();
     }
+  });
 
-    initMobileDropdowns();
-    window.addEventListener('resize', initMobileDropdowns);
-
-    // Gallery counter and scroll tracking
-    const gallery = document.getElementById('galleryStage');
-    const counter = document.getElementById('currentIndex');
-    const items = document.querySelectorAll('.gallery-item');
-    const total = items.length;
-
-    if (gallery && counter && total > 0) {
-      function updateCounter() {
-        const scrollLeft = gallery.scrollLeft;
-        const itemWidth = items[0].offsetWidth + 12;
-        const activeIndex = Math.round(scrollLeft / itemWidth) + 1;
-        counter.textContent = Math.min(activeIndex, total);
+  // ========== MOBILE DROPDOWNS ==========
+  function initMobileDropdowns() {
+    if (window.innerWidth > 768) return;
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+      const trigger = dropdown.querySelector('.dropdown-trigger');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      if (trigger && menu) {
+        const newTrigger = trigger.cloneNode(true);
+        trigger.parentNode.replaceChild(newTrigger, trigger);
+        newTrigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropdown.classList.toggle('open');
+          menu.classList.toggle('open');
+        });
       }
-      
-      gallery.addEventListener('scroll', updateCounter);
-      updateCounter();
+    });
+  }
+
+  initMobileDropdowns();
+  window.addEventListener('resize', initMobileDropdowns);
+
+  // ========== GALLERY FUNCTIONALITY ==========
+  const mainImage = document.getElementById('mainGalleryImg');
+  const thumbDivs = document.querySelectorAll('.thumb');
+  const prevBtn = document.getElementById('galleryPrevBtn');
+  const nextBtn = document.getElementById('galleryNextBtn');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  let currentIndex = 0;
+  const totalImages = thumbDivs.length;
+
+  // Helper: update main image and active thumbnail
+  function updateMainImage(index) {
+    if (index < 0) index = 0;
+    if (index >= totalImages) index = totalImages - 1;
+    currentIndex = index;
+
+    const thumbDiv = thumbDivs[currentIndex];
+    const imgElement = thumbDiv.querySelector('img');
+    if (imgElement) {
+      const newSrc = imgElement.src;
+      mainImage.src = newSrc;
+      if (lightboxImg) lightboxImg.src = newSrc;
     }
 
-    // Sticky inquiry button
-    const stickyInquiryBtn = document.getElementById('stickyInquiryBtn');
-    if (stickyInquiryBtn) {
-      stickyInquiryBtn.addEventListener('click', () => {
-        const title = document.querySelector('.property-title')?.textContent || 'Property';
-        const estate = document.querySelector('.location-meta')?.textContent.replace(/[^\w\s]/g, '').trim() || 'Nairobi';
-        const price = document.querySelector('.price-tag')?.textContent || '';
-        const url = window.location.href;
-        
-        const message = `*RENTSPACE PROPERTY INQUIRY*%0A%0A` +
-                        `*Property:* ${title}%0A` +
-                        `*Location:* ${estate}, Nairobi%0A` +
-                        `*Price:* ${price}%0A` +
-                        `*Listing:* ${url}%0A%0A` +
-                        `Hello, I'm interested in this property. Please share more details.`;
-        
-        window.open(`https://wa.me/254723562484?text=${message}`, '_blank');
-      });
+    // Update active class on thumbnails
+    thumbDivs.forEach(div => div.classList.remove('active'));
+    thumbDiv.classList.add('active');
+
+    // Scroll thumbnail into view if needed
+    const track = document.querySelector('.thumbnail-track');
+    if (track && thumbDiv) {
+      thumbDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
-  </script>
+  }
+
+  // Attach click events to thumbnails
+  if (thumbDivs.length > 0) {
+    thumbDivs.forEach((div, i) => {
+      div.addEventListener('click', () => updateMainImage(i));
+    });
+    // Set first active
+    updateMainImage(0);
+  }
+
+  // Prev / Next buttons
+  function nextImage() { updateMainImage(currentIndex + 1); }
+  function prevImage() { updateMainImage(currentIndex - 1); }
+
+  if (prevBtn) prevBtn.addEventListener('click', prevImage);
+  if (nextBtn) nextBtn.addEventListener('click', nextImage);
+
+  // ========== LIGHTBOX ==========
+  function openLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.add('show');
+    lightboxImg.src = mainImage.src;
+  }
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('show');
+  }
+  function lightboxNext() { nextImage(); lightboxImg.src = mainImage.src; }
+  function lightboxPrev() { prevImage(); lightboxImg.src = mainImage.src; }
+
+  if (mainImage) mainImage.addEventListener('click', openLightbox);
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', lightboxPrev);
+  if (lightboxNext) lightboxNext.addEventListener('click', lightboxNext);
+
+  // Keyboard navigation for lightbox
+  document.addEventListener('keydown', (e) => {
+    if (lightbox && lightbox.classList.contains('show')) {
+      if (e.key === 'ArrowLeft') lightboxPrev();
+      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'Escape') closeLightbox();
+    }
+  });
+
+  // ========== MOBILE SWIPE FOR MAIN GALLERY ==========
+  const mainSlide = document.getElementById('mainSlide');
+  let touchStartX = 0;
+  let touchEndX = 0;
+  if (mainSlide) {
+    mainSlide.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    mainSlide.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextImage();
+        else prevImage();
+      }
+    });
+  }
+
+  // ========== STICKY INQUIRY BUTTON ==========
+  const stickyInquiryBtn = document.getElementById('stickyInquiryBtn');
+  if (stickyInquiryBtn) {
+    stickyInquiryBtn.addEventListener('click', () => {
+      const title = document.querySelector('.property-title')?.textContent || 'Property';
+      const estate = document.querySelector('.location-meta')?.textContent.replace(/[^\w\s]/g, '').trim() || 'Nairobi';
+      const price = document.querySelector('.price-tag')?.textContent || '';
+      const url = window.location.href;
+
+      const message = `*RENTSPACE PROPERTY INQUIRY*%0A%0A` +
+                      `*Property:* ${title}%0A` +
+                      `*Location:* ${estate}, Nairobi%0A` +
+                      `*Price:* ${price}%0A` +
+                      `*Listing:* ${url}%0A%0A` +
+                      `Hello, I'm interested in this property. Please share more details.`;
+
+      window.open(`https://wa.me/254723562484?text=${message}`, '_blank');
+    });
+  }
+</script>
   <script src="../js/properties.js"></script>
 </body>
 </html>

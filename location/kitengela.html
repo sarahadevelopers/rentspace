@@ -996,7 +996,7 @@
           <li><a href="../rentals.html?location=Karen">Karen</a></li>
           <li><a href="../rentals.html?location=Kilimani">Kilimani</a></li>
           <li><a href="../rentals.html?location=Hurlingham">Hurlingham</a></li>
-          <li><a href="../rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="../rentals.html?location=Syokimau">Syokimau</a></li>
           <li><a href="../rentals.html?location=Ngong">Ngong</a></li>
           <li><a href="../rentals.html?location=Kitengela">Kitengela</a></li>
           <li><a href="../rentals.html?location=Westlands">Westlands</a></li>
@@ -1115,7 +1115,7 @@
         <h4>Areas</h4>
         <a href="../location/kitengela.html">Kitengela</a>
         <a href="../location/ngong.html">Ngong</a>
-        <a href="../location/ruiru.html">Ruiru</a>
+        <a href="../location/syokimau.html">Syokimau</a>
         <a href="../location/karen.html">Karen</a>
         <a href="../location/kilimani.html">Kilimani</a>
         <a href="../location/hurlingham.html">Hurlingham</a>
@@ -1137,6 +1137,16 @@
   </div>
 
   <script>
+    // Dynamic base path for GitHub Pages
+const getBasePath = () => {
+    if (window.location.hostname === 'sarahadevelopers.github.io') {
+        return '/rentspace';
+    }
+    return '';
+};
+const basePath = getBasePath();
+
+    
     // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1328,7 +1338,7 @@
       const emptyStateDiv = document.getElementById('emptyState');
       
       try {
-        const response = await fetch('/rentspace/data/properties.json');
+        const response = await fetch(`${basePath}/data/properties.json`);;
         const properties = await response.json();
         
         const filtered = properties.filter(prop => 

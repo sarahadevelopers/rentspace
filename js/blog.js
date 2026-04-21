@@ -92,7 +92,7 @@ function getValidImageUrl(imageUrl) {
 // Update category counts efficiently
 function updateCategoryCounts() {
     const counts = {
-        kitengela: 0, ngong: 0, ruiru: 0, karen: 0, kilimani: 0, hurlingham: 0, guides: 0
+        kitengela: 0, ngong: 0, syokimau: 0, karen: 0, kilimani: 0, hurlingham: 0, guides: 0
     };
     
     for (const post of allBlogPosts) {
@@ -103,7 +103,7 @@ function updateCategoryCounts() {
     
     document.getElementById('kitengelaCount').textContent = counts.kitengela || 0;
     document.getElementById('ngongCount').textContent = counts.ngong || 0;
-    document.getElementById('ruiruCount').textContent = counts.ruiru || 0;
+    document.getElementById('syokimauCount').textContent = counts.syokimau || 0;
     document.getElementById('karenCount').textContent = counts.karen || 0;
     document.getElementById('kilimaniCount').textContent = counts.kilimani || 0;
     document.getElementById('hurlinghamCount').textContent = counts.hurlingham || 0;

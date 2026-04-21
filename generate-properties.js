@@ -3,7 +3,7 @@ const path = require('path');
 
 const estates = {
   highEnd: ['Karen', 'Kilimani', 'Hurlingham'],
-  midRange: ['Ruiru', 'Ngong', 'Kitengela']
+  midRange: ['Syokimau', 'Ngong', 'Kitengela']
 };
 
 const propertyTypes = {

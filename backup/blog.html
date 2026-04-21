@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>The RentSpace Blog | Nairobi Real Estate & Relocation Guide</title>
+  <meta name="description" content="Expert insights on renting in Nairobi's top neighborhoods. From Karen luxury villas to affordable Kitengela bungalows, find your perfect home with RentSpace.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="The RentSpace Blog | Nairobi Real Estate & Relocation Guide">
+  <meta property="og:description" content="Expert insights on renting in Nairobi's top neighborhoods. From Karen luxury villas to affordable Kitengela bungalows.">
+  <meta property="og:type" content="website">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ============================================
+       BLOG PAGE - PREMIUM DARK THEME
+       ============================================ */
+    
+    :root {
+      --gold: #c9a45c;
+      --gold-dark: #b88f3c;
+      --bg-dark: #0a0a0a;
+      --bg-card: #111111;
+      --border: rgba(201, 164, 92, 0.2);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: radial-gradient(circle at 30% 10%, #1a1a1a 0%, #0a0a0a 100%);
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 100vh;
+      animation: pageFadeIn 1s ease;
+    }
+    
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* ========== EXECUTIVE NAVBAR ========== */
+    .exec-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    
+    .nav-logo span {
+      color: var(--gold);
+      font-weight: 400;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links li {
+      position: relative;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    
+    .nav-cta:hover {
+      background: var(--gold);
+      color: #000;
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1002;
+    }
+    
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    /* Menu Overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    
+    /* ========== DESKTOP DROPDOWN ========== */
+    @media (min-width: 769px) {
+      .dropdown {
+        position: relative;
+      }
+      
+      .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .dropdown-trigger i {
+        font-size: 10px;
+        transition: transform 0.3s ease;
+      }
+      
+      .dropdown:hover .dropdown-trigger i {
+        transform: rotate(180deg);
+      }
+      
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 220px;
+        background: #111111;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 8px 0;
+        margin-top: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.25s ease;
+        z-index: 1001;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+      
+      .dropdown:last-child .dropdown-menu {
+        left: auto;
+        right: 0;
+      }
+      
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .dropdown-menu li {
+        display: block;
+      }
+      
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 20px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      
+      .dropdown-menu a:hover {
+        background: rgba(201, 164, 92, 0.1);
+        color: var(--gold);
+        padding-left: 24px;
+      }
+      
+      .dropdown-menu li:not(:last-child) a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    }
+    
+    /* ========== MOBILE NAVIGATION ========== */
+    @media (max-width: 768px) {
+      .nav-cta {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 320px;
+        height: 100vh;
+        background: #0a0a0a;
+        flex-direction: column;
+        transition: right 0.3s ease;
+        z-index: 1001;
+        padding: 80px 24px 24px;
+        display: flex;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+        margin: 0;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .nav-links li {
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .nav-links a {
+        display: block;
+        padding: 14px 0;
+        font-size: 18px;
+        font-weight: 500;
+        color: #ffffff;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .nav-links a:hover {
+        color: var(--gold);
+        padding-left: 8px;
+      }
+      
+      .dropdown-trigger {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .dropdown-trigger i {
+        color: var(--gold);
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+      
+      .dropdown-menu {
+        background: rgba(255, 255, 255, 0.08);
+        border-left: 2px solid var(--gold);
+        padding: 0;
+        margin: 8px 0 8px 16px;
+        display: none;
+      }
+      
+      .dropdown-menu.open {
+        display: block;
+      }
+      
+      .dropdown-menu a {
+        padding: 10px 0 10px 16px;
+        font-size: 15px;
+        border-bottom: none;
+      }
+      
+      .dropdown-menu a:hover {
+        color: var(--gold);
+        padding-left: 20px;
+      }
+      
+      .dropdown.open .dropdown-trigger i {
+        transform: rotate(180deg);
+      }
+      
+      .mobile-bottom-nav {
+        display: flex;
+      }
+      
+      body {
+        padding-bottom: 70px;
+      }
+      
+      h1 {
+        font-size: 36px;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none !important;
+      }
+    }
+    
+    /* ========== PAGE HEADER ========== */
+    /* ========== PREMIUM BLOG HEADER ========== */
+.blog-header {
+  padding: 140px 5% 60px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Premium Background Image Layer */
+.blog-header .header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-image: url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1920');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+
+/* Dark gradient overlay for readability */
+.blog-header .header-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.7) 100%);
+}
+
+/* Subtle vignette effect */
+.blog-header .header-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.blog-header .header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Desktop: Split layout */
+@media (min-width: 768px) {
+  .blog-header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 60px;
+  }
+  
+  .blog-header .header-left {
+    flex: 1;
+  }
+  
+  .blog-header .header-right {
+    flex: 0 0 380px;
+    text-align: right;
+  }
+}
+
+.blog-header .page-subtitle {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  animation: blogFadeInUp 0.6s ease forwards;
+}
+
+.blog-header .page-title {
+  color: var(--text-primary);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+  animation: blogFadeInUp 0.6s ease 0.15s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.blog-header .page-title span {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  position: relative;
+  display: inline-block;
+}
+
+.blog-header .page-title span::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+.blog-header .page-description {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0 0 25px 0;
+  animation: blogFadeInUp 0.6s ease 0.3s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.blog-header .header-accent-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-left: auto;
+  opacity: 0.5;
+  transition: width 0.4s ease, opacity 0.4s ease;
+}
+
+.blog-header .header-right:hover .header-accent-line {
+  width: 60px;
+  opacity: 0.8;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .blog-header {
+    padding: 100px 5% 40px;
+  }
+  
+  .blog-header .header-bg {
+    background-position: center 20%;
+  }
+  
+  .blog-header .page-subtitle {
+    letter-spacing: 0.4em;
+    font-size: 10px;
+  }
+  
+  .blog-header .page-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .blog-header .page-description {
+    font-size: 13px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .blog-header .header-accent-line {
+    margin-left: 0;
+  }
+  
+  .blog-header .header-right {
+    margin-top: 20px;
+  }
+}
+
+/* Fade-in animations */
+@keyframes blogFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+    
+    /* ========== CATEGORY FILTERS ========== */
+    .category-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 5% 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    
+    .category-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-family: 'Jost', sans-serif;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .category-btn:hover,
+    .category-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201, 164, 92, 0.1);
+    }
+    
+    /* ========== BLOG GRID ========== */
+    .blog-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 5% 80px;
+    }
+    
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    
+    @media (max-width: 1024px) {
+      .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .blog-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    
+    .blog-card:hover .blog-image {
+      transform: scale(1.05);
+    }
+    
+    .blog-content {
+      padding: 1.5rem;
+    }
+    
+    .blog-category {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+    
+    .blog-title {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    
+    .blog-excerpt {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    
+    .read-more {
+      color: var(--gold);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .read-more i {
+      margin-left: 4px;
+      font-size: 10px;
+    }
+    
+    /* ========== PAGINATION ========== */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 50px;
+      padding: 20px 0;
+    }
+    
+    .page-link {
+      background: rgba(30, 30, 30, 0.8);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .page-link:hover,
+    .page-link.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #000;
+    }
+    
+    /* ========== SIDEBAR ========== */
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 50px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 5% 80px;
+    }
+    
+    @media (max-width: 900px) {
+      .blog-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+    
+    .sidebar-widget {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .sidebar-widget h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    
+    .search-box {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 12px 18px;
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    
+    .popular-post {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+    
+    .popular-post:hover {
+      transform: translateX(4px);
+    }
+    
+    .popular-post img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    
+    .popular-post h4 {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    
+    .popular-post p {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    
+    .category-list {
+      list-style: none;
+    }
+    
+    .category-list li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .category-list a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .category-list a:hover {
+      color: var(--gold);
+      padding-left: 5px;
+    }
+    
+    /* Loading Spinner */
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 400px;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* ========== PREMIUM FOOTER ========== */
+    .premium-footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 4rem 5% 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-col h4 {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    
+    .footer-col p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+    }
+    
+    .footer-col a:hover {
+      color: var(--gold);
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+    
+    .footer-bottom i {
+      color: var(--gold);
+    }
+    
+    /* ========== MOBILE BOTTOM NAV ========== */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 999;
+    }
+    
+    .mobile-bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 10px;
+      transition: var(--transition);
+    }
+    
+    .mobile-bottom-nav a i {
+      font-size: 20px;
+    }
+    
+    .mobile-bottom-nav a.active {
+      color: var(--gold);
+    }
+
+    /* ========== MOBILE BOTTOM NAVIGATION - PREMIUM GLASS ========== */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(201, 164, 92, 0.15);
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 12px 14px;
+  z-index: 999;
+  transition: var(--transition);
+}
+
+.mobile-bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  padding: 8px 16px;
+  border-radius: 40px;
+  position: relative;
+}
+
+.mobile-bottom-nav a i {
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.mobile-bottom-nav a span {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.mobile-bottom-nav a:hover {
+  color: var(--gold);
+  background: rgba(201, 164, 92, 0.1);
+}
+
+.mobile-bottom-nav a:hover i {
+  transform: translateY(-2px);
+}
+
+.mobile-bottom-nav a.active {
+  color: var(--gold);
+  background: rgba(201, 164, 92, 0.15);
+}
+
+/* Active indicator dot */
+.mobile-bottom-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* Show on mobile only */
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+  }
+  
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .mobile-bottom-nav {
+    padding: 6px 8px 10px;
+  }
+  
+  .mobile-bottom-nav a {
+    padding: 6px 12px;
+  }
+  
+  .mobile-bottom-nav a i {
+    font-size: 18px;
+  }
+  
+  .mobile-bottom-nav a span {
+    font-size: 9px;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Executive Navbar -->
+   <nav class="exec-nav">
+    <a href="index.html" class="nav-logo">Rent<span>Space</span></a>
+    <ul class="nav-links">
+      <!-- Explore Rentals Dropdown -->
+      <li class="dropdown">
+        <a href="rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="rentals.html">All Rentals</a></li>
+          <li><a href="rentals.html?location=Karen">Karen</a></li>
+          <li><a href="rentals.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="rentals.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="rentals.html?location=Ngong">Ngong</a></li>
+          <li><a href="rentals.html?location=Kitengela">Kitengela</a></li>
+          <li><a href="rentals.html?location=Westlands">Westlands</a></li>
+          <li><a href="rentals.html?location=Lavington">Lavington</a></li>
+          <li><a href="rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <!-- Airbnb Dropdown -->
+      <li class="dropdown">
+        <a href="airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="airbnb.html">All Bnbs</a></li>
+          <li><a href="airbnb.html?location=Karen">Karen</a></li>
+          <li><a href="airbnb.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="airbnb.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="airbnb.html?location=Westlands">Westlands</a></li>
+          <li><a href="airbnb.html?location=Lavington">Lavington</a></li>
+          <li><a href="airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+       <li><a href="movers.html">Movers & Packers</a></li>
+      <li><a href="blog.html">Location Insights</a></li>
+      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+    </ul>
+   <a href="contact.html" class="nav-cta">Book a Viewing</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Overlay for closing menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Page Header -->
+ <header class="blog-header">
+  <div class="header-bg"></div>
+  <div class="header-container">
+    <div class="header-left">
+      <div class="page-subtitle">EXPERT INSIGHTS</div>
+      <h1 class="page-title">The <span>RentSpace</span> Blog</h1>
+    </div>
+    <div class="header-right">
+      <p class="page-description">
+        Your guide to Nairobi's premier real estate market. From neighborhood guides to relocation tips, 
+        discover everything you need to find your perfect home.
+      </p>
+      <div class="header-accent-line"></div>
+    </div>
+  </div>
+</header>
+
+  <!-- Category Filters -->
+  <div class="category-filters" id="categoryFilters">
+    <button class="category-btn active" data-category="all">All</button>
+    <button class="category-btn" data-category="kitengela">Kitengela</button>
+    <button class="category-btn" data-category="ngong">Ngong</button>
+    <button class="category-btn" data-category="ruiru">Ruiru</button>
+    <button class="category-btn" data-category="karen">Karen</button>
+    <button class="category-btn" data-category="kilimani">Kilimani</button>
+    <button class="category-btn" data-category="hurlingham">Hurlingham</button>
+    <button class="category-btn" data-category="guides">Guides & Tips</button>
+  </div>
+
+  <!-- Blog Layout -->
+  <div class="blog-layout">
+    <!-- Main Content -->
+    <div>
+      <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+      </div>
+      <div class="blog-grid" id="blogGrid" style="display: none;"></div>
+      <div class="pagination" id="pagination" style="display: none;"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <h3>Search</h3>
+        <input type="text" class="search-box" id="searchInput" placeholder="Search articles...">
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Popular Reads</h3>
+        <div id="popularPosts"></div>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Explore by Area</h3>
+        <ul class="category-list" id="categoryList">
+          <li><a href="#" data-category="kitengela">Kitengela <span id="kitengelaCount">0</span></a></li>
+          <li><a href="#" data-category="ngong">Ngong <span id="ngongCount">0</span></a></li>
+          <li><a href="#" data-category="ruiru">Ruiru <span id="ruiruCount">0</span></a></li>
+          <li><a href="#" data-category="karen">Karen <span id="karenCount">0</span></a></li>
+          <li><a href="#" data-category="kilimani">Kilimani <span id="kilimaniCount">0</span></a></li>
+          <li><a href="#" data-category="hurlingham">Hurlingham <span id="hurlinghamCount">0</span></a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>RentSpace</h4>
+        <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="rentals.html">Explore Rentals</a>
+        <a href="movers.html">Movers & Packers</a>
+        <a href="blog.html">Location Insights</a>
+        <a href="fumigation.html">Fumigation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacts</h4>
+        <a href="tel:+254723562484">+254 723 562 484</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="contact.html">Talk to Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="blog.html"><i class="fas fa-newspaper"></i> Insights</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+ <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ========== HAMBURGER MENU WITH OVERLAY ==========
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function closeMenu() {
+        if (navMenu) navMenu.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        if (menuOverlay) menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function openMenu() {
+        if (navMenu) navMenu.classList.add('active');
+        if (hamburger) hamburger.classList.add('active');
+        if (menuOverlay) menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Re-initialize dropdowns after menu opens (important for mobile)
+        setTimeout(() => {
+            initMobileDropdowns();
+        }, 100);
+    }
+
+    if (hamburger) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (navMenu && navMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+    }
+
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu when clicking a link
+    if (navMenu) {
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    }
+
+    // Close menu on window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    // ========== MOBILE DROPDOWNS (FIXED) ==========
+    function initMobileDropdowns() {
+        // Only run on mobile
+        if (window.innerWidth > 768) return;
+        
+        console.log('Initializing mobile dropdowns...');
+        
+        const dropdowns = document.querySelectorAll('.dropdown');
+        console.log('Found dropdowns:', dropdowns.length);
+        
+        dropdowns.forEach((dropdown, index) => {
+            const trigger = dropdown.querySelector('.dropdown-trigger');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            if (!trigger || !menu) {
+                console.log(`Dropdown ${index}: missing trigger or menu`);
+                return;
+            }
+            
+            console.log(`Dropdown ${index}: initializing`);
+            
+            // Remove any existing click listeners to avoid duplicates
+            const newTrigger = trigger.cloneNode(true);
+            trigger.parentNode.replaceChild(newTrigger, trigger);
+            
+            // Add click event listener
+            newTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Dropdown clicked, toggling open class');
+                
+                // Toggle open class on dropdown and menu
+                dropdown.classList.toggle('open');
+                menu.classList.toggle('open');
+            });
+        });
+    }
+
+    // Initialize dropdowns on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        initMobileDropdowns();
+    });
+    
+    // Re-initialize dropdowns on window resize
+    window.addEventListener('resize', function() {
+        initMobileDropdowns();
+    });
+
+    // ========== BLOG DATA (Auto-loaded from posts.json) ==========
+    let blogPosts = [];
+    let currentCategory = 'all';
+    let currentPage = 1;
+    const postsPerPage = 9;
+
+    // Update category counts
+    function updateCategoryCounts() {
+        const counts = {
+            kitengela: 0,
+            ngong: 0,
+            ruiru: 0,
+            karen: 0,
+            kilimani: 0,
+            hurlingham: 0,
+            guides: 0
+        };
+        
+        blogPosts.forEach(post => {
+            if (counts[post.category] !== undefined) {
+                counts[post.category]++;
+            }
+        });
+        
+        document.getElementById('kitengelaCount').textContent = counts.kitengela || 0;
+        document.getElementById('ngongCount').textContent = counts.ngong || 0;
+        document.getElementById('ruiruCount').textContent = counts.ruiru || 0;
+        document.getElementById('karenCount').textContent = counts.karen || 0;
+        document.getElementById('kilimaniCount').textContent = counts.kilimani || 0;
+        document.getElementById('hurlinghamCount').textContent = counts.hurlingham || 0;
+    }
+
+    // Render blog posts
+    function renderBlogPosts() {
+        let filteredPosts = blogPosts;
+        
+        if (currentCategory !== 'all') {
+            filteredPosts = blogPosts.filter(post => post.category === currentCategory);
+        }
+        
+        const start = (currentPage - 1) * postsPerPage;
+        const end = start + postsPerPage;
+        const paginatedPosts = filteredPosts.slice(start, end);
+        const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+        
+        const blogGrid = document.getElementById('blogGrid');
+        const paginationDiv = document.getElementById('pagination');
+        
+        if (paginatedPosts.length === 0) {
+            blogGrid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+                    <i class="fas fa-newspaper" style="font-size: 48px; color: var(--gold); opacity: 0.5; margin-bottom: 20px;"></i>
+                    <h3 style="font-weight: 400;">No posts found</h3>
+                    <p style="color: var(--text-muted);">Check back soon for new insights!</p>
+                </div>
+            `;
+            paginationDiv.style.display = 'none';
+            return;
+        }
+        
+        blogGrid.innerHTML = paginatedPosts.map(post => `
+            <a href="/blog/${post.slug}.html" class="blog-card">
+                <img src="${post.image}" alt="${post.title}" class="blog-image" onerror="this.src='https://placehold.co/600x400/1a1a1a/c9a45c?text=${encodeURIComponent(post.title)}'">
+                <div class="blog-content">
+                    <span class="blog-category">${post.category.toUpperCase()}</span>
+                    <h3 class="blog-title">${post.title}</h3>
+                    <p class="blog-excerpt">${post.excerpt.substring(0, 120)}${post.excerpt.length > 120 ? '...' : ''}</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar-alt"></i> ${post.date}</span>
+                        <span><i class="far fa-clock"></i> ${post.readTime}</span>
+                        <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </a>
+        `).join('');
+        
+        // Render pagination
+        let paginationHTML = '';
+        
+        if (currentPage > 1) {
+            paginationHTML += `<a href="#" class="page-link" data-page="${currentPage - 1}"><i class="fas fa-chevron-left"></i></a>`;
+        }
+        
+        const startPage = Math.max(1, currentPage - 2);
+        const endPage = Math.min(totalPages, currentPage + 2);
+        
+        if (startPage > 1) {
+            paginationHTML += `<a href="#" class="page-link" data-page="1">1</a>`;
+            if (startPage > 2) paginationHTML += `<span class="page-dots">...</span>`;
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHTML += `<a href="#" class="page-link ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
+        }
+        
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) paginationHTML += `<span class="page-dots">...</span>`;
+            paginationHTML += `<a href="#" class="page-link" data-page="${totalPages}">${totalPages}</a>`;
+        }
+        
+        if (currentPage < totalPages) {
+            paginationHTML += `<a href="#" class="page-link" data-page="${currentPage + 1}"><i class="fas fa-chevron-right"></i></a>`;
+        }
+        
+        paginationDiv.innerHTML = paginationHTML;
+        paginationDiv.style.display = 'flex';
+        
+        // Add event listeners to pagination links
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = parseInt(link.dataset.page);
+                if (!isNaN(page)) {
+                    currentPage = page;
+                    renderBlogPosts();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+    
+    // Popular posts
+    function renderPopularPosts() {
+        const popular = [...blogPosts].sort((a, b) => b.views - a.views).slice(0, 3);
+        const container = document.getElementById('popularPosts');
+        if (popular.length === 0) {
+            container.innerHTML = '<p style="color: var(--text-muted);">No posts yet</p>';
+            return;
+        }
+        container.innerHTML = popular.map(post => `
+            <a href="/blog/${post.slug}.html" class="popular-post">
+                <img src="${post.image}" alt="${post.title}" onerror="this.src='https://placehold.co/60x60/1a1a1a/c9a45c?text='">
+                <div>
+                    <h4>${post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title}</h4>
+                    <p>${post.date} · ${post.readTime}</p>
+                </div>
+            </a>
+        `).join('');
+    }
+    
+    // Category filter buttons
+    function initCategoryFilters() {
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                currentPage = 1;
+                renderBlogPosts();
+            });
+        });
+        
+        document.querySelectorAll('#categoryList a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = link.dataset.category;
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    if (btn.dataset.category === category) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                currentCategory = category;
+                currentPage = 1;
+                renderBlogPosts();
+            });
+        });
+    }
+    
+    // Search functionality
+    function initSearch() {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                let filteredPosts = blogPosts;
+                if (currentCategory !== 'all') {
+                    filteredPosts = filteredPosts.filter(post => post.category === currentCategory);
+                }
+                const searched = filteredPosts.filter(post => 
+                    post.title.toLowerCase().includes(searchTerm) || 
+                    post.excerpt.toLowerCase().includes(searchTerm)
+                );
+                
+                if (searchTerm.length > 0) {
+                    const paginatedPosts = searched.slice(0, postsPerPage);
+                    const blogGrid = document.getElementById('blogGrid');
+                    const paginationDiv = document.getElementById('pagination');
+                    
+                    if (paginatedPosts.length === 0) {
+                        blogGrid.innerHTML = `
+                            <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+                                <i class="fas fa-search" style="font-size: 48px; color: var(--gold); opacity: 0.5; margin-bottom: 20px;"></i>
+                                <h3 style="font-weight: 400;">No results found</h3>
+                                <p style="color: var(--text-muted);">Try a different search term</p>
+                            </div>
+                        `;
+                        paginationDiv.style.display = 'none';
+                    } else {
+                        blogGrid.innerHTML = paginatedPosts.map(post => `
+                            <a href="/blog/${post.slug}.html" class="blog-card">
+                                <img src="${post.image}" alt="${post.title}" class="blog-image" onerror="this.src='https://placehold.co/600x400/1a1a1a/c9a45c?text=${encodeURIComponent(post.title)}'">
+                                <div class="blog-content">
+                                    <span class="blog-category">${post.category.toUpperCase()}</span>
+                                    <h3 class="blog-title">${post.title}</h3>
+                                    <p class="blog-excerpt">${post.excerpt.substring(0, 120)}${post.excerpt.length > 120 ? '...' : ''}</p>
+                                    <div class="blog-meta">
+                                        <span><i class="far fa-calendar-alt"></i> ${post.date}</span>
+                                        <span><i class="far fa-clock"></i> ${post.readTime}</span>
+                                        <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </a>
+                        `).join('');
+                        paginationDiv.style.display = 'none';
+                    }
+                } else {
+                    renderBlogPosts();
+                }
+            });
+        }
+    }
+    
+    // Load posts from JSON file
+    async function loadPosts() {
+        try {
+            const response = await fetch('/data/posts.json');
+            if (!response.ok) {
+                throw new Error('Failed to load posts');
+            }
+            blogPosts = await response.json();
+            
+            // Hide spinner, show content
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('blogGrid').style.display = 'grid';
+            
+            // Update category counts
+            updateCategoryCounts();
+            
+            // Render all components
+            renderBlogPosts();
+            renderPopularPosts();
+            initCategoryFilters();
+            initSearch();
+            
+        } catch (error) {
+            console.error('Error loading posts:', error);
+            document.getElementById('loadingSpinner').innerHTML = `
+                <div style="text-align: center;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 48px; color: var(--gold); margin-bottom: 20px;"></i>
+                    <h3 style="font-weight: 400;">Unable to load blog posts</h3>
+                    <p style="color: var(--text-muted);">Please check back later.</p>
+                </div>
+            `;
+        }
+    }
+    
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPosts();
+        initMobileDropdowns();
+    });
+</script>
+</body>
+</html>

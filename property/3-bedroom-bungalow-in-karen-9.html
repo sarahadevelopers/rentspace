@@ -10,7 +10,7 @@
   <meta property="og:title" content="Spacious 3 Bedroom Bungalow in Karen | RentSpace">
   <meta property="og:description" content="Experience luxury living in this beautiful spacious 3 bedroom bungalow in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
   <meta property="og:image" content="{{images.0}}">
-  <meta property="og:url" content="https://www.rentspace.co.ke/property/3-bedroom-bungalow-in-karen-9.html">
+  <meta property="og:url" content="https://www.rentspace.co.ke/property/{{slug}}.html">
   <meta property="og:type" content="website">
   
   <!-- Twitter Card -->
@@ -19,7 +19,7 @@
   <meta name="twitter:description" content="Experience luxury living in this beautiful spacious 3 bedroom bungalow in karen. Located in the prestigious Karen neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
   <meta name="twitter:image" content="{{images.0}}">
   
-  <link rel="canonical" href="https://www.rentspace.co.ke/property/3-bedroom-bungalow-in-karen-9.html">
+  <link rel="canonical" href="https://www.rentspace.co.ke/property/{{slug}}.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
           <li><a href="../rentals.html?location=Karen">Karen</a></li>
           <li><a href="../rentals.html?location=Kilimani">Kilimani</a></li>
           <li><a href="../rentals.html?location=Hurlingham">Hurlingham</a></li>
-          <li><a href="../rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="../rentals.html?location=Syokimau">Syokimau</a></li>
           <li><a href="../rentals.html?location=Ngong">Ngong</a></li>
           <li><a href="../rentals.html?location=Kitengela">Kitengela</a></li>
           <li><a href="../rentals.html?location=Westlands">Westlands</a></li>
@@ -94,7 +94,7 @@
    <!-- Gallery Section -->
   <div class="gallery-container">
     <div class="main-slide" id="mainSlide">
-      <img src="/images/properties/bungalow-karen-9.jpg" alt="Spacious 3 Bedroom Bungalow in Karen" id="mainGalleryImg" loading="lazy">
+      <img src="" alt="Spacious 3 Bedroom Bungalow in Karen" id="mainGalleryImg" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
       <button class="gallery-arrow prev" id="galleryPrevBtn">
         <i class="fas fa-chevron-left"></i>
       </button>
@@ -104,10 +104,26 @@
     </div>
     <div class="thumbnail-track" id="thumbTrack">
       
-            <div class="thumb" data-index="0">
-                <img src="/images/properties/bungalow-karen-9.jpg" alt="View 0" loading="lazy">
-            </div>
-        
+        <div class="thumb" data-index="0" onclick="switchImage(this)">
+            <img src="" alt="View 0" loading="lazy" onerror="this.src='https://placehold.co/80x80/1a1a1a/c9a45c?text=Err'">
+        </div>
+    
+        <div class="thumb" data-index="1" onclick="switchImage(this)">
+            <img src="" alt="View 1" loading="lazy" onerror="this.src='https://placehold.co/80x80/1a1a1a/c9a45c?text=Err'">
+        </div>
+    
+        <div class="thumb" data-index="2" onclick="switchImage(this)">
+            <img src="" alt="View 2" loading="lazy" onerror="this.src='https://placehold.co/80x80/1a1a1a/c9a45c?text=Err'">
+        </div>
+    
+        <div class="thumb" data-index="3" onclick="switchImage(this)">
+            <img src="" alt="View 3" loading="lazy" onerror="this.src='https://placehold.co/80x80/1a1a1a/c9a45c?text=Err'">
+        </div>
+    
+        <div class="thumb" data-index="4" onclick="switchImage(this)">
+            <img src="" alt="View 4" loading="lazy" onerror="this.src='https://placehold.co/80x80/1a1a1a/c9a45c?text=Err'">
+        </div>
+    
     </div>
   </div>
 
@@ -162,16 +178,12 @@
     </div>
 
     <!-- Key Features List -->
-    <div class="features-section">
-      <h3>Architectural Features</h3>
-      <ul class="features-list">
-        <li>3 Bedrooms</li>
-        <li>2 Bathrooms</li>
-        <li>2 Parking Spaces</li>
-        <li>Tiled Floors</li><li>Water Heater</li><li>Secure Parking</li><li>DSQ</li><li>Private Garden</li>
-      </ul>
-    </div>
-
+   <div class="features-section">
+  <h3>Architectural Features</h3>
+  <ul class="features-list">
+    <li>Tiled Floors</li><li>Water Heater</li><li>Secure Parking</li><li>DSQ</li><li>Private Garden</li>
+  </ul>
+</div>
     <!-- Concierge Services (Movers & Fumigation) -->
     <div class="concierge-section">
       <div class="concierge-content">
@@ -184,7 +196,7 @@
           <a href="../movers.html?destination=Spacious%203%20Bedroom%20Bungalow%20in%20Karen" class="btn-concierge">
             <i class="fas fa-truck"></i> Movers & Packers
           </a>
-          <a href="https://your-fumigation-site.com" target="_blank" class="btn-concierge">
+          <a href="https://fumigo.co.ke" target="_blank" class="btn-concierge">
             <i class="fas fa-leaf"></i> Fumigation
           </a>
         </div>
@@ -192,66 +204,99 @@
     </div>
 
     <!-- Recommendations Section -->
-    {{#if recommendations.length}}
-    <section class="recommendations">
-      <div class="section-header">
-        <h2>Similar Curations</h2>
-        <div class="section-line"></div>
+   <section class="recommendations">
+  <div class="section-header">
+    <h2>Similar Curations</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="recommendation-cards" id="recCards">
+    
+    <a href="/property/3-bedroom-apartment-in-karen-13.html" class="rec-card">
+      <div class="rec-card-image">
+        <img src="/images/placeholder.jpg" alt="3 Bedroom Apartment in Karen" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
       </div>
-      <div class="recommendation-cards" id="recCards">
+      <div class="rec-card-info">
+        <h4>3 Bedroom Apartment in Karen</h4>
+        <p>Karen · KES 199,503/mo</p>
         
-        <a href="../property/studio-apartment-in-karen-8.html" class="rec-card">
-            <div class="rec-card-image">
-                <img src="/images/properties/bedsitter-karen-8.jpg" alt="Studio Apartment in Karen">
-            </div>
-            <div class="rec-card-info">
-                <h4>Studio Apartment in Karen</h4>
-                <p>Karen · KES 42,813 / mo</p>
-            </div>
-        </a>
-        <a href="../property/3-bedroom-apartment-in-karen-13.html" class="rec-card">
-            <div class="rec-card-image">
-                <img src="/images/properties/3-bedroom-karen-13.jpg" alt="3 Bedroom Apartment in Karen">
-            </div>
-            <div class="rec-card-info">
-                <h4>3 Bedroom Apartment in Karen</h4>
-                <p>Karen · KES 199,503 / mo</p>
-            </div>
-        </a>
-        <a href="../property/1-bedroom-apartment-in-karen-23.html" class="rec-card">
-            <div class="rec-card-image">
-                <img src="/images/properties/1-bedroom-karen-23.jpg" alt="1 Bedroom Apartment in Karen">
-            </div>
-            <div class="rec-card-info">
-                <h4>1 Bedroom Apartment in Karen</h4>
-                <p>Karen · KES 68,565 / mo</p>
-            </div>
-        </a>
-        <a href="../property/3-bedroom-apartment-in-karen-24.html" class="rec-card">
-            <div class="rec-card-image">
-                <img src="/images/properties/3-bedroom-karen-24.jpg" alt="3 Bedroom Apartment in Karen">
-            </div>
-            <div class="rec-card-info">
-                <h4>3 Bedroom Apartment in Karen</h4>
-                <p>Karen · KES 136,851 / mo</p>
-            </div>
-        </a>
       </div>
-    </section>
-    {{/if}}
+    </a>
+    <a href="/property/3-bedroom-apartment-in-karen-24.html" class="rec-card">
+      <div class="rec-card-image">
+        <img src="/images/placeholder.jpg" alt="3 Bedroom Apartment in Karen" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
+      </div>
+      <div class="rec-card-info">
+        <h4>3 Bedroom Apartment in Karen</h4>
+        <p>Karen · KES 136,851/mo</p>
+        
+      </div>
+    </a>
+    <a href="/property/3-bedroom-apartment-in-karen-44.html" class="rec-card">
+      <div class="rec-card-image">
+        <img src="/images/properties/3-bedroom-karen-44.jpg" alt="3 Bedroom Apartment in Karen" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
+      </div>
+      <div class="rec-card-info">
+        <h4>3 Bedroom Apartment in Karen</h4>
+        <p>Karen · KES 145,287/mo</p>
+        
+      </div>
+    </a>
+    <a href="/property/studio-apartment-in-karen-46.html" class="rec-card">
+      <div class="rec-card-image">
+        <img src="/images/placeholder.jpg" alt="Studio Apartment in Karen" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
+      </div>
+      <div class="rec-card-info">
+        <h4>Studio Apartment in Karen</h4>
+        <p>Karen · KES 34,961/mo</p>
+        
+      </div>
+    </a>
+  </div>
+</section>
 
     <!-- Testimonials Section -->
-    {{#if reviews.length}}
-    <section class="testimonials">
-      <div class="section-header">
-        <h2>The Experience</h2>
-        <div class="section-line"></div>
+   <section class="testimonials">
+  <div class="section-header">
+    <h2>The Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="testimonials-list">
+    
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <i class="fas fa-quote-left"></i>
+        <p>"Beautiful property and excellent service. Would definitely use again."</p>
       </div>
-      <div class="testimonials-list">
-        
+      <div class="testimonial-author">
+        <strong>David N.</strong>
+        <span>Verified Client</span>
       </div>
-    </section>
-    {{/if}}
+    </div>
+  
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <i class="fas fa-quote-left"></i>
+        <p>"Absolutely stunning property! The attention to detail is impeccable. RentSpace made the entire process seamless."</p>
+      </div>
+      <div class="testimonial-author">
+        <strong>James M.</strong>
+        <span>Verified Client</span>
+      </div>
+    </div>
+  
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <i class="fas fa-quote-left"></i>
+        <p>"Exceptional property. The garden and outdoor space are perfect for entertaining."</p>
+      </div>
+      <div class="testimonial-author">
+        <strong>Stephen L.</strong>
+        <span>Verified Client</span>
+      </div>
+    </div>
+  
+  </div>
+</section>
   </main>
 
   <!-- Premium Footer -->
@@ -266,7 +311,7 @@
         <a href="../location/karen.html">Karen Collection</a>
         <a href="../location/kilimani.html">Kilimani Reserve</a>
         <a href="../location/hurlingham.html">Hurlingham Heights</a>
-        <a href="../location/ruiru.html">Ruiru Gardens</a>
+        <a href="../location/syokimau.html">Gateway Mall</a>
         <a href="../location/ngong.html">Ngong Views</a>
         <a href="../location/kitengela.html">Kitengela Homes</a>
       </div>
@@ -309,121 +354,199 @@
   </div>
 
   <script>
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // ========== HAMBURGER MENU WITH OVERLAY ==========
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.querySelector('.nav-links');
-    const menuOverlay = document.getElementById('menuOverlay');
+  // Dynamic year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    function closeMenu() {
-      if (navMenu) navMenu.classList.remove('active');
-      if (hamburger) hamburger.classList.remove('active');
-      if (menuOverlay) menuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+  // ========== HAMBURGER MENU WITH OVERLAY ==========
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('.nav-links');
+  const menuOverlay = document.getElementById('menuOverlay');
 
-    function openMenu() {
-      if (navMenu) navMenu.classList.add('active');
-      if (hamburger) hamburger.classList.add('active');
-      if (menuOverlay) menuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+  function closeMenu() {
+    if (navMenu) navMenu.classList.remove('active');
+    if (hamburger) hamburger.classList.remove('active');
+    if (menuOverlay) menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
-    if (hamburger) {
-      hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (navMenu && navMenu.classList.contains('active')) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      });
-    }
+  function openMenu() {
+    if (navMenu) navMenu.classList.add('active');
+    if (hamburger) hamburger.classList.add('active');
+    if (menuOverlay) menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-    if (menuOverlay) {
-      menuOverlay.addEventListener('click', closeMenu);
-    }
-
-    // Close menu when clicking a link
-    if (navMenu) {
-      const navLinks = navMenu.querySelectorAll('a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-    }
-
-    // Close menu on window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+  if (hamburger) {
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (navMenu && navMenu.classList.contains('active')) {
         closeMenu();
+      } else {
+        openMenu();
       }
     });
+  }
 
-    // ========== MOBILE DROPDOWNS (ONLY ON MOBILE) ==========
-    function initMobileDropdowns() {
-      if (window.innerWidth > 768) return;
-      
-      const dropdowns = document.querySelectorAll('.dropdown');
-      dropdowns.forEach(dropdown => {
-        const trigger = dropdown.querySelector('.dropdown-trigger');
-        const menu = dropdown.querySelector('.dropdown-menu');
-        if (trigger && menu) {
-          const newTrigger = trigger.cloneNode(true);
-          trigger.parentNode.replaceChild(newTrigger, trigger);
-          
-          newTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-            menu.classList.toggle('open');
-          });
-        }
-      });
+  if (menuOverlay) {
+    menuOverlay.addEventListener('click', closeMenu);
+  }
+
+  // Close menu when clicking a link
+  if (navMenu) {
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => link.addEventListener('click', closeMenu));
+  }
+
+  // Close menu on window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+      closeMenu();
     }
+  });
 
-    initMobileDropdowns();
-    window.addEventListener('resize', initMobileDropdowns);
-
-    // Gallery counter and scroll tracking
-    const gallery = document.getElementById('galleryStage');
-    const counter = document.getElementById('currentIndex');
-    const items = document.querySelectorAll('.gallery-item');
-    const total = items.length;
-
-    if (gallery && counter && total > 0) {
-      function updateCounter() {
-        const scrollLeft = gallery.scrollLeft;
-        const itemWidth = items[0].offsetWidth + 12;
-        const activeIndex = Math.round(scrollLeft / itemWidth) + 1;
-        counter.textContent = Math.min(activeIndex, total);
+  // ========== MOBILE DROPDOWNS ==========
+  function initMobileDropdowns() {
+    if (window.innerWidth > 768) return;
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+      const trigger = dropdown.querySelector('.dropdown-trigger');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      if (trigger && menu) {
+        const newTrigger = trigger.cloneNode(true);
+        trigger.parentNode.replaceChild(newTrigger, trigger);
+        newTrigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropdown.classList.toggle('open');
+          menu.classList.toggle('open');
+        });
       }
-      
-      gallery.addEventListener('scroll', updateCounter);
-      updateCounter();
+    });
+  }
+
+  initMobileDropdowns();
+  window.addEventListener('resize', initMobileDropdowns);
+
+  // ========== GALLERY FUNCTIONALITY ==========
+  const mainImage = document.getElementById('mainGalleryImg');
+  const thumbDivs = document.querySelectorAll('.thumb');
+  const prevBtn = document.getElementById('galleryPrevBtn');
+  const nextBtn = document.getElementById('galleryNextBtn');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  let currentIndex = 0;
+  const totalImages = thumbDivs.length;
+
+  // Helper: update main image and active thumbnail
+  function updateMainImage(index) {
+    if (index < 0) index = 0;
+    if (index >= totalImages) index = totalImages - 1;
+    currentIndex = index;
+
+    const thumbDiv = thumbDivs[currentIndex];
+    const imgElement = thumbDiv.querySelector('img');
+    if (imgElement) {
+      const newSrc = imgElement.src;
+      mainImage.src = newSrc;
+      if (lightboxImg) lightboxImg.src = newSrc;
     }
 
-    // Sticky inquiry button
-    const stickyInquiryBtn = document.getElementById('stickyInquiryBtn');
-    if (stickyInquiryBtn) {
-      stickyInquiryBtn.addEventListener('click', () => {
-        const title = document.querySelector('.property-title')?.textContent || 'Property';
-        const estate = document.querySelector('.location-meta')?.textContent.replace(/[^\w\s]/g, '').trim() || 'Nairobi';
-        const price = document.querySelector('.price-tag')?.textContent || '';
-        const url = window.location.href;
-        
-        const message = `*RENTSPACE PROPERTY INQUIRY*%0A%0A` +
-                        `*Property:* ${title}%0A` +
-                        `*Location:* ${estate}, Nairobi%0A` +
-                        `*Price:* ${price}%0A` +
-                        `*Listing:* ${url}%0A%0A` +
-                        `Hello, I'm interested in this property. Please share more details.`;
-        
-        window.open(`https://wa.me/254723562484?text=${message}`, '_blank');
-      });
+    // Update active class on thumbnails
+    thumbDivs.forEach(div => div.classList.remove('active'));
+    thumbDiv.classList.add('active');
+
+    // Scroll thumbnail into view if needed
+    const track = document.querySelector('.thumbnail-track');
+    if (track && thumbDiv) {
+      thumbDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
-  </script>
+  }
+
+  // Attach click events to thumbnails
+  if (thumbDivs.length > 0) {
+    thumbDivs.forEach((div, i) => {
+      div.addEventListener('click', () => updateMainImage(i));
+    });
+    // Set first active
+    updateMainImage(0);
+  }
+
+  // Prev / Next buttons
+  function nextImage() { updateMainImage(currentIndex + 1); }
+  function prevImage() { updateMainImage(currentIndex - 1); }
+
+  if (prevBtn) prevBtn.addEventListener('click', prevImage);
+  if (nextBtn) nextBtn.addEventListener('click', nextImage);
+
+  // ========== LIGHTBOX ==========
+  function openLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.add('show');
+    lightboxImg.src = mainImage.src;
+  }
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('show');
+  }
+  function lightboxNext() { nextImage(); lightboxImg.src = mainImage.src; }
+  function lightboxPrev() { prevImage(); lightboxImg.src = mainImage.src; }
+
+  if (mainImage) mainImage.addEventListener('click', openLightbox);
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', lightboxPrev);
+  if (lightboxNext) lightboxNext.addEventListener('click', lightboxNext);
+
+  // Keyboard navigation for lightbox
+  document.addEventListener('keydown', (e) => {
+    if (lightbox && lightbox.classList.contains('show')) {
+      if (e.key === 'ArrowLeft') lightboxPrev();
+      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'Escape') closeLightbox();
+    }
+  });
+
+  // ========== MOBILE SWIPE FOR MAIN GALLERY ==========
+  const mainSlide = document.getElementById('mainSlide');
+  let touchStartX = 0;
+  let touchEndX = 0;
+  if (mainSlide) {
+    mainSlide.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    mainSlide.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextImage();
+        else prevImage();
+      }
+    });
+  }
+
+  // ========== STICKY INQUIRY BUTTON ==========
+  const stickyInquiryBtn = document.getElementById('stickyInquiryBtn');
+  if (stickyInquiryBtn) {
+    stickyInquiryBtn.addEventListener('click', () => {
+      const title = document.querySelector('.property-title')?.textContent || 'Property';
+      const estate = document.querySelector('.location-meta')?.textContent.replace(/[^\w\s]/g, '').trim() || 'Nairobi';
+      const price = document.querySelector('.price-tag')?.textContent || '';
+      const url = window.location.href;
+
+      const message = `*RENTSPACE PROPERTY INQUIRY*%0A%0A` +
+                      `*Property:* ${title}%0A` +
+                      `*Location:* ${estate}, Nairobi%0A` +
+                      `*Price:* ${price}%0A` +
+                      `*Listing:* ${url}%0A%0A` +
+                      `Hello, I'm interested in this property. Please share more details.`;
+
+      window.open(`https://wa.me/254723562484?text=${message}`, '_blank');
+    });
+  }
+</script>
   <script src="../js/properties.js"></script>
 </body>
 </html>

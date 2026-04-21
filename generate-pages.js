@@ -54,7 +54,7 @@ function addAirbnbData(property, isAirbnb) {
       ...property,
       // Rental type classification
       rental_type: 'short_term',
-      available_for: 'short_term',  // ← CHANGED from array to string for easier filtering
+      available_for: 'short_term',
       is_airbnb_ready: true,
       
       // Short-term pricing
@@ -84,7 +84,7 @@ function addAirbnbData(property, isAirbnb) {
       ...property,
       // Rental type classification
       rental_type: 'long_term',
-      available_for: 'long_term',  // ← CHANGED from array to string
+      available_for: 'long_term',
       is_airbnb_ready: false,
       
       // Long-term pricing
@@ -110,7 +110,6 @@ function addAirbnbData(property, isAirbnb) {
 
 // ========== AUTO-GENERATE REVIEWS BASED ON PROPERTY ==========
 const reviewTemplates = {
-  // High-end estates (Karen, Kilimani, Hurlingham)
   luxury: [
     { name: "James M.", rating: 5, comment: "Absolutely stunning property! The attention to detail is impeccable. RentSpace made the entire process seamless." },
     { name: "Sarah K.", rating: 5, comment: "This property exceeded all expectations. The location is perfect and the service was world-class." },
@@ -118,7 +117,6 @@ const reviewTemplates = {
     { name: "Elizabeth W.", rating: 5, comment: "A truly luxurious experience from start to finish. Highly recommend RentSpace." },
     { name: "David N.", rating: 4, comment: "Beautiful property and excellent service. Would definitely use again." }
   ],
-  // Mid-range estates (Ruiru, Ngong, Kitengela)
   midRange: [
     { name: "Peter M.", rating: 5, comment: "Great value for money. The property is exactly as described and the team was very helpful." },
     { name: "Grace A.", rating: 4, comment: "Very satisfied with the property. Good location and responsive service." },
@@ -126,17 +124,14 @@ const reviewTemplates = {
     { name: "Lucy N.", rating: 4, comment: "Nice property, good neighborhood. RentSpace delivered as promised." },
     { name: "Robert O.", rating: 5, comment: "Excellent experience! The team went above and beyond." }
   ],
-  // Apartment-specific
   apartment: [
     { name: "Ann W.", rating: 5, comment: "Modern, clean apartment with great amenities. The moving service was incredibly helpful." },
     { name: "Brian K.", rating: 4, comment: "Well-maintained building and responsive management. Happy with the choice." }
   ],
-  // Villa/Bungalow specific
   villa: [
     { name: "Catherine M.", rating: 5, comment: "A dream home! Spacious, private, and beautifully designed. Worth every shilling." },
     { name: "Stephen L.", rating: 5, comment: "Exceptional property. The garden and outdoor space are perfect for entertaining." }
   ],
-  // Short-stay/Airbnb specific reviews
   shortStay: [
     { name: "Emma W.", rating: 5, comment: "Perfect short-stay experience! The place was immaculate and exactly as described. Host was very responsive." },
     { name: "Thomas L.", rating: 5, comment: "Great location for a weekend getaway. Would definitely book again!" },
@@ -146,13 +141,11 @@ const reviewTemplates = {
   ]
 };
 
-// Helper: Generate reviews for a property
 function generateReviewsForProperty(property) {
   const estate = property.estate;
   const type = property.type;
   const isShortStay = property.available_for === 'short_term';
   
-  // Determine review pool based on estate
   let reviewPool = [];
   if (estate === 'Karen' || estate === 'Kilimani' || estate === 'Hurlingham' || estate === 'Westlands') {
     reviewPool = [...reviewTemplates.luxury];
@@ -160,19 +153,16 @@ function generateReviewsForProperty(property) {
     reviewPool = [...reviewTemplates.midRange];
   }
   
-  // Add type-specific reviews
   if (type === 'Apartment' || type === 'Bedsitter' || type.includes('Bedroom')) {
     reviewPool = [...reviewPool, ...reviewTemplates.apartment];
   } else if (type === 'Bungalow' || type === 'Villa' || type === 'Mansionette') {
     reviewPool = [...reviewPool, ...reviewTemplates.villa];
   }
   
-  // Add short-stay reviews for Airbnb properties
   if (isShortStay) {
     reviewPool = [...reviewPool, ...reviewTemplates.shortStay];
   }
   
-  // Randomly select 2-3 reviews
   const reviewCount = Math.floor(Math.random() * 2) + 2;
   const shuffled = [...reviewPool];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -183,15 +173,12 @@ function generateReviewsForProperty(property) {
   return shuffled.slice(0, reviewCount);
 }
 
-// Helper: generate recommendations (similar properties)
 function getSimilarProperties(property, allProps, max = 4) {
-  // First try same estate and same rental type
   let similar = allProps.filter(p => {
     if (p.id === property.id) return false;
     return p.estate === property.estate && p.rental_type === property.rental_type;
   });
   
-  // If not enough, add same price range
   if (similar.length < max) {
     const priceRange = property.price;
     const samePrice = allProps.filter(p => {
@@ -203,7 +190,6 @@ function getSimilarProperties(property, allProps, max = 4) {
     similar = [...similar, ...samePrice];
   }
   
-  // If still not enough, add random from same area type
   if (similar.length < max) {
     const areaType = AIRBNB_ELIGIBLE_ESTATES.includes(property.estate) ? 'high-end' : 'mid-range';
     const areaMatch = allProps.filter(p => {
@@ -215,60 +201,30 @@ function getSimilarProperties(property, allProps, max = 4) {
     similar = [...similar, ...areaMatch];
   }
   
-  // Remove duplicates and limit
   similar = similar.filter((v, i, a) => a.findIndex(t => t.id === v.id) === i);
   return similar.slice(0, max);
 }
 
-// Helper: generate gallery HTML from images array
-function generateGallery(images) {
-  if (!images || images.length === 0) {
-    return `
-      <div class="property-gallery">
-        <div class="main-image">
-          <img id="mainImage" src="/images/placeholder.jpg" alt="Property">
-        </div>
-      </div>
-    `;
-  }
-  
-  const mainImage = images[0];
-  const thumbnails = images.map((img, idx) => `
-    <img class="thumb ${idx === 0 ? 'active' : ''}" src="${img}" alt="Thumbnail ${idx + 1}" onclick="switchImage(this)">
-  `).join('');
-  
-  return `
-    <div class="property-gallery">
-      <div class="main-image">
-        <img id="mainImage" src="${mainImage}" alt="Property main image">
-      </div>
-      <div class="thumbnails">
-        ${thumbnails}
-      </div>
-    </div>
-  `;
-}
-
-// Helper: generate recommendations HTML
 function generateRecommendations(recommendations) {
   if (!recommendations || recommendations.length === 0) return '';
+  const placeholder = 'https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image';
   
-  const cards = recommendations.map(rec => {
+  return recommendations.map(rec => {
     const isShortStay = rec.rental_type === 'short_term';
     const priceDisplay = isShortStay ? `KES ${rec.price_night?.toLocaleString()}/night` : `KES ${rec.price.toLocaleString()}/mo`;
     
     return `
     <a href="/property/${rec.slug}.html" class="rec-card">
       <div class="rec-card-image">
-        <img src="${rec.images?.[0] || '/images/placeholder.jpg'}" alt="${rec.title}" loading="lazy">
+        <img src="${rec.images?.[0] || '/images/placeholder.jpg'}" alt="${rec.title}" loading="lazy" onerror="this.src='${placeholder}'">
       </div>
       <div class="rec-card-info">
         <h4>${rec.title}</h4>
         <p>${rec.estate} · ${priceDisplay}</p>
         ${isShortStay ? '<span class="airbnb-tag"><i class="fab fa-airbnb"></i> Short-stay</span>' : ''}
       </div>
-    </a>
-  `}).join('');
+    </a>`;
+  }).join('');
   
   return `
     <section class="recommendations">
@@ -283,11 +239,10 @@ function generateRecommendations(recommendations) {
   `;
 }
 
-// Helper: generate reviews HTML
 function generateReviews(reviews) {
   if (!reviews || reviews.length === 0) return '';
   
-  const cards = reviews.map(review => `
+  return reviews.map(review => `
     <div class="testimonial-card">
       <div class="testimonial-content">
         <i class="fas fa-quote-left"></i>
@@ -313,18 +268,14 @@ function generateReviews(reviews) {
   `;
 }
 
-// Helper: compute average rating
 function computeAverageRating(reviews) {
   if (!reviews || reviews.length === 0) return 0;
   const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
   return (sum / reviews.length).toFixed(1);
 }
 
-// Helper: generate short-term/Airbnb section HTML
 function generateShortTermSection(property) {
-  if (property.rental_type !== 'short_term') {
-    return '';
-  }
+  if (property.rental_type !== 'short_term') return '';
   
   const priceNight = property.price_night ? property.price_night.toLocaleString() : '';
   const priceWeek = property.price_week ? property.price_week.toLocaleString() : '';
@@ -380,25 +331,16 @@ function generateShortTermSection(property) {
   `;
 }
 
-// Helper: generate location slug for back button
 function getLocationSlug(estate) {
   const locationMap = {
-    'Karen': 'karen',
-    'Kilimani': 'kilimani',
-    'Hurlingham': 'hurlingham',
-    'Ruiru': 'ruiru',
-    'Ngong': 'ngong',
-    'Kitengela': 'kitengela',
-    'Westlands': 'westlands',
-    'Lavington': 'lavington',
-    'Kileleshwa': 'kileleshwa',
-    'Runda': 'runda',
-    'Muthaiga': 'muthaiga'
+    'Karen': 'karen', 'Kilimani': 'kilimani', 'Hurlingham': 'hurlingham',
+    'Syokimau': 'syokimau', 'Ngong': 'ngong', 'Kitengela': 'kitengela',
+    'Westlands': 'westlands', 'Lavington': 'lavington', 'Kileleshwa': 'kileleshwa',
+    'Runda': 'runda', 'Muthaiga': 'muthaiga'
   };
   return locationMap[estate] || estate.toLowerCase();
 }
 
-// Helper: get rental type display
 function getRentalTypeDisplay(property) {
   return property.rental_type === 'short_term' ? 'short-stay' : 'long-term';
 }
@@ -425,8 +367,7 @@ const allProperties = originalProperties.map(prop => {
   return addAirbnbData(prop, isAirbnb);
 });
 
-// ✅ STEP 3: SAVE THE UPDATED PROPERTIES BACK TO JSON FILE
-// This is the CRITICAL FIX - saves the Airbnb flags to properties.json
+// STEP 3: Save updated properties back to JSON
 fs.writeFileSync(DATA_PATH, JSON.stringify(allProperties, null, 2));
 console.log('✅ Updated properties.json with Airbnb/rental flags\n');
 
@@ -434,42 +375,59 @@ console.log('✅ Updated properties.json with Airbnb/rental flags\n');
 let shortStayCount = 0;
 let longTermCount = 0;
 
+// Placeholder URLs for fallback
+const mainPlaceholder = 'https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image';
+const thumbPlaceholder = 'https://placehold.co/80x80/1a1a1a/c9a45c?text=Err';
+
 allProperties.forEach(prop => {
   if (prop.rental_type === 'short_term') shortStayCount++;
   else longTermCount++;
-  
+
   // Auto-generate reviews
   const reviews = generateReviewsForProperty(prop);
   prop.reviews = reviews;
-  
+
   // Generate recommendations
   const recommendations = getSimilarProperties(prop, allProperties);
   prop.recommendations = recommendations;
-  
-  // Compute stats
+
   const avgRating = computeAverageRating(reviews);
   const reviewCount = reviews.length;
-  
-  // Generate HTML sections
-  const galleryHtml = generateGallery(prop.images);
-  const recommendationsHtml = generateRecommendations(prop.recommendations);
-  const reviewsHtml = generateReviews(prop.reviews);
-  const shortTermHtml = generateShortTermSection(prop);
-  
-  // Build features list HTML
+
+  // --- Build gallery HTML (mainImage + thumbnails) ---
+  let mainImageHtml = '';
+  let thumbnailsHtml = '';
+
+  if (prop.images && prop.images.length) {
+    mainImageHtml = `<img src="${prop.images[0]}" alt="${prop.title}" id="mainGalleryImg" loading="lazy" onerror="this.src='${mainPlaceholder}'">`;
+    thumbnailsHtml = prop.images.map((img, idx) => `
+        <div class="thumb" data-index="${idx}" onclick="switchImage(this)">
+            <img src="${img}" alt="View ${idx}" loading="lazy" onerror="this.src='${thumbPlaceholder}'">
+        </div>
+    `).join('');
+  } else {
+    mainImageHtml = `<img src="${mainPlaceholder}" alt="${prop.title}" id="mainGalleryImg" loading="lazy">`;
+    thumbnailsHtml = `<div class="thumb" data-index="0" onclick="switchImage(this)"><img src="${thumbPlaceholder}" alt="View 0" loading="lazy"></div>`;
+  }
+
+  // Features list HTML
   const featuresHtml = (prop.features || []).map(f => `<li>${f}</li>`).join('');
-  
-  // Prepare data for replacement
+
+  // Other prepared values
   const imageUrl = prop.images?.[0] || '/images/placeholder.jpg';
   const encodedTitle = encodeURIComponent(prop.title);
   const priceFormatted = prop.price.toLocaleString();
   const description = prop.description || `A beautiful ${prop.type} in ${prop.estate}, Nairobi.`;
   const locationSlug = getLocationSlug(prop.estate);
   const rentalType = getRentalTypeDisplay(prop);
-  
-  // Simple placeholder replacements
+  const recommendationsHtml = generateRecommendations(prop.recommendations);
+  const reviewsHtml = generateReviews(prop.reviews);
+  const shortTermHtml = generateShortTermSection(prop);
+
+  // Replace all placeholders in one go
   let content = template
-    .replace(/{{gallery}}/g, galleryHtml)
+    .replace(/{{mainImage}}/g, mainImageHtml)
+    .replace(/{{thumbnails}}/g, thumbnailsHtml)
     .replace(/{{title}}/g, prop.title)
     .replace(/{{description}}/g, description)
     .replace(/{{imageUrl}}/g, imageUrl)
@@ -495,12 +453,12 @@ allProperties.forEach(prop => {
     .replace(/{{min_stay_nights}}/g, prop.min_stay_nights || '')
     .replace(/{{airbnb_rating}}/g, prop.airbnb_rating || '')
     .replace(/{{airbnb_reviews}}/g, prop.airbnb_reviews || '');
-  
+
   // Write the file
   const filename = `${prop.slug}.html`;
   const outputPath = path.join(OUTPUT_DIR, filename);
   fs.writeFileSync(outputPath, content);
-  
+
   const stayType = prop.rental_type === 'short_term' ? '✨ Airbnb/Short-stay' : '🏠 Long-term';
   console.log(`✅ Generated: /property/${filename} | ${stayType} | ${reviews.length} reviews | ${recommendations.length} recs`);
 });

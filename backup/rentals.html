@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
+  <title>Beautiful Homes | Houses & Apartments to Let in Nairobi</title>
+  <meta name="description" content="Find your next home with RentSpace. Explore beautiful houses and apartments to let in Karen, Kilimani, Kitengela, and Ruiru. Handpicked listings for a fresh start.">
+  
+  <meta property="og:title" content="Beautiful Homes | Houses to Let in Nairobi">
+  <meta property="og:description" content="Explore our handpicked collection of beautiful rentals in Nairobi's best neighborhoods.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-rentals.jpg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/rentals.css">
+  
+  
+</head>
+
+<body>
+
+  <!-- Executive Navbar -->
+   <nav class="exec-nav">
+    <a href="index.html" class="nav-logo">Rent<span>Space</span></a>
+    <ul class="nav-links">
+      <!-- Explore Rentals Dropdown -->
+      <li class="dropdown">
+        <a href="rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="rentals.html">All Rentals</a></li>
+          <li><a href="rentals.html?location=Karen">Karen</a></li>
+          <li><a href="rentals.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="rentals.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="rentals.html?location=Ruiru">Ruiru</a></li>
+          <li><a href="rentals.html?location=Ngong">Ngong</a></li>
+          <li><a href="rentals.html?location=Kitengela">Kitengela</a></li>
+          <li><a href="rentals.html?location=Westlands">Westlands</a></li>
+          <li><a href="rentals.html?location=Lavington">Lavington</a></li>
+          <li><a href="rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+      <!-- Airbnb Dropdown -->
+      <li class="dropdown">
+        <a href="airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="airbnb.html">All Bnbs</a></li>
+          <li><a href="airbnb.html?location=Karen">Karen</a></li>
+          <li><a href="airbnb.html?location=Kilimani">Kilimani</a></li>
+          <li><a href="airbnb.html?location=Hurlingham">Hurlingham</a></li>
+          <li><a href="airbnb.html?location=Westlands">Westlands</a></li>
+          <li><a href="airbnb.html?location=Lavington">Lavington</a></li>
+          <li><a href="airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+        </ul>
+      </li>
+      
+       <li><a href="movers.html">Movers & Packers</a></li>
+      <li><a href="blog.html">Location Insights</a></li>
+      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+    </ul>
+   <a href="contact.html" class="nav-cta">Book a Viewing</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Overlay for closing menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Page Header -->
+ <header class="rentals-header">
+  <div class="header-bg"></div>
+  <div class="header-container">
+    <div class="header-left">
+      <div class="page-subtitle">PREMIUM LISTINGS</div>
+      <h1 class="page-title">Curated <span>Nairobi</span> Living</h1>
+    </div>
+    <div class="header-right">
+      <p class="page-description">
+        Simple, beautiful & verified homes in the neighborhoods you actually want to live in.
+      </p>
+      <div class="header-accent-line"></div>
+    </div>
+  </div>
+</header>
+
+  <!-- Filter Strip -->
+  <div class="filter-strip">
+    <button class="filter-btn" id="filterNeighborhoodBtn">Location <i class="fas fa-chevron-down"></i></button>
+    <button class="filter-btn" id="filterTypeBtn">Property Type <i class="fas fa-chevron-down"></i></button>
+    <button class="filter-btn" id="filterBudgetBtn">Budget <i class="fas fa-chevron-down"></i></button>
+    <button class="filter-btn refine-btn" id="openDrawerBtn"><i class="fas fa-sliders-h"></i> Refine Search</button>
+  </div>
+
+  <!-- Result Count -->
+  <div class="result-count" id="resultCount">
+    Loading <span id="countValue">0</span> verified properties
+  </div>
+
+  <!-- Property Grid -->
+  <div id="propertyGrid" class="property-grid"></div>
+
+  <!-- Skeleton Loader -->
+  <div id="skeletonLoader" class="skeleton-grid">
+    <div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div><div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+  </div>
+
+  <!-- Empty State -->
+  <div id="emptyState" class="empty-state">
+    <div class="empty-state-icon"><i class="fas fa-home"></i></div>
+    <h3>No Properties Match These Criteria</h3>
+    <p>Our private portfolio may have off-market options that suit your needs.</p>
+    <a href="https://wa.me/254723562484?text=I'm%20interested%20in%20a%20private%20consultation" class="empty-state-btn">Request Private Consultation</a>
+  </div>
+
+  <!-- Filter Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="filter-drawer" id="filterDrawer">
+    <div class="drawer-header">
+      <h3>Refine Collection</h3>
+      <div class="drawer-close" id="closeDrawerBtn">✕</div>
+    </div>
+
+    <div class="filter-section" data-filter="neighborhood">
+      <span class="filter-section-label">Neighborhood</span>
+      <div class="filter-chips" id="neighborhoodChips">
+        <div class="filter-chip active" data-value="all">All Estates</div>
+        <div class="filter-chip" data-value="Karen">Karen</div>
+        <div class="filter-chip" data-value="Kilimani">Kilimani</div>
+        <div class="filter-chip" data-value="Hurlingham">Hurlingham</div>
+        <div class="filter-chip" data-value="Ruiru">Ruiru</div>
+        <div class="filter-chip" data-value="Ngong">Ngong</div>
+        <div class="filter-chip" data-value="Kitengela">Kitengela</div>
+      </div>
+    </div>
+
+    <div class="filter-section" data-filter="type">
+      <span class="filter-section-label">Property Type</span>
+      <div class="filter-chips" id="typeChips">
+        <div class="filter-chip active" data-value="all">All Types</div>
+        <div class="filter-chip" data-value="Bedsitter">Studio</div>
+        <div class="filter-chip" data-value="1 Bedroom">1 Bedroom</div>
+        <div class="filter-chip" data-value="2 Bedroom">2 Bedroom</div>
+        <div class="filter-chip" data-value="3 Bedroom">3 Bedroom</div>
+        <div class="filter-chip" data-value="Bungalow">Bungalow</div>
+        <div class="filter-chip" data-value="Mansionette">Mansionette</div>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <span class="filter-section-label">Budget (Monthly)</span>
+      <div class="price-range">
+        <input type="range" id="priceRange" min="0" max="500000" step="10000" value="500000">
+        <div class="price-values">
+          <span>KES 0</span>
+          <span id="maxPriceLabel">KES 500,000+</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="drawer-apply" id="applyFiltersBtn">Show Results</button>
+  </div>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Rent Space</h4>
+        <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio</h4>
+        <a href="rentals.html">Explore Rentals</a>
+        <a href="movers.html">Movers & Packers</a>
+        <a href="https://fumigo.co.ke">Fumigation Experts</a>
+        <a href="blog.html">Insights</a>
+      </div>
+      <div class="footer-col">
+        <h4>Explore by Area</h4>
+        <a href="location/karen.html">Karen Properties</a>
+        <a href="location/kilimani.html">Kilimani Properties</a>
+        <a href="location/hurlingham.html">Hurlingham Properties</a>
+        <a href="location/ruiru.html">Ruiru Properties</a>
+        <a href="location/ngong.html">Ngong Properties</a>
+        <a href="location/kitengela.html">Kitengela Properties</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <a href="tel:+254723562484">+254 723 562 484</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="contact.html">Book a Viewing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="about.html">About Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
+      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="blog.html"><i class="fas fa-newspaper"></i> Insights</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <script src="js/rentals.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function closeMenu() {
+      navMenu?.classList.remove('active');
+      hamburger?.classList.remove('active');
+      menuOverlay?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openMenu() {
+      navMenu?.classList.add('active');
+      hamburger?.classList.add('active');
+      menuOverlay?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (navMenu?.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
+
+    if (menuOverlay) {
+      menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu when clicking a link
+    if (navMenu) {
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+
+    // Mobile dropdowns
+    function initMobileDropdowns() {
+      const dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (trigger && menu && window.innerWidth <= 768) {
+          // Remove existing listeners to avoid duplicates
+          const newTrigger = trigger.cloneNode(true);
+          trigger.parentNode.replaceChild(newTrigger, trigger);
+          
+          newTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+            menu.classList.toggle('open');
+          });
+        }
+      });
+    }
+
+    initMobileDropdowns();
+    window.addEventListener('resize', initMobileDropdowns);
+  </script>
+</body>
+</html>

@@ -30,15 +30,15 @@ const locations = {
     estates: ["Ngong Vet", "Matasia", "Kibiko", "Ngong View", "Kerarapon", "Juanco", "Zambia"],
     image: "/images/locations/ngong-hero.jpg"
   },
-  ruiru: {
-    name: "Ruiru",
-    slug: "ruiru",
+  syokimau: {
+    name: "Syokimau",
+    slug: "syokimau",
     description: "Fast-growing urban hub with excellent connectivity via Thika Superhighway. Modern apartments and spacious homes for families and professionals.",
     avg_rent: "KES 40,000",
     commute_time: "30-45 min",
     estate_count: 7,
     estates: ["Kamakis", "Membley", "Tatu City", "Kimbo", "Gwa Kairu", "Kahawa Sukari", "Mwihoko"],
-    image: "/images/locations/ruiru-hero.jpg"
+    image: "/images/locations/syokimau-hero.jpg"
   },
   karen: {
     name: "Karen",

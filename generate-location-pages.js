@@ -33,11 +33,11 @@ const locations = {
   syokimau: {
     name: "Syokimau",
     slug: "syokimau",
-    description: "Fast-growing urban hub with excellent connectivity via Thika Superhighway. Modern apartments and spacious homes for families and professionals.",
+    description: "Fast-growing urban hub with excellent connectivity via Mombasa Road. Modern apartments and spacious homes for families and professionals.",
     avg_rent: "KES 40,000",
     commute_time: "30-45 min",
     estate_count: 7,
-    estates: ["Kamakis", "Membley", "Tatu City", "Kimbo", "Gwa Kairu", "Kahawa Sukari", "Mwihoko"],
+    estates: ["Katani", "GreatWall", "GateWay Mall", "Syokimau View"],
     image: "/images/locations/syokimau-hero.jpg"
   },
   karen: {

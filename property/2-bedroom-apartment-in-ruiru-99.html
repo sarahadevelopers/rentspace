@@ -225,7 +225,7 @@
   </div>
   <div class="recommendation-cards" id="recCards">
     
-    <a href="/property/3-bedroom-apartment-in-syokimau-1.html" class="rec-card">
+    <a href="/property/3-bedroom-duplex-in-syokimau-1.html" class="rec-card">
       <div class="rec-card-image">
         <img src="https://res.cloudinary.com/dhl0at14z/image/upload/v1776431455/property-by-fridah/jodpyksmefhfbpl5ebrx.jpg" alt="3 BEDROOM DUPLEX TO LET IN SYOKIMAU" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
       </div>
@@ -279,10 +279,10 @@
     <div class="testimonial-card">
       <div class="testimonial-content">
         <i class="fas fa-quote-left"></i>
-        <p>"Great value for money. The property is exactly as described and the team was very helpful."</p>
+        <p>"Very satisfied with the property. Good location and responsive service."</p>
       </div>
       <div class="testimonial-author">
-        <strong>Peter M.</strong>
+        <strong>Grace A.</strong>
         <span>Verified Client</span>
       </div>
     </div>
@@ -290,10 +290,10 @@
     <div class="testimonial-card">
       <div class="testimonial-content">
         <i class="fas fa-quote-left"></i>
-        <p>"Well-maintained building and responsive management. Happy with the choice."</p>
+        <p>"Modern, clean apartment with great amenities. The moving service was incredibly helpful."</p>
       </div>
       <div class="testimonial-author">
-        <strong>Brian K.</strong>
+        <strong>Ann W.</strong>
         <span>Verified Client</span>
       </div>
     </div>
@@ -438,8 +438,8 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxPrev = document.getElementById('lightboxPrev');
-  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxPrevBtn = document.getElementById('lightboxPrev');
+  const lightboxNextBtn = document.getElementById('lightboxNext');
 
   let currentIndex = 0;
   const totalImages = thumbDivs.length;
@@ -495,8 +495,8 @@
     if (!lightbox) return;
     lightbox.classList.remove('show');
   }
-  function lightboxNext() { nextImage(); lightboxImg.src = mainImage.src; }
-  function lightboxPrev() { prevImage(); lightboxImg.src = mainImage.src; }
+  function lightboxNextImage() { nextImage(); lightboxImg.src = mainImage.src; }
+  function lightboxPrevImage() { prevImage(); lightboxImg.src = mainImage.src; }
 
   if (mainImage) mainImage.addEventListener('click', openLightbox);
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
@@ -506,8 +506,8 @@
   // Keyboard navigation for lightbox
   document.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('show')) {
-      if (e.key === 'ArrowLeft') lightboxPrev();
-      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'ArrowLeft') lightboxPrevImage();
+      if (e.key === 'ArrowRight') lightboxNextImage();
       if (e.key === 'Escape') closeLightbox();
     }
   });

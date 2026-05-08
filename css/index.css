@@ -500,8 +500,8 @@ body {
 
 .hero-title {
   color: var(--text-primary);
-  font-size: clamp(2.5rem, 8vw, 4.8rem);
-  font-weight: 500;
+  font-size: clamp(2.5rem, 8vw, 3.8rem);
+  font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin-bottom: 30px;
@@ -1294,6 +1294,9 @@ body {
   .hero-title {
     font-size: 2rem;
     margin-bottom: 20px;
+  }
+  .title2{
+    font-size: large;
   }
   
   .hero-tag {

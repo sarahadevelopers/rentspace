@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-  <title>Spacious 3 Bedroom Bungalow in Ruiru | RentSpace</title>
+ <title>Spacious 3 Bedroom Bungalow for Rent in Ruiru | RentSpace</title>
   <meta name="description" content="Experience luxury living in this beautiful spacious 3 bedroom bungalow in ruiru. Located in the prestigious Ruiru neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
 
   <!-- Open Graph / Facebook -->
@@ -438,8 +438,8 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxPrev = document.getElementById('lightboxPrev');
-  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxPrevBtn = document.getElementById('lightboxPrev');
+  const lightboxNextBtn = document.getElementById('lightboxNext');
 
   let currentIndex = 0;
   const totalImages = thumbDivs.length;
@@ -495,8 +495,8 @@
     if (!lightbox) return;
     lightbox.classList.remove('show');
   }
-  function lightboxNext() { nextImage(); lightboxImg.src = mainImage.src; }
-  function lightboxPrev() { prevImage(); lightboxImg.src = mainImage.src; }
+  function lightboxNextImage() { nextImage(); lightboxImg.src = mainImage.src; }
+  function lightboxPrevImage() { prevImage(); lightboxImg.src = mainImage.src; }
 
   if (mainImage) mainImage.addEventListener('click', openLightbox);
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
@@ -506,8 +506,8 @@
   // Keyboard navigation for lightbox
   document.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('show')) {
-      if (e.key === 'ArrowLeft') lightboxPrev();
-      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'ArrowLeft') lightboxPrevImage();
+      if (e.key === 'ArrowRight') lightboxNextImage();
       if (e.key === 'Escape') closeLightbox();
     }
   });

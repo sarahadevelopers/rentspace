@@ -225,43 +225,13 @@
   </div>
   <div class="recommendation-cards" id="recCards">
     
-    <a href="/property/2-bedroom-apartment-in-hurlingham-38.html" class="rec-card">
+    <a href="/property/studio-apartment-in-karen-96.html" class="rec-card">
       <div class="rec-card-image">
-        <img src="/images/placeholder.jpg" alt="2 Bedroom Apartment in Hurlingham" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
+        <img src="/images/placeholder.jpg" alt="Studio Apartment in Karen" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
       </div>
       <div class="rec-card-info">
-        <h4>2 Bedroom Apartment in Hurlingham</h4>
-        <p>Hurlingham · KES 8,500/night</p>
-        <span class="airbnb-tag"><i class="fab fa-airbnb"></i> Short-stay</span>
-      </div>
-    </a>
-    <a href="/property/1-bedroom-apartment-in-hurlingham-49.html" class="rec-card">
-      <div class="rec-card-image">
-        <img src="/images/placeholder.jpg" alt="1 Bedroom Apartment in Hurlingham" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
-      </div>
-      <div class="rec-card-info">
-        <h4>1 Bedroom Apartment in Hurlingham</h4>
-        <p>Hurlingham · KES 5,500/night</p>
-        <span class="airbnb-tag"><i class="fab fa-airbnb"></i> Short-stay</span>
-      </div>
-    </a>
-    <a href="/property/2-bedroom-apartment-in-hurlingham-50.html" class="rec-card">
-      <div class="rec-card-image">
-        <img src="/images/placeholder.jpg" alt="2 Bedroom Apartment in Hurlingham" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
-      </div>
-      <div class="rec-card-info">
-        <h4>2 Bedroom Apartment in Hurlingham</h4>
-        <p>Hurlingham · KES 8,500/night</p>
-        <span class="airbnb-tag"><i class="fab fa-airbnb"></i> Short-stay</span>
-      </div>
-    </a>
-    <a href="/property/2-bedroom-apartment-in-hurlingham-68.html" class="rec-card">
-      <div class="rec-card-image">
-        <img src="/images/placeholder.jpg" alt="2 Bedroom Apartment in Hurlingham" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
-      </div>
-      <div class="rec-card-info">
-        <h4>2 Bedroom Apartment in Hurlingham</h4>
-        <p>Hurlingham · KES 8,500/night</p>
+        <h4>Studio Apartment in Karen</h4>
+        <p>Karen · KES 3,500/night</p>
         <span class="airbnb-tag"><i class="fab fa-airbnb"></i> Short-stay</span>
       </div>
     </a>
@@ -279,6 +249,17 @@
     <div class="testimonial-card">
       <div class="testimonial-content">
         <i class="fas fa-quote-left"></i>
+        <p>"Great location for a weekend getaway. Would definitely book again!"</p>
+      </div>
+      <div class="testimonial-author">
+        <strong>Thomas L.</strong>
+        <span>Verified Client</span>
+      </div>
+    </div>
+  
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <i class="fas fa-quote-left"></i>
         <p>"Perfect short-stay experience! The place was immaculate and exactly as described. Host was very responsive."</p>
       </div>
       <div class="testimonial-author">
@@ -290,10 +271,10 @@
     <div class="testimonial-card">
       <div class="testimonial-content">
         <i class="fas fa-quote-left"></i>
-        <p>"Well-maintained building and responsive management. Happy with the choice."</p>
+        <p>"This property exceeded all expectations. The location is perfect and the service was world-class."</p>
       </div>
       <div class="testimonial-author">
-        <strong>Brian K.</strong>
+        <strong>Sarah K.</strong>
         <span>Verified Client</span>
       </div>
     </div>
@@ -438,8 +419,8 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxPrev = document.getElementById('lightboxPrev');
-  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxPrevBtn = document.getElementById('lightboxPrev');
+  const lightboxNextBtn = document.getElementById('lightboxNext');
 
   let currentIndex = 0;
   const totalImages = thumbDivs.length;
@@ -495,8 +476,8 @@
     if (!lightbox) return;
     lightbox.classList.remove('show');
   }
-  function lightboxNext() { nextImage(); lightboxImg.src = mainImage.src; }
-  function lightboxPrev() { prevImage(); lightboxImg.src = mainImage.src; }
+  function lightboxNextImage() { nextImage(); lightboxImg.src = mainImage.src; }
+  function lightboxPrevImage() { prevImage(); lightboxImg.src = mainImage.src; }
 
   if (mainImage) mainImage.addEventListener('click', openLightbox);
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
@@ -506,8 +487,8 @@
   // Keyboard navigation for lightbox
   document.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('show')) {
-      if (e.key === 'ArrowLeft') lightboxPrev();
-      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'ArrowLeft') lightboxPrevImage();
+      if (e.key === 'ArrowRight') lightboxNextImage();
       if (e.key === 'Escape') closeLightbox();
     }
   });

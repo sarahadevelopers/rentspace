@@ -1,0 +1,301 @@
+/* ================================
+   BLOG LAYOUT
+================================ */
+.blog-post-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 120px 5% 80px;
+}
+
+/* ================================
+   HEADER
+================================ */
+.post-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.post-category {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.post-title {
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+.post-featured-image {
+  width: 100%;
+  border-radius: 24px;
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+}
+
+/* ================================
+   CONTENT
+================================ */
+.post-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.post-content h2 {
+  font-size: 28px;
+  color: var(--gold);
+  margin: 2rem 0 1rem;
+}
+
+.post-content h3 {
+  font-size: 22px;
+  margin: 1.5rem 0 1rem;
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 1rem 0 1.5rem 2rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* ================================
+   PRICE TABLE
+================================ */
+.price-table {
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.price-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.price-table th,
+.price-table td {
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: left;
+}
+
+.price-table th {
+  background: rgba(201, 164, 92, 0.1);
+  color: var(--gold);
+}
+
+/* ================================
+   PROPERTY RECOMMENDATIONS
+================================ */
+.property-recommendations {
+  margin: 4rem 0;
+  background: linear-gradient(135deg, rgba(201, 164, 92, 0.05), rgba(0, 0, 0, 0.3));
+  border-radius: 24px;
+  padding: 2rem;
+  border: 1px solid var(--border);
+}
+
+.recommendation-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.recommendation-header h3 {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+.recommendation-header p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.rec-property-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.rec-property-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.rec-property-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.rec-property-info {
+  padding: 1rem;
+}
+
+.rec-property-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.rec-property-location {
+  font-size: 11px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.rec-property-features {
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.rec-property-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.rec-property-cta {
+  background: var(--gold);
+  color: #000;
+  text-align: center;
+  padding: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* ================================
+   AIRBNB SECTION
+================================ */
+.airbnb-recommendation-section {
+  margin: 4rem 0;
+  background: linear-gradient(135deg, rgba(255,90,95,0.05), rgba(0,0,0,0.2));
+  border-radius: 24px;
+  padding: 2rem;
+  border: 1px solid var(--border);
+}
+
+.airbnb-recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.airbnb-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.airbnb-card:hover {
+  transform: translateY(-5px);
+  border-color: #FF5A5F;
+}
+
+/* ================================
+   AUTHOR
+================================ */
+.author-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 3rem 0;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.author-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/* ================================
+   FAQ
+================================ */
+.faq-section {
+  background: rgba(201,164,92,0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+.faq-question {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+/* ================================
+   RELATED POSTS
+================================ */
+.related-posts {
+  margin-top: 4rem;
+  border-top: 1px solid var(--border);
+  padding-top: 3rem;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ================================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+  .post-title { font-size: 32px; }
+  .related-grid { grid-template-columns: 1fr; }
+  .author-box { flex-direction: column; text-align: center; }
+  .recommendation-grid,
+  .airbnb-recommendation-grid {
+    grid-template-columns: 1fr;
+  }
+}

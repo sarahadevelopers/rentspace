@@ -989,58 +989,112 @@
       <div class="form-section">
         <h2>Send an Inquiry</h2>
         
-        <form id="contactForm" class="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" id="fullName" class="form-input" required placeholder="e.g., James Harrington">
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" id="email" class="form-input" required placeholder="james@example.com">
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" id="phone" class="form-input" placeholder="+254 700 000 000">
-            </div>
-            <div class="form-group">
-              <label>Inquiry Type</label>
-              <select id="inquiryType" class="form-input form-select">
-                <option value="Property Viewing">Property Viewing</option>
-                <option value="Relocation Services">Relocation Services</option>
-                <option value="Sanctuary Prep">Sanctuary Prep</option>
-                <option value="General Inquiry">General Inquiry</option>
-                <option value="Private Collection">Private Collection Access</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>Preferred Estates</label>
-            <select id="estates" class="form-input form-select">
-              <option value="Any">Any Estate</option>
-              <option value="Karen">Karen</option>
-              <option value="Kilimani">Kilimani</option>
-              <option value="Hurlingham">Hurlingham</option>
-              <option value="Syokimau">Syokimau</option>
-              <option value="Ngong">Ngong</option>
-              <option value="Kitengela">Kitengela</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label>Your Message</label>
-            <textarea id="message" class="form-input" rows="4" placeholder="Tell us about your requirements..."></textarea>
-          </div>
-          
-          <button type="submit" class="submit-btn">
-            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
-            Send Private Inquiry
-          </button>
-        </form>
+        <form id="contactForm" class="contact-form" action="https://formsubmit.co/info@rentspace.co.ke" method="POST">
+  <!-- Honeypot field to block bots (hidden from users) -->
+  <input type="text" name="_honey" style="display:none">
+  <!-- Disable Captcha (FormSubmit allows you to skip it) -->
+  <input type="hidden" name="_captcha" value="false">
+  <!-- Custom success page (leave empty to stay on same page) -->
+  <input type="hidden" name="_next" value="https://rentspace.co.ke/thank-you.html">
+  <!-- Optional: Remove default "subject" field – we’ll set subject dynamically -->
+  <input type="hidden" name="_subject" value="New contact from RentSpace website">
+  
+  <div class="form-row">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="e.g., James Harrington">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="email" name="email" class="form-input" required placeholder="james@example.com">
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="phone" name="phone" class="form-input" placeholder="+254 700 000 000">
+    </div>
+    <div class="form-group">
+      <label>Inquiry Type</label>
+      <select id="inquiryType" name="inquiryType" class="form-input form-select">
+        <option value="Property Viewing">Property Viewing</option>
+        <option value="Relocation Services">Relocation Services</option>
+        <option value="Sanctuary Prep">Fumigation</option>
+        <option value="General Inquiry">General Inquiry</option>
+        <option value="Private Collection">Private Collection Access</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label>Preferred Estates</label>
+    <select id="estates" name="preferredEstates" class="form-input form-select">
+      <option value="Any">Any Estate</option>
+      <option value="Karen">Karen</option>
+      <option value="Kilimani">Kilimani</option>
+      <option value="Hurlingham">Hurlingham</option>
+      <option value="Syokimau">Syokimau</option>
+      <option value="Ngong">Ngong</option>
+      <option value="Kitengela">Kitengela</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Your Message</label>
+    <textarea id="message" name="message" class="form-input" rows="4" placeholder="Tell us about your requirements..."></textarea>
+  </div>
+  
+  <button type="submit" class="submit-btn" id="formSubmitBtn">
+    <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+    Send Private Inquiry
+  </button>
+  <div id="formStatus" class="form-status" style="display:none; margin-top:1rem; text-align:center;"></div>
+</form>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = document.getElementById('formSubmitBtn');
+    const statusDiv = document.getElementById('formStatus');
+    
+    // Disable button and show loading
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    statusDiv.style.display = 'block';
+    statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending your inquiry...';
+    
+    // Collect form data
+    const formData = new FormData(form);
+    
+    // Send to FormSubmit
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        statusDiv.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your message has been sent. We\'ll get back to you shortly.';
+        statusDiv.style.color = '#4CAF50';
+        form.reset(); // optional
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Send Private Inquiry';
+        // Optional: hide success message after 5 seconds
+        setTimeout(() => { statusDiv.style.display = 'none'; }, 5000);
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      statusDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Oops! Something went wrong. Please try again or call us directly.';
+      statusDiv.style.color = '#ff6b6b';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Send Private Inquiry';
+    });
+  });
+</script>
       </div>
     </div>
     
@@ -1049,10 +1103,7 @@
       <h2>Visit Our Office</h2>
       <div class="map-container">
         <div class="map-placeholder">
-          <i class="fas fa-map-marker-alt"></i>
-          <p>RentSpace Location</p>
-          <p style="font-size: 12px;">Westlands, Nairobi, Kenya</p>
-          <p style="font-size: 11px; margin-top: 10px;">By appointment only</p>
+         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.4851078523557!2d36.9572983!3d-1.4812311999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f9f8b051f4255%3A0xec99a8816f7ab84f!2sNewton%20House!5e0!3m2!1sen!2ske!4v1777722043929!5m2!1sen!2ske" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>

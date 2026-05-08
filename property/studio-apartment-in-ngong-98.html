@@ -225,43 +225,43 @@
   </div>
   <div class="recommendation-cards" id="recCards">
     
-    <a href="/property/3-bedroom-mansionette-in-ngong-28.html" class="rec-card">
+    <a href="/property/3-bedroom-duplex-in-syokimau-1.html" class="rec-card">
       <div class="rec-card-image">
-        <img src="/images/placeholder.jpg" alt="Luxury 3 Bedroom Mansionette in Ngong" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
+        <img src="https://res.cloudinary.com/dhl0at14z/image/upload/v1776431455/property-by-fridah/jodpyksmefhfbpl5ebrx.jpg" alt="3 BEDROOM DUPLEX TO LET IN SYOKIMAU" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
       </div>
       <div class="rec-card-info">
-        <h4>Luxury 3 Bedroom Mansionette in Ngong</h4>
-        <p>Ngong · KES 114,952/mo</p>
+        <h4>3 BEDROOM DUPLEX TO LET IN SYOKIMAU</h4>
+        <p>Syokimau · KES 35,000/mo</p>
         
       </div>
     </a>
-    <a href="/property/3-bedroom-mansionette-in-ngong-32.html" class="rec-card">
+    <a href="/property/3-bedroom-apartment-in-syokimau-2.html" class="rec-card">
       <div class="rec-card-image">
-        <img src="/images/placeholder.jpg" alt="Luxury 3 Bedroom Mansionette in Ngong" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
+        <img src="https://res.cloudinary.com/dhl0at14z/image/upload/v1776370756/property-by-fridah/wqxqlyjwhexocvfx5gcg.jpg" alt="3BEDROOM APARTMENT TO LET IN SYOKIMAU" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
       </div>
       <div class="rec-card-info">
-        <h4>Luxury 3 Bedroom Mansionette in Ngong</h4>
-        <p>Ngong · KES 114,878/mo</p>
+        <h4>3BEDROOM APARTMENT TO LET IN SYOKIMAU</h4>
+        <p>Syokimau · KES 55,000/mo</p>
         
       </div>
     </a>
-    <a href="/property/1-bedroom-apartment-in-ngong-41.html" class="rec-card">
+    <a href="/property/4-bedroom-mansion-in-kitengela-3.html" class="rec-card">
       <div class="rec-card-image">
-        <img src="/images/placeholder.jpg" alt="1 Bedroom Apartment in Ngong" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
+        <img src="https://res.cloudinary.com/dhl0at14z/image/upload/v1775930837/property-by-fridah/z7nssqb7bttgbgxhrveh.jpg" alt="4BEDROOM MANSION TO LET IN KITENGELA" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
       </div>
       <div class="rec-card-info">
-        <h4>1 Bedroom Apartment in Ngong</h4>
-        <p>Ngong · KES 27,510/mo</p>
+        <h4>4BEDROOM MANSION TO LET IN KITENGELA</h4>
+        <p>Kitengela · KES 55,000/mo</p>
         
       </div>
     </a>
-    <a href="/property/2-bedroom-apartment-in-ngong-42.html" class="rec-card">
+    <a href="/property/3-bedroom-bungalow-in-kitengela-6.html" class="rec-card">
       <div class="rec-card-image">
-        <img src="/images/placeholder.jpg" alt="2 Bedroom Apartment in Ngong" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
+        <img src="https://res.cloudinary.com/dhl0at14z/image/upload/v1775925027/property-by-fridah/gh0ou5rz2sg2e5hhk6tc.jpg" alt="3BEDROOM BUNGALOW TO LET IN KITENGELA" loading="lazy" onerror="this.src='https://placehold.co/800x600/1a1a1a/c9a45c?text=No+Image'">
       </div>
       <div class="rec-card-info">
-        <h4>2 Bedroom Apartment in Ngong</h4>
-        <p>Ngong · KES 45,667/mo</p>
+        <h4>3BEDROOM BUNGALOW TO LET IN KITENGELA</h4>
+        <p>Kitengela · KES 55,000/mo</p>
         
       </div>
     </a>
@@ -279,10 +279,10 @@
     <div class="testimonial-card">
       <div class="testimonial-content">
         <i class="fas fa-quote-left"></i>
-        <p>"Modern, clean apartment with great amenities. The moving service was incredibly helpful."</p>
+        <p>"Well-maintained building and responsive management. Happy with the choice."</p>
       </div>
       <div class="testimonial-author">
-        <strong>Ann W.</strong>
+        <strong>Brian K.</strong>
         <span>Verified Client</span>
       </div>
     </div>
@@ -438,8 +438,8 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxPrev = document.getElementById('lightboxPrev');
-  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxPrevBtn = document.getElementById('lightboxPrev');
+  const lightboxNextBtn = document.getElementById('lightboxNext');
 
   let currentIndex = 0;
   const totalImages = thumbDivs.length;
@@ -495,8 +495,8 @@
     if (!lightbox) return;
     lightbox.classList.remove('show');
   }
-  function lightboxNext() { nextImage(); lightboxImg.src = mainImage.src; }
-  function lightboxPrev() { prevImage(); lightboxImg.src = mainImage.src; }
+  function lightboxNextImage() { nextImage(); lightboxImg.src = mainImage.src; }
+  function lightboxPrevImage() { prevImage(); lightboxImg.src = mainImage.src; }
 
   if (mainImage) mainImage.addEventListener('click', openLightbox);
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
@@ -506,8 +506,8 @@
   // Keyboard navigation for lightbox
   document.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('show')) {
-      if (e.key === 'ArrowLeft') lightboxPrev();
-      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'ArrowLeft') lightboxPrevImage();
+      if (e.key === 'ArrowRight') lightboxNextImage();
       if (e.key === 'Escape') closeLightbox();
     }
   });

@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'https://www.rentspace.co.ke';
+const BASE_URL = 'https://rentspace.co.ke';
 
 // ---------- SITEMAP CONFIGURATION ----------
 const staticPages = [
@@ -38,14 +38,16 @@ Sitemap: ${BASE_URL}/sitemap.xml
 `;
 
 // ---------- HELPER: SCAN DIRECTORIES FOR HTML FILES ----------
+// ---------- HELPER: SCAN DIRECTORIES FOR HTML FILES ----------
 function getAllHtmlFiles(dirPath, relativeDir) {
   let results = [];
   const fullPath = path.join(__dirname, dirPath);
   if (!fs.existsSync(fullPath)) return results;
-  
+
   const items = fs.readdirSync(fullPath, { withFileTypes: true });
   for (const item of items) {
     if (item.isDirectory()) {
+      console.log(`Scanning directory: ${path.join(dirPath, item.name)}`); // Log directory paths
       results = results.concat(getAllHtmlFiles(path.join(dirPath, item.name), path.join(relativeDir, item.name)));
     } else if (item.isFile() && item.name.endsWith('.html')) {
       results.push({

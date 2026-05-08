@@ -356,8 +356,9 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxPrev = document.getElementById('lightboxPrev');
-  const lightboxNext = document.getElementById('lightboxNext');
+  // FIX: Renamed variables to avoid conflict with function names
+  const lightboxPrevBtn = document.getElementById('lightboxPrev');
+  const lightboxNextBtn = document.getElementById('lightboxNext');
 
   let currentIndex = 0;
   const totalImages = thumbDivs.length;
@@ -413,19 +414,20 @@
     if (!lightbox) return;
     lightbox.classList.remove('show');
   }
-  function lightboxNext() { nextImage(); lightboxImg.src = mainImage.src; }
-  function lightboxPrev() { prevImage(); lightboxImg.src = mainImage.src; }
+  // FIX: Renamed functions to avoid conflict with variable names
+  function lightboxPrevImage() { prevImage(); if (lightboxImg) lightboxImg.src = mainImage.src; }
+  function lightboxNextImage() { nextImage(); if (lightboxImg) lightboxImg.src = mainImage.src; }
 
   if (mainImage) mainImage.addEventListener('click', openLightbox);
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-  if (lightboxPrev) lightboxPrev.addEventListener('click', lightboxPrev);
-  if (lightboxNext) lightboxNext.addEventListener('click', lightboxNext);
+  if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', lightboxPrevImage);
+  if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', lightboxNextImage);
 
   // Keyboard navigation for lightbox
   document.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('show')) {
-      if (e.key === 'ArrowLeft') lightboxPrev();
-      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'ArrowLeft') lightboxPrevImage();
+      if (e.key === 'ArrowRight') lightboxNextImage();
       if (e.key === 'Escape') closeLightbox();
     }
   });

@@ -87,11 +87,9 @@ function getAirbnbPropertiesByLocation(locationName, limit = 3) {
 function getNearbyEstates(category) {
   const nearbyMap = {
     'kitengela': ['athi river', 'syokimau', 'machakos'],
-    'ngong': ['kibiko', 'matasia', 'karen'],
-    'syokimau': ['katani', 'gateway mall', 'greatwall'],
-    'karen': ['langata', 'hardy', 'miotoni'],
-    'kilimani': ['hurlingham', 'lavington', 'kileleshwa'],
-    'hurlingham': ['kilimani', 'upper hill', 'cbd']
+    
+    'syokimau': ['katani', 'gateway mall', 'greatwall']
+   
   };
   return nearbyMap[category] || [];
 }
@@ -518,20 +516,26 @@ async function generateAllPosts() {
   const locations = Object.keys(blogConfig.locations);
   const postTypes = ['guide', 'estate', 'budget', 'comparison'];
   
-  // Generate posts per location - adjust for desired total
-  const postsPerLocation = 170; // 6 locations × 170 = 1020 posts (adjust to 170 for now, change to 170 for 1000+)
+  // Modify the number of posts per location
+  const postsPerLocation = {
+    'kitengela': 20,  // 20 posts for Kitengela
+    'syokimau': 10,   // 10 posts for Syokimau
+  };
   
-  console.log(`📊 Will generate ${postsPerLocation} posts per location (${locations.length} locations) = ${postsPerLocation * locations.length} total posts\n`);
-  console.log(`📊 Airbnb recommendations will be pulled from properties.json\n`);
+  console.log(`📊 Generating blog posts...\n`);
   
   for (const location of locations) {
-    console.log(`\n📝 Generating ${postsPerLocation} posts for ${location.toUpperCase()}...`);
-    
-    for (let i = 1; i <= postsPerLocation; i++) {
-      const postType = randomItem(postTypes);
-      generateBlogPost(location, postType, i);
+    const postsToGenerate = postsPerLocation[location] || 0;  // Default to 0 if not specified
+
+    if (postsToGenerate > 0) {
+      console.log(`\n📝 Generating ${postsToGenerate} posts for ${location.toUpperCase()}...`);
+      
+      for (let i = 1; i <= postsToGenerate; i++) {
+        const postType = randomItem(postTypes);
+        generateBlogPost(location, postType, i);
+      }
+      console.log(`   ✓ Completed ${postsToGenerate} posts for ${location}`);
     }
-    console.log(`   ✓ Completed ${postsPerLocation} posts for ${location}`);
   }
   
   console.log(`\n✅ Generated ${generatedPosts.length} blog posts!`);

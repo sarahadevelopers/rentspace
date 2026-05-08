@@ -2,40 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Luxury 3 Bedroom Mansionette in Kitengela | RentSpace</title>
-  <meta name="description" content="Experience luxury living in this beautiful luxury 3 bedroom mansionette in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
+  <!-- Primary SEO -->
+  <title>3 Bedroom Maisonette for Rent in Kitengela – KSh 94,560 | RentSpace</title>
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Luxury 3 Bedroom Mansionette in Kitengela | RentSpace">
-  <meta property="og:description" content="Experience luxury living in this beautiful luxury 3 bedroom mansionette in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
-  <meta property="og:image" content="{{images.0}}">
-  <meta property="og:url" content="https://rentspace.co.ke/property/{{slug}}.html">
-  <meta property="og:type" content="website">
+  <meta name="description" content="3 bedroom maisonette for rent in Kitengela. Features master ensuite, spacious layout, modern finishes, secure parking, water heater, and 24/7 security in a gated community. Rent: KSh 94,560/month.">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Luxury 3 Bedroom Mansionette in Kitengela | RentSpace">
-  <meta name="twitter:description" content="Experience luxury living in this beautiful luxury 3 bedroom mansionette in kitengela. Located in the prestigious Kitengela neighborhood, this property offers 3 bedrooms, 2 bathrooms, and 2 parking spaces. Features include Tiled Floors, Water Heater, Secure Parking.">
-  <meta name="twitter:image" content="{{images.0}}">
+  <meta name="keywords" content="3 bedroom maisonette Kitengela, house for rent Kitengela Kenya, maisonette Kitengela Nairobi, gated community homes Kitengela, rentals near Namanga Road">
 
-  <!-- Favicon (FIXED) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/RentSpace-favicon.webp">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/RentSpace-favicon.webp">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/RentSpace-favicon.webp">
-  <link rel="icon" href="/images/RentSpace-favicon.ico">
+  <meta name="robots" content="index, follow">
+
+  <!-- Geo SEO -->
+  <meta name="geo.region" content="KE">
+  <meta name="geo.placename" content="Kitengela">
+  <meta name="geo.position" content="-1.476;36.961">
+  <meta name="ICBM" content="-1.476, 36.961">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://rentspace.co.ke/property/{{slug}}.html">
 
-  <!-- Fonts -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="3 Bedroom Maisonette for Rent in Kitengela – KSh 94,560">
+  <meta property="og:description" content="Spacious 3 bedroom maisonette in Kitengela with modern finishes, secure parking, and 24/7 security. Ideal for family living.">
+  <meta property="og:image" content="{{images.0}}">
+  <meta property="og:url" content="https://rentspace.co.ke/property/{{slug}}.html">
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="en_KE">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3 Bedroom Maisonette for Rent in Kitengela – KSh 94,560">
+  <meta name="twitter:description" content="Modern 3 bedroom maisonette in Kitengela within a secure gated community.">
+  <meta name="twitter:image" content="{{images.0}}">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "3 Bedroom Maisonette for Rent in Kitengela",
+    "description": "Spacious 3 bedroom maisonette in Kitengela with modern finishes and secure environment.",
+    "image": "{{images.0}}",
+    "offers": {
+      "@type": "Offer",
+      "price": "94560",
+      "priceCurrency": "KES",
+      "availability": "https://schema.org/InStock"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kitengela",
+      "addressRegion": "Kajiado County",
+      "addressCountry": "KE"
+    }
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/RentSpace-favicon.webp">
+
+  <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="../css/property.css">
@@ -449,8 +481,8 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxPrev = document.getElementById('lightboxPrev');
-  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxPrevBtn = document.getElementById('lightboxPrev');
+  const lightboxNextBtn = document.getElementById('lightboxNext');
 
   let currentIndex = 0;
   const totalImages = thumbDivs.length;
@@ -506,8 +538,8 @@
     if (!lightbox) return;
     lightbox.classList.remove('show');
   }
-  function lightboxNext() { nextImage(); lightboxImg.src = mainImage.src; }
-  function lightboxPrev() { prevImage(); lightboxImg.src = mainImage.src; }
+  function lightboxNextImage() { nextImage(); lightboxImg.src = mainImage.src; }
+  function lightboxPrevImage() { prevImage(); lightboxImg.src = mainImage.src; }
 
   if (mainImage) mainImage.addEventListener('click', openLightbox);
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
@@ -517,8 +549,8 @@
   // Keyboard navigation for lightbox
   document.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('show')) {
-      if (e.key === 'ArrowLeft') lightboxPrev();
-      if (e.key === 'ArrowRight') lightboxNext();
+      if (e.key === 'ArrowLeft') lightboxPrevImage();
+      if (e.key === 'ArrowRight') lightboxNextImage();
       if (e.key === 'Escape') closeLightbox();
     }
   });

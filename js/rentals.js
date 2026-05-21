@@ -228,7 +228,7 @@ function startImageShuffle(cardElement, imagesArray) {
         images[currentIndex].style.opacity = '0';
         images[nextIndex].style.opacity = '1';
         currentIndex = nextIndex;
-    }, 3000);
+    }, 10000);
     
     imageIntervals.push(interval);
 }

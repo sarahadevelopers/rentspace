@@ -1,103 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- ========== STATIC ROOT PAGES ========== -->
   <url>
     <loc>https://rentspace.co.ke/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/about.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/airbnb.html</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://rentspace.co.ke/rentals.html</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://rentspace.co.ke/airbnb.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/movers.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rentspace.co.ke/blog.html</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://rentspace.co.ke/contact.html</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/movers.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/property.html</loc>
-    <lastmod>2026-04-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/rentals.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/terms.html</loc>
-    <lastmod>2026-04-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- ========== LOCATION PAGES ========== -->
-  <url>
-    <loc>https://rentspace.co.ke/location/hurlingham.html</loc>
+    <loc>https://rentspace.co.ke/blog/furnish-airbnb-syokimau-under-300k-roi.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/location/karen.html</loc>
+    <loc>https://rentspace.co.ke/blog/kitengela-budget-10.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/location/kilimani.html</loc>
+    <loc>https://rentspace.co.ke/blog/kitengela-budget-12.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/location/kitengela.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://rentspace.co.ke/blog/kitengela-budget-14.html</loc>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/location/ngong.html</loc>
+    <loc>https://rentspace.co.ke/blog/kitengela-budget-19.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://rentspace.co.ke/location/syokimau.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- ========== BLOG POSTS ========== -->
-  <!-- Kitengela budget -->
   <url>
     <loc>https://rentspace.co.ke/blog/kitengela-budget-2.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/blog/kitengela-budget-20.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -121,57 +97,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/blog/kitengela-budget-10.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/blog/kitengela-budget-12.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/blog/kitengela-budget-14.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/blog/kitengela-budget-19.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/blog/kitengela-budget-20.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- Kitengela comparison -->
-  <url>
     <loc>https://rentspace.co.ke/blog/kitengela-comparison-3.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://rentspace.co.ke/blog/kitengela-comparison-4.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- Kitengela estate -->
-  <url>
-    <loc>https://rentspace.co.ke/blog/kitengela-estate-6.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://rentspace.co.ke/blog/kitengela-estate-8.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -200,7 +132,18 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Kitengela guide -->
+  <url>
+    <loc>https://rentspace.co.ke/blog/kitengela-estate-6.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/blog/kitengela-estate-8.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://rentspace.co.ke/blog/kitengela-guide-1.html</loc>
     <lastmod>2026-05-01</lastmod>
@@ -219,10 +162,20 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Syokimau budget -->
+  <url>
+    <loc>https://rentspace.co.ke/blog/syokimau-budget-10.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://rentspace.co.ke/blog/syokimau-budget-4.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/blog/syokimau-budget-7.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -233,13 +186,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://rentspace.co.ke/blog/syokimau-budget-10.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- Syokimau comparison -->
   <url>
     <loc>https://rentspace.co.ke/blog/syokimau-comparison-1.html</loc>
     <lastmod>2026-05-01</lastmod>
@@ -264,7 +210,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Syokimau guide -->
   <url>
     <loc>https://rentspace.co.ke/blog/syokimau-guide-5.html</loc>
     <lastmod>2026-05-01</lastmod>
@@ -277,8 +222,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- ========== PROPERTY PAGES ========== -->
   <url>
     <loc>https://rentspace.co.ke/property/1-bedroom-apartment-in-hurlingham-97.html</loc>
     <lastmod>2026-05-01</lastmod>
@@ -300,6 +243,12 @@
   <url>
     <loc>https://rentspace.co.ke/property/2-bedroom-apartment-in-ruiru-99.html</loc>
     <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/property/2-bedroom-apartment-to-let-in-kitengela-99.html</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -328,12 +277,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/property/3-bedroom-bungalow-in-kitengela-6.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://rentspace.co.ke/property/3-bedroom-bungalow-in-kitengela-10.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -341,6 +284,12 @@
   </url>
   <url>
     <loc>https://rentspace.co.ke/property/3-bedroom-bungalow-in-kitengela-11.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/property/3-bedroom-bungalow-in-kitengela-6.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -366,6 +315,12 @@
   <url>
     <loc>https://rentspace.co.ke/property/3-bedroom-bungalow-to-let-in-kitengela-26.html</loc>
     <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/property/3-bedroom-bungalow-to-let-in-kitengela-97.html</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -400,8 +355,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/property/4-bedroom-maisonette-in-kitengela-4.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://rentspace.co.ke/property/4-bedroom-duplex-to-let-in-syokimau-97.html</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -412,13 +367,19 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/property/4-bedroom-mansion-in-kitengela-3.html</loc>
+    <loc>https://rentspace.co.ke/property/4-bedroom-maisonette-in-kitengela-4.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rentspace.co.ke/property/4-bedroom-mansion-in-kitengela-24.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/property/4-bedroom-mansion-in-kitengela-3.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -442,19 +403,31 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://rentspace.co.ke/property/4-bedroom-mansionette-to-let-in-syokimau-100.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rentspace.co.ke/property/4bedroom-mini-flat-apartment-to-let-in-kitengela-15.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rentspace.co.ke/property/5-bedroom-maisonette-in-syokimau-9.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://rentspace.co.ke/property/5-bedroom-apartment-in-kitengela-100.html</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rentspace.co.ke/property/5-bedroom-maisonette-in-syokimau-12.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/property/5-bedroom-maisonette-in-syokimau-9.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -472,6 +445,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://rentspace.co.ke/property/5-bedroom-plus-sq-townhouse-for-rent-in-syokimau-98.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rentspace.co.ke/property/5-bedroom-townhouse-in-syokimau-7.html</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -484,8 +463,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://rentspace.co.ke/property/6-bedroom-townhouse-plus-dsq-syokimau-99.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rentspace.co.ke/property/furnished-3-bedroom-bungalow-to-let-in-kitengela-16.html</loc>
     <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/property/furnished-bnb-studio-apartment-in-syokimau-98.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/property/modern-5-bedroom-to-let-in-kitengela-96.html</loc>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -498,6 +495,174 @@
   <url>
     <loc>https://rentspace.co.ke/property/studio-apartment-in-ngong-98.html</loc>
     <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-hurlingham-12.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-hurlingham-49.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-hurlingham-6.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-hurlingham-97.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-karen-18.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-karen-23.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-karen-77.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-karen-80.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/1-bedroom-apartment-in-kilimani-85.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/2-bedroom-apartment-in-hurlingham-50.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/2-bedroom-apartment-in-hurlingham-68.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/2-bedroom-apartment-in-karen-35.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/2-bedroom-apartment-in-karen-58.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/2-bedroom-apartment-in-karen-71.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/2-bedroom-apartment-in-karen-95.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/2-bedroom-apartment-in-kilimani-10.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/2-bedroom-apartment-in-kilimani-25.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/furnished-bnb-studio-apartment-in-syokimau-98.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-hurlingham-16.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-hurlingham-2.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-hurlingham-74.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-karen-29.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-karen-46.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-karen-52.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-karen-8.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-karen-96.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-kilimani-21.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rentspace.co.ke/airbnb/studio-apartment-in-kilimani-5.html</loc>
+    <lastmod>2026-04-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

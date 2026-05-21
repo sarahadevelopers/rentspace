@@ -82,7 +82,7 @@
   <div class="header-container">
     <div class="header-left">
       <div class="page-subtitle">PREMIUM LISTINGS</div>
-      <h1 class="page-title">Curated <span>Nairobi</span> Living</h1>
+      <h1 class="page-title">Curated <span>Premium</span> Living</h1>
     </div>
     <div class="header-right">
       <p class="page-description">
@@ -226,73 +226,6 @@
   </div>
 
   <script src="js/rentals.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.querySelector('.nav-links');
-    const menuOverlay = document.getElementById('menuOverlay');
-
-    function closeMenu() {
-      navMenu?.classList.remove('active');
-      hamburger?.classList.remove('active');
-      menuOverlay?.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function openMenu() {
-      navMenu?.classList.add('active');
-      hamburger?.classList.add('active');
-      menuOverlay?.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    if (hamburger) {
-      hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (navMenu?.classList.contains('active')) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      });
-    }
-
-    if (menuOverlay) {
-      menuOverlay.addEventListener('click', closeMenu);
-    }
-
-    // Close menu when clicking a link
-    if (navMenu) {
-      navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-    }
-
-    // Mobile dropdowns
-    function initMobileDropdowns() {
-      const dropdowns = document.querySelectorAll('.dropdown');
-      dropdowns.forEach(dropdown => {
-        const trigger = dropdown.querySelector('.dropdown-trigger');
-        const menu = dropdown.querySelector('.dropdown-menu');
-        if (trigger && menu && window.innerWidth <= 768) {
-          // Remove existing listeners to avoid duplicates
-          const newTrigger = trigger.cloneNode(true);
-          trigger.parentNode.replaceChild(newTrigger, trigger);
-          
-          newTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-            menu.classList.toggle('open');
-          });
-        }
-      });
-    }
-
-    initMobileDropdowns();
-    window.addEventListener('resize', initMobileDropdowns);
-  </script>
+ 
 </body>
 </html>

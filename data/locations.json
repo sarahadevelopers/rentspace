@@ -1,0 +1,62 @@
+{
+  "kitengela": {
+    "name": "Kitengela",
+    "slug": "kitengela",
+    "description": "Experience affordable luxury in Kitengela, Nairobi's fastest-growing satellite town. Spacious homes, modern amenities, and easy access via the Nairobi Expressway.",
+    "avg_rent": "KES 12,000",
+    "commute_time": "45-60 min",
+    "estate_count": 8,
+    "estates": ["Acacia", "Milimani", "Yukos", "Chuna", "Muigai", "Noonkopir", "New Valley", "Royal Finesse"],
+    "nearby": ["syokimau", "athi-river", "mlolongo", "katani"],
+    "long_content": "<h2>Living in Kitengela</h2><p><strong>Cost of Living:</strong> Kitengela offers affordable living compared to Nairobi CBD. Basic utilities (water, electricity) range from KES 3,000–8,000 per month.</p><p><strong>Schools:</strong> Acacia Crest Academy, Kitengela International School, Milimani Academy.</p><p><strong>Hospitals:</strong> Halisi Family Hospital, Kitengela Nursing Home.</p><p><strong>Shopping Centres:</strong> Kitengela Mall, Signature Mall, Carrefour.</p><p><strong>Transport:</strong> Easy access to Namanga Road with 24/7 matatus to Nairobi CBD, JKIA, and the SGR station.</p><p><strong>Security:</strong> Most estates have gated communities with electric fences, 24/7 guards, and CCTV.</p><p><strong>Best Estates:</strong> Milimani, Chuna, Acacia, Yukos.</p><p><strong>Average Rents:</strong> 2‑bedroom apartments from KES 23,000; 3‑bedroom bungalows from KES 45,000; luxury homes up to KES 150,000.</p>",
+    "faq_html": "<div><h3>Is Kitengela safe?</h3><p>Yes, Kitengela has many gated communities with 24/7 security, electric fences, and active neighbourhood watches.</p></div><div><h3>How much is rent in Kitengela?</h3><p>Rent ranges from KES 23,000/month for a 2‑bedroom apartment to over KES 100,000 for luxury homes.</p></div><div><h3>How far is Kitengela from Nairobi CBD?</h3><p>Kitengela is about 45‑60 minutes from Nairobi CBD via Namanga Road.</p></div><div><h3>Which estates are popular in Kitengela?</h3><p>Popular estates include Milimani, Chuna, Acacia, and Yukos.</p></div>"
+  },
+  "syokimau": {
+    "name": "Syokimau",
+    "slug": "syokimau",
+    "description": "Fast-growing urban hub with excellent connectivity via Mombasa Road. Modern apartments and spacious homes for families and professionals.",
+    "avg_rent": "KES 20,000",
+    "commute_time": "30-45 min",
+    "estate_count": 7,
+    "estates": ["Katani", "Greatwall", "Gateway Mall", "Syokimau View"],
+    "nearby": ["kitengela", "athi-river", "mlolongo", "katani"],
+    "long_content": "<h2>Living in Syokimau</h2><p><strong>Cost of Living:</strong> Syokimau offers affordable living compared to Nairobi CBD. Basic utilities (water, electricity) range from KES 3,000–8,000 per month.</p><p><strong>Schools:</strong> Gateway School, Viraj International Academy, Rose of Sharon Academy.</p><p><strong>Hospitals:</strong> Shalom Community Hospital, Nairobi West Hospital (JKIA branch).</p><p><strong>Shopping Centres:</strong> Gateway Mall, Signature Mall, Carrefour, Quickmart.</p><p><strong>Transport:</strong> Excellent access to Mombasa Road, Nairobi Expressway, Syokimau SGR Station, and JKIA, with 24/7 matatus to Nairobi CBD.</p><p><strong>Security:</strong> Most estates have gated communities with electric fences, 24/7 guards, and CCTV.</p><p><strong>Best Estates:</strong> Greatwall Gardens, Gateway Mall area, Syokimau View, Viraj Estate, Katani Road developments.</p><p><strong>Average Rents:</strong> 2‑bedroom apartments from KES 23,000; 3‑bedroom bungalows from KES 45,000; luxury homes up to KES 150,000.</p>",
+    "faq_html": "<div><h3>Is Syokimau safe?</h3><p>Yes, Syokimau has many gated communities with 24/7 security, electric fences, and active neighbourhood watches.</p></div><div><h3>How much is rent in Syokimau?</h3><p>Rent ranges from KES 23,000/month for a 2‑bedroom apartment to over KES 100,000 for luxury homes.</p></div><div><h3>How far is Syokimau from Nairobi CBD?</h3><p>Syokimau is about 30‑45 minutes from Nairobi CBD via the Expressway or Mombasa Road.</p></div><div><h3>Which estates are popular in Syokimau?</h3><p>Popular estates include Greatwall Gardens, Gateway Mall area, Syokimau View, Viraj Estate, Katani Road developments.</p></div>"
+  },
+  "athi-river": {
+    "name": "Athi River",
+    "slug": "athi-river",
+    "description": "Growing residential and industrial hub near Nairobi. Affordable housing with easy access to Mombasa Road, JKIA, and SGR.",
+    "avg_rent": "KES 15,000",
+    "commute_time": "45-60 min",
+    "estate_count": 3,
+    "estates": ["Kinanie", "Manyatta", "Athi River Town"],
+    "nearby": ["kitengela", "syokimau", "mlolongo", "katani"],
+    "long_content": "<h2>Living in Athi River</h2><p><strong>Cost of Living:</strong> Athi River offers very affordable living. Basic utilities range from KES 2,500–6,000 per month.</p><p><strong>Schools:</strong> St. Mary's School, Manyatta Primary, and several private academies.</p><p><strong>Hospitals:</strong> Shalom Community Hospital, Athi River Medical Centre.</p><p><strong>Shopping Centres:</strong> Athi River Mall, Smart Town Supermarket.</p><p><strong>Transport:</strong> Quick access to Mombasa Road, near JKIA and SGR.</p><p><strong>Security:</strong> Growing number of gated estates with controlled access.</p><p><strong>Best Estates:</strong> Kinanie, Manyatta, and new developments along the main road.</p><p><strong>Average Rents:</strong> Bedsitters from KES 8,000; 2‑bedroom apartments from KES 15,000; larger homes up to KES 50,000.</p>",
+    "faq_html": "<div><h3>Is Athi River safe?</h3><p>Yes, many modern estates offer 24/7 security and electric fences.</p></div><div><h3>How much is rent in Athi River?</h3><p>Rent ranges from KES 8,000 for a bedsitter to KES 50,000+ for a 3‑bedroom home.</p></div><div><h3>How far is Athi River from Nairobi CBD?</h3><p>About 45‑60 minutes via Mombasa Road.</p></div><div><h3>Which estates are popular in Athi River?</h3><p>Kinanie, Manyatta, and the town centre.</p></div>"
+  },
+  "mlolongo": {
+    "name": "Mlolongo",
+    "slug": "mlolongo",
+    "description": "Vibrant town along Mombasa Road, offering affordable housing and excellent connectivity to JKIA and Nairobi CBD.",
+    "avg_rent": "KES 5,000",
+    "commute_time": "30-45 min",
+    "estate_count": 3,
+    "estates": ["Mlolongo Town", "Mlolongo South", "Amani Estate"],
+    "nearby": ["kitengela", "syokimau", "athi-river", "katani"],
+    "long_content": "<h2>Living in Mlolongo</h2><p><strong>Cost of Living:</strong> Mlolongo is very affordable. Monthly utilities range from KES 2,000–5,000.</p><p><strong>Schools:</strong> Mlolongo Primary, private academies, and nearby international schools.</p><p><strong>Hospitals:</strong> Mlolongo Medical Centre, close to JKIA hospitals.</p><p><strong>Shopping Centres:</strong> Mlolongo Market, small supermarkets and shops.</p><p><strong>Transport:</strong> Excellent Mombasa Road access, 15 minutes to JKIA, 30‑45 minutes to Nairobi CBD.</p><p><strong>Security:</strong> Mixed – many new gated estates with 24/7 security; check individual properties.</p><p><strong>Best Estates:</strong> Mlolongo Town, Mlolongo South, Amani Estate.</p><p><strong>Average Rents:</strong> Bedsitters from KES 7,000; 2‑bedroom apartments from KES 15,000; 3‑bedroom homes up to KES 40,000.</p>",
+    "faq_html": "<div><h3>Is Mlolongo safe?</h3><p>Many gated estates offer good security, but check the specific compound.</p></div><div><h3>How much is rent in Mlolongo?</h3><p>Rent ranges from KES 7,000 for bedsitters to KES 40,000 for 3‑bedroom houses.</p></div><div><h3>How far is Mlolongo from Nairobi CBD?</h3><p>About 30‑45 minutes via Mombasa Road.</p></div><div><h3>Which estates are popular in Mlolongo?</h3><p>Mlolongo Town, Mlolongo South, and Amani Estate.</p></div>"
+  },
+  "katani": {
+    "name": "Katani",
+    "slug": "katani",
+    "description": "Peaceful residential area near Syokimau with modern estates and easy access to Mombasa Road.",
+    "avg_rent": "KES 15,000",
+    "commute_time": "30-45 min",
+    "estate_count": 3,
+    "estates": ["Katani Road", "Katani West", "Syokimau View"],
+    "nearby": ["kitengela", "syokimau", "athi-river", "mlolongo"],
+    "long_content": "<h2>Living in Katani</h2><p><strong>Cost of Living:</strong> Katani is moderately priced. Utilities average KES 3,000–7,000 per month.</p><p><strong>Schools:</strong> Katani Primary, nearby Syokimau international schools.</p><p><strong>Hospitals:</strong> Shalom Community Hospital, small clinics in the area.</p><p><strong>Shopping Centres:</strong> Local dukas and nearby Gateway Mall in Syokimau.</p><p><strong>Transport:</strong> Quick access to Mombasa Road, close to Syokimau SGR and JKIA.</p><p><strong>Security:</strong> Well‑secured gated communities with electric fences and guards.</p><p><strong>Best Estates:</strong> Katani Road, Katani West, and the extended Syokimau View area.</p><p><strong>Average Rents:</strong> 2‑bedroom apartments from KES 25,000; 3‑bedroom bungalows from KES 45,000; larger homes up to KES 120,000.</p>",
+    "faq_html": "<div><h3>Is Katani safe?</h3><p>Yes, most estates are gated with 24/7 security.</p></div><div><h3>How much is rent in Katani?</h3><p>Rent ranges from KES 25,000 for 2‑bedroom apartments to KES 120,000 for luxury homes.</p></div><div><h3>How far is Katani from Nairobi CBD?</h3><p>About 30‑45 minutes via Mombasa Road.</p></div><div><h3>Which estates are popular in Katani?</h3><p>Katani Road, Katani West, and Syokimau View area.</p></div>"
+  }
+}

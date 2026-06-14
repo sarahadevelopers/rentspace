@@ -9,7 +9,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="{{title}} | RentSpace Airbnb">
   <meta property="og:description" content="{{description}}">
-  <meta property="og:image" content="{{images.0}}">
+  <meta property="og:image" content="{{mainImageUrl}}">
   <meta property="og:url" content="https://rentspace.co.ke/airbnb/{{slug}}.html">
   <meta property="og:type" content="website">
   
@@ -17,7 +17,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{title}} | RentSpace Airbnb">
   <meta name="twitter:description" content="{{description}}">
-  <meta name="twitter:image" content="{{images.0}}">
+  <meta name="twitter:image" content="{{mainImageUrl}}">
   
   <link rel="canonical" href="https://rentspace.co.ke/airbnb/{{slug}}.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +25,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="../css/airbnb-property.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Accommodation",
+  "name": "{{title}}",
+  "description": "{{description}}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{{estate}}",
+    "addressRegion": "Nairobi",
+    "addressCountry": "KE"
+  },
+  "image": "{{mainImageUrl}}",
+  "telephone": "+254723562484",
+  "priceRange": "KES {{price_night}}/night",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{airbnb_rating}}",
+    "reviewCount": "{{airbnb_reviews}}"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -36,15 +58,8 @@
         <a href="../rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
         <ul class="dropdown-menu">
           <li><a href="../rentals.html">All Rentals</a></li>
-          <li><a href="../rentals.html?location=Kitengela">Kitengela</a></li>
           <li><a href="../rentals.html?location=Syokimau">Syokimau</a></li>
-          <li><a href="../rentals.html?location=Karen">Karen</a></li>
-          <li><a href="../rentals.html?location=Kilimani">Kilimani</a></li>
-          <li><a href="../rentals.html?location=Hurlingham">Hurlingham</a></li>
-          <li><a href="../rentals.html?location=Ngong">Ngong</a></li>
-          <li><a href="../rentals.html?location=Westlands">Westlands</a></li>
-          <li><a href="../rentals.html?location=Lavington">Lavington</a></li>
-          <li><a href="../rentals.html?location=Kileleshwa">Kileleshwa</a></li>
+          <li><a href="../rentals.html?location=Kitengela">Kitengela</a></li>
         </ul>
       </li>
       
@@ -52,14 +67,8 @@
         <a href="../airbnb.html" class="dropdown-trigger active">Airbnb <i class="fas fa-chevron-down"></i></a>
         <ul class="dropdown-menu">
           <li><a href="../airbnb.html">All Bnbs</a></li>
-          <li><a href="../airbnb.html?location=Kitengela">Kitengela</a></li>
           <li><a href="../airbnb.html?location=Syokimau">Syokimau</a></li>
-          <li><a href="../airbnb.html?location=Karen">Karen</a></li>
-          <li><a href="../airbnb.html?location=Kilimani">Kilimani</a></li>
-          <li><a href="../airbnb.html?location=Hurlingham">Hurlingham</a></li>
-          <li><a href="../airbnb.html?location=Westlands">Westlands</a></li>
-          <li><a href="../airbnb.html?location=Lavington">Lavington</a></li>
-          <li><a href="../airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+          <li><a href="../airbnb.html?location=Kitengela">Kitengela</a></li>
         </ul>
       </li>
       
@@ -95,15 +104,14 @@
       </div>
       <div class="price-flex">
         <div class="price-night">KES {{price_night}} <span>/ night</span></div>
-        {{#if price_weekly_discount}}
-        <div class="price-weekly">KES {{price_weekly_discount}} <span>/ week (save {{weekly_save_percent}}%)</span></div>
-        {{/if}}
+        <div class="price-weekly" style="display: {{weekly_display}};">
+          KES {{price_weekly_discount}} <span>/ week (save {{weekly_save_percent}}%)</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- IMPROVED GALLERY - Natural aspect ratio, proportional thumbnails -->
-   <!-- Gallery Section -->
+  <!-- Gallery Section -->
   <div class="gallery-container">
     <div class="main-slide" id="mainSlide">
       {{mainImage}}
@@ -141,11 +149,9 @@
         <h4>Hosted by {{host_name}}</h4>
         <p>{{host_response_rate}}% response rate · Typically responds in {{host_response_time}}</p>
       </div>
-      {{#if superhost}}
-      <div class="superhost-badge">
+      <div class="superhost-badge" style="display: {{superhost_display}};">
         <i class="fas fa-medal"></i> Superhost
       </div>
-      {{/if}}
     </div>
 
     <!-- Property Description -->
@@ -203,12 +209,7 @@
     <div class="amenities-section">
       <h3>What this place offers</h3>
       <div class="amenities-grid">
-        {{#each amenities}}
-        <div class="amenity-item">
-          <i class="fas {{icon}}"></i>
-          <span>{{name}}</span>
-        </div>
-        {{/each}}
+        {{amenities_html}}
       </div>
     </div>
 
@@ -216,7 +217,7 @@
     <div class="features-section">
       <h3>Property Features</h3>
       <ul class="features-list">
-        {{#each features}}<li>{{this}}</li>{{/each}}
+        {{features_html}}
       </ul>
     </div>
 
@@ -262,51 +263,26 @@
     </div>
 
     <!-- Similar Stays -->
-    {{#if recommendations.length}}
-    <section class="recommendations">
+    <div class="recommendations-section" style="display: {{similar_stays_display}};">
       <div class="section-header">
         <h2>Similar Stays</h2>
         <div class="section-line"></div>
       </div>
       <div class="recommendation-cards">
-        {{#each recommendations}}
-        <a href="../airbnb/{{slug}}.html" class="rec-card">
-          <div class="rec-card-image">
-            <img src="{{image}}" alt="{{title}}">
-          </div>
-          <div class="rec-card-info">
-            <h4>{{title}}</h4>
-            <p>{{estate}} · KES {{price_night}} / night</p>
-          </div>
-        </a>
-        {{/each}}
+        {{similar_stays_html}}
       </div>
-    </section>
-    {{/if}}
+    </div>
 
     <!-- Guest Reviews -->
-    {{#if reviews.length}}
-    <section class="reviews-section">
+    <div class="reviews-section" style="display: {{reviews_display}};">
       <div class="section-header">
         <h2>Guest Reviews</h2>
         <div class="section-line"></div>
       </div>
       <div class="reviews-list">
-        {{#each reviews}}
-        <div class="review-card">
-          <div class="review-header">
-            <strong>{{name}}</strong>
-            <div class="review-rating">
-              <i class="fas fa-star"></i> {{rating}}
-            </div>
-          </div>
-          <p>"{{comment}}"</p>
-          <span class="review-date">{{date}}</span>
-        </div>
-        {{/each}}
+        {{reviews_html}}
       </div>
-    </section>
-    {{/if}}
+    </div>
   </main>
 
   <!-- Footer -->
@@ -318,10 +294,8 @@
       </div>
       <div class="footer-col">
         <h4>Short-stay Collection</h4>
-        <a href="../airbnb.html?location=Karen">Karen</a>
-        <a href="../airbnb.html?location=Kilimani">Kilimani</a>
-        <a href="../airbnb.html?location=Hurlingham">Hurlingham</a>
-        <a href="../airbnb.html?location=Westlands">Westlands</a>
+        <a href="../airbnb.html?location=Syokimau">Syokimau</a>
+        <a href="../airbnb.html?location=Kitengela">Kitengela</a>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
@@ -361,7 +335,7 @@
     <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 
- <script>
+  <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     
     // ========== MOBILE MENU ==========
@@ -411,15 +385,13 @@
       }
     });
 
-    // ========== SAFE GALLERY (FIXED) ==========
-    // Find the main image (inside #mainSlide)
+    // ========== SAFE GALLERY ==========
     const mainSlide = document.getElementById('mainSlide');
     let mainImg = null;
     if (mainSlide) {
       mainImg = mainSlide.querySelector('img');
     }
     
-    // Find all thumbnails – they are .thumb elements inside #thumbTrack
     const thumbTrack = document.getElementById('thumbTrack');
     let thumbs = [];
     if (thumbTrack) {
@@ -438,13 +410,11 @@
     let currentIndex = 0;
     const totalImages = thumbs.length;
     
-    // If there's only one image and no thumbnails, hide navigation buttons
     if (totalImages <= 1) {
       if (galleryPrevBtn) galleryPrevBtn.style.display = 'none';
       if (galleryNextBtn) galleryNextBtn.style.display = 'none';
     }
     
-    // Function to update the main image
     function updateMainImage(index) {
       if (!mainImg) return;
       if (totalImages === 0) return;
@@ -460,25 +430,21 @@
         if (lightboxImg) lightboxImg.src = newSrc;
       }
       
-      // Update active class on thumbnails
       thumbs.forEach(t => t.classList.remove('active'));
       if (thumbs[currentIndex]) thumbs[currentIndex].classList.add('active');
       
-      // Scroll thumbnail into view
       const activeThumb = thumbs[currentIndex];
       if (thumbTrack && activeThumb) {
         activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     }
     
-    // Click on thumbnails
     thumbs.forEach((thumb, i) => {
       thumb.addEventListener('click', function() {
         updateMainImage(i);
       });
     });
     
-    // Prev/Next buttons for main gallery
     function nextImage() {
       if (totalImages > 0) updateMainImage(currentIndex + 1);
     }
@@ -490,7 +456,6 @@
     if (galleryPrevBtn) galleryPrevBtn.addEventListener('click', prevImage);
     if (galleryNextBtn) galleryNextBtn.addEventListener('click', nextImage);
     
-    // Mobile swipe for main gallery
     let startX = 0;
     let isDragging = false;
     
@@ -515,7 +480,6 @@
       });
     }
     
-    // ========== LIGHTBOX FUNCTIONS ==========
     function openLightbox() {
       if (!lightbox || !mainImg) return;
       lightbox.classList.add('show');
@@ -540,13 +504,11 @@
       }
     }
     
-    // Lightbox event listeners
     if (mainImg) mainImg.addEventListener('click', openLightbox);
     if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
     if (lightboxPrev) lightboxPrev.addEventListener('click', lightboxPrevImage);
     if (lightboxNext) lightboxNext.addEventListener('click', lightboxNextImage);
     
-    // Keyboard navigation for lightbox
     document.addEventListener('keydown', (e) => {
       if (lightbox && lightbox.classList.contains('show')) {
         if (e.key === 'ArrowLeft') lightboxPrevImage();
@@ -555,12 +517,10 @@
       }
     });
     
-    // If there are thumbnails, set first as active on load
     if (thumbs.length > 0 && mainImg) {
       updateMainImage(0);
     }
     
-    // ========== MOBILE DROPDOWNS ==========
     function initMobileDropdowns() {
       if (window.innerWidth > 768) return;
       const dropdowns = document.querySelectorAll('.dropdown');
@@ -583,7 +543,6 @@
     initMobileDropdowns();
     window.addEventListener('resize', initMobileDropdowns);
     
-    // ========== BOOKING BUTTONS ==========
     function createBookingMessage() {
       const title = document.querySelector('.property-title')?.textContent || 'Property';
       const estate = document.querySelector('.location-meta')?.textContent.replace(/[^\w\s]/g, '').trim() || 'Nairobi';
@@ -610,6 +569,6 @@
         window.open(`https://wa.me/254723562484?text=${createBookingMessage()}`, '_blank');
       });
     }
-</script>
+  </script>
 </body>
 </html>

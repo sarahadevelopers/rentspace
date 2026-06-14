@@ -1,76 +1,14 @@
 // generate-location-pages.js
-// Generates individual location pages for each area
-
 const fs = require('fs');
 const path = require('path');
 
 const LOCATION_DIR = path.join(__dirname, 'location');
 const TEMPLATE_PATH = path.join(__dirname, 'templates', 'location-template.html');
 const PROPERTIES_PATH = path.join(__dirname, 'data', 'properties.json');
+const LOCATIONS_DATA_PATH = path.join(__dirname, 'data', 'locations.json');
 
-// Location data configuration
-const locations = {
-  kitengela: {
-    name: "Kitengela",
-    slug: "kitengela",
-    description: "Experience affordable luxury in Kitengela, Nairobi's fastest-growing satellite town. Spacious homes, modern amenities, and easy access via the Nairobi Expressway.",
-    avg_rent: "KES 35,000",
-    commute_time: "45-60 min",
-    estate_count: 8,
-    estates: ["Acacia", "Milimani", "Yukos", "Chuna", "Muigai", "Noonkopir", "New Valley", "Royal Finesse"],
-    image: "/images/locations/kitengela-hero.jpg"
-  },
-  ngong: {
-    name: "Ngong",
-    slug: "ngong",
-    description: "Discover serene living with breathtaking Ngong Hills views. Perfect for those seeking tranquility while staying connected to Nairobi.",
-    avg_rent: "KES 45,000",
-    commute_time: "45-60 min",
-    estate_count: 7,
-    estates: ["Ngong Vet", "Matasia", "Kibiko", "Ngong View", "Kerarapon", "Juanco", "Zambia"],
-    image: "/images/locations/ngong-hero.jpg"
-  },
-  syokimau: {
-    name: "Syokimau",
-    slug: "syokimau",
-    description: "Fast-growing urban hub with excellent connectivity via Mombasa Road. Modern apartments and spacious homes for families and professionals.",
-    avg_rent: "KES 40,000",
-    commute_time: "30-45 min",
-    estate_count: 7,
-    estates: ["Katani", "GreatWall", "GateWay Mall", "Syokimau View"],
-    image: "/images/locations/syokimau-hero.jpg"
-  },
-  karen: {
-    name: "Karen",
-    slug: "karen",
-    description: "Nairobi's most prestigious leafy suburb. Luxury villas, ambassadorial homes, and exclusive gated communities with unparalleled privacy.",
-    avg_rent: "KES 180,000",
-    commute_time: "30-45 min",
-    estate_count: 7,
-    estates: ["Miotoni", "Hardy", "Bogani", "Windy Ridge", "Karen Plains", "Kerarapon", "Rhino Park"],
-    image: "/images/locations/karen-hero.jpg"
-  },
-  kilimani: {
-    name: "Kilimani",
-    slug: "kilimani",
-    description: "Urban luxury at its finest. Modern apartments, penthouses, and vibrant city living with world-class amenities and dining.",
-    avg_rent: "KES 85,000",
-    commute_time: "10-15 min",
-    estate_count: 6,
-    estates: ["Yaya Centre", "Argwings Kodhek", "Dennis Pritt", "Lenana Road", "Kindaruma Road", "Muringa Road"],
-    image: "/images/locations/kilimani-hero.jpg"
-  },
-  hurlingham: {
-    name: "Hurlingham",
-    slug: "hurlingham",
-    description: "Prime location for professionals. Mix of residential and commercial properties with proximity to CBD, Upper Hill, and Yaya Centre.",
-    avg_rent: "KES 70,000",
-    commute_time: "5-10 min",
-    estate_count: 6,
-    estates: ["Argwings Kodhek", "Timau Road", "Rose Avenue", "Ralph Bunche", "Cotton Avenue", "Hurlingham Court"],
-    image: "/images/locations/hurlingham-hero.jpg"
-  }
-};
+// Read locations data (long_content, faq_html, etc.)
+const locationsData = JSON.parse(fs.readFileSync(LOCATIONS_DATA_PATH, 'utf8'));
 
 // Ensure location directory exists
 if (!fs.existsSync(LOCATION_DIR)) {
@@ -81,12 +19,12 @@ if (!fs.existsSync(LOCATION_DIR)) {
 let template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
 // Count properties per location
-function getPropertyCount(locationSlug) {
+function getPropertyCount(locationSlug, locationName) {
   try {
     const properties = JSON.parse(fs.readFileSync(PROPERTIES_PATH, 'utf8'));
     return properties.filter(p => 
       p.estate?.toLowerCase() === locationSlug.toLowerCase() ||
-      p.estate?.toLowerCase() === locations[locationSlug]?.name?.toLowerCase()
+      p.estate?.toLowerCase() === locationName.toLowerCase()
     ).length;
   } catch (error) {
     console.error('Error reading properties:', error);
@@ -95,26 +33,42 @@ function getPropertyCount(locationSlug) {
 }
 
 // Generate estate links HTML
-function generateEstateLinks(estates, locationSlug) {
+function generateEstateLinks(estates) {
+  if (!estates || !estates.length) return '';
   return estates.map(estate => `
     <a href="/rentals.html?estate=${encodeURIComponent(estate)}" class="estate-link">${estate}</a>
   `).join('');
 }
 
+// Generate nearby locations HTML (excludes current location)
+function generateNearbyLinks(currentSlug, nearbySlugs) {
+  if (!nearbySlugs || !nearbySlugs.length) return '';
+  return nearbySlugs
+    .filter(slug => slug !== currentSlug) // just in case, though JSON shouldn't include self
+    .map(slug => {
+      const name = slug.charAt(0).toUpperCase() + slug.slice(1);
+      return `<li><a href="../location/${slug}.html">${name}</a></li>`;
+    }).join('');
+}
+
 // Generate each location page
-Object.entries(locations).forEach(([slug, location]) => {
-  const propertyCount = getPropertyCount(slug);
-  const estateLinks = generateEstateLinks(location.estates, slug);
+Object.entries(locationsData).forEach(([slug, location]) => {
+  const propertyCount = getPropertyCount(slug, location.name);
+  const estateLinks = generateEstateLinks(location.estates);
+  const nearbyLinks = generateNearbyLinks(slug, location.nearby || []);
   
   let html = template
     .replace(/{{location_name}}/g, location.name)
-    .replace(/{{location_slug}}/g, location.slug)
+    .replace(/{{location_slug}}/g, slug)
     .replace(/{{location_description}}/g, location.description)
     .replace(/{{property_count}}/g, propertyCount)
     .replace(/{{avg_rent}}/g, location.avg_rent)
     .replace(/{{commute_time}}/g, location.commute_time)
     .replace(/{{estate_count}}/g, location.estate_count)
-    .replace(/{{estate_links}}/g, estateLinks);
+    .replace(/{{estate_links}}/g, estateLinks)
+    .replace(/{{long_content}}/g, location.long_content || '')
+    .replace(/{{faq_html}}/g, location.faq_html || '')
+    .replace(/{{nearby_locations_html}}/g, nearbyLinks);
   
   const outputPath = path.join(LOCATION_DIR, `${slug}.html`);
   fs.writeFileSync(outputPath, html);
@@ -123,4 +77,3 @@ Object.entries(locations).forEach(([slug, location]) => {
 
 console.log('\n🎉 Location pages generated successfully!');
 console.log('   📁 Location pages saved to: /location/');
-console.log('   🔗 Visit: /location/kitengela.html, /location/ngong.html, etc.');

@@ -1,4 +1,4 @@
-// generate-all.js - Complete unified generator
+// generate-all.js - Complete unified generator (with mainImageUrl fix)
 const fs = require('fs');
 const path = require('path');
 
@@ -62,22 +62,36 @@ rentals.forEach(prop => {
     page = page.replace(/\{\{encodedTitle\}\}/g, encodeURIComponent(prop.title));
     page = page.replace(/\{\{fumigationLink\}\}/g, prop.fumigationLink || 'https://fumigo.co.ke');
     
-    // Features
+    // SEO fields
+    const seoTitle = prop.seo_title || `${prop.title} – KES ${prop.price?.toLocaleString()}/mo | RentSpace`;
+    const metaDesc = prop.meta_description || (prop.description || '').substring(0, 150);
+    page = page.replace(/\{\{seo_title\}\}/g, escapeHtml(seoTitle));
+    page = page.replace(/\{\{meta_description\}\}/g, escapeHtml(metaDesc));
+    
+    // Why rent section
+    const whyRent = prop.why_rent || '';
+    const whyRentDisplay = whyRent ? 'block' : 'none';
+    page = page.replace(/\{\{why_rent\}\}/g, escapeHtml(whyRent));
+    page = page.replace(/\{\{why_rent_display\}\}/g, whyRentDisplay);
+    
+    // Features list (using prop.features array)
     let featuresHtml = '';
     if (prop.features && prop.features.length) {
         featuresHtml = prop.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
     } else {
         featuresHtml = '<li>Tiled Floors</li><li>Water Heater</li><li>Secure Parking</li><li>24/7 Security</li>';
     }
-    page = page.replace(/\{\{#each features\}\}[\s\S]*?\{\{\/each\}\}/, featuresHtml);
+    page = page.replace(/\{\{featuresList\}\}/g, featuresHtml);
     
-    // ========== FIXED: Generate Gallery HTML for Rental Pages ==========
+    // ========== Generate Gallery HTML for Rental Pages ==========
     let mainImageHtml = '';
     let thumbnailsHtml = '';
+    let mainImageUrl = '';
     
     if (prop.images && prop.images.length) {
+        mainImageUrl = prop.images[0];
         // Main image (first one)
-        mainImageHtml = `<img src="${prop.images[0]}" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
+        mainImageHtml = `<img src="${mainImageUrl}" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
         
         // Thumbnails (all images)
         thumbnailsHtml = prop.images.map((img, idx) => `
@@ -86,13 +100,16 @@ rentals.forEach(prop => {
             </div>
         `).join('');
     } else {
-        mainImageHtml = `<img src="/images/placeholder.jpg" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
-        thumbnailsHtml = `<div class="thumb" data-index="0"><img src="/images/placeholder.jpg" alt="View 0" loading="lazy"></div>`;
+        mainImageUrl = '/images/placeholder.jpg';
+        mainImageHtml = `<img src="${mainImageUrl}" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
+        thumbnailsHtml = `<div class="thumb" data-index="0"><img src="${mainImageUrl}" alt="View 0" loading="lazy"></div>`;
     }
     
     // Replace gallery placeholders
     page = page.replace(/\{\{mainImage\}\}/, mainImageHtml);
     page = page.replace(/\{\{thumbnails\}\}/, thumbnailsHtml);
+    // Replace raw image URL for meta tags
+    page = page.replace(/\{\{mainImageUrl\}\}/g, mainImageUrl);
     
     // Recommendations
     const similarRentals = rentals.filter(r => r.id !== prop.id && r.estate === prop.estate).slice(0, 4);
@@ -109,7 +126,7 @@ rentals.forEach(prop => {
             </div>
         </a>`;
     });
-    page = page.replace(/\{\{#each recommendations\}\}[\s\S]*?\{\{\/each\}\}/, recsHtml);
+    page = page.replace(/\{\{recommendations\}\}/g, recsHtml);
     
     // Reviews
     const reviews = prop.reviews || [];
@@ -126,8 +143,21 @@ rentals.forEach(prop => {
                 <span>Verified Client</span>
             </div>
         </div>`).join('');
+    } else {
+        // Fallback testimonials
+        reviewsHtml = `
+        <div class="testimonial-card">
+            <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <p>"Great property, exactly as described. The team was responsive and professional."</p>
+            </div>
+            <div class="testimonial-author">
+                <strong>Verified Client</strong>
+                <span>RentSpace Tenant</span>
+            </div>
+        </div>`;
     }
-    page = page.replace(/\{\{#each reviews\}\}[\s\S]*?\{\{\/each\}\}/, reviewsHtml);
+    page = page.replace(/\{\{reviews\}\}/g, reviewsHtml);
     
     const outputPath = path.join(RENTAL_OUTPUT_DIR, `${prop.slug}.html`);
     fs.writeFileSync(outputPath, page);
@@ -165,58 +195,60 @@ airbnbs.forEach(prop => {
     page = page.replace(/\{\{check_out_time\}\}/g, prop.check_out_time || '10:00 AM');
     page = page.replace(/\{\{cancellation_policy\}\}/g, prop.cancellation_policy || 'Free cancellation for 48 hours');
     
-    // ========== Generate Gallery HTML for Airbnb Pages ==========
-    let mainImageHtml = '';
-    let thumbnailsHtml = '';
+    // SEO fields for Airbnb
+    const seoTitle = prop.seo_title || `${prop.title} – KES ${nightlyRate}/night | RentSpace`;
+    const metaDesc = prop.meta_description || (prop.description || '').substring(0, 150);
+    page = page.replace(/\{\{seo_title\}\}/g, escapeHtml(seoTitle));
+    page = page.replace(/\{\{meta_description\}\}/g, escapeHtml(metaDesc));
     
-    if (prop.images && prop.images.length) {
-        // Main image (first one)
-        mainImageHtml = `<img src="${prop.images[0]}" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
-        
-        // Thumbnails (all images)
-        thumbnailsHtml = prop.images.map((img, idx) => `
-            <div class="thumb" data-index="${idx}">
-                <img src="${img}" alt="View ${idx}" loading="lazy">
-            </div>
-        `).join('');
-    } else {
-        mainImageHtml = `<img src="/images/placeholder.jpg" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
-        thumbnailsHtml = `<div class="thumb" data-index="0"><img src="/images/placeholder.jpg" alt="View 0" loading="lazy"></div>`;
-    }
+    // Why rent section (optional for Airbnb)
+    const whyRent = prop.why_rent || '';
+    const whyRentDisplay = whyRent ? 'block' : 'none';
+    page = page.replace(/\{\{why_rent\}\}/g, escapeHtml(whyRent));
+    page = page.replace(/\{\{why_rent_display\}\}/g, whyRentDisplay);
     
-    // Replace gallery placeholders
-    page = page.replace(/\{\{mainImage\}\}/, mainImageHtml);
-    page = page.replace(/\{\{thumbnails\}\}/, thumbnailsHtml);
-    
-    // Features
+    // Features list
     let featuresHtml = '';
     if (prop.features && prop.features.length) {
         featuresHtml = prop.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
     } else {
         featuresHtml = '<li>Tiled Floors</li><li>Water Heater</li><li>Secure Parking</li><li>24/7 Security</li><li>High-speed WiFi</li>';
     }
-    page = page.replace(/\{\{#each features\}\}[\s\S]*?\{\{\/each\}\}/, featuresHtml);
+    page = page.replace(/\{\{featuresList\}\}/g, featuresHtml);
     
-    // Amenities
-    const amenities = [
-        { icon: 'fa-wifi', name: 'High-speed WiFi' },
-        { icon: 'fa-tv', name: 'Smart TV' },
-        { icon: 'fa-snowflake', name: 'Air conditioning' },
-        { icon: 'fa-utensils', name: 'Fully equipped kitchen' },
-        { icon: 'fa-parking', name: 'Free parking' },
-        { icon: 'fa-shield-alt', name: '24/7 security' }
-    ];
+    // Amenities (if template has {{amenities}} placeholder)
     let amenitiesHtml = '';
-    amenities.forEach(a => {
-        amenitiesHtml += `<div class="amenity-item"><i class="fas ${a.icon}"></i><span>${a.name}</span></div>`;
-    });
-    page = page.replace(/\{\{#each amenities\}\}[\s\S]*?\{\{\/each\}\}/, amenitiesHtml);
+    if (prop.short_stay_amenities && prop.short_stay_amenities.length) {
+        amenitiesHtml = prop.short_stay_amenities.map(a => `<span>${escapeHtml(a)}</span>`).join('');
+    } else {
+        amenitiesHtml = '<span>WiFi</span><span>TV</span><span>Kitchen</span><span>Parking</span>';
+    }
+    page = page.replace(/\{\{amenities\}\}/g, amenitiesHtml);
     
-    // Superhost badge
-    const superhostHtml = '<div class="superhost-badge"><i class="fas fa-medal"></i> Superhost</div>';
-    page = page.replace(/\{\{#if superhost\}\}[\s\S]*?\{\{\/if\}\}/, superhostHtml);
+    // ========== Generate Gallery HTML for Airbnb Pages ==========
+    let mainImageHtml = '';
+    let thumbnailsHtml = '';
+    let mainImageUrl = '';
     
-    // Similar Airbnb recommendations
+    if (prop.images && prop.images.length) {
+        mainImageUrl = prop.images[0];
+        mainImageHtml = `<img src="${mainImageUrl}" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
+        thumbnailsHtml = prop.images.map((img, idx) => `
+            <div class="thumb" data-index="${idx}">
+                <img src="${img}" alt="View ${idx}" loading="lazy">
+            </div>
+        `).join('');
+    } else {
+        mainImageUrl = '/images/placeholder.jpg';
+        mainImageHtml = `<img src="${mainImageUrl}" alt="${escapeHtml(prop.title)}" id="mainGalleryImg" loading="lazy">`;
+        thumbnailsHtml = `<div class="thumb" data-index="0"><img src="${mainImageUrl}" alt="View 0" loading="lazy"></div>`;
+    }
+    
+    page = page.replace(/\{\{mainImage\}\}/, mainImageHtml);
+    page = page.replace(/\{\{thumbnails\}\}/, thumbnailsHtml);
+    page = page.replace(/\{\{mainImageUrl\}\}/g, mainImageUrl);
+    
+    // Recommendations for Airbnb
     const similarAirbnbs = airbnbs.filter(a => a.id !== prop.id && a.estate === prop.estate).slice(0, 3);
     let recsHtml = '';
     similarAirbnbs.forEach(rec => {
@@ -233,9 +265,9 @@ airbnbs.forEach(prop => {
             </div>
         </a>`;
     });
-    page = page.replace(/\{\{#each recommendations\}\}[\s\S]*?\{\{\/each\}\}/, recsHtml);
+    page = page.replace(/\{\{recommendations\}\}/g, recsHtml);
     
-    // Reviews
+    // Reviews for Airbnb (placeholder)
     const reviewsHtml = `
     <div class="review-card">
         <div class="review-header">
@@ -253,7 +285,7 @@ airbnbs.forEach(prop => {
         <p>"Great location and value for money. Highly recommended for short stays in Nairobi."</p>
         <span class="review-date">1 month ago</span>
     </div>`;
-    page = page.replace(/\{\{#each reviews\}\}[\s\S]*?\{\{\/each\}\}/, reviewsHtml);
+    page = page.replace(/\{\{reviews\}\}/g, reviewsHtml);
     
     const outputPath = path.join(AIRBNB_OUTPUT_DIR, `${prop.slug}.html`);
     fs.writeFileSync(outputPath, page);
@@ -262,7 +294,7 @@ airbnbs.forEach(prop => {
 
 console.log('\n' + '='.repeat(50));
 console.log('🎉 GENERATION COMPLETE!');
-console.log('='.repeat(50));
+console.log('=' .repeat(50));
 console.log(`   📁 Rentals: ${RENTAL_OUTPUT_DIR} (${rentals.length} files)`);
 console.log(`   📁 Airbnb: ${AIRBNB_OUTPUT_DIR} (${airbnbs.length} files)`);
 console.log('\n💡 Next steps:');

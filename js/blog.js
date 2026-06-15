@@ -10,8 +10,20 @@ const basePath = getBasePath();
 // Default placeholder image (working URL)
 const DEFAULT_IMAGE = 'https://placehold.co/600x400/1a1a1a/c9a45c?text=No+Image';
 
+// ========== SAFELY UPDATE ELEMENT TEXT ==========
+function safeSetText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+}
+
+function safeSetHTML(id, html) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+}
+
 // Dynamic year
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ========== HAMBURGER MENU WITH OVERLAY ==========
 const hamburger = document.getElementById('hamburger');
@@ -81,7 +93,6 @@ const postsPerPage = 12;
 let isLoading = false;
 let loadingTimeout = null;
 
-// Helper function to get valid image URL
 function getValidImageUrl(imageUrl) {
     if (!imageUrl || imageUrl === '' || imageUrl.includes('placeholder')) {
         return DEFAULT_IMAGE;
@@ -89,28 +100,31 @@ function getValidImageUrl(imageUrl) {
     return imageUrl;
 }
 
-// Update category counts efficiently
+// Update category counts – only for categories that actually exist in the HTML
 function updateCategoryCounts() {
-    const counts = {
-        kitengela: 0, ngong: 0, syokimau: 0, karen: 0, kilimani: 0, hurlingham: 0, guides: 0
-    };
+    // Only these categories have corresponding span elements in your blog.html
+    const categoriesToUpdate = ['kitengela', 'syokimau'];
     
+    // Count posts per category
+    const counts = { kitengela: 0, syokimau: 0 };
     for (const post of allBlogPosts) {
-        if (counts[post.category] !== undefined) {
-            counts[post.category]++;
-        }
+        if (post.category === 'kitengela') counts.kitengela++;
+        else if (post.category === 'syokimau') counts.syokimau++;
     }
     
-    document.getElementById('kitengelaCount').textContent = counts.kitengela || 0;
-    document.getElementById('ngongCount').textContent = counts.ngong || 0;
-    document.getElementById('syokimauCount').textContent = counts.syokimau || 0;
-    document.getElementById('karenCount').textContent = counts.karen || 0;
-    document.getElementById('kilimaniCount').textContent = counts.kilimani || 0;
-    document.getElementById('hurlinghamCount').textContent = counts.hurlingham || 0;
+    // Safely update each count element if it exists
+    categoriesToUpdate.forEach(cat => {
+        safeSetText(`${cat}Count`, counts[cat] || 0);
+    });
 }
 
 // Render blog posts with pagination
 function renderBlogPosts() {
+    const blogGrid = document.getElementById('blogGrid');
+    const paginationDiv = document.getElementById('pagination');
+    
+    if (!blogGrid) return; // Exit if grid doesn't exist
+    
     let filteredPosts = allBlogPosts;
     if (currentCategory !== 'all') {
         filteredPosts = allBlogPosts.filter(post => post.category === currentCategory);
@@ -120,9 +134,6 @@ function renderBlogPosts() {
     const start = (currentPage - 1) * postsPerPage;
     const paginatedPosts = filteredPosts.slice(start, start + postsPerPage);
     
-    const blogGrid = document.getElementById('blogGrid');
-    const paginationDiv = document.getElementById('pagination');
-    
     if (paginatedPosts.length === 0) {
         blogGrid.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
@@ -130,7 +141,7 @@ function renderBlogPosts() {
                 <h3>No posts found</h3>
             </div>
         `;
-        paginationDiv.style.display = 'none';
+        if (paginationDiv) paginationDiv.style.display = 'none';
         return;
     }
     
@@ -152,6 +163,8 @@ function renderBlogPosts() {
             </a>
         `;
     }).join('');
+    
+    if (!paginationDiv) return;
     
     if (totalPages <= 1) {
         paginationDiv.style.display = 'none';
@@ -202,12 +215,15 @@ function renderBlogPosts() {
 
 // Popular posts (top 3 by views)
 function renderPopularPosts() {
-    const popular = [...allBlogPosts].sort((a, b) => (b.views || 0) - (a.views || 0)).slice(0, 3);
     const container = document.getElementById('popularPosts');
-    if (popular.length === 0) {
+    if (!container) return;
+    
+    if (allBlogPosts.length === 0) {
         container.innerHTML = '<p style="color: var(--text-muted);">No posts yet</p>';
         return;
     }
+    
+    const popular = [...allBlogPosts].sort((a, b) => (b.views || 0) - (a.views || 0)).slice(0, 3);
     container.innerHTML = popular.map(post => {
         const imageUrl = getValidImageUrl(post.image);
         return `
@@ -222,11 +238,14 @@ function renderPopularPosts() {
     }).join('');
 }
 
-// Category filter buttons
+// Category filter buttons (top buttons)
 function initCategoryFilters() {
-    document.querySelectorAll('.category-btn').forEach(btn => {
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    if (categoryBtns.length === 0) return;
+    
+    categoryBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            categoryBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentCategory = btn.dataset.category;
             currentPage = 1;
@@ -234,11 +253,14 @@ function initCategoryFilters() {
         });
     });
     
-    document.querySelectorAll('#categoryList a').forEach(link => {
+    // Sidebar category links
+    const categoryLinks = document.querySelectorAll('#categoryList a');
+    categoryLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const category = link.dataset.category;
-            document.querySelectorAll('.category-btn').forEach(btn => {
+            // Update top buttons active state
+            categoryBtns.forEach(btn => {
                 if (btn.dataset.category === category) btn.classList.add('active');
                 else btn.classList.remove('active');
             });
@@ -277,9 +299,11 @@ function initSearch() {
             const blogGrid = document.getElementById('blogGrid');
             const paginationDiv = document.getElementById('pagination');
             
+            if (!blogGrid) return;
+            
             if (searched.length === 0) {
                 blogGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;"><i class="fas fa-search" style="font-size:48px;color:var(--gold);opacity:0.5;margin-bottom:20px;"></i><h3>No results found for "${escapeHtml(searchTerm)}"</h3></div>`;
-                paginationDiv.style.display = 'none';
+                if (paginationDiv) paginationDiv.style.display = 'none';
             } else {
                 const paginated = searched.slice(0, postsPerPage);
                 blogGrid.innerHTML = paginated.map(post => {
@@ -300,7 +324,7 @@ function initSearch() {
                         </a>
                     `;
                 }).join('');
-                paginationDiv.style.display = 'none';
+                if (paginationDiv) paginationDiv.style.display = 'none';
             }
         }, 300);
     });
@@ -321,6 +345,8 @@ function escapeHtml(str) {
 async function loadPosts() {
     const loadingSpinner = document.getElementById('loadingSpinner');
     const blogGrid = document.getElementById('blogGrid');
+    
+    if (!loadingSpinner || !blogGrid) return;
     
     loadingTimeout = setTimeout(() => {
         if (isLoading) {

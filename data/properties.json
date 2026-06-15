@@ -5,6 +5,7 @@
     "title": "3 Bedroom Duplex to Let in Syokimau",
     "type": "3 Bedroom",
     "estate": "Syokimau",
+    "specific_estate": "Gateway",
     "price": 35000,
     "currency": "KES",
     "specs": {
@@ -62,6 +63,7 @@
     "title": "3 Bedroom Apartment to Let in Syokimau",
     "type": "3 Bedroom",
     "estate": "Syokimau",
+    "specific_estate": "Gateway",
     "price": 55000,
     "currency": "KES",
     "specs": {
@@ -117,6 +119,7 @@
     "title": "4 Bedroom Mansion to Let in Kitengela",
     "type": "Mansionette",
     "estate": "Kitengela",
+    "specific_estate": "Acacia",
     "price": 55000,
     "currency": "KES",
     "specs": {
@@ -174,6 +177,7 @@
     "title": "4 Bedroom Maisonette to Let in Kitengela",
     "type": "Mansionette",
     "estate": "Kitengela",
+    "specific_estate": "Acacia",
     "price": 80000,
     "currency": "KES",
     "specs": {
@@ -236,6 +240,7 @@
     "title": "Modern 5 Bedroom to Let in Kitengela",
     "type": "Mansionette",
     "estate": "Kitengela",
+    "specific_estate": "Muigai",
     "price": 70000,
     "currency": "KES",
     "specs": {
@@ -296,6 +301,7 @@
     "title": "3 Bedroom Bungalow to Let in Kitengela",
     "type": "Bungalow",
     "estate": "Kitengela",
+    "specific_estate": "Acacia",
     "price": 55000,
     "currency": "KES",
     "specs": {
@@ -356,6 +362,7 @@
     "title": "5 Bedroom Townhouse for Rent in Syokimau",
     "type": "Bungalow",
     "estate": "Syokimau",
+    "specific_estate": "Katani",
     "price": 150000,
     "currency": "KES",
     "specs": {
@@ -413,6 +420,7 @@
     "title": "6 Bedroom Maisonette to Let in Kitengela",
     "type": "Mansionette",
     "estate": "Kitengela",
+    "specific_estate": "Chuna",
     "price": 80000,
     "currency": "KES",
     "specs": {
@@ -473,6 +481,7 @@
     "title": "5 Bedroom Maisonette to Let in Syokimau",
     "type": "Mansionette",
     "estate": "Syokimau",
+    "specific_estate": "Gateway",
     "price": 120000,
     "currency": "KES",
     "specs": {
@@ -530,6 +539,7 @@
     "title": "3 Bedroom Bungalow to Let in Kitengela",
     "type": "Bungalow",
     "estate": "Kitengela",
+    "specific_estate": "Milimani",
     "price": 45000,
     "currency": "KES",
     "specs": {
@@ -590,6 +600,7 @@
     "title": "3 Bedroom Bungalow to Let in Kitengela",
     "type": "Bungalow",
     "estate": "Kitengela",
+    "specific_estate": "Yukos",
     "price": 45000,
     "currency": "KES",
     "specs": {
@@ -652,6 +663,7 @@
     "title": "5 Bedroom Maisonette to Let in Syokimau",
     "type": "5-bedroom Mansionette",
     "estate": "Syokimau",
+    "specific_estate": "Syokimau View",
     "price": 80000,
     "currency": "KES",
     "specs": {
@@ -713,6 +725,7 @@
     "title": "2 Bedroom Apartment to Let in Kitengela",
     "type": "2-bedroom apartment",
     "estate": "Kitengela",
+    "specific_estate": "Milimani",
     "price": 23000,
     "currency": "KES",
     "specs": {
@@ -773,6 +786,7 @@
     "title": "3 Bedroom Apartment to Let in Syokimau",
     "type": "3-bedroom apartment",
     "estate": "Syokimau",
+    "specific_estate": "Greatwall",
     "price": 70000,
     "currency": "KES",
     "specs": {
@@ -840,6 +854,7 @@
     "title": "4 Bedroom Mini-Flat Apartment to Let in Kitengela",
     "type": "4-bedroom mini-apartment",
     "estate": "Kitengela",
+    "specific_estate": "Acacia",
     "price": 55000,
     "currency": "KES",
     "specs": {
@@ -898,6 +913,7 @@
     "title": "Fully Furnished 3 Bedroom Bungalow to Let in Kitengela",
     "type": "3-bedroom bungalow",
     "estate": "Kitengela",
+    "specific_estate": "Noonkopir",
     "price": 80000,
     "currency": "KES",
     "specs": {
@@ -958,6 +974,7 @@
     "title": "4 Bedroom Mansion to Let in Kitengela",
     "type": "Mansionette",
     "estate": "Kitengela",
+    "specific_estate": "New Valley",
     "price": 65000,
     "currency": "KES",
     "specs": {
@@ -1018,6 +1035,7 @@
     "title": "3 Bedroom Mini-Flat to Let in Kitengela",
     "type": "3 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Acacia",
     "price": 40000,
     "currency": "KES",
     "specs": {
@@ -1076,6 +1094,7 @@
     "title": "3 Bedroom Bungalow to Let in Kitengela",
     "type": "3 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Acacia",
     "price": 40000,
     "currency": "KES",
     "specs": {
@@ -1134,6 +1153,7 @@
     "title": "3 Bedroom Bungalow to Let in Kitengela",
     "type": "3-bedroom bungalow",
     "estate": "Kitengela",
+    "specific_estate": "Chuna",
     "price": 40000,
     "currency": "KES",
     "specs": {
@@ -1192,6 +1212,7 @@
     "title": "3 Bedroom House to Let in Kitengela",
     "type": "3 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Chuna",
     "price": 40000,
     "currency": "KES",
     "specs": {
@@ -1251,6 +1272,7 @@
     "title": "4 Bedroom Maisonette to Let in Kitengela",
     "type": "4 Bedroom mansionette",
     "estate": "Kitengela",
+    "specific_estate": "Royal Finesse",
     "price": 45000,
     "currency": "KES",
     "specs": {
@@ -1311,6 +1333,7 @@
     "title": "5 Bedroom Maisonette to Let in Kitengela",
     "type": "5-bedroom Mansionette",
     "estate": "Kitengela",
+    "specific_estate": "Yukos",
     "price": 60000,
     "currency": "KES",
     "specs": {
@@ -1370,6 +1393,7 @@
     "title": "4 Bedroom Maisonette to Let in Kitengela",
     "type": "4 Bedroom mansionette",
     "estate": "Kitengela",
+    "specific_estate": "Royal Finesse",
     "price": 65000,
     "currency": "KES",
     "specs": {
@@ -1429,6 +1453,7 @@
     "title": "3 Bedroom Apartment to Let in Kitengela",
     "type": "3 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Royal Finesse",
     "price": 38000,
     "currency": "KES",
     "specs": {
@@ -1487,6 +1512,7 @@
     "title": "3 Bedroom All-Ensuite Bungalow to Let in Kitengela",
     "type": "3 Bedroom bungalow",
     "estate": "Kitengela",
+    "specific_estate": "Royal Finesse",
     "price": 45000,
     "currency": "KES",
     "specs": {
@@ -1546,6 +1572,7 @@
     "title": "4 Bedroom Executive Mansion + 2 DSQs to Let in Kitengela",
     "type": "4 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Noonkopir",
     "price": 120000,
     "currency": "KES",
     "specs": {
@@ -1606,6 +1633,7 @@
     "title": "Modern 5 Bedroom All-Ensuite Home + 2 Bedsitters to Let in Kitengela",
     "type": "5 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Muigai",
     "price": 70000,
     "currency": "KES",
     "specs": {
@@ -1643,7 +1671,7 @@
     "isFeatured": false,
     "movingEstimate": 0,
     "fumigationLink": "https://fumigo.co.ke",
-    "description": "Kitengela – 5 Bedrooms, 5 Bathrooms (all en‑suite) + 2 self‑contained bedsitters – Muingai Area. This modern home is designed for comfort, space, and functionality, with a unique bonus of two income‑generating bedsitters at the rear.\n\nThe main house features expansive living and dining areas filled with natural light, a well‑appointed modern kitchen, and a generously sized compound with landscaped gardens. All five bedrooms are en‑suite, providing maximum privacy for family members and guests. The master suite is particularly spacious.\n\nOutside, you’ll find a secure perimeter wall with electric and razor wire fencing, paved driveways and walkways, a car shade, and ample parking for up to 5 vehicles. The two self‑contained bedsitters are ideal for generating rental income, accommodating extended family, or providing staff accommodation.\n\nLocated in the quiet Muingai area of Kitengela, this property offers easy access to Namanga Road, schools, hospitals, and shopping malls. Security is top‑notch, and the compound is well‑maintained with green spaces throughout.\n\nIf you need a large family home with the added benefit of rental income from two bedsitters, this property is an exceptional choice. For Rent: KSh 70,000/month. Call/WhatsApp 0723562484 for a viewing.",
+    "description": "Kitengela – 5 Bedrooms, 5 Bathrooms (all en‑suite) + 2 self‑contained bedsitters – Muigai Area. This modern home is designed for comfort, space, and functionality, with a unique bonus of two income‑generating bedsitters at the rear.\n\nThe main house features expansive living and dining areas filled with natural light, a well‑appointed modern kitchen, and a generously sized compound with landscaped gardens. All five bedrooms are en‑suite, providing maximum privacy for family members and guests. The master suite is particularly spacious.\n\nOutside, you’ll find a secure perimeter wall with electric and razor wire fencing, paved driveways and walkways, a car shade, and ample parking for up to 5 vehicles. The two self‑contained bedsitters are ideal for generating rental income, accommodating extended family, or providing staff accommodation.\n\nLocated in the quiet Muingai area of Kitengela, this property offers easy access to Namanga Road, schools, hospitals, and shopping malls. Security is top‑notch, and the compound is well‑maintained with green spaces throughout.\n\nIf you need a large family home with the added benefit of rental income from two bedsitters, this property is an exceptional choice. For Rent: KSh 70,000/month. Call/WhatsApp 0723562484 for a viewing.",
     "rental_type": "long_term",
     "available_for": "long_term",
     "is_airbnb_ready": false,
@@ -1658,6 +1686,7 @@
     "title": "3 Bedroom Bungalow + DSQ to Let in Kitengela",
     "type": "3 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Royal Finesse",
     "price": 55000,
     "currency": "KES",
     "specs": {
@@ -1762,6 +1791,7 @@
     "title": "6 Bedroom Townhouse + DSQ to Let in Syokimau",
     "type": "6 Bedroom",
     "estate": "Syokimau",
+    "specific_estate": "Greatwall",
     "price": 130000,
     "currency": "KES",
     "specs": {
@@ -1826,6 +1856,7 @@
     "title": "5 Bedroom All-Ensuite Home + DSQ to Let in Kitengela",
     "type": "5 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Acacia",
     "price": 120000,
     "currency": "KES",
     "specs": {
@@ -1888,6 +1919,7 @@
     "title": "4 Bedroom Maisonette to Let in Kitengela",
     "type": "Maisonette",
     "estate": "Kitengela",
+    "specific_estate": "Muigai",
     "price": 40000,
     "currency": "KES",
     "specs": {
@@ -1943,6 +1975,7 @@
     "title": "4 Bedroom Duplex to Let in Syokimau",
     "type": "4 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Katani",
     "price": 45000,
     "currency": "KES",
     "specs": {
@@ -2002,6 +2035,7 @@
     "title": "Fully Furnished Studio Apartment for Short Stay in Syokimau – KES 3,000/night",
     "type": "Bedsitter",
     "estate": "Syokimau",
+    "specific_estate": "Syokimau View",
     "price": 3000,
     "currency": "KES",
     "specs": {
@@ -2070,6 +2104,7 @@
     "title": "2 Bedroom Master Ensuite Apartment to Let in Kitengela",
     "type": "2 Bedroom",
     "estate": "Kitengela",
+    "specific_estate": "Milimani",
     "price": 23000,
     "currency": "KES",
     "specs": {
@@ -2128,6 +2163,7 @@
     "title": "4 Bedroom All-Ensuite Mansionette to Let in Syokimau",
     "type": "4 Bedroom",
     "estate": "Syokimau",
+    "specific_estate": "Gateway",
     "price": 60000,
     "currency": "KES",
     "specs": {

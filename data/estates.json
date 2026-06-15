@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Acacia",
+    "slug": "acacia",
+    "location": "Kitengela",
+    "locationSlug": "kitengela",
+    "type": "gated-community",
+    "priceRange": "mid",
+    "familyFriendly": true
+  },
+  {
+    "name": "Milimani",
+    "slug": "milimani",
+    "location": "Kitengela",
+    "locationSlug": "kitengela",
+    "type": "established-residential",
+    "priceRange": "mid",
+    "familyFriendly": true
+  },
+  {
+    "name": "Chuna",
+    "slug": "chuna",
+    "location": "Kitengela",
+    "locationSlug": "kitengela",
+    "type": "gated-community",
+    "priceRange": "mid-high",
+    "familyFriendly": true
+  },
+  {
+    "name": "Yukos",
+    "slug": "yukos",
+    "location": "Kitengela",
+    "locationSlug": "kitengela",
+    "type": "mixed-residential",
+    "priceRange": "low-mid",
+    "familyFriendly": true
+  },
+  {
+    "name": "Muigai",
+    "slug": "muigai",
+    "location": "Kitengela",
+    "locationSlug": "kitengela",
+    "type": "emerging-estate",
+    "priceRange": "low",
+    "familyFriendly": true
+  },
+  {
+    "name": "Noonkopir",
+    "slug": "noonkopir",
+    "location": "Kitengela",
+    "locationSlug": "kitengela",
+    "type": "gated-community",
+    "priceRange": "high",
+    "familyFriendly": true
+  },
+  {
+    "name": "New Valley",
+    "slug": "new-valley",
+    "location": "Kitengela",
+    "locationSlug": "kitengela",
+    "type": "modern-estate",
+    "priceRange": "mid",
+    "familyFriendly": true
+  },
+  {
+    "name": "Royal Finesse",
+    "slug": "royal-finesse",
+    "location": "Kitengela",
+    "locationSlug": "kitengela",
+    "type": "luxury-gated",
+    "priceRange": "high",
+    "familyFriendly": true
+  },
+  {
+    "name": "Katani",
+    "slug": "katani",
+    "location": "Syokimau",
+    "locationSlug": "syokimau",
+    "type": "gated-community",
+    "priceRange": "mid",
+    "familyFriendly": true
+  },
+  {
+    "name": "Greatwall",
+    "slug": "greatwall",
+    "location": "Syokimau",
+    "locationSlug": "syokimau",
+    "type": "gated-community",
+    "priceRange": "mid",
+    "familyFriendly": true
+  },
+  {
+    "name": "Gateway",
+    "slug": "gateway",
+    "location": "Syokimau",
+    "locationSlug": "syokimau",
+    "type": "mixed-use",
+    "priceRange": "mid",
+    "familyFriendly": true
+  },
+  {
+    "name": "Syokimau View",
+    "slug": "view",
+    "location": "Syokimau",
+    "locationSlug": "syokimau",
+    "type": "apartment-estate",
+    "priceRange": "low-mid",
+    "familyFriendly": true
+  }
+]

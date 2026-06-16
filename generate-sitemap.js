@@ -17,7 +17,9 @@ const staticPages = [
 const dynamicDirs = [
   { dir: 'blog', urlPrefix: '/blog/', priority: '0.8', changefreq: 'weekly' },
   { dir: 'property', urlPrefix: '/property/', priority: '0.7', changefreq: 'weekly' },
-  { dir: 'airbnb', urlPrefix: '/airbnb/', priority: '0.7', changefreq: 'weekly' }
+  { dir: 'airbnb', urlPrefix: '/airbnb/', priority: '0.7', changefreq: 'weekly' },
+  { dir: 'estate', urlPrefix: '/estate/', priority: '0.8', changefreq: 'weekly' },   // ← add this
+  { dir: 'location', urlPrefix: '/location/', priority: '0.8', changefreq: 'weekly' } // ← add this
 ];
 
 // ---------- ROBOTS.TXT CONTENT ----------

@@ -381,9 +381,9 @@
             
             const allProperties = await response.json();
             
-            allAirbnbProperties = allProperties.filter(prop => 
-                prop.rental_type === 'short_term'
-            );
+          allAirbnbProperties = allProperties.filter(prop => 
+    prop.is_airbnb_ready === true
+);
             
             console.log(`✅ Found ${allAirbnbProperties.length} Airbnb properties`);
             

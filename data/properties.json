@@ -2216,5 +2216,74 @@
     "short_stay_amenities": [],
     "meta_description": "4 bedroom all‑ensuite mansionette in Syokimau – KES 60k/mo. Off Mombasa Road, electric fence, 24/7 water, mature lawns. Call 0723562484.",
     "why_rent": "This mansionette is exceptional because all four bedrooms are ensuite – a rare feature at this price. Add electric fence, reliable water, mature lawns, and a prime location off Mombasa Road, and you have a secure, comfortable home for a large family."
-  }
+  },
+  {
+  "id": 101,
+  "slug": "5-bedroom-airbnb-kitengela-milimani-fully-furnished",
+  "title": "5 Bedroom Fully Furnished Airbnb in Kitengela Milimani – Own Compound",
+  "type": "5-bedroom Airbnb",
+  "estate": "Kitengela",
+  "specific_estate": "Milimani",
+  "price": 15000,
+  "currency": "KES",
+  "specs": {
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "parking": 4,
+    "sqft": 0
+  },
+  "features": [
+    "Fully furnished – move‑in ready",
+    "Own private compound (not shared)",
+    "Smart TV with streaming apps",
+    "Free high‑speed Wi‑Fi",
+    "Fully equipped kitchen",
+    "Hot water in all bathrooms",
+    "Ample free private parking",
+    "Modern furnishing throughout",
+    "Tight security (gated compound)",
+    "3 minutes to Kitengela town",
+    "Easy access to social amenities",
+    "Available for both long and short stays"
+  ],
+  "images": [
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/WhatsApp_Image_2026-06-24_at_7.26.02_PM_2_s0bw40.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318690/WhatsApp_Image_2026-06-24_at_7.26.03_PM_1_bwqtad.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318690/WhatsApp_Image_2026-06-24_at_7.26.01_PM_2_l86elu.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318690/WhatsApp_Image_2026-06-24_at_7.26.01_PM_1_klu1en.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318689/WhatsApp_Image_2026-06-24_at_7.26.00_PM_3_s363k7.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318689/WhatsApp_Image_2026-06-24_at_7.26.00_PM_3_s363k7.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318689/WhatsApp_Image_2026-06-24_at_7.26.02_PM_lvwbto.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318689/WhatsApp_Image_2026-06-24_at_7.26.00_PM_fdnidc.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318688/WhatsApp_Image_2026-06-24_at_7.26.01_PM_snzx66.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318688/WhatsApp_Image_2026-06-24_at_7.26.00_PM_1_wfu4cp.jpg"
+  ],
+  "isFeatured": true,
+  "movingEstimate": 0,
+  "fumigationLink": "https://fumigo.co.ke",
+  "description": "Fully Furnished 5‑Bedroom Airbnb in Kitengela Milimani – Own Compound. This spacious 5‑bedroom home sits on its own private compound in the sought‑after Milimani estate, just 3 minutes from Kitengela town. Available for both long‑term rentals and short‑term stays, it offers the perfect blend of comfort, privacy, and convenience.\n\nThe home comes fully furnished with modern furniture, a Smart TV, free fast Wi‑Fi, and a fully equipped kitchen. Hot water is available in all bathrooms. The compound provides ample free private parking, and security is tight with a gated entrance and 24‑hour guard presence.\n\nLocation is a major advantage – you're just 3 minutes from Kitengela town, with easy access to supermarkets (Naivas, Quickmart), hospitals (Halisi Family Hospital), and top schools (Acacia Crest Academy, Kitengela International School). The Nairobi‑Namanga Road is also minutes away, making commuting to Nairobi or JKIA straightforward.\n\nWhether you need a short‑stay getaway or a long‑term family home, this fully furnished 5‑bedroom property delivers space, comfort, and security. Call or WhatsApp 0723562484 for viewing.",
+  "rental_type": "both",
+  "available_for": "both",
+  "is_airbnb_ready": true,
+  "price_night": 15000,
+  "price_week": 90000,
+  "price_month_short": 300000,
+  "min_stay_nights": 1,
+  "airbnb_rating": null,
+  "airbnb_reviews": null,
+  "airbnb_superhost": false,
+  "furnishing_level": "fully_furnished",
+  "is_furnished": true,
+  "short_stay_amenities": [
+    "Smart TV",
+    "High-speed WiFi",
+    "Fully equipped kitchen",
+    "Hot water",
+    "Free private parking",
+    "24/7 security",
+    "Modern furnishings"
+  ],
+  "meta_description": "Fully furnished 5‑bedroom Airbnb in Kitengela Milimani – own compound, Smart TV, WiFi, hot water, secure parking, 3 mins to town. KES 15,000/night. Call 0723562484.",
+  "why_rent": "This property offers a rare combination: a fully furnished 5‑bedroom home with its own private compound, available for both long and short stays. Just 3 minutes from Kitengela town with tight security and modern amenities, it’s ideal for families, groups, or corporate travelers who want privacy and convenience."
+}
 ]

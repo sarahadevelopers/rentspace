@@ -230,8 +230,7 @@ airbnbs.forEach(prop => {
     page = page.replace(/\{\{host_name\}\}/g, prop.host_name || 'RentSpace Premier Host');
     page = page.replace(/\{\{host_response_rate\}\}/g, prop.host_response_rate || 98);
     page = page.replace(/\{\{host_response_time\}\}/g, prop.host_response_time || 'within an hour');
-    page = page.replace(/\{\{check_in_time\}\}/g, prop.check_in_time || '2:00 PM');
-    page = page.replace(/\{\{check_out_time\}\}/g, prop.check_out_time || '10:00 AM');
+    
     page = page.replace(/\{\{cancellation_policy\}\}/g, prop.cancellation_policy || 'Free cancellation for 48 hours');
     
     // SEO fields for Airbnb

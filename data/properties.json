@@ -2383,8 +2383,8 @@
     "Available for both short and long stays"
   ],
   "images": [
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359377/WhatsApp_Image_2026-06-19_at_2.52.06_PM_mf123x.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359377/WhatsApp_Image_2026-06-19_at_2.52.08_PM_3_icvgyj.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359377/WhatsApp_Image_2026-06-19_at_2.52.06_PM_mf123x.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.08_PM_2_to1jqi.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.07_PM_1_kfdv0a.jpg"
   ],
@@ -2427,7 +2427,7 @@
   "price": 2500,
   "currency": "KES",
   "specs": {
-    "bedrooms": 0,
+    "bedrooms": 1,
     "bathrooms": 1,
     "parking": 1,
     "sqft": 400
@@ -2449,9 +2449,9 @@
     "Priority check‑in and complimentary late check‑out"
   ],
   "images": [
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366071/WhatsApp_Image_2026-06-25_at_8.34.06_AM_1_mtmpko.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366072/WhatsApp_Image_2026-06-25_at_8.34.02_AM_datrih.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782371381/WhatsApp_Image_2026-06-25_at_10.08.01_AM_ugnuws.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366071/WhatsApp_Image_2026-06-25_at_8.34.06_AM_1_mtmpko.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366071/WhatsApp_Image_2026-06-25_at_8.34.07_AM_we9n6j.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366075/WhatsApp_Image_2026-06-25_at_8.34.00_AM_2_ggj05d.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782371380/WhatsApp_Image_2026-06-25_at_10.08.02_AM_1_f7c9fb.jpg",
@@ -2487,7 +2487,7 @@
     "Self check-in"
   ],
   "meta_description": "Executive studio along Namanga Road near Quiver Lounge – breakfast included, king bed, 65-inch TV, WiFi, parking, workspace. KES 2,500/night. Call 0723562484.",
-  "why_rent": "This executive studio stands out with its premium upgrades – memory foam mattress, 65‑inch TV, espresso machine, and complimentary breakfast – all in a prime highway location. Perfect for business travellers or couples who value comfort and convenience."
+  "why_rent": "This executive studio stands out with its premium upgrades – memory foam mattress, 43‑inch TV, espresso machine, and complimentary breakfast – all in a prime highway location. Perfect for business travellers or couples who value comfort and convenience."
 },
 {
   "id": 105,
@@ -2499,7 +2499,7 @@
   "price": 2000,
   "currency": "KES",
   "specs": {
-    "bedrooms": 0,
+    "bedrooms": 1,
     "bathrooms": 1,
     "parking": 1,
     "sqft": 350
@@ -2606,7 +2606,7 @@
   "price_month_short": 80000,
   "min_stay_nights": 1,
   "airbnb_rating": "4.9",
-  "airbnb_reviews": 7,
+  "airbnb_reviews": 59,
   "airbnb_superhost": false,
   "furnishing_level": "fully_furnished",
   "is_furnished": true,
@@ -2730,11 +2730,16 @@
     "Ideal for families, groups, or corporate travellers"
   ],
   "images": [
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366084/WhatsApp_Image_2026-06-25_at_8.34.10_AM_gph7du.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366082/WhatsApp_Image_2026-06-25_at_8.34.14_AM_2_hy0w2z.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366077/WhatsApp_Image_2026-06-25_at_8.33.59_AM_sclfen.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366077/WhatsApp_Image_2026-06-25_at_8.34.18_AM_1_jwybyv.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782378378/WhatsApp_Image_2026-06-25_at_12.04.13_PM_ge2kdo.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366077/WhatsApp_Image_2026-06-25_at_8.34.18_AM_dylf7n.jpg",
     "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366079/WhatsApp_Image_2026-06-25_at_8.34.16_AM_obv66v.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782371380/WhatsApp_Image_2026-06-25_at_10.08.02_AM_1_f7c9fb.jpg"
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782378378/WhatsApp_Image_2026-06-25_at_12.04.11_PM_u60vbs.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782378377/WhatsApp_Image_2026-06-25_at_12.04.12_PM_cwarac.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782378376/WhatsApp_Image_2026-06-25_at_12.04.11_PM_1_pgtwct.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782378375/WhatsApp_Image_2026-06-25_at_12.04.12_PM_1_nlwrnc.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782378378/WhatsApp_Image_2026-06-25_at_12.04.13_PM_1_meg7ye.jpg"
 
   ],
   "isFeatured": true,

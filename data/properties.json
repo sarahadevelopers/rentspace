@@ -2285,5 +2285,73 @@
   ],
   "meta_description": "Fully furnished 5‑bedroom Airbnb in Kitengela Milimani – own compound, Smart TV, WiFi, hot water, secure parking, 3 mins to town. KES 15,000/night. Call 0723562484.",
   "why_rent": "This property offers a rare combination: a fully furnished 5‑bedroom home with its own private compound, available for both long and short stays. Just 3 minutes from Kitengela town with tight security and modern amenities, it’s ideal for families, groups, or corporate travelers who want privacy and convenience."
+},
+{
+  "id": 102,
+  "slug": "2-bedroom-airbnb-kitengela-balozi-road",
+  "title": "2 Bedroom Quiet Airbnb in Kitengela Balozi Road – Peaceful & Conducive",
+  "type": "2-bedroom Airbnb",
+  "estate": "Kitengela",
+  "specific_estate": "Balozi",
+  "price": 4500,
+  "currency": "KES",
+  "specs": {
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "parking": 1,
+    "sqft": 0
+  },
+  "features": [
+    "2 spacious bedrooms (1 queen, 1 double)",
+    "1 clean bathroom with hot water",
+    "Open‑plan living and dining area",
+    "Fully equipped kitchen (fridge, cooker, microwave)",
+    "High‑speed Wi‑Fi (ideal for remote work)",
+    "Smart TV with streaming apps",
+    "Ample free secure parking",
+    "Gated apartment with 24‑hour security",
+    "Serene, quiet environment – perfect for relaxation",
+    "Located on Balozi Road, close to Kitengela town",
+    "Easy access to supermarkets, hospitals, and eateries",
+    "Available for both short and long stays"
+  ],
+  "images": [
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.06_PM_1_gaqxut.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.08_PM_btudkh.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.08_PM_1_bb6y3v.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359377/WhatsApp_Image_2026-06-19_at_2.52.06_PM_2_v8x9ya.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359377/WhatsApp_Image_2026-06-19_at_2.52.08_PM_3_icvgyj.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.07_PM_ijrgpo.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.08_PM_2_to1jqi.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.07_PM_1_kfdv0a.jpg"
+  ],
+  "isFeatured": true,
+  "movingEstimate": 0,
+  "fumigationLink": "https://fumigo.co.ke",
+  "description": "Quiet 2‑Bedroom Airbnb in Kitengela Balozi Road – Your Peaceful Home Away From Home. This spacious and well‑maintained apartment is situated on the serene Balozi Road, offering a quiet and conducive environment – perfect for families, business travelers, or couples seeking a relaxing stay.\n\nThe apartment features two comfortable bedrooms (one queen and one double), a modern bathroom with hot water, and an open‑plan living and dining area. The kitchen is fully equipped with a fridge, cooker, and microwave – ideal for preparing your own meals. High‑speed Wi‑Fi and a Smart TV with streaming apps keep you connected and entertained.\n\nSecurity is top‑notch with a gated compound and 24‑hour guard presence. You also enjoy ample free secure parking. The location is incredibly convenient – just a short drive to Kitengela town, with supermarkets (Naivas, Quickmart), hospitals (Halisi Family Hospital), and popular eateries within easy reach.\n\nWhether you need a short‑stay getaway or a long‑term base, this quiet and conductive apartment delivers comfort, privacy, and convenience. Call or WhatsApp 0723562484 to book your stay.",
+  "rental_type": "both",
+  "available_for": "both",
+  "is_airbnb_ready": true,
+  "price_night": 4500,
+  "price_week": 27000,
+  "price_month_short": 90000,
+  "min_stay_nights": 1,
+  "airbnb_rating": null,
+  "airbnb_reviews": null,
+  "airbnb_superhost": false,
+  "furnishing_level": "fully_furnished",
+  "is_furnished": true,
+  "short_stay_amenities": [
+    "High-speed WiFi",
+    "Smart TV",
+    "Fully equipped kitchen",
+    "Hot water",
+    "Free secure parking",
+    "24/7 security",
+    "Quiet environment",
+    "Close to town"
+  ],
+  "meta_description": "Quiet 2‑bedroom Airbnb in Kitengela Balozi Road – fully furnished, high‑speed WiFi, Smart TV, secure parking, and a peaceful atmosphere. KES 4,500/night. Call 0723562484.",
+  "why_rent": "This apartment offers a rare combination of peace and convenience – tucked away on quiet Balozi Road yet minutes from Kitengela town. The fully equipped kitchen, fast WiFi, and 24/7 security make it ideal for families, remote workers, and business travelers who value a restful stay."
 }
 ]

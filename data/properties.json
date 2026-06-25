@@ -2658,10 +2658,11 @@
     "Excellent value for families or couples"
   ],
   "images": [
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/placeholder_1bed_norm_1.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/placeholder_1bed_norm_2.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/placeholder_1bed_norm_3.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/placeholder_1bed_norm_4.jpg"
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366084/WhatsApp_Image_2026-06-25_at_8.34.10_AM_gph7du.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366073/WhatsApp_Image_2026-06-25_at_8.34.01_AM_yculjf.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782371674/WhatsApp_Image_2026-06-25_at_10.12.48_AM_1_xhokat.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782371675/WhatsApp_Image_2026-06-25_at_10.12.49_AM_2_bfcjda.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782371677/WhatsApp_Image_2026-06-25_at_10.12.49_AM_3_e6fr01.jpg"
   ],
   "isFeatured": false,
   "movingEstimate": 0,
@@ -2675,7 +2676,7 @@
   "price_month_short": 70000,
   "min_stay_nights": 1,
   "airbnb_rating": "4.7",
-  "airbnb_reviews": 12,
+  "airbnb_reviews": 72,
   "airbnb_superhost": false,
   "furnishing_level": "fully_furnished",
   "is_furnished": true,
@@ -2729,10 +2730,12 @@
     "Ideal for families, groups, or corporate travellers"
   ],
   "images": [
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/placeholder_3bed_exec_1.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/placeholder_3bed_exec_2.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/placeholder_3bed_exec_3.jpg",
-    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782318691/placeholder_3bed_exec_4.jpg"
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366084/WhatsApp_Image_2026-06-25_at_8.34.10_AM_gph7du.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366077/WhatsApp_Image_2026-06-25_at_8.33.59_AM_sclfen.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366077/WhatsApp_Image_2026-06-25_at_8.34.18_AM_1_jwybyv.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782366079/WhatsApp_Image_2026-06-25_at_8.34.16_AM_obv66v.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782371380/WhatsApp_Image_2026-06-25_at_10.08.02_AM_1_f7c9fb.jpg"
+
   ],
   "isFeatured": true,
   "movingEstimate": 0,
@@ -2746,7 +2749,7 @@
   "price_month_short": 160000,
   "min_stay_nights": 1,
   "airbnb_rating": "4.9",
-  "airbnb_reviews": 6,
+  "airbnb_reviews": 76,
   "airbnb_superhost": false,
   "furnishing_level": "fully_furnished",
   "is_furnished": true,

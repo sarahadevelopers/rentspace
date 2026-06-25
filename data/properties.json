@@ -2353,5 +2353,69 @@
   ],
   "meta_description": "Quiet 2‑bedroom Airbnb in Kitengela Balozi Road – fully furnished, high‑speed WiFi, Smart TV, secure parking, and a peaceful atmosphere. KES 4,500/night. Call 0723562484.",
   "why_rent": "This apartment offers a rare combination of peace and convenience – tucked away on quiet Balozi Road yet minutes from Kitengela town. The fully equipped kitchen, fast WiFi, and 24/7 security make it ideal for families, remote workers, and business travelers who value a restful stay."
+},
+{
+  "id": 103,
+  "slug": "1-bedroom-airbnb-kitengela-balozi-road",
+  "title": "1 Bedroom Cozy Airbnb in Kitengela Balozi Road – Quiet & Budget‑Friendly",
+  "type": "1-bedroom Airbnb",
+  "estate": "Kitengela",
+  "specific_estate": "Balozi",
+  "price": 2500,
+  "currency": "KES",
+  "specs": {
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "parking": 1,
+    "sqft": 0
+  },
+  "features": [
+    "1 comfortable bedroom (queen bed)",
+    "1 clean bathroom with hot water",
+    "Open‑plan living and dining area",
+    "Fully equipped kitchen (fridge, cooker, microwave)",
+    "High‑speed Wi‑Fi (great for remote work)",
+    "Smart TV with streaming apps",
+    "Ample free secure parking",
+    "Gated apartment with 24‑hour security",
+    "Serene, quiet environment – perfect for relaxation",
+    "Located on Balozi Road, close to Kitengela town",
+    "Easy access to supermarkets, hospitals, and eateries",
+    "Available for both short and long stays"
+  ],
+  "images": [
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359377/WhatsApp_Image_2026-06-19_at_2.52.06_PM_mf123x.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359377/WhatsApp_Image_2026-06-19_at_2.52.08_PM_3_icvgyj.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.08_PM_2_to1jqi.jpg",
+    "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782359378/WhatsApp_Image_2026-06-19_at_2.52.07_PM_1_kfdv0a.jpg"
+  ],
+  "isFeatured": false,
+  "movingEstimate": 0,
+  "fumigationLink": "https://fumigo.co.ke",
+  "description": "Cozy 1‑Bedroom Airbnb in Kitengela Balozi Road – Affordable, Quiet & Convenient. This clean and comfortable apartment on the peaceful Balozi Road offers a restful retreat for solo travelers, couples, or business professionals on a budget.\n\nThe apartment features a spacious bedroom with a queen‑size bed, a modern bathroom with hot water, and an open‑plan living and dining area. The kitchen is fully equipped with a fridge, cooker, and microwave – perfect for preparing your own meals. High‑speed Wi‑Fi and a Smart TV with streaming apps keep you connected and entertained.\n\nSecurity is reliable with a gated compound and 24‑hour guard presence. You also have ample free secure parking. The location is super convenient – just a short drive to Kitengela town, with supermarkets (Naivas, Quickmart), hospitals (Halisi Family Hospital), and popular restaurants nearby.\n\nWhether you need a short‑stay getaway or a long‑term base, this cozy apartment delivers comfort, privacy, and excellent value. Call or WhatsApp 0723562484 to book your stay.",
+  "rental_type": "both",
+  "available_for": "both",
+  "is_airbnb_ready": true,
+  "price_night": 2500,
+  "price_week": 15000,
+  "price_month_short": 50000,
+  "min_stay_nights": 1,
+  "airbnb_rating": null,
+  "airbnb_reviews": null,
+  "airbnb_superhost": false,
+  "furnishing_level": "fully_furnished",
+  "is_furnished": true,
+  "short_stay_amenities": [
+    "High-speed WiFi",
+    "Smart TV",
+    "Fully equipped kitchen",
+    "Hot water",
+    "Free secure parking",
+    "24/7 security",
+    "Quiet environment",
+    "Close to town"
+  ],
+  "meta_description": "Cozy 1‑bedroom Airbnb in Kitengela Balozi Road – fully furnished, high‑speed WiFi, Smart TV, secure parking, peaceful atmosphere. KES 2,500/night. Call 0723562484.",
+  "why_rent": "This apartment offers exceptional value for money – a fully furnished, quiet space with fast WiFi and 24/7 security at an affordable nightly rate. Perfect for solo travelers or couples who want a peaceful stay close to Kitengela town."
 }
 ]

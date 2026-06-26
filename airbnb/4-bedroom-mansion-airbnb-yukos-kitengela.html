@@ -68,10 +68,11 @@ This is not just a place to stay – it's a place to gather, connect, and rechar
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="../css/airbnb-property.css">
+  
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Accommodation",
+  "@type": "Hotel",
   "name": "Private 4‑Bedroom Mansion in Yukos, Kitengela – Own Compound, 6 Beds, Serene Retreat",
   "description": "Private 4‑Bedroom Mansion in Yukos – Space, Privacy, and Serenity Under One Roof. Tucked away in the tranquil Yukos estate, this standalone mansion offers something increasingly rare in Kitengela – your own private compound. No shared walls, no upstairs neighbours, no compromise on space. Just you, your people, and the quiet hum of a peaceful suburban retreat.
 
@@ -92,7 +93,10 @@ This is not just a place to stay – it's a place to gather, connect, and rechar
     "@type": "PostalAddress",
     "addressLocality": "Kitengela",
     "addressRegion": "Nairobi",
-    "addressCountry": "KE"
+    "addressCountry": {
+      "@type": "Country",
+      "name": "Kenya"
+    }
   },
   "image": "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1782382913/WhatsApp_Image_2026-06-24_at_5.25.36_PM_kfx0uc.jpg",
   "telephone": "+254723562484",
@@ -100,7 +104,9 @@ This is not just a place to stay – it's a place to gather, connect, and rechar
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",
-    "reviewCount": "41"
+    "reviewCount": "41",
+    "bestRating": "5",
+    "worstRating": "1"
   }
 }
 </script>

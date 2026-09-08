@@ -26,9 +26,9 @@ app.set('trust proxy', 1);
 
 // ─── CORS configuration ─────────────────────────────────────────────
 const allowedOrigins = [
-  'https://sarahadevelopers.github.io',          // Keep for dev
-  'https://rentspace-markeplace.onrender.com',   // Keep for self‑calls
-  'https://rentspace.co.ke',                     // ✅ Your custom domain
+  'https://sarahadevelopers.github.io',
+  'https://rentspace-markeplace.onrender.com',
+  'https://rentspace.co.ke',          // ✅ Must be here
   'http://localhost:5000',
   'http://localhost:3000'
 ];

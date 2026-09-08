@@ -92,6 +92,7 @@ function getListingLimit(user) {
 //   2. owner subscription plan (developer > pro > basic > free)
 //   3. creation date (newest first)
 // Additionally, contact details are hidden for free/trial-expired listings.
+// ─── GET /api/properties (public, with ranking) ────────────────
 router.get('/', async (req, res) => {
   try {
     const {
@@ -124,67 +125,76 @@ router.get('/', async (req, res) => {
     const limitNum = parseInt(limit);
     const skip = (pageNum - 1) * limitNum;
 
-    // ── Aggregation pipeline for ranking ────────────────────────
-    const pipeline = [
-      { $match: query },
-      {
-        $addFields: {
-          priority: {
-            $switch: {
-              branches: [
-                { case: { $eq: ['$ownerSubscriptionPlan', 'developer'] }, then: 4 },
-                { case: { $eq: ['$ownerSubscriptionPlan', 'pro'] }, then: 3 },
-                { case: { $eq: ['$ownerSubscriptionPlan', 'basic'] }, then: 2 },
-                { case: { $eq: ['$ownerSubscriptionPlan', 'free'] }, then: 1 }
-              ],
-              default: 0
-            }
-          }
-        }
-      },
-      { $sort: { featured: -1, priority: -1, createdAt: -1 } },
-      { $skip: skip },
-      { $limit: limitNum }
-    ];
+    // ── Get properties with pagination (simpler, safer) ────────
+    let properties = await Property.find(query)
+      .sort({ featured: -1, createdAt: -1 })
+      .skip(skip)
+      .limit(limitNum)
+      .lean();
 
-    let properties = await Property.aggregate(pipeline);
     const total = await Property.countDocuments(query);
 
-    // ── Enrich with owner details and hide contact info for free ──
-    const propertyIds = properties.map(p => p._id);
-    const owners = await User.find({ _id: { $in: properties.map(p => p.ownerId) } })
+    // ── Enrich with owner details ──────────────────────────────
+    const ownerIds = properties.map(p => p.ownerId).filter(id => id);
+    const owners = await User.find({ _id: { $in: ownerIds } })
       .select('_id phone email name subscriptionPlan subscriptionExpiry createdAt');
 
     const ownerMap = {};
     owners.forEach(u => { ownerMap[u._id.toString()] = u; });
 
     properties = properties.map(p => {
-      const owner = ownerMap[p.ownerId.toString()];
-      if (!owner) return p;
+      const owner = p.ownerId ? ownerMap[p.ownerId.toString()] : null;
+
+      // If no owner found, return property as-is
+      if (!owner) {
+        return {
+          ...p,
+          contactHidden: true,
+          contactMessage: 'Owner details unavailable'
+        };
+      }
 
       const isActive = isSubscriptionActive(owner);
       const isFree = (owner.subscriptionPlan || 'free') === 'free';
-      // If free or trial expired, hide contact details
       const hideContact = !isActive || (isFree && !isSubscriptionActive(owner));
 
-      // Create a clean copy
       const property = { ...p };
+      
+      // Add priority for sorting (fallback to 0 if no plan)
+      const planPriority = {
+        'developer': 4,
+        'pro': 3,
+        'basic': 2,
+        'free': 1
+      };
+      property._priority = planPriority[owner.subscriptionPlan] || 0;
+
       if (hideContact) {
-        // Remove sensitive fields
         delete property.phone;
         delete property.email;
         delete property.whatsapp;
-        // Optionally replace with a concierge message
         property.contactHidden = true;
-        property.contactMessage = 'Contact details hidden. Please upgrade or login to view.';
+        property.contactMessage = 'Contact details hidden. Please login or upgrade to view.';
       } else {
-        // Include contact details from owner (if not already in property)
         property.phone = owner.phone || property.phone;
         property.email = owner.email || property.email;
         property.ownerName = owner.name || property.ownerName;
       }
 
       return property;
+    });
+
+    // ── Sort by priority (since we removed aggregation) ────────
+    properties.sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return (b._priority || 0) - (a._priority || 0);
+    });
+
+    // Remove the temporary priority field
+    properties = properties.map(p => {
+      const { _priority, ...rest } = p;
+      return rest;
     });
 
     res.json({
@@ -197,7 +207,11 @@ router.get('/', async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching properties:', error);
-    res.status(500).json({ success: false, error: 'Server error fetching properties' });
+    res.status(500).json({ 
+      success: false, 
+      error: 'Server error fetching properties',
+      details: process.env.NODE_ENV === 'production' ? undefined : error.message
+    });
   }
 });
 

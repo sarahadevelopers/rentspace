@@ -1,11 +1,11 @@
 (function() {
     // ========== DYNAMIC PATH HELPER ==========
     const getBasePath = () => {
-        if (window.location.hostname === 'sarahadevelopers.github.io') {
-            return '/rentspace-markeplace';
-        }
-        return '';
-    };
+    if (window.location.hostname === 'sarahadevelopers.github.io') {
+        return '/rentspace-markeplace';
+    }
+    return ''; // for rentspace.co.ke
+};
     const basePath = getBasePath();
 
     // API base URL – your live backend on Render

@@ -4,7 +4,7 @@ const { Resend } = require('resend');
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@rentspace.co.ke';
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://sarahadevelopers.github.io/rentspace-markeplace';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://rentspace.co.ke';
 
 // ─── Plan display name mapping ──────────────────────────────
 const PLAN_DISPLAY = {

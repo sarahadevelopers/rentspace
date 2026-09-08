@@ -3,7 +3,7 @@ const getBasePath = () => {
     if (window.location.hostname === 'sarahadevelopers.github.io') {
         return '/rentspace-markeplace';
     }
-    return '';
+    return ''; // for rentspace.co.ke
 };
 const basePath = getBasePath();
 

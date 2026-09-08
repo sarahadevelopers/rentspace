@@ -5,30 +5,30 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 
-// Import route modules
+// ─── Import route modules ──────────────────────────────────────────
 const authRoutes = require('./routes/auth');
 const propertyRoutes = require('./routes/properties');
 const postRoutes = require('./routes/posts');
 const subscriptionRoutes = require('./routes/subscriptions');
 const adminRoutes = require('./routes/admin');
-app.use('/api/admin', adminRoutes);
 
-// Import models
+// ─── Import models (used in webhook) ──────────────────────────────
 const User = require('./models/User');
 const Property = require('./models/Property');
 const Subscription = require('./models/Subscription');
 
+// ─── Initialize Express app ────────────────────────────────────────
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ✅ Fix for express-rate-limit behind Render's proxy
 app.set('trust proxy', 1);
 
-// ----- CORS (allow frontend & backend) -----
+// ─── CORS configuration ─────────────────────────────────────────────
 const allowedOrigins = [
   'https://sarahadevelopers.github.io',          // Keep for dev
-  'https://rentspace-markeplace.onrender.com',   // Keep for self-calls
-  'https://rentspace.co.ke',                     // ✅ ADD THIS
+  'https://rentspace-markeplace.onrender.com',   // Keep for self‑calls
+  'https://rentspace.co.ke',                     // ✅ Your custom domain
   'http://localhost:5000',
   'http://localhost:3000'
 ];
@@ -45,11 +45,11 @@ app.use(cors({
   credentials: true
 }));
 
-// ----- Body parsing -----
+// ─── Body parsing middleware ──────────────────────────────────────
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ----- API routes -----
+// ─── API routes ────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'RentSpace API is running' });
 });
@@ -58,10 +58,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
+app.use('/api/admin', adminRoutes);   // ✅ Now after `app` is defined
 
-// =============================================
-// Webhook from sarahapay-intasend (FULLY FIXED + RENEWAL SUPPORT)
-// =============================================
+// ─── Webhook from sarahapay-intasend ─────────────────────────────
 app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
   try {
     const payload = req.body;
@@ -230,17 +229,17 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
   }
 });
 
-// ----- Serve static frontend files -----
+// ─── Serve static frontend files ──────────────────────────────────
 app.use(express.static(path.join(__dirname)));
 
-// ----- SPA fallback -----
+// ─── SPA fallback ──────────────────────────────────────────────────
 app.use((req, res, next) => {
   if (req.path.startsWith('/api/')) return next();
   if (req.method !== 'GET') return next();
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// ----- Connect to MongoDB and start server -----
+// ─── Connect to MongoDB and start server ─────────────────────────
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     app.listen(PORT, () => {

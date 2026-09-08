@@ -4,67 +4,166 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   
-  <title>Rentals in Kitengela & Syokimau | Apartments & Houses for Rent</title>
-  <meta name="description" content="Find your next home in Kitengela or Syokimau. Explore verified apartments, bungalows, and maisonettes for rent. Handpicked listings with easy access to JKIA and SGR.">
+  <title>Beautiful Homes | Houses & Apartments to Let in Nairobi</title>
+  <meta name="description" content="Find your next home with RentSpace. Explore beautiful houses and apartments to let in Karen, Kilimani, Kitengela, and Syokimau. Handpicked listings for a fresh start.">
   
-  <meta property="og:title" content="Rentals in Kitengela & Syokimau">
-  <meta property="og:description" content="Find your next home in Kitengela or Syokimau – verified listings with easy access to JKIA and SGR.">
+  <meta property="og:title" content="Beautiful Homes | Houses to Let in Nairobi">
+  <meta property="og:description" content="Explore our handpicked collection of beautiful rentals in Nairobi's best neighborhoods.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="/images/og-rentals.jpg">
-  
-  
-  
-  
+  <link rel="icon" type="image/png" sizes="32x32" href="images/RentSpace-favicon.webp">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/RentSpace-favicon.webp">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/RentSpace-favicon.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/rentals.css">
-  
-    <link rel="icon" type="image/webp" sizes="32x32" href="/images/RentSpace-favicon.webp">
-  </head>
+
+  <style>
+    /* ===== FLOATING WHATSAPP SUPPORT (DESKTOP ONLY) ===== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 60px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+    }
+    .whatsapp-float i {
+      font-size: 26px;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.55);
+      color: #fff;
+    }
+
+    /* Hide on mobile (max-width: 767px) */
+    @media (max-width: 767px) {
+      .whatsapp-float {
+        display: none !important;
+      }
+    }
+
+    /* ===== MOBILE BOTTOM NAV - SUPPORT GREEN ===== */
+    .mobile-bottom-nav .support-link {
+      color: #25D366 !important;
+      font-weight: 600;
+    }
+    .mobile-bottom-nav .support-link i {
+      color: #25D366 !important;
+      text-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+    }
+    .mobile-bottom-nav .support-link:active {
+      color: #1ebe5c !important;
+    }
+  </style>
+</head>
+
 <body>
 
-  <!-- Executive Navbar -->
-  <nav class="exec-nav">
-    <a href="index.html" class="nav-logo">Rent<span>Space</span></a>
-    <ul class="nav-links">
-      <!-- Explore Rentals Dropdown (only Kitengela & Syokimau) -->
-      <li class="dropdown">
-        <a href="rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="rentals.html">All Rentals</a></li>
-          <li><a href="rentals.html?location=Kitengela">Kitengela</a></li>
-          <li><a href="rentals.html?location=Syokimau">Syokimau</a></li>
-        </ul>
-      </li>
-      
-      <!-- Airbnb Dropdown (only Kitengela & Syokimau) -->
-      <li class="dropdown">
-        <a href="airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="airbnb.html">All Bnbs</a></li>
-          <li><a href="airbnb.html?location=Kitengela">Kitengela</a></li>
-          <li><a href="airbnb.html?location=Syokimau">Syokimau</a></li>
-        </ul>
-      </li>
-      
-      <li><a href="movers.html">Movers & Packers</a></li>
-      <li><a href="blog.html">Location Insights</a></li>
-      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
-    </ul>
-    <a href="contact.html" class="nav-cta">Book a Viewing</a>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+  <!-- ===== EXECUTIVE NAVBAR (CLEAN & PREMIUM) ===== -->
+ <!-- ===== EXECUTIVE NAVBAR (UPDATED WITH CTAs) ===== -->
+<nav class="exec-nav">
+  <a href="index.html" class="nav-logo">Rent<span>Space</span></a>
+
+  <ul class="nav-links">
+    
+    <!-- FOR SALE -->
+    <li class="dropdown">
+      <a href="sale.html" class="dropdown-trigger">For Sale <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="sale.html">All For Sale</a></li>
+        <li><a href="sale.html?type=apartment">Apartments</a></li>
+        <li><a href="sale.html?type=bungalow">Bungalows</a></li>
+        <li><a href="sale.html?type=maisonette">Maisonettes</a></li>
+        <li><a href="sale.html?type=villa">Villas</a></li>
+      </ul>
+    </li>
+
+    <!-- FOR RENT (Active) -->
+    <li class="dropdown">
+      <a href="rentals.html" class="dropdown-trigger active">For Rent <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="rentals.html">All Rentals</a></li>
+        <li><a href="rentals.html?type=apartment">Apartments</a></li>
+        <li><a href="rentals.html?type=bungalow">Bungalows</a></li>
+        <li><a href="rentals.html?type=maisonette">Maisonettes</a></li>
+        <li><a href="rentals.html?type=studio">Studios</a></li>
+      </ul>
+    </li>
+
+    <!-- LAND -->
+    <li class="dropdown">
+      <a href="land.html" class="dropdown-trigger">Land <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="land.html">All Land</a></li>
+        <li><a href="land.html?type=land-res">Residential</a></li>
+        <li><a href="land.html?type=land-comm">Commercial</a></li>
+        <li><a href="land.html?type=ranch">Agricultural</a></li>
+      </ul>
+    </li>
+
+    <!-- AIRBNB -->
+    <li class="dropdown">
+      <a href="airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="airbnb.html">All Bnbs</a></li>
+        <li><a href="airbnb.html?type=studio">Studio</a></li>
+        <li><a href="airbnb.html?type=1-bedroom">1 Bedroom</a></li>
+        <li><a href="airbnb.html?type=2-bedroom">2 Bedroom</a></li>
+        <li><a href="airbnb.html?type=executive">Executive</a></li>
+      </ul>
+    </li>
+
+    <!-- ===== MOBILE CTAs (Inside Nav Links) ===== -->
+    <div class="nav-actions">
+      <a href="login.html?redirect=dashboard" class="nav-cta-primary">
+        <i class="fas fa-plus-circle"></i> Create Listing
+      </a>
+      <a href="login.html" class="nav-auth">Log In</a>
+      <a href="signup.html" class="nav-cta-secondary">Sign Up</a>
     </div>
-  </nav>
 
-  <div class="menu-overlay" id="menuOverlay"></div>
+  </ul>
 
-  <!-- Page Header -->
+  <!-- ===== DESKTOP CTAs (Outside Nav Links) ===== -->
+  <div class="nav-actions-desktop">
+    <a href="login.html?redirect=dashboard" class="nav-cta-primary">
+      <i class="fas fa-plus-circle"></i> Create Listing
+    </a>
+    <a href="login.html" class="nav-auth">Log In</a>
+    <a href="signup.html" class="nav-cta-secondary">Sign Up</a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Overlay for closing menu -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Overlay for closing menu -->
+ 
+
+  <!-- ===== PAGE HEADER ===== -->
   <header class="rentals-header">
     <div class="header-bg"></div>
     <div class="header-container">
@@ -74,14 +173,14 @@
       </div>
       <div class="header-right">
         <p class="page-description">
-          Simple, beautiful & verified homes in Kitengela and Syokimau – perfect for families and professionals near JKIA and the SGR.
+          Simple, beautiful & verified homes in the neighborhoods you actually want to live in.
         </p>
         <div class="header-accent-line"></div>
       </div>
     </div>
   </header>
 
-  <!-- Filter Strip -->
+  <!-- ===== FILTER STRIP ===== -->
   <div class="filter-strip">
     <button class="filter-btn" id="filterNeighborhoodBtn">Location <i class="fas fa-chevron-down"></i></button>
     <button class="filter-btn" id="filterTypeBtn">Property Type <i class="fas fa-chevron-down"></i></button>
@@ -89,15 +188,15 @@
     <button class="filter-btn refine-btn" id="openDrawerBtn"><i class="fas fa-sliders-h"></i> Refine Search</button>
   </div>
 
-  <!-- Result Count -->
+  <!-- ===== RESULT COUNT ===== -->
   <div class="result-count" id="resultCount">
     Loading <span id="countValue">0</span> verified properties
   </div>
 
-  <!-- Property Grid -->
+  <!-- ===== PROPERTY GRID ===== -->
   <div id="propertyGrid" class="property-grid"></div>
 
-  <!-- Skeleton Loader -->
+  <!-- ===== SKELETON LOADER ===== -->
   <div id="skeletonLoader" class="skeleton-grid">
     <div class="skeleton-card"></div><div class="skeleton-card"></div>
     <div class="skeleton-card"></div><div class="skeleton-card"></div>
@@ -106,7 +205,7 @@
     <div class="skeleton-card"></div>
   </div>
 
-  <!-- Empty State -->
+  <!-- ===== EMPTY STATE ===== -->
   <div id="emptyState" class="empty-state">
     <div class="empty-state-icon"><i class="fas fa-home"></i></div>
     <h3>No Properties Match These Criteria</h3>
@@ -114,7 +213,7 @@
     <a href="https://wa.me/254723562484?text=I'm%20interested%20in%20a%20private%20consultation" class="empty-state-btn">Request Private Consultation</a>
   </div>
 
-  <!-- Filter Drawer -->
+  <!-- ===== FILTER DRAWER ===== -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <div class="filter-drawer" id="filterDrawer">
     <div class="drawer-header">
@@ -126,7 +225,11 @@
       <span class="filter-section-label">Neighborhood</span>
       <div class="filter-chips" id="neighborhoodChips">
         <div class="filter-chip active" data-value="all">All Estates</div>
+        <div class="filter-chip" data-value="Karen">Karen</div>
+        <div class="filter-chip" data-value="Kilimani">Kilimani</div>
+        <div class="filter-chip" data-value="Hurlingham">Hurlingham</div>
         <div class="filter-chip" data-value="Syokimau">Syokimau</div>
+        <div class="filter-chip" data-value="Ngong">Ngong</div>
         <div class="filter-chip" data-value="Kitengela">Kitengela</div>
       </div>
     </div>
@@ -158,51 +261,69 @@
     <button class="drawer-apply" id="applyFiltersBtn">Show Results</button>
   </div>
 
-  <!-- Premium Footer -->
+  <!-- ===== PREMIUM FOOTER ===== -->
   <footer class="premium-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Rent Space</h4>
+        <h4>RentSpace</h4>
         <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
       </div>
       <div class="footer-col">
         <h4>Portfolio</h4>
-        <a href="rentals.html">Explore Rentals</a>
-        <a href="movers.html">Movers & Packers</a>
-        <a href="https://fumigo.co.ke">Fumigation Experts</a>
-        <a href="blog.html">Insights</a>
+        <a href="sale.html">For Sale</a>
+        <a href="rentals.html">For Rent</a>
+        <a href="land.html">Land</a>
+        <a href="airbnb.html">Airbnb</a>
       </div>
       <div class="footer-col">
         <h4>Explore by Area</h4>
-        <a href="location/kitengela.html">Kitengela Properties</a>
-        <a href="location/syokimau.html">Syokimau Properties</a>
+        <a href="location/karen.html">Karen</a>
+        <a href="location/kilimani.html">Kilimani</a>
+        <a href="location/hurlingham.html">Hurlingham</a>
+        <a href="location/syokimau.html">Syokimau</a>
+        <a href="location/ngong.html">Ngong</a>
+        <a href="location/kitengela.html">Kitengela</a>
       </div>
       <div class="footer-col">
-        <h4>Contact Us</h4>
-        <a href="tel:+254723562484">+254 723 562 484</a>
-        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
-        <a href="contact.html">Book a Viewing</a>
+        <h4>Services</h4>
+        <a href="movers.html">Movers &amp; Packers</a>
+        <a href="https://fumigo.co.ke" target="_blank">Fumigation</a>
+        <a href="blog.html">Location Insights</a>
       </div>
       <div class="footer-col">
-        <h4>Legal</h4>
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms of Service</a>
-        <a href="about.html">About Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+254723562484">+254 723 562 484</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="https://wa.me/254723562484" target="_blank">WhatsApp</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
-      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
+      <p>Designed &amp; Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
 
-  <!-- Mobile Bottom Navigation -->
+  <!-- ===== FLOATING WHATSAPP SUPPORT BUTTON (DESKTOP ONLY) ===== -->
+  <a href="https://wa.me/254723562484" target="_blank" class="whatsapp-float" aria-label="Chat with support on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span>Chat with Support</span>
+  </a>
+
+  <!-- ===== MOBILE BOTTOM NAV ===== -->
   <div class="mobile-bottom-nav">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="sale.html"><i class="fas fa-tag"></i> Sale</a>
+    <a href="rentals.html" class="active"><i class="fas fa-home"></i> Rent</a>
+    <a href="land.html"><i class="fas fa-map-pin"></i> Land</a>
     <a href="airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
-    <a href="blog.html"><i class="fas fa-newspaper"></i> Insights</a>
-    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://wa.me/254723562484" class="support-link"><i class="fab fa-whatsapp"></i> Support</a>
   </div>
 
   <script src="js/rentals.js"></script>

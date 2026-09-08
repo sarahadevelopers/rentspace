@@ -1,29 +1,20 @@
 // ========== DYNAMIC PATH HELPER ==========
 const getBasePath = () => {
     if (window.location.hostname === 'sarahadevelopers.github.io') {
-        return '/rentspace';
+        return '/rentspace-markeplace';
     }
     return '';
 };
 const basePath = getBasePath();
 
+// API base URL – your live backend on Render
+const API_BASE = 'https://rentspace-markeplace.onrender.com/api';
+
 // Default placeholder image (working URL)
 const DEFAULT_IMAGE = 'https://placehold.co/600x400/1a1a1a/c9a45c?text=No+Image';
 
-// ========== SAFELY UPDATE ELEMENT TEXT ==========
-function safeSetText(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = value;
-}
-
-function safeSetHTML(id, html) {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = html;
-}
-
 // Dynamic year
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
 
 // ========== HAMBURGER MENU WITH OVERLAY ==========
 const hamburger = document.getElementById('hamburger');
@@ -93,6 +84,7 @@ const postsPerPage = 12;
 let isLoading = false;
 let loadingTimeout = null;
 
+// Helper function to get valid image URL
 function getValidImageUrl(imageUrl) {
     if (!imageUrl || imageUrl === '' || imageUrl.includes('placeholder')) {
         return DEFAULT_IMAGE;
@@ -100,31 +92,34 @@ function getValidImageUrl(imageUrl) {
     return imageUrl;
 }
 
-// Update category counts – only for categories that actually exist in the HTML
+// Update category counts efficiently
 function updateCategoryCounts() {
-    // Only these categories have corresponding span elements in your blog.html
-    const categoriesToUpdate = ['kitengela', 'syokimau'];
+    const counts = {
+        kitengela: 0, ngong: 0, syokimau: 0, karen: 0, kilimani: 0, hurlingham: 0, guides: 0
+    };
     
-    // Count posts per category
-    const counts = { kitengela: 0, syokimau: 0 };
     for (const post of allBlogPosts) {
-        if (post.category === 'kitengela') counts.kitengela++;
-        else if (post.category === 'syokimau') counts.syokimau++;
+        if (counts[post.category] !== undefined) {
+            counts[post.category]++;
+        }
     }
     
-    // Safely update each count element if it exists
-    categoriesToUpdate.forEach(cat => {
-        safeSetText(`${cat}Count`, counts[cat] || 0);
-    });
+    const kitengelaCount = document.getElementById('kitengelaCount');
+    if (kitengelaCount) kitengelaCount.textContent = counts.kitengela || 0;
+    const ngongCount = document.getElementById('ngongCount');
+    if (ngongCount) ngongCount.textContent = counts.ngong || 0;
+    const syokimauCount = document.getElementById('syokimauCount');
+    if (syokimauCount) syokimauCount.textContent = counts.syokimau || 0;
+    const karenCount = document.getElementById('karenCount');
+    if (karenCount) karenCount.textContent = counts.karen || 0;
+    const kilimaniCount = document.getElementById('kilimaniCount');
+    if (kilimaniCount) kilimaniCount.textContent = counts.kilimani || 0;
+    const hurlinghamCount = document.getElementById('hurlinghamCount');
+    if (hurlinghamCount) hurlinghamCount.textContent = counts.hurlingham || 0;
 }
 
 // Render blog posts with pagination
 function renderBlogPosts() {
-    const blogGrid = document.getElementById('blogGrid');
-    const paginationDiv = document.getElementById('pagination');
-    
-    if (!blogGrid) return; // Exit if grid doesn't exist
-    
     let filteredPosts = allBlogPosts;
     if (currentCategory !== 'all') {
         filteredPosts = allBlogPosts.filter(post => post.category === currentCategory);
@@ -133,6 +128,11 @@ function renderBlogPosts() {
     const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
     const start = (currentPage - 1) * postsPerPage;
     const paginatedPosts = filteredPosts.slice(start, start + postsPerPage);
+    
+    const blogGrid = document.getElementById('blogGrid');
+    const paginationDiv = document.getElementById('pagination');
+    
+    if (!blogGrid) return;
     
     if (paginatedPosts.length === 0) {
         blogGrid.innerHTML = `
@@ -215,15 +215,13 @@ function renderBlogPosts() {
 
 // Popular posts (top 3 by views)
 function renderPopularPosts() {
+    const popular = [...allBlogPosts].sort((a, b) => (b.views || 0) - (a.views || 0)).slice(0, 3);
     const container = document.getElementById('popularPosts');
     if (!container) return;
-    
-    if (allBlogPosts.length === 0) {
+    if (popular.length === 0) {
         container.innerHTML = '<p style="color: var(--text-muted);">No posts yet</p>';
         return;
     }
-    
-    const popular = [...allBlogPosts].sort((a, b) => (b.views || 0) - (a.views || 0)).slice(0, 3);
     container.innerHTML = popular.map(post => {
         const imageUrl = getValidImageUrl(post.image);
         return `
@@ -238,14 +236,11 @@ function renderPopularPosts() {
     }).join('');
 }
 
-// Category filter buttons (top buttons)
+// Category filter buttons
 function initCategoryFilters() {
-    const categoryBtns = document.querySelectorAll('.category-btn');
-    if (categoryBtns.length === 0) return;
-    
-    categoryBtns.forEach(btn => {
+    document.querySelectorAll('.category-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            categoryBtns.forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentCategory = btn.dataset.category;
             currentPage = 1;
@@ -253,14 +248,11 @@ function initCategoryFilters() {
         });
     });
     
-    // Sidebar category links
-    const categoryLinks = document.querySelectorAll('#categoryList a');
-    categoryLinks.forEach(link => {
+    document.querySelectorAll('#categoryList a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const category = link.dataset.category;
-            // Update top buttons active state
-            categoryBtns.forEach(btn => {
+            document.querySelectorAll('.category-btn').forEach(btn => {
                 if (btn.dataset.category === category) btn.classList.add('active');
                 else btn.classList.remove('active');
             });
@@ -341,15 +333,13 @@ function escapeHtml(str) {
     });
 }
 
-// Load posts from JSON file
+// Load posts from Render API
 async function loadPosts() {
     const loadingSpinner = document.getElementById('loadingSpinner');
     const blogGrid = document.getElementById('blogGrid');
     
-    if (!loadingSpinner || !blogGrid) return;
-    
     loadingTimeout = setTimeout(() => {
-        if (isLoading) {
+        if (isLoading && loadingSpinner) {
             loadingSpinner.innerHTML = `
                 <div style="text-align: center;">
                     <div class="spinner"></div>
@@ -362,16 +352,17 @@ async function loadPosts() {
     isLoading = true;
     
     try {
-        const response = await fetch(`${basePath}/data/posts.json`);
+        const response = await fetch(`${API_BASE}/posts?limit=100`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        allBlogPosts = data.posts || [];
         
-        allBlogPosts = await response.json();
-        console.log(`✅ Loaded ${allBlogPosts.length} blog posts`);
+        console.log(`✅ Loaded ${allBlogPosts.length} blog posts from API`);
         
         clearTimeout(loadingTimeout);
         
-        loadingSpinner.style.display = 'none';
-        blogGrid.style.display = 'grid';
+        if (loadingSpinner) loadingSpinner.style.display = 'none';
+        if (blogGrid) blogGrid.style.display = 'grid';
         
         updateCategoryCounts();
         renderBlogPosts();
@@ -380,16 +371,18 @@ async function loadPosts() {
         initSearch();
         
     } catch (error) {
-        console.error('Error loading posts:', error);
+        console.error('Error loading posts from API:', error);
         clearTimeout(loadingTimeout);
-        loadingSpinner.innerHTML = `
-            <div style="text-align: center;">
-                <i class="fas fa-exclamation-circle" style="font-size: 48px; color: var(--gold); margin-bottom: 20px;"></i>
-                <h3>Unable to load blog posts</h3>
-                <p style="color: var(--text-muted);">Please refresh the page or try again later.</p>
-                <button onclick="location.reload()" style="margin-top: 1rem; background: var(--gold); color: #000; border: none; padding: 10px 24px; border-radius: 40px; cursor: pointer;">Retry</button>
-            </div>
-        `;
+        if (loadingSpinner) {
+            loadingSpinner.innerHTML = `
+                <div style="text-align: center;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 48px; color: var(--gold); margin-bottom: 20px;"></i>
+                    <h3>Unable to load blog posts</h3>
+                    <p style="color: var(--text-muted);">Please refresh the page or try again later.</p>
+                    <button onclick="location.reload()" style="margin-top: 1rem; background: var(--gold); color: #000; border: none; padding: 10px 24px; border-radius: 40px; cursor: pointer;">Retry</button>
+                </div>
+            `;
+        }
     } finally {
         isLoading = false;
     }

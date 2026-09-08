@@ -311,3 +311,57 @@ h3, h4, h5, h6 { font-size: 22px; font-weight: 600; margin-bottom: 0.75rem; }
   background: var(--dark);
   color: var(--white);
 }
+
+/* ─── Property Badges ──────────────────────────────────────────── */
+.property-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(0,0,0,0.6);
+}
+
+.badge-silver {
+    color: #c0c0c0;
+    border: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.badge-gold {
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    animation: goldPulse 3s ease-in-out infinite;
+}
+
+.badge-platinum {
+    color: #e5e4e2;
+    border: 1px solid rgba(229, 228, 226, 0.3);
+    animation: platinumGlow 3s ease-in-out infinite;
+}
+
+.boost-tag {
+    font-size: 11px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+@keyframes goldPulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+}
+
+@keyframes platinumGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(229, 228, 226, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(229, 228, 226, 0.3); }
+}

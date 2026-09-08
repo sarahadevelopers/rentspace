@@ -3,14 +3,13 @@
 // ============================================
 // ========== DYNAMIC PATH HELPER ==========
 const getBasePath = () => {
-    // GitHub Pages
     if (window.location.hostname === 'sarahadevelopers.github.io') {
-        return '/rentspace';
+        return '/rentspace-markeplace';
     }
-    // Local development
     return '';
 };
 const basePath = getBasePath();
+
 // ========== AUTO-FILTER FROM URL PARAMETERS ==========
 function getLocationFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -23,12 +22,11 @@ function getLocationFromURL() {
 const yearSpan = document.getElementById('year');
 if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-// ========== HAMBURGER MENU TOGGLE (SIMPLIFIED) ==========
+// ========== HAMBURGER MENU TOGGLE ==========
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.querySelector('.nav-links');
 const menuOverlay = document.getElementById('menuOverlay');
 
-// Ensure menu starts closed
 if (navMenu) navMenu.classList.remove('active');
 if (hamburger) hamburger.classList.remove('active');
 if (menuOverlay) menuOverlay.classList.remove('active');
@@ -62,7 +60,6 @@ if (menuOverlay) {
     menuOverlay.addEventListener('click', closeMenu);
 }
 
-// Close menu when clicking any link inside
 if (navMenu) {
     const links = navMenu.querySelectorAll('a');
     links.forEach(function(link) {
@@ -70,7 +67,6 @@ if (navMenu) {
     });
 }
 
-// Close menu on window resize
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
         closeMenu();
@@ -80,16 +76,12 @@ window.addEventListener('resize', () => {
 // ========== MOBILE DROPDOWNS ==========
 function initMobileDropdowns() {
     const dropdowns = document.querySelectorAll('.dropdown');
-    
     dropdowns.forEach(dropdown => {
         const trigger = dropdown.querySelector('.dropdown-trigger');
         const menu = dropdown.querySelector('.dropdown-menu');
-        
         if (trigger && menu) {
-            // Remove existing listeners to avoid duplicates
             const newTrigger = trigger.cloneNode(true);
             trigger.parentNode.replaceChild(newTrigger, trigger);
-            
             newTrigger.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -100,12 +92,10 @@ function initMobileDropdowns() {
     });
 }
 
-// Initialize dropdowns on mobile
 if (window.innerWidth <= 768) {
     initMobileDropdowns();
 }
 
-// Re-initialize on resize
 window.addEventListener('resize', () => {
     if (window.innerWidth <= 768) {
         initMobileDropdowns();
@@ -137,7 +127,6 @@ if (openDrawerBtn) openDrawerBtn.addEventListener('click', openDrawer);
 if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
 if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
-// Quick filter buttons on strip
 if (filterNeighborhoodBtn) {
     filterNeighborhoodBtn.addEventListener('click', () => {
         openDrawer();
@@ -171,7 +160,6 @@ let currentFilters = {
 let currentPage = 1;
 const ITEMS_PER_PAGE = 12;
 
-// Elements
 const propertyGrid = document.getElementById('propertyGrid');
 const skeletonLoader = document.getElementById('skeletonLoader');
 const emptyState = document.getElementById('emptyState');
@@ -180,7 +168,7 @@ const priceRange = document.getElementById('priceRange');
 const maxPriceLabel = document.getElementById('maxPriceLabel');
 let paginationContainer;
 
-// ========== AUTO-SHUFFLING IMAGE CAROUSEL ==========
+// ========== IMAGE CAROUSEL ==========
 const propertyImagesMap = new Map();
 let imageIntervals = [];
 
@@ -191,17 +179,14 @@ function stopAllImageShuffling() {
 
 function startImageShuffle(cardElement, imagesArray) {
     if (!imagesArray || imagesArray.length <= 1) return;
-    
     let currentIndex = 0;
     const imageWrapper = cardElement.querySelector('.card-image-wrapper');
     if (!imageWrapper) return;
-    
+
     const existingImages = imageWrapper.querySelectorAll('.card-image');
-    
     if (existingImages.length === 1 && imagesArray.length > 1) {
         const firstImage = existingImages[0];
         imageWrapper.innerHTML = '';
-        
         imagesArray.forEach((src, idx) => {
             const img = document.createElement('img');
             img.src = src;
@@ -219,21 +204,20 @@ function startImageShuffle(cardElement, imagesArray) {
             imageWrapper.appendChild(img);
         });
     }
-    
+
     const images = imageWrapper.querySelectorAll('.card-image');
     if (images.length <= 1) return;
-    
+
     const interval = setInterval(() => {
         const nextIndex = (currentIndex + 1) % images.length;
         images[currentIndex].style.opacity = '0';
         images[nextIndex].style.opacity = '1';
         currentIndex = nextIndex;
     }, 10000);
-    
     imageIntervals.push(interval);
 }
 
-// ========== PAGINATION FUNCTIONS ==========
+// ========== PAGINATION ==========
 function ensurePaginationContainer() {
     if (!document.getElementById('paginationContainer') && propertyGrid && propertyGrid.parentNode) {
         const container = document.createElement('div');
@@ -246,50 +230,39 @@ function ensurePaginationContainer() {
 
 function renderPagination() {
     if (!paginationContainer) return;
-    
     const totalPages = Math.ceil(currentFilteredProperties.length / ITEMS_PER_PAGE);
-    
     if (totalPages <= 1) {
         paginationContainer.style.display = 'none';
         return;
     }
-    
     paginationContainer.style.display = 'flex';
-    
     let paginationHTML = '';
-    
     if (currentPage > 1) {
         paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${currentPage - 1})"><i class="fas fa-chevron-left"></i></button>`;
     }
-    
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, currentPage + 2);
-    
     if (startPage > 1) {
         paginationHTML += `<button class="pagination-btn" onclick="window.changePage(1)">1</button>`;
         if (startPage > 2) paginationHTML += `<span class="pagination-dots">...</span>`;
     }
-    
     for (let i = startPage; i <= endPage; i++) {
         paginationHTML += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="window.changePage(${i})">${i}</button>`;
     }
-    
     if (endPage < totalPages) {
         if (endPage < totalPages - 1) paginationHTML += `<span class="pagination-dots">...</span>`;
         paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${totalPages})">${totalPages}</button>`;
     }
-    
     if (currentPage < totalPages) {
         paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${currentPage + 1})"><i class="fas fa-chevron-right"></i></button>`;
     }
-    
     paginationContainer.innerHTML = paginationHTML;
 }
 
 // ========== RENDER PROPERTIES ==========
 function renderProperties() {
     if (!propertyGrid) return;
-    
+
     if (currentFilteredProperties.length === 0) {
         propertyGrid.style.display = 'none';
         if (emptyState) emptyState.style.display = 'block';
@@ -297,45 +270,70 @@ function renderProperties() {
         if (paginationContainer) paginationContainer.style.display = 'none';
         return;
     }
-    
+
     propertyGrid.style.display = 'grid';
     if (emptyState) emptyState.style.display = 'none';
     if (resultCountSpan) resultCountSpan.textContent = currentFilteredProperties.length;
-    
+
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
     const paginatedProperties = currentFilteredProperties.slice(startIndex, endIndex);
-    
+
     paginatedProperties.forEach(prop => {
         const images = prop.images || [prop.images?.[0] || '/images/placeholder.jpg'];
         propertyImagesMap.set(prop.id, images);
     });
-    
+
     propertyGrid.innerHTML = paginatedProperties.map(prop => {
         const images = propertyImagesMap.get(prop.id) || [prop.images?.[0] || '/images/placeholder.jpg'];
         const firstImage = images[0];
-        
+
+        // ─── Determine the subscription badge ──────────────────────────────
+        const plan = prop.ownerSubscriptionPlan || 'free';
+        let badge = '';
+        let badgeClass = '';
+
+        if (plan === 'developer') {
+            badge = '💎 Platinum';
+            badgeClass = 'platinum';
+        } else if (plan === 'pro') {
+            badge = '🏅 Gold';
+            badgeClass = 'gold';
+        } else if (plan === 'basic') {
+            badge = '🥈 Silver';
+            badgeClass = 'silver';
+        } else {
+            // Fallback to listing type badge for free users
+            if (prop.type === 'Short-Stay' || prop.listingType === 'short_term' || prop.listingType === 'airbnb') {
+                badge = 'Short Stay';
+                badgeClass = 'airbnb';
+            } else {
+                badge = 'Long-Term';
+                badgeClass = 'rent';
+            }
+        }
+
         return `
-            <a href="/property/${prop.slug}.html" class="property-card" data-property-id="${prop.id}">
+            <a href="${basePath}/property/${prop.slug}.html" class="property-card" data-property-id="${prop.id}">
                 <div class="card-image-wrapper">
                     <img class="card-image" src="${firstImage}" alt="${prop.title}" loading="lazy">
-                    <div class="card-badge">${prop.type}</div>
+                    ${badge ? `<span class="card-badge ${badgeClass}">${badge}</span>` : ''}
                     <div class="card-price">KES ${prop.price.toLocaleString()}/mo</div>
                 </div>
                 <div class="card-info">
                     <h3 class="card-title">${escapeHtml(prop.title)}</h3>
                     <div class="card-location">${prop.estate}, Nairobi</div>
                     <div class="card-features">
-                        <span><i class="fas fa-bed"></i> ${prop.specs?.bedrooms || 0}</span>
-                        <span><i class="fas fa-bath"></i> ${prop.specs?.bathrooms || 0}</span>
-                        <span><i class="fas fa-car"></i> ${prop.specs?.parking || 0}</span>
+                        <span><i class="fas fa-bed"></i> ${prop.bedrooms || 0}</span>
+                        <span><i class="fas fa-bath"></i> ${prop.bathrooms || 0}</span>
+                        <span><i class="fas fa-car"></i> ${prop.parking || 0}</span>
                     </div>
                 </div>
                 <div class="card-cta">View Details</div>
             </a>
         `;
     }).join('');
-    
+
     setTimeout(() => {
         paginatedProperties.forEach(prop => {
             const card = document.querySelector(`.property-card[data-property-id="${prop.id}"]`);
@@ -347,7 +345,7 @@ function renderProperties() {
             }
         });
     }, 100);
-    
+
     renderPagination();
 }
 
@@ -364,7 +362,6 @@ function escapeHtml(str) {
 // ========== FILTER FUNCTIONS ==========
 function applyFilters() {
     let filtered = [...allProperties];
-    
     if (currentFilters.neighborhood !== 'all') {
         filtered = filtered.filter(prop => prop.estate === currentFilters.neighborhood);
     }
@@ -374,7 +371,6 @@ function applyFilters() {
     if (currentFilters.maxPrice < 500000) {
         filtered = filtered.filter(prop => prop.price <= currentFilters.maxPrice);
     }
-    
     return filtered;
 }
 
@@ -384,33 +380,28 @@ function applyAndRender() {
     stopAllImageShuffling();
     renderProperties();
     closeDrawer();
-    
     if (resultCountSpan) resultCountSpan.textContent = currentFilteredProperties.length;
 }
 
-// ========== FILTER BY LOCATION FROM URL ==========
 function filterByLocationFromURL(location) {
     if (!location) {
         currentFilteredProperties = [...allProperties];
         currentFilters.neighborhood = 'all';
-        
         if (filterNeighborhoodBtn) {
             filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
             filterNeighborhoodBtn.style.borderColor = '';
             filterNeighborhoodBtn.style.color = '';
         }
     } else {
-        currentFilteredProperties = allProperties.filter(prop => 
+        currentFilteredProperties = allProperties.filter(prop =>
             prop.estate && prop.estate.toLowerCase() === location.toLowerCase()
         );
         currentFilters.neighborhood = location;
-        
         if (filterNeighborhoodBtn) {
             filterNeighborhoodBtn.innerHTML = `${location} <i class="fas fa-chevron-down"></i>`;
             filterNeighborhoodBtn.style.borderColor = 'var(--gold)';
             filterNeighborhoodBtn.style.color = 'var(--gold)';
         }
-        
         const neighborhoodChips = document.querySelectorAll('#neighborhoodChips .filter-chip');
         neighborhoodChips.forEach(chip => {
             if (chip.dataset.value && chip.dataset.value.toLowerCase() === location.toLowerCase()) {
@@ -419,15 +410,12 @@ function filterByLocationFromURL(location) {
             }
         });
     }
-    
     currentPage = 1;
     stopAllImageShuffling();
     renderProperties();
-    
     console.log(`📍 Showing ${currentFilteredProperties.length} properties for: ${location || 'all locations'}`);
 }
 
-// ========== APPLY FILTER FROM URL ON PAGE LOAD ==========
 function applyFilterFromURL() {
     const location = getLocationFromURL();
     if (location) {
@@ -453,7 +441,6 @@ function initChipListeners() {
             chip.classList.add('active');
             currentFilters.neighborhood = chip.dataset.value;
             currentPage = 1;
-            
             if (filterNeighborhoodBtn) {
                 if (currentFilters.neighborhood !== 'all') {
                     filterNeighborhoodBtn.innerHTML = `${currentFilters.neighborhood} <i class="fas fa-chevron-down"></i>`;
@@ -465,7 +452,6 @@ function initChipListeners() {
                     filterNeighborhoodBtn.style.color = '';
                 }
             }
-            
             applyAndRender();
         });
     });
@@ -476,7 +462,6 @@ function initChipListeners() {
             chip.classList.add('active');
             currentFilters.type = chip.dataset.value;
             currentPage = 1;
-            
             if (filterTypeBtn) {
                 if (currentFilters.type !== 'all') {
                     filterTypeBtn.innerHTML = `${currentFilters.type} <i class="fas fa-chevron-down"></i>`;
@@ -488,11 +473,10 @@ function initChipListeners() {
                     filterTypeBtn.style.color = '';
                 }
             }
-            
             applyAndRender();
         });
     });
-    
+
     function updateBudgetButton() {
         if (filterBudgetBtn) {
             if (currentFilters.maxPrice < 500000) {
@@ -506,7 +490,6 @@ function initChipListeners() {
             }
         }
     }
-    
     if (priceRange) {
         priceRange.addEventListener('change', updateBudgetButton);
     }
@@ -536,7 +519,6 @@ function resetFilters() {
         maxPrice: 500000
     };
     currentPage = 1;
-    
     document.querySelectorAll('#neighborhoodChips .filter-chip').forEach(chip => {
         if (chip.dataset.value === 'all') chip.classList.add('active');
         else chip.classList.remove('active');
@@ -545,12 +527,10 @@ function resetFilters() {
         if (chip.dataset.value === 'all') chip.classList.add('active');
         else chip.classList.remove('active');
     });
-    
     if (priceRange) {
         priceRange.value = 500000;
         if (maxPriceLabel) maxPriceLabel.textContent = 'KES 500,000+';
     }
-    
     if (filterNeighborhoodBtn) {
         filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
         filterNeighborhoodBtn.style.borderColor = '';
@@ -566,7 +546,6 @@ function resetFilters() {
         filterBudgetBtn.style.borderColor = '';
         filterBudgetBtn.style.color = '';
     }
-    
     stopAllImageShuffling();
     applyAndRender();
 }
@@ -592,7 +571,6 @@ function addResetButton() {
     }
 }
 
-// ========== APPLY FILTERS BUTTON ==========
 const applyBtn = document.getElementById('applyFiltersBtn');
 if (applyBtn) {
     applyBtn.addEventListener('click', () => {
@@ -601,38 +579,61 @@ if (applyBtn) {
     });
 }
 
-// ========== LOAD PROPERTIES ==========
+// ========== LOAD PROPERTIES (RENTALS ONLY) ==========
 async function loadProperties() {
     try {
-        const response = await fetch(`${basePath}/data/properties.json`);
-        allProperties = await response.json();
-        
+        if (skeletonLoader) skeletonLoader.style.display = 'flex';
+
+        const response = await fetch('https://rentspace-markeplace.onrender.com/api/properties?limit=200');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        const propertiesFromAPI = data.properties || [];
+
+        allProperties = propertiesFromAPI
+            .filter(prop => prop.listingType === 'rent' || prop.listingType === 'long_term' || prop.listingType === 'short_term')
+            .map(prop => ({
+                id: prop._id,
+                title: prop.title,
+                slug: prop.slug,
+                estate: prop.estate,
+                price: Number(prop.price) || 0,
+                type: prop.propertyType || (prop.listingType === 'short_term' ? 'Short-Stay' : 'Long-Term'),
+                images: prop.images || [],
+                bedrooms: prop.bedrooms || 0,
+                bathrooms: prop.bathrooms || 0,
+                parking: prop.parking || 0,
+                description: prop.description || '',
+                listingType: prop.listingType,
+                status: prop.status,
+                ownerSubscriptionPlan: prop.ownerSubscriptionPlan || 'free'   // ✅ ADDED
+            }));
+
+        console.log(`🏠 Found ${allProperties.length} rental properties`);
+
         if (skeletonLoader) skeletonLoader.style.display = 'none';
         ensurePaginationContainer();
-        
+
         currentFilteredProperties = [...allProperties];
-        
         renderProperties();
         initChipListeners();
         addResetButton();
-        
         applyFilterFromURL();
-        
+
     } catch (error) {
-        console.error('Error loading properties:', error);
+        console.error('Error loading rental properties:', error);
         if (skeletonLoader) skeletonLoader.style.display = 'none';
         if (emptyState) {
             emptyState.style.display = 'block';
             const emptyTitle = emptyState.querySelector('h3');
-            if (emptyTitle) emptyTitle.textContent = 'Unable to Load Properties';
+            if (emptyTitle) emptyTitle.textContent = 'Unable to Load Rentals';
+            const emptyText = emptyState.querySelector('p');
+            if (emptyText) emptyText.textContent = 'Please check back later.';
         }
     }
 }
 
-// Clean up intervals on page unload
 window.addEventListener('beforeunload', () => {
     stopAllImageShuffling();
 });
 
-// Start loading
 loadProperties();

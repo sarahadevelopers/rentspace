@@ -200,21 +200,28 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
     await subscription.save();
 
     // ─── Step 6: Re-activate expired listings + update plan ──────
-    await Property.updateMany(
-      { ownerId: user._id, status: 'expired' },
-      {
-        $set: {
-          ownerSubscriptionPlan: planName,
-          status: 'approved',
-          expiresAt: newExpiry
-        }
-      }
-    );
+    // ─── Step 6: Re-activate expired listings + extend expiry on all ──
+await Property.updateMany(
+  { ownerId: user._id, status: 'expired' },
+  {
+    $set: {
+      ownerSubscriptionPlan: planName,
+      status: 'approved',
+      expiresAt: newExpiry
+    }
+  }
+);
 
-    await Property.updateMany(
-      { ownerId: user._id, status: { $ne: 'expired' } },
-      { $set: { ownerSubscriptionPlan: planName } }
-    );
+// Extend expiry AND update plan on all remaining active listings
+await Property.updateMany(
+  { ownerId: user._id, status: { $ne: 'expired' } },
+  {
+    $set: {
+      ownerSubscriptionPlan: planName,
+      expiresAt: newExpiry        // ← THIS is the change
+    }
+  }
+);
 
     console.log(`✅ Subscription upgraded for ${user.email} (plan: ${planName})`);
     res.status(200).json({ success: true });

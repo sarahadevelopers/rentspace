@@ -589,7 +589,7 @@ async function loadProperties() {
         const propertiesFromAPI = data.properties || [];
 
         allProperties = propertiesFromAPI
-            .filter(prop => prop.listingType === 'rent' || prop.listingType === 'long_term' || prop.listingType === 'short_term')
+    .filter(prop => prop.listingType === 'rent' || prop.listingType === 'long_term')
             .map(prop => ({
                 id: prop._id,
                 title: prop.title,

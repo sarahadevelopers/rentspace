@@ -584,22 +584,23 @@ async function loadProperties() {
         
         // Map and filter to ONLY properties for sale (exclude land)
         allProperties = propertiesFromAPI
-            .map(prop => ({
-                id: prop._id,
-                title: prop.title,
-                slug: prop.slug,
-                estate: prop.estate,
-                price: Number(prop.price) || 0,
-                type: prop.propertyType || (prop.listingType === 'short_term' ? 'Short-Stay' : 'Long-Term'),
-                images: prop.images || [],
-                bedrooms: prop.bedrooms || 0,
-                bathrooms: prop.bathrooms || 0,
-                parking: prop.parking || 0,
-                description: prop.description || '',
-                listingType: prop.listingType,
-                propertyType: prop.propertyType,
-                status: prop.status
-            }))
+         .map(prop => ({
+    id: prop._id,
+    title: prop.title,
+    slug: prop.slug,
+    estate: prop.estate,
+    price: Number(prop.price) || 0,
+    type: prop.propertyType || (prop.listingType === 'short_term' ? 'Short-Stay' : 'Long-Term'),
+    images: prop.images || [],
+    bedrooms: prop.bedrooms || 0,
+    bathrooms: prop.bathrooms || 0,
+    parking: prop.parking || 0,
+    description: prop.description || '',
+    listingType: prop.listingType,
+    propertyType: prop.propertyType,
+    status: prop.status,
+    ownerSubscriptionPlan: prop.ownerSubscriptionPlan || 'free'
+}))
             // 🔥 KEY FILTER: Only sale properties, excluding land
             .filter(prop => 
                 prop.listingType === 'sale' && 

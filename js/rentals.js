@@ -294,30 +294,29 @@ function renderProperties() {
         let badgeClass = '';
 
         if (plan === 'developer') {
-            badge = '💎 Platinum';
-            badgeClass = 'platinum';
-        } else if (plan === 'pro') {
-            badge = '🏅 Gold';
-            badgeClass = 'gold';
-        } else if (plan === 'basic') {
-            badge = '🥈 Silver';
-            badgeClass = 'silver';
-        } else {
-            // Fallback to listing type badge for free users
-            if (prop.type === 'Short-Stay' || prop.listingType === 'short_term' || prop.listingType === 'airbnb') {
-                badge = 'Short Stay';
-                badgeClass = 'airbnb';
-            } else {
-                badge = 'Long-Term';
-                badgeClass = 'rent';
-            }
-        }
+    badge = '💎 Platinum';
+    badgeClass = 'property-badge badge-platinum';
+} else if (plan === 'pro') {
+    badge = '🏅 Gold';
+    badgeClass = 'property-badge badge-gold';
+} else if (plan === 'basic') {
+    badge = '🥈 Silver';
+    badgeClass = 'property-badge badge-silver';
+} else {
+    if (prop.type === 'Short-Stay' || prop.listingType === 'short_term' || prop.listingType === 'airbnb') {
+        badge = 'Short Stay';
+        badgeClass = 'property-badge badge-airbnb';
+    } else {
+        badge = 'Long-Term';
+        badgeClass = 'property-badge badge-rent';
+    }
+}
 
         return `
             <a href="${basePath}/property/${prop.slug}.html" class="property-card" data-property-id="${prop.id}">
                 <div class="card-image-wrapper">
                     <img class="card-image" src="${firstImage}" alt="${prop.title}" loading="lazy">
-                    ${badge ? `<span class="card-badge ${badgeClass}">${badge}</span>` : ''}
+                    ${badge ? `<div class="${badgeClass}">${badge}</div>` : ''}
                     <div class="card-price">KES ${prop.price.toLocaleString()}/mo</div>
                 </div>
                 <div class="card-info">

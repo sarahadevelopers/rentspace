@@ -296,31 +296,44 @@ function addMicroInteractions() {
 }
 
 // ========== ADD SUBSCRIPTION BADGE TO PROPERTY HEADER ==========
-function addSubscriptionBadge() {
-    // Try to get the plan from the page data (static HTML)
-    const headerContainer = document.querySelector('.property-header-left');
+// ========== ADD SUBSCRIPTION BADGE TO PROPERTY HEADER ==========
+async function addSubscriptionBadge() {
     const titleElement = document.querySelector('.property-title');
-    
-    if (!headerContainer || !titleElement) return;
+    if (!titleElement) return;
 
-    // Check if badge already exists to avoid duplicates
+    // Avoid duplicates
     if (document.querySelector('.property-subscription-badge')) return;
 
-    // Try to get the subscription plan from the page (could be embedded as a data attribute)
-    // or fallback to checking if the property is a rental/sale
-    const propertyPlan = document.querySelector('meta[name="subscription-plan"]')?.content || 'free';
-    const listingType = document.querySelector('meta[name="listing-type"]')?.content || '';
+    // Get slug from URL
+    const slug = getPropertySlugFromURL();
+    if (!slug) return;
 
+    // Badge config
     const badgeConfig = {
-        basic: { label: 'Silver', color: '#c0c0c0', icon: 'fa-gem', className: 'badge-silver' },
-        pro: { label: 'Gold', color: '#d4af37', icon: 'fa-crown', className: 'badge-gold' },
-        developer: { label: 'Platinum', color: '#e5e4e2', icon: 'fa-gem', className: 'badge-platinum' }
+        basic:     { label: 'Silver Listing',   color: '#c0c0c0', className: 'badge-silver' },
+        pro:       { label: 'Gold Listing',     color: '#d4af37', className: 'badge-gold' },
+        developer: { label: 'Platinum Listing', color: '#e5e4e2', className: 'badge-platinum' }
     };
 
-    const config = badgeConfig[propertyPlan] || null;
+    let plan = 'free';
+
+    // Fetch the plan from the API
+    try {
+        const res = await fetch(`https://rentspace-markeplace.onrender.com/api/properties/${slug}`);
+        if (res.ok) {
+            const data = await res.json();
+            plan = data?.property?.ownerSubscriptionPlan || 'free';
+        }
+    } catch (err) {
+        console.warn('Could not fetch property plan:', err);
+    }
+
+    const config = badgeConfig[plan] || null;
+
     let badgeHTML = '';
 
     if (config) {
+        // Subscription badge (Silver / Gold / Platinum)
         badgeHTML = `
             <span class="property-subscription-badge ${config.className}" style="
                 display: inline-block;
@@ -335,14 +348,19 @@ function addSubscriptionBadge() {
                 margin-left: 12px;
                 vertical-align: middle;
             ">
-                <i class="fas ${config.icon}" style="margin-right: 4px;"></i>
-                ${config.label} Listing
+                <i class="fas fa-crown" style="margin-right: 4px;"></i>
+                ${config.label}
             </span>
         `;
     } else {
-        // Fallback: show listing type badge if no subscription
-        let fallbackLabel = listingType === 'rent' || listingType === 'long_term' ? 'For Rent' : 
-                           listingType === 'sale' ? 'For Sale' : 'Property';
+        // Fallback: show listing type badge for free users
+        const listingType = document.querySelector('meta[name="listing-type"]')?.content || '';
+        const fallbackLabel = (listingType === 'rent' || listingType === 'long_term')
+            ? 'For Rent'
+            : listingType === 'sale'
+                ? 'For Sale'
+                : 'Property';
+
         badgeHTML = `
             <span class="property-listing-badge" style="
                 display: inline-block;

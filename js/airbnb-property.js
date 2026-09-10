@@ -158,36 +158,39 @@ function renderProperties(properties) {
     const totalPages = Math.ceil(properties.length / itemsPerPage);
     
     grid.innerHTML = paginated.map(prop => {
-        const nightPrice = prop.price || 0;
-        const rating = prop.airbnb_rating || '4.9';
-        const reviews = prop.airbnb_reviews || 25;
-        const imageUrl = prop.images?.[0] || `${basePath}/images/placeholder.jpg`;
-        
-        return `
-            <a href="${basePath}/airbnb/${prop.slug}.html" class="property-card">
-                <div class="card-image-wrapper">
-                    <img class="card-image" src="${imageUrl}" alt="${escapeHtml(prop.title)}" loading="lazy" onerror="this.src='${basePath}/images/placeholder.jpg'">
-                    <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
-                    <div class="card-price">KES ${nightPrice.toLocaleString()}<span>/night</span></div>
-                </div>
-                <div class="card-info">
-                    <h3 class="card-title">${escapeHtml(prop.title)}</h3>
-                    <div class="card-location">${escapeHtml(prop.estate || 'Nairobi')}</div>
-                    <div class="card-features">
-                        <span><i class="fas fa-bed"></i> ${prop.bedrooms || 0}</span>
-                        <span><i class="fas fa-bath"></i> ${prop.bathrooms || 0}</span>
-                        <span><i class="fas fa-users"></i> ${(prop.bedrooms || 0) * 2} guests</span>
-                    </div>
-                    <div class="card-rating">
-                        <i class="fas fa-star"></i>
-                        <span>${rating}</span>
-                        <span class="reviews">(${reviews} reviews)</span>
-                    </div>
-                    <div class="card-cta">Book Now →</div>
-                </div>
-            </a>
-        `;
-    }).join('');
+    const nightPrice = prop.price || 0;
+    const rating = prop.airbnb_rating || '4.9';
+    const reviews = prop.airbnb_reviews || 25;
+    const imageUrl = prop.images?.[0] || `${basePath}/images/placeholder.jpg`;
+
+    // ─── SUBSCRIPTION BADGE ───────────────────────────────
+    const plan = prop.ownerSubscriptionPlan || 'free';
+    const badgeConfig = {
+        basic:     { label: 'Silver',   color: '#c0c0c0', icon: 'fa-gem',   className: 'badge-silver' },
+        pro:       { label: 'Gold',     color: '#d4af37', icon: 'fa-crown', className: 'badge-gold' },
+        developer: { label: 'Platinum', color: '#e5e4e2', icon: 'fa-gem',   className: 'badge-platinum' }
+    };
+    const config = badgeConfig[plan] || null;
+    const premiumBadgeHTML = config ? `
+        <div class="property-badge ${config.className}">
+            <i class="fas ${config.icon}"></i> ${config.label}
+        </div>
+    ` : '';
+
+    return `
+        <a href="${basePath}/airbnb/${prop.slug}.html" class="property-card">
+            <div class="card-image-wrapper">
+                ${premiumBadgeHTML}
+                <img class="card-image" src="${imageUrl}" alt="${escapeHtml(prop.title)}" loading="lazy" onerror="this.src='${basePath}/images/placeholder.jpg'">
+                <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
+                <div class="card-price">KES ${nightPrice.toLocaleString()}<span>/night</span></div>
+            </div>
+            <div class="card-info">
+                ...
+            </div>
+        </a>
+    `;
+}).join('');
     
     if (totalPages <= 1) {
         if (paginationDiv) paginationDiv.style.display = 'none';

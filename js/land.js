@@ -600,16 +600,17 @@ if (applyBtn) {
 }
 
 // ========== LOAD PROPERTIES (FILTERED FOR LAND) ==========
+// ========== LOAD PROPERTIES (FILTERED FOR LAND) ==========
 async function loadProperties() {
     try {
         if (skeletonLoader) skeletonLoader.style.display = 'flex';
-        
+
         const response = await fetch('https://rentspace-markeplace.onrender.com/api/properties?limit=200');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
-        let propertiesFromAPI = data.properties || [];
-        
-        // Map and filter to ONLY land properties (listingType = 'sale' AND propertyType contains 'land')
+        const propertiesFromAPI = data.properties || [];
+
+        // Map and filter to ONLY land properties
         allProperties = propertiesFromAPI
             .map(prop => ({
                 id: prop._id,
@@ -627,26 +628,25 @@ async function loadProperties() {
                 listingType: prop.listingType,
                 propertyType: prop.propertyType,
                 status: prop.status,
-                ownerSubscriptionPlan: prop.ownerSubscriptionPlan || 'free'  // ✅ ADDED
+                ownerSubscriptionPlan: prop.ownerSubscriptionPlan || 'free'
             }))
-            // 🔥 KEY FILTER: Only land properties
-            .filter(prop => 
-                prop.listingType === 'sale' && 
-                prop.propertyType && 
+            .filter(prop =>
+                prop.listingType === 'sale' &&
+                prop.propertyType &&
                 prop.propertyType.toLowerCase().includes('land')
             );
-        
+
         console.log(`🌍 Found ${allProperties.length} land listings`);
-        
+
         if (skeletonLoader) skeletonLoader.style.display = 'none';
         ensurePaginationContainer();
-        
+
         currentFilteredProperties = [...allProperties];
         renderProperties();
         initChipListeners();
         addResetButton();
         applyFiltersFromURL();
-        
+
     } catch (error) {
         console.error('Error loading land properties:', error);
         if (skeletonLoader) skeletonLoader.style.display = 'none';

@@ -28,7 +28,7 @@ app.set('trust proxy', 1);
 const allowedOrigins = [
   'https://sarahadevelopers.github.io',
   'https://rentspace-markeplace.onrender.com',
-  'https://rentspace.co.ke',          // ✅ Must be here
+  'https://rentspace.co.ke',
   'http://localhost:5000',
   'http://localhost:3000'
 ];
@@ -49,56 +49,56 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ─── API routes ────────────────────────────────────────────────────
+// ─── Health check ──────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'RentSpace API is running' });
 });
 
+// ─── API routes (order matters) ────────────────────────────────────
 app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/posts', postRoutes);
-app.use('/api/subscriptions', subscriptionRoutes);
-app.use('/api/admin', adminRoutes);   // ✅ Now after `app` is defined
+app.use('/api/admin', adminRoutes);
 
-// ─── Webhook from sarahapay-intasend ─────────────────────────────
+// =====================================================================
+// Webhook from sarahapay-intasend
+// DEFINED BEFORE the subscription router so a wildcard route in
+// subscriptionRoutes cannot intercept /saraha-webhook
+// =====================================================================
 app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
   try {
     const payload = req.body;
     console.log('📥 Webhook received from sarahapay:', payload);
 
-    const { checkout_id, status, mpesa_receipt, amount, phone, name, reference } = payload;
+    const { checkout_id, status, mpesa_receipt, amount, phone, reference } = payload;
 
     if (status !== 'paid') {
       console.log(`⏭️ Payment status is "${status}", ignoring.`);
       return res.status(200).json({ message: 'Ignored' });
     }
 
-    // ─── Step 1: Find the subscription ──────────────────────────────
+    // ─── Step 1: Find the subscription ──────────────────────────
     let subscription = null;
 
-    // 1. Try by checkout_id (stored in metadata)
+    // 1. By checkout_id
     if (checkout_id) {
-      subscription = await Subscription.findOne({
-        'metadata.checkout_id': checkout_id
-      });
+      subscription = await Subscription.findOne({ 'metadata.checkout_id': checkout_id });
       if (subscription) console.log(`✅ Found subscription by checkout_id: ${checkout_id}`);
     }
 
-    // 2. Try by api_ref (stored in metadata)
+    // 2. By api_ref (metadata)
     if (!subscription && reference) {
-      subscription = await Subscription.findOne({
-        'metadata.api_ref': reference
-      });
+      subscription = await Subscription.findOne({ 'metadata.api_ref': reference });
       if (subscription) console.log(`✅ Found subscription by api_ref: ${reference}`);
     }
 
-    // 3. Try by transactionRef (RENT-... or PAY-...)
+    // 3. By transactionRef
     if (!subscription && reference) {
       subscription = await Subscription.findOne({ transactionRef: reference });
       if (subscription) console.log(`✅ Found subscription by transactionRef: ${reference}`);
     }
 
-    // ✅ 4. Try by payment phone (stored directly on subscription)
+    // 4. By payment phone
     if (!subscription && phone) {
       subscription = await Subscription.findOne({
         phone: phone,
@@ -107,39 +107,36 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
       if (subscription) console.log(`✅ Found subscription by payment phone: ${phone}`);
     }
 
-    // 5. Fallback: phone-based user lookup (legacy)
+    // 5. Fallback: phone → user → pending subscription
     if (!subscription && phone) {
-      let userPhone = phone;
+      const userPhone = phone;
       let user = await User.findOne({ phone: userPhone });
       if (!user && userPhone.startsWith('254')) {
-        const altPhone = userPhone.replace(/^254/, '0');
-        user = await User.findOne({ phone: altPhone });
+        user = await User.findOne({ phone: userPhone.replace(/^254/, '0') });
       }
       if (!user && !userPhone.startsWith('254')) {
-        const altPhone = '254' + userPhone.replace(/^0/, '');
-        user = await User.findOne({ phone: altPhone });
+        user = await User.findOne({ phone: '254' + userPhone.replace(/^0/, '') });
       }
       if (user) {
         subscription = await Subscription.findOne({
           userId: user._id,
           status: 'pending'
         }).sort({ createdAt: -1 });
-        if (subscription) console.log(`✅ Found subscription by user phone fallback for user ${user.email}`);
+        if (subscription) console.log(`✅ Found subscription via phone fallback for ${user.email}`);
       }
     }
 
     if (!subscription) {
-      console.warn(`⚠️ No pending subscription found for checkout_id: ${checkout_id}, api_ref: ${reference}, transactionRef: ${reference}, or phone: ${phone}`);
+      console.warn(`⚠️ No pending subscription found (checkout_id: ${checkout_id}, ref: ${reference}, phone: ${phone})`);
       return res.status(404).json({ error: 'Subscription not found' });
     }
 
-    // ─── Step 2: Get the user from the subscription ──────────────
+    // ─── Step 2: Get the user ────────────────────────────────────
     const user = await User.findById(subscription.userId);
     if (!user) {
-      console.warn(`❌ User not found for subscription ${subscription.transactionRef}`);
       return res.status(404).json({ error: 'User not found' });
     }
-    console.log(`👤 Found user: ${user.email} (ID: ${user._id})`);
+    console.log(`👤 Found user: ${user.email}`);
 
     // ─── Step 3: Determine plan from amount ──────────────────────
     let planName = 'basic';
@@ -148,12 +145,9 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
     else if (amt >= 5) planName = 'pro';
     else if (amt >= 2) planName = 'basic';
 
-    // ─── Step 4: Update ALL pending subscriptions for this user ──
+    // ─── Step 4: Activate all pending subscriptions for this user ──
     const result = await Subscription.updateMany(
-      {
-        userId: user._id,
-        status: 'pending'
-      },
+      { userId: user._id, status: 'pending' },
       {
         $set: {
           status: 'active',
@@ -166,10 +160,8 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
       }
     );
 
-    console.log(`📝 Updated ${result.nModified} pending subscription(s) for user ${user.email}`);
-
     if (result.nModified === 0) {
-      // If none updated, update the one we found
+      // No pending subs — update the one we found directly
       subscription.status = 'active';
       subscription.paymentStatus = 'paid';
       subscription.metadata = {
@@ -180,44 +172,47 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
         callbackPayload: payload
       };
       await subscription.save();
-      console.log(`✅ Subscription ${subscription.transactionRef} updated directly`);
     }
 
-    // ─── Step 5: Update the user document (with RENEWAL support) ──
-    // Get duration from subscription metadata (default 30 if not set)
+    // ─── Step 5: Update user with RENEWAL support ─────────────────
     const durationDays = subscription.metadata?.durationDays || 30;
-
-    // Determine current expiry (if any)
     const currentExpiry = user.subscriptionExpiry ? new Date(user.subscriptionExpiry) : null;
     const now = new Date();
 
-    // Compute new expiry: extend from max(currentExpiry, now)
     let newExpiry;
     if (currentExpiry && currentExpiry > now) {
-      // ✅ RENEWAL: extend from current expiry
+      // Renewal — extend from current expiry
       newExpiry = new Date(currentExpiry.getTime() + durationDays * 24 * 60 * 60 * 1000);
       console.log(`🔄 Renewal: extending from ${currentExpiry.toISOString()} by ${durationDays} days`);
     } else {
-      // ✅ NEW SUBSCRIPTION or EXPIRED: start from now
+      // New subscription or expired — start from now
       newExpiry = new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000);
       console.log(`🆕 New subscription: starting from now, ${durationDays} days`);
     }
 
-    // Update user
     user.subscriptionPlan = planName;
     user.subscriptionExpiry = newExpiry;
     user.mpesaReceipt = mpesa_receipt || reference;
     user.transactionRef = reference || checkout_id;
     await user.save();
 
-    // ✅ Also update the subscription's renewalDate to the new expiry
     subscription.renewalDate = newExpiry;
     await subscription.save();
-    console.log(`📅 Subscription expiry set to: ${newExpiry.toISOString()}`);
 
-    // ─── Step 6: Update all properties owned by this user ──────
+    // ─── Step 6: Re-activate expired listings + update plan ──────
     await Property.updateMany(
-      { ownerId: user._id },
+      { ownerId: user._id, status: 'expired' },
+      {
+        $set: {
+          ownerSubscriptionPlan: planName,
+          status: 'approved',
+          expiresAt: newExpiry
+        }
+      }
+    );
+
+    await Property.updateMany(
+      { ownerId: user._id, status: { $ne: 'expired' } },
       { $set: { ownerSubscriptionPlan: planName } }
     );
 
@@ -228,6 +223,9 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+// ─── Subscription routes (AFTER webhook) ─────────────────────────
+app.use('/api/subscriptions', subscriptionRoutes);
 
 // ─── Serve static frontend files ──────────────────────────────────
 app.use(express.static(path.join(__dirname)));

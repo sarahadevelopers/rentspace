@@ -367,9 +367,15 @@ router.post('/downgrade-expired', authMiddleware, async (req, res) => {
     }
 
     // Only downgrade if expired
-    if (user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date()) {
-      return res.status(400).json({ error: 'Subscription is still active' });
-    }
+   // ─── Already free? Nothing to downgrade ──────────────────────
+if (user.subscriptionPlan === 'free') {
+  return res.status(400).json({ error: 'User is already on the free plan' });
+}
+
+// ─── Still active? Don't downgrade ───────────────────────────
+if (user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date()) {
+  return res.status(400).json({ error: 'Subscription is still active' });
+}
 
     // ─── Downgrade user ──────────────────────────────────────────
     const previousPlan = user.subscriptionPlan;
@@ -378,10 +384,25 @@ router.post('/downgrade-expired', authMiddleware, async (req, res) => {
     await user.save();
 
     // ─── Update all properties ──────────────────────────────────
-    await Property.updateMany(
-      { ownerId: user._id },
-      { $set: { ownerSubscriptionPlan: 'free' } }
-    );
+    // ─── Update all properties (downgrade plan + expire listings) ──
+const now = new Date();
+await Property.updateMany(
+  { ownerId: user._id, status: { $in: ['approved', 'published', 'available'] } },
+  {
+    $set: {
+      ownerSubscriptionPlan: 'free',
+      status: 'expired',
+      expiresAt: now,
+      updatedAt: now
+    }
+  }
+);
+
+// Keep archived/rejected listings untouched but update their plan
+await Property.updateMany(
+  { ownerId: user._id, status: { $nin: ['approved', 'published', 'available'] } },
+  { $set: { ownerSubscriptionPlan: 'free' } }
+);
 
     console.log(`✅ User ${user.email} auto-downgraded from ${previousPlan} to free (expired)`);
 
@@ -394,10 +415,11 @@ router.post('/downgrade-expired', authMiddleware, async (req, res) => {
     }
 
     res.json({
-      success: true,
-      message: 'Subscription expired. Downgraded to free plan.',
-      previousPlan
-    });
+  success: true,
+  message: 'Subscription expired. Downgraded to free plan. Active listings have been expired.',
+  previousPlan,
+  listingsExpired: true
+});
   } catch (error) {
     console.error('Downgrade error:', error);
     res.status(500).json({ error: 'Server error' });

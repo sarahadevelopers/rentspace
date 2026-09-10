@@ -3,7 +3,7 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const Property = require('../models/Property');
-const User = require('../models/User'); // added for user lookup
+const User = require('../models/User');
 const authMiddleware = require('../middleware/auth');
 
 const router = express.Router();
@@ -15,7 +15,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// ─── Multer Storage (uploads directly to Cloudinary) ──────────
+// ─── Multer Storage ────────────────────────────────────────────
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
@@ -27,10 +27,10 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB per file
+  limits: { fileSize: 10 * 1024 * 1024 }
 });
 
-// ─── Helper: generate unique slug from title ──────────────────
+// ─── Helper: generate unique slug ─────────────────────────────
 async function generateUniqueSlug(title, existingId = null) {
   let baseSlug = title
     .toLowerCase()
@@ -50,13 +50,12 @@ async function generateUniqueSlug(title, existingId = null) {
   return slug;
 }
 
-// ─── Helper: check if a user's subscription is active ─────────
+// ─── Helper: check if subscription is active ──────────────────
 function isSubscriptionActive(user) {
   if (!user) return false;
   const plan = user.subscriptionPlan || 'free';
   const expiry = user.subscriptionExpiry;
 
-  // If plan is free, check trial period (30 days from signup)
   if (plan === 'free') {
     const trialStart = user.createdAt || user.trialStartDate;
     if (!trialStart) return false;
@@ -65,7 +64,6 @@ function isSubscriptionActive(user) {
     return new Date() < trialEnd;
   }
 
-  // For paid plans, check expiry
   if (['basic', 'pro', 'developer'].includes(plan)) {
     if (!expiry) return false;
     return new Date(expiry) > new Date();
@@ -74,43 +72,94 @@ function isSubscriptionActive(user) {
   return false;
 }
 
-// ─── Helper: get listing limit for a user ──────────────────────
+// ─── Helper: get listing limit ─────────────────────────────────
 function getListingLimit(user) {
   const plan = user.subscriptionPlan || 'free';
-  const limits = {
-    free: 2,
-    basic: 20,
-    pro: Infinity,
-    developer: Infinity
-  };
+  const limits = { free: 2, basic: 20, pro: Infinity, developer: Infinity };
   return limits[plan] || 2;
 }
 
-// ─── GET /api/properties (public, with ranking) ────────────────
-// Properties are ranked by:
-//   1. featured (manual override)
-//   2. owner subscription plan (developer > pro > basic > free)
-//   3. creation date (newest first)
-// Additionally, contact details are hidden for free/trial-expired listings.
-// ─── GET /api/properties (public, with ranking) ────────────────
+// ─── Helper: build expiry filter ───────────────────────────────
+// Returns a MongoDB query fragment that excludes expired listings
+function buildExpiryFilter() {
+  const now = new Date();
+  return {
+    $or: [
+      { expiresAt: null },              // legacy listings without expiry
+      { expiresAt: { $gt: now } }       // not yet expired
+    ]
+  };
+}
+
+// =================================================================
+// CRON ENDPOINT — Auto-expire listings past their expiresAt
+// Protected by CRON_SECRET
+// =================================================================
+router.get('/check-expiry', async (req, res) => {
+  try {
+    // Security check
+    if (req.query.secret !== process.env.CRON_SECRET) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const now = new Date();
+
+    // ── 1. Expire active listings past their expiresAt ─────────
+    const expiredResult = await Property.updateMany(
+      {
+        status: { $in: ['approved', 'published', 'available'] },
+        expiresAt: { $ne: null, $lt: now }
+      },
+      {
+        $set: { status: 'expired', updatedAt: now }
+      }
+    );
+
+    // ── 2. Optionally archive very old expired listings (30+ days) ─
+    const archiveCutoff = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+    const archivedResult = await Property.updateMany(
+      {
+        status: 'expired',
+        expiresAt: { $ne: null, $lt: archiveCutoff }
+      },
+      {
+        $set: { status: 'archived', updatedAt: now }
+      }
+    );
+
+    console.log(`🕒 Listing expiry cron: ${expiredResult.nModified} expired, ${archivedResult.nModified} archived`);
+
+    res.json({
+      success: true,
+      expiredListings: expiredResult.nModified,
+      archivedListings: archivedResult.nModified,
+      checkedAt: now.toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Listing expiry cron error:', error);
+    res.status(500).json({ success: false, error: 'Cron job failed' });
+  }
+});
+
+// ─── GET /api/properties (public) ─────────────────────────────
 router.get('/', async (req, res) => {
   try {
     const {
-      estate,
-      minPrice,
-      maxPrice,
-      type,
-      bedrooms,
-      bathrooms,
-      featured,
-      page = 1,
-      limit = 20
+      estate, minPrice, maxPrice, type, bedrooms, bathrooms, featured,
+      listingType, propertyType,
+      page = 1, limit = 20
     } = req.query;
 
-    const query = { status: 'approved' };
+    // ✅ Base query: only approved AND not expired
+    const query = {
+      status: 'approved',
+      ...buildExpiryFilter()
+    };
 
     if (estate) query.estate = estate;
     if (type) query.listingType = type;
+    if (listingType) query.listingType = listingType;
+    if (propertyType) query.propertyType = propertyType;
     if (featured === 'true') query.featured = true;
     if (bedrooms) query.bedrooms = parseInt(bedrooms);
     if (bathrooms) query.bathrooms = parseInt(bathrooms);
@@ -125,7 +174,6 @@ router.get('/', async (req, res) => {
     const limitNum = parseInt(limit);
     const skip = (pageNum - 1) * limitNum;
 
-    // ── Get properties with pagination (simpler, safer) ────────
     let properties = await Property.find(query)
       .sort({ featured: -1, createdAt: -1 })
       .skip(skip)
@@ -145,13 +193,8 @@ router.get('/', async (req, res) => {
     properties = properties.map(p => {
       const owner = p.ownerId ? ownerMap[p.ownerId.toString()] : null;
 
-      // If no owner found, return property as-is
       if (!owner) {
-        return {
-          ...p,
-          contactHidden: true,
-          contactMessage: 'Owner details unavailable'
-        };
+        return { ...p, contactHidden: true, contactMessage: 'Owner details unavailable' };
       }
 
       const isActive = isSubscriptionActive(owner);
@@ -159,14 +202,7 @@ router.get('/', async (req, res) => {
       const hideContact = !isActive || (isFree && !isSubscriptionActive(owner));
 
       const property = { ...p };
-      
-      // Add priority for sorting (fallback to 0 if no plan)
-      const planPriority = {
-        'developer': 4,
-        'pro': 3,
-        'basic': 2,
-        'free': 1
-      };
+      const planPriority = { developer: 4, pro: 3, basic: 2, free: 1 };
       property._priority = planPriority[owner.subscriptionPlan] || 0;
 
       if (hideContact) {
@@ -184,14 +220,12 @@ router.get('/', async (req, res) => {
       return property;
     });
 
-    // ── Sort by priority (since we removed aggregation) ────────
     properties.sort((a, b) => {
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
       return (b._priority || 0) - (a._priority || 0);
     });
 
-    // Remove the temporary priority field
     properties = properties.map(p => {
       const { _priority, ...rest } = p;
       return rest;
@@ -207,8 +241,8 @@ router.get('/', async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching properties:', error);
-    res.status(500).json({ 
-      success: false, 
+    res.status(500).json({
+      success: false,
       error: 'Server error fetching properties',
       details: process.env.NODE_ENV === 'production' ? undefined : error.message
     });
@@ -216,19 +250,20 @@ router.get('/', async (req, res) => {
 });
 
 // ─── GET /api/properties/my-properties (authenticated) ────────
-// MUST be placed BEFORE /:slug to avoid conflict
 router.get('/my-properties', authMiddleware, async (req, res) => {
   try {
-    const { page = 1, limit = 20 } = req.query;
+    const { page = 1, limit = 20, includeExpired } = req.query;
     const pageNum = parseInt(page);
     const limitNum = parseInt(limit);
     const skip = (pageNum - 1) * limitNum;
 
     let query = {};
-    // If user is admin, show all properties; otherwise only their own
     if (req.user.role !== 'admin') {
       query = { ownerId: req.user._id };
     }
+
+    // Owners can see their own expired listings unless explicitly excluded
+    // (Admins see everything)
 
     const [properties, total] = await Promise.all([
       Property.find(query)
@@ -256,15 +291,21 @@ router.get('/my-properties', authMiddleware, async (req, res) => {
 // ─── GET /api/properties/:slug (public) ────────────────────────
 router.get('/:slug', async (req, res) => {
   try {
-    const property = await Property.findOne({ slug: req.params.slug }).lean();
+    const now = new Date();
+    const property = await Property.findOne({
+      slug: req.params.slug,
+      ...buildExpiryFilter()   // ✅ Blocks expired listings
+    }).lean();
+
     if (!property) {
-      return res.status(404).json({ success: false, error: 'Property not found' });
+      return res.status(404).json({
+        success: false,
+        error: 'Property not found or has expired'
+      });
     }
 
-    // Increment view count asynchronously
     Property.updateOne({ _id: property._id }, { $inc: { views: 1 } }).exec();
 
-    // ── Enrich with owner details and hide contact info if needed ──
     if (property.ownerId) {
       const owner = await User.findById(property.ownerId)
         .select('_id phone email name subscriptionPlan subscriptionExpiry createdAt');
@@ -294,32 +335,16 @@ router.get('/:slug', async (req, res) => {
   }
 });
 
-// ─── POST /api/properties (authenticated, with image upload) ──
+// ─── POST /api/properties (authenticated) ─────────────────────
 router.post('/', authMiddleware, upload.array('images', 10), async (req, res) => {
   try {
-    console.log('📥 Incoming property data (body):', req.body);
-    console.log('📸 Uploaded files:', req.files);
-    console.log('👤 User subscription plan:', req.user.subscriptionPlan);
-    console.log('👤 User subscription expiry:', req.user.subscriptionExpiry);
+    console.log('📥 Incoming property data:', req.body);
+    console.log('👤 User plan:', req.user.subscriptionPlan, '| expiry:', req.user.subscriptionExpiry);
 
-    // ── 1. Validate required fields ──────────────────────────────
     const {
-      title,
-      listingType,
-      estate,
-      county,
-      price,
-      bedrooms,
-      bathrooms,
-      parking,
-      sqft,
-      description,
-      amenities,
-      propertyType,
-      size,
-      status,
-      available_for,
-      rental_type
+      title, listingType, estate, county, price,
+      bedrooms, bathrooms, parking, sqft, description, amenities,
+      propertyType, size, status, available_for, rental_type
     } = req.body;
 
     if (!title || !listingType || !estate || !price || !description) {
@@ -329,13 +354,11 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
       });
     }
 
-    // ── 2. Subscription, Trial, and Listing Limit Check ──────────
+    // ── Subscription + listing limit check ────────────────────
     const isAdmin = req.user.role === 'admin';
 
     if (!isAdmin) {
-      // Check if user is active (subscription or trial)
       const isActive = isSubscriptionActive(req.user);
-
       if (!isActive) {
         return res.status(403).json({
           success: false,
@@ -343,11 +366,10 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
         });
       }
 
-      // Check listing limit
       const maxListings = getListingLimit(req.user);
       const currentListings = await Property.countDocuments({
         ownerId: req.user._id,
-        status: { $ne: 'archived' }
+        status: { $nin: ['archived', 'expired'] }   // ✅ Don't count expired as active
       });
 
       if (currentListings >= maxListings) {
@@ -358,29 +380,32 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
       }
     }
 
-    // ── 3. Generate slug ──────────────────────────────────────────
     const slug = await generateUniqueSlug(title);
-
-    // ── 4. Extract image URLs from Cloudinary upload ─────────────
     const imageUrls = req.files ? req.files.map(file => file.path) : [];
 
-    // ── 5. Parse amenities (if sent as JSON string) ──────────────
     let amenitiesArray = [];
     if (amenities) {
       try {
         amenitiesArray = typeof amenities === 'string' ? JSON.parse(amenities) : amenities;
-      } catch (e) {
-        amenitiesArray = [];
-      }
+      } catch (e) { amenitiesArray = []; }
     }
 
-    // ── 6. Build property object (including owner's plan) ────────
+    // ── Compute expiresAt ─────────────────────────────────────
+    // Free users: 30 days from now
+    // Paid users: tied to subscription expiry (or null if admin)
+    const plan = req.user.subscriptionPlan || 'free';
+    let expiresAt = null;
+
+    if (plan === 'free') {
+      expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+    } else if (req.user.subscriptionExpiry) {
+      expiresAt = new Date(req.user.subscriptionExpiry);
+    }
+    // Admins get no expiry (null)
+
     const propertyData = {
       ownerId: req.user._id,
-      title,
-      slug,
-      listingType,
-      estate,
+      title, slug, listingType, estate,
       county: county || 'Nairobi',
       price: parseFloat(price),
       bedrooms: bedrooms ? parseInt(bedrooms) : 0,
@@ -394,49 +419,32 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
       status: status || 'pending',
       available_for: available_for || '',
       rental_type: rental_type || '',
-      ownerSubscriptionPlan: req.user.subscriptionPlan || 'free'
+      ownerSubscriptionPlan: plan,
+      expiresAt                          // ✅ Set here explicitly
     };
 
-    console.log('📦 Property data to save:', propertyData);
+    console.log('📦 Property data to save:', { ...propertyData, expiresAt });
 
-    // ── 7. Save to database ───────────────────────────────────────
     const property = await Property.create(propertyData);
-
     res.status(201).json({ success: true, property });
   } catch (error) {
-    console.error('❌ Property creation error FULL:', error);
-    console.error('❌ Error name:', error.name);
-    console.error('❌ Error message:', error.message);
-    console.error('❌ Error code:', error.code);
-    console.error('❌ Error stack:', error.stack);
-
+    console.error('❌ Property creation error:', error);
     if (error.name === 'ValidationError') {
-      return res.status(400).json({
-        success: false,
-        error: error.message,
-        fields: Object.keys(error.errors)
-      });
+      return res.status(400).json({ success: false, error: error.message, fields: Object.keys(error.errors) });
     }
-
     if (error.code === 11000) {
-      return res.status(400).json({
-        success: false,
-        error: 'Duplicate property (slug already exists)'
-      });
+      return res.status(400).json({ success: false, error: 'Duplicate property (slug already exists)' });
     }
-
     const isProduction = process.env.NODE_ENV === 'production';
     res.status(500).json({
       success: false,
-      error: isProduction
-        ? 'Server error creating property. Please try again later.'
-        : error.message,
+      error: isProduction ? 'Server error creating property.' : error.message,
       ...(isProduction ? {} : { stack: error.stack })
     });
   }
 });
 
-// ─── PUT /api/properties/:id (authenticated, owner or admin) ──
+// ─── PUT /api/properties/:id (authenticated) ──────────────────
 router.put('/:id', authMiddleware, upload.array('images', 10), async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);
@@ -444,24 +452,20 @@ router.put('/:id', authMiddleware, upload.array('images', 10), async (req, res) 
       return res.status(404).json({ success: false, error: 'Property not found' });
     }
 
-    // Check ownership or admin
     if (property.ownerId.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
       return res.status(403).json({ success: false, error: 'Not authorized to update this property' });
     }
 
-    // ── Build update data from request body ──────────────────
     const updateData = { ...req.body };
 
-    // ── Handle images ──────────────────────────────────────────
+    // ── Handle images ─────────────────────────────────────────
     let existingImages = [];
     if (req.body.existingImages) {
       try {
         existingImages = typeof req.body.existingImages === 'string'
           ? JSON.parse(req.body.existingImages)
           : req.body.existingImages;
-      } catch (e) {
-        existingImages = [];
-      }
+      } catch (e) { existingImages = []; }
     }
 
     const newImageUrls = req.files ? req.files.map(file => file.path) : [];
@@ -471,21 +475,33 @@ router.put('/:id', authMiddleware, upload.array('images', 10), async (req, res) 
     }
     updateData.images = finalImages;
 
-    // ── Handle slug if title changes ──────────────────────────
+    // ── Regenerate slug if title changed ──────────────────────
     if (req.body.title && req.body.title !== property.title) {
       updateData.slug = await generateUniqueSlug(req.body.title, property._id);
     }
 
-    // ── Remove fields that shouldn't be updated ──────────────
+    // ── Extend expiry when editing (gives renewed 30-day window) ─
+    if (updateData.extendExpiry === 'true' || property.status === 'expired') {
+      const plan = property.ownerSubscriptionPlan || 'free';
+      if (plan === 'free') {
+        updateData.expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+      }
+      // Also reset status if it was expired
+      if (property.status === 'expired' && updateData.status === undefined) {
+        updateData.status = 'pending';
+      }
+    }
+    delete updateData.extendExpiry;
+
+    // ── Remove protected fields ───────────────────────────────
     delete updateData._id;
     delete updateData.ownerId;
     delete updateData.createdAt;
     delete updateData.updatedAt;
-    delete updateData.slug; // handled above
+    delete updateData.slug;
     delete updateData.existingImages;
     delete updateData.existingPublicIds;
 
-    // ── Update the property ────────────────────────────────────
     const updatedProperty = await Property.findByIdAndUpdate(
       req.params.id,
       updateData,
@@ -502,7 +518,7 @@ router.put('/:id', authMiddleware, upload.array('images', 10), async (req, res) 
   }
 });
 
-// ─── DELETE /api/properties/:id (authenticated, owner or admin) ──
+// ─── DELETE /api/properties/:id (authenticated) ───────────────
 router.delete('/:id', authMiddleware, async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);

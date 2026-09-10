@@ -177,19 +177,34 @@ function renderProperties(properties) {
         </div>
     ` : '';
 
-    return `
-        <a href="${basePath}/airbnb/${prop.slug}.html" class="property-card">
-            <div class="card-image-wrapper">
-                ${premiumBadgeHTML}
-                <img class="card-image" src="${imageUrl}" alt="${escapeHtml(prop.title)}" loading="lazy" onerror="this.src='${basePath}/images/placeholder.jpg'">
-                <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
-                <div class="card-price">KES ${nightPrice.toLocaleString()}<span>/night</span></div>
+  return `
+    <a href="${basePath}/airbnb/${prop.slug}.html" class="property-card">
+        <div class="card-image-wrapper">
+            ${premiumBadgeHTML}
+            <img class="card-image" src="${imageUrl}" alt="${escapeHtml(prop.title)}" loading="lazy" onerror="this.src='${basePath}/images/placeholder.jpg'">
+            <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
+            <div class="card-price">KES ${nightPrice.toLocaleString()}<span>/night</span></div>
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">${escapeHtml(prop.title)}</h3>
+            <div class="card-location">
+                <i class="fas fa-map-marker-alt"></i>
+                ${escapeHtml(prop.estate || 'Nairobi')}
             </div>
-            <div class="card-info">
-                ...
+            <div class="card-features">
+                <span><i class="fas fa-bed"></i> ${prop.bedrooms || 0} bed${(prop.bedrooms || 0) !== 1 ? 's' : ''}</span>
+                <span><i class="fas fa-bath"></i> ${prop.bathrooms || 0} bath${(prop.bathrooms || 0) !== 1 ? 's' : ''}</span>
+                <span><i class="fas fa-users"></i> ${(prop.bedrooms || 1) * 2} guests</span>
             </div>
-        </a>
-    `;
+            <div class="card-rating">
+                <i class="fas fa-star"></i>
+                <span>${rating}</span>
+                <span class="reviews">(${reviews} reviews)</span>
+            </div>
+            <div class="card-cta">Book Now →</div>
+        </div>
+    </a>
+`;
 }).join('');
     
     if (totalPages <= 1) {

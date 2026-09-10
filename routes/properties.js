@@ -131,8 +131,8 @@ router.get('/check-expiry', async (req, res) => {
 
     res.json({
       success: true,
-      expiredListings: expiredResult.nModified,
-      archivedListings: archivedResult.nModified,
+      expiredListings: expiredResult.modifiedCount ?? expiredResult.nModified ?? 0,
+archivedListings: archivedResult.modifiedCount ?? archivedResult.nModified ?? 0,
       checkedAt: now.toISOString()
     });
   } catch (error) {

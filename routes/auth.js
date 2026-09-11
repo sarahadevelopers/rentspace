@@ -250,6 +250,52 @@ router.get('/me', authMiddleware, async (req, res) => {
   }
 });
 
+// ─── Update Phone (for Google users completing profile) ──────
+router.put('/update-phone', authMiddleware, async (req, res) => {
+  try {
+    const { phone } = req.body;
+
+    if (!phone || !/^\d{10,13}$/.test(phone)) {
+      return res.status(400).json({
+        error: 'Please provide a valid phone number (10-13 digits, no spaces)'
+      });
+    }
+
+    // Check if phone already used by another user
+    const existing = await User.findOne({
+      phone,
+      _id: { $ne: req.user._id }
+    });
+    if (existing) {
+      return res.status(400).json({ error: 'This phone number is already registered' });
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    user.phone = phone;
+    await user.save();
+
+    res.json({
+      success: true,
+      message: 'Phone updated successfully',
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        subscriptionPlan: user.subscriptionPlan
+      }
+    });
+  } catch (error) {
+    console.error('Update phone error:', error);
+    res.status(500).json({ error: 'Server error updating phone' });
+  }
+});
+
 // ─── Logout ────────────────────────────────────────────────────
 router.post('/logout', authMiddleware, (req, res) => {
   // Client-side: remove token from localStorage

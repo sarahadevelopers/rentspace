@@ -2276,9 +2276,207 @@
       <button class="modal-next" id="modalNext"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
+<!-- ─── Complete Profile Modal (for Google users) ──────────── -->
+<div id="completePhoneModal" style="
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+">
+  <div style="
+    max-width: 440px; width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #c5a059;
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: modalFadeIn 0.3s ease;
+  ">
+    <style>
+      @keyframes modalFadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
 
+    <div style="text-align: center; font-size: 42px; color: #c5a059; margin-bottom: 12px;">
+      <i class="fas fa-phone-alt"></i>
+    </div>
+    <h2 style="text-align: center; font-size: 22px; font-weight: 700; color: #eaeaea; margin-bottom: 8px;">
+      Complete Your Profile
+    </h2>
+    <p style="text-align: center; color: #888; font-size: 14px; margin-bottom: 24px; line-height: 1.5;">
+      Add your phone number to receive M-PESA payments, leads, and WhatsApp inquiries from potential clients.
+    </p>
+
+    <div id="phoneModalError" style="
+      display: none;
+      background: #2a1a1a;
+      border-left: 4px solid #ff6b6b;
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      color: #ff6b6b;
+      font-size: 13px;
+    "></div>
+
+    <label style="display: block; font-weight: 600; margin-bottom: 6px; color: #eaeaea; font-size: 14px;">
+      Phone Number
+    </label>
+    <input type="tel" id="phoneModalInput" placeholder="e.g., 254712345678" style="
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #2c2c2c;
+      border-radius: 8px;
+      font-size: 16px;
+      background: #0d0d0d;
+      color: #eaeaea;
+      font-family: 'Jost', sans-serif;
+      margin-bottom: 16px;
+    ">
+    <span style="display: block; color: #666; font-size: 12px; margin-top: -10px; margin-bottom: 16px;">
+      Format: 2547XXXXXXXX (no spaces or +)
+    </span>
+
+    <button id="phoneModalBtn" style="
+      width: 100%;
+      padding: 14px;
+      background: #c5a059;
+      color: #0d0d0d;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+    ">
+      <i class="fas fa-check"></i> Save Phone Number
+    </button>
+
+    <button id="phoneModalSkip" style="
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      color: #666;
+      border: none;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 8px;
+      font-family: 'Jost', sans-serif;
+    ">
+      Skip for now
+    </button>
+  </div>
+</div>
   <!-- ===== JAVASCRIPT ===== -->
   <script src="js/dashboard.js"></script>
 
+<script>
+// ─── Complete Profile Modal (for Google users with placeholder phone) ──
+(function checkProfileCompletion() {
+  const token = localStorage.getItem('rentspace_token');
+  const userJson = localStorage.getItem('rentspace_user');
+
+  if (!token || !userJson) return;
+
+  let user;
+  try {
+    user = JSON.parse(userJson);
+  } catch (e) {
+    return;
+  }
+
+  // Only trigger if phone is a Google placeholder
+   // Only trigger if phone is a Google placeholder
+  if (!user.phone || !user.phone.startsWith('google_')) {
+    return;
+  }
+
+  // Don't show again if the user skipped this session
+  if (sessionStorage.getItem('phoneModalSkipped') === 'true') {
+    return;
+  }
+
+  const modal = document.getElementById('completePhoneModal');
+  const input = document.getElementById('phoneModalInput');
+  const saveBtn = document.getElementById('phoneModalBtn');
+  const skipBtn = document.getElementById('phoneModalSkip');
+  const errorBox = document.getElementById('phoneModalError');
+
+  modal.style.display = 'flex';
+
+  saveBtn.addEventListener('click', async () => {
+    const phone = input.value.trim();
+
+    errorBox.style.display = 'none';
+
+    if (!/^\d{10,13}$/.test(phone)) {
+      errorBox.textContent = 'Please enter a valid phone (10-13 digits, no spaces or +)';
+      errorBox.style.display = 'block';
+      return;
+    }
+
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+    try {
+      const res = await fetch('https://rentspace-markeplace.onrender.com/api/auth/update-phone', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ phone })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        errorBox.textContent = data.error || 'Failed to update phone';
+        errorBox.style.display = 'block';
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i class="fas fa-check"></i> Save Phone Number';
+        return;
+      }
+
+      // Update localStorage with new phone
+      user.phone = data.user.phone;
+      localStorage.setItem('rentspace_user', JSON.stringify(user));
+
+      // Show success briefly then close
+      errorBox.style.background = '#1a2a1a';
+      errorBox.style.borderLeftColor = '#4CAF50';
+      errorBox.style.color = '#4CAF50';
+      errorBox.textContent = '✅ Phone saved!';
+      errorBox.style.display = 'block';
+
+      setTimeout(() => {
+        modal.style.display = 'none';
+        // Reload dashboard data to reflect new phone
+        window.location.reload();
+      }, 900);
+
+    } catch (err) {
+      errorBox.textContent = 'Network error. Please try again.';
+      errorBox.style.display = 'block';
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = '<i class="fas fa-check"></i> Save Phone Number';
+    }
+  });
+
+  skipBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+    // Remember that they skipped for this session
+    sessionStorage.setItem('phoneModalSkipped', 'true');
+  });
+
+  // Auto-focus the input
+  input.focus();
+})();
+</script>
 </body>
 </html>

@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 require('./config/passport');   // initializes Google strategy
 const helmet = require('helmet');
-const mongoSanitize = require('express-mongo-sanitize');
 const rateLimit = require('express-rate-limit');
 
 // ─── Import route modules ──────────────────────────────────────────
@@ -63,14 +62,31 @@ app.use(cors({
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
-// ─── NoSQL injection protection ─────────────────────────────────
-app.use(mongoSanitize());
+// ─── Custom NoSQL injection protection (Express 5 compatible) ──
+// Removes keys starting with $ or containing . (MongoDB operators)
+// Only touches req.body and req.params — NOT req.query (read-only in Express 5)
+const sanitizeObject = (obj) => {
+  if (obj && typeof obj === 'object') {
+    for (const key in obj) {
+      if (key.startsWith('$') || key.includes('.')) {
+        delete obj[key];
+      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+        sanitizeObject(obj[key]);
+      }
+    }
+  }
+};
+
+app.use((req, res, next) => {
+  if (req.body) sanitizeObject(req.body);
+  if (req.params) sanitizeObject(req.params);
+  next();
+});
 
 // ─── Passport initialization (MUST be before auth routes) ───────
 app.use(passport.initialize());
 
 // ─── Global API rate limiter ────────────────────────────────────
-// Protects all /api/* routes. Auth routes have their own tighter limits.
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,   // 15 minutes
   max: 300,                    // 300 requests per IP per window
@@ -80,7 +96,7 @@ const globalLimiter = rateLimit({
 });
 app.use('/api', globalLimiter);
 
-// ─── Health check (excluded from rate limit) ────────────────────
+// ─── Health check ────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'RentSpace API is running' });
 });
@@ -99,7 +115,6 @@ app.use('/api/admin', adminRoutes);
 app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
   try {
     // ─── Verify webhook came from sarahapay service ─────────────
-    // Accepts secret via header (preferred) or query string (fallback)
     const incomingSecret = req.headers['x-api-secret'] || req.query.secret;
     if (!incomingSecret || incomingSecret !== process.env.API_SECRET) {
       console.warn('⚠️ Webhook rejected: invalid or missing API_SECRET');
@@ -200,7 +215,6 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
     );
 
     if (result.nModified === 0) {
-      // No pending subs — update the one we found directly
       subscription.status = 'active';
       subscription.paymentStatus = 'paid';
       subscription.metadata = {
@@ -220,11 +234,9 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
 
     let newExpiry;
     if (currentExpiry && currentExpiry > now) {
-      // Renewal — extend from current expiry
       newExpiry = new Date(currentExpiry.getTime() + durationDays * 24 * 60 * 60 * 1000);
       console.log(`🔄 Renewal: extending from ${currentExpiry.toISOString()} by ${durationDays} days`);
     } else {
-      // New subscription or expired — start from now
       newExpiry = new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000);
       console.log(`🆕 New subscription: starting from now, ${durationDays} days`);
     }
@@ -250,7 +262,6 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
       }
     );
 
-    // Extend expiry AND update plan on all remaining active listings
     await Property.updateMany(
       { ownerId: user._id, status: { $ne: 'expired' } },
       {

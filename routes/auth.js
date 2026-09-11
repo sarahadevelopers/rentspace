@@ -2,13 +2,15 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const rateLimit = require('express-rate-limit');
+const passport = require('passport');
+require('../config/passport');
 const User = require('../models/User');
 const Property = require('../models/Property');
 const authMiddleware = require('../middleware/auth');
 const { 
   sendVerificationEmail, 
   sendPasswordResetEmail,
-  sendExpiredEmail   // ← ADD
+  sendExpiredEmail
 } = require('../config/email');
 
 const router = express.Router();
@@ -188,6 +190,54 @@ router.post('/login', authLimiter, async (req, res) => {
     res.status(500).json({ error: 'Server error during login' });
   }
 });
+
+// ─── Step 1: Redirect user to Google ──────────────────────────
+// Usage: user clicks "Sign in with Google" →
+//        browser goes to https://rentspace-markeplace.onrender.com/api/auth/google
+router.get('/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    session: false
+  })
+);
+
+// ─── Step 2: Handle Google callback ───────────────────────────
+router.get('/google/callback',
+  passport.authenticate('google', {
+    session: false,
+    failureRedirect: `${process.env.FRONTEND_URL}/login.html?error=google_failed`
+  }),
+  async (req, res) => {
+    try {
+      const user = req.user;
+      if (!user) {
+        return res.redirect(`${process.env.FRONTEND_URL}/login.html?error=no_user`);
+      }
+
+      // Generate JWT (same as normal login)
+      const token = generateToken(user._id, user.role);
+
+      // Redirect to frontend with token + user data in query params
+      const params = new URLSearchParams({
+        token,
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        subscriptionPlan: user.subscriptionPlan || 'free',
+        verified: user.verified
+      });
+
+      const frontendUrl = process.env.FRONTEND_URL || 'https://rentspace.co.ke';
+      res.redirect(`${frontendUrl}/login.html?${params.toString()}`);
+    } catch (err) {
+      console.error('❌ Google callback error:', err);
+      const frontendUrl = process.env.FRONTEND_URL || 'https://rentspace.co.ke';
+      res.redirect(`${frontendUrl}/login.html?error=callback_failed`);
+    }
+  }
+);
 
 // ─── Get Current User ────────────────────────────────────────
 router.get('/me', authMiddleware, async (req, res) => {

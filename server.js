@@ -4,6 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+const passport = require('passport');
+require('./config/passport');   // initializes Google strategy
 
 // ─── Import route modules ──────────────────────────────────────────
 const authRoutes = require('./routes/auth');
@@ -49,6 +51,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// ─── Passport initialization (MUST be before auth routes) ────────
+app.use(passport.initialize());
+
 // ─── Health check ──────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'RentSpace API is running' });
@@ -59,7 +64,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/admin', adminRoutes);
-
 // =====================================================================
 // Webhook from sarahapay-intasend
 // DEFINED BEFORE the subscription router so a wildcard route in

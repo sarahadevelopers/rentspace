@@ -388,6 +388,8 @@
 <script>
 // ─── Google OAuth callback handler ──────────────────────────
 // Runs immediately on page load if URL has ?token=... from Google
+// ─── Google OAuth callback handler ──────────────────────────
+// Runs immediately on page load if URL has ?token=... from Google
 (function handleGoogleCallback() {
   const params = new URLSearchParams(window.location.search);
   const token = params.get('token');
@@ -396,16 +398,7 @@
   const errorBox = document.getElementById('errorBox');
   const successBox = document.getElementById('successBox');
 
-  // Handle email verification success (from regular signup)
-  if (verified === 'true') {
-    if (successBox) {
-      successBox.textContent = '✅ Email verified! You can now log in.';
-      successBox.style.display = 'block';
-    }
-    window.history.replaceState({}, '', window.location.pathname);
-    return;
-  }
-
+  // ─── Priority 1: error from Google ──────────────────────
   if (error) {
     if (errorBox) {
       errorBox.textContent = 'Google sign-in failed. Please try again or use email login.';
@@ -415,6 +408,7 @@
     return;
   }
 
+  // ─── Priority 2: token from Google (log user in) ────────
   if (token) {
     const user = {
       id: params.get('id'),
@@ -429,8 +423,14 @@
     try {
       localStorage.setItem('rentspace_token', token);
       localStorage.setItem('rentspace_user', JSON.stringify(user));
+      if (successBox) {
+        successBox.textContent = '🎉 Signed in with Google! Redirecting...';
+        successBox.style.display = 'block';
+      }
       window.history.replaceState({}, '', window.location.pathname);
-      window.location.href = 'dashboard.html';
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 600);
     } catch (err) {
       console.error('Failed to save Google session:', err);
       if (errorBox) {
@@ -438,6 +438,17 @@
         errorBox.style.display = 'block';
       }
     }
+    return;
+  }
+
+  // ─── Priority 3: email verification message (from signup flow) ────
+  if (verified === 'true') {
+    if (successBox) {
+      successBox.textContent = '✅ Email verified! You can now log in.';
+      successBox.style.display = 'block';
+    }
+    window.history.replaceState({}, '', window.location.pathname);
+    return;
   }
 })();
 

@@ -389,6 +389,8 @@
 <script>
 // ─── Google OAuth callback handler ──────────────────────────
 // Runs immediately on page load if URL has ?token=... from Google
+// ─── Google OAuth callback handler ──────────────────────────
+// Runs immediately on page load if URL has ?token=... from Google
 (function handleGoogleCallback() {
   const params = new URLSearchParams(window.location.search);
   const token = params.get('token');
@@ -396,6 +398,7 @@
   const errorBox = document.getElementById('errorBox');
   const successBox = document.getElementById('successBox');
 
+  // ─── Priority 1: error from Google ──────────────────────
   if (error) {
     if (errorBox) {
       errorBox.textContent = 'Google sign-up failed. Please try again or use email signup.';
@@ -405,6 +408,7 @@
     return;
   }
 
+  // ─── Priority 2: token from Google (log user in) ────────
   if (token) {
     const user = {
       id: params.get('id'),
@@ -420,7 +424,7 @@
       localStorage.setItem('rentspace_token', token);
       localStorage.setItem('rentspace_user', JSON.stringify(user));
       if (successBox) {
-        successBox.textContent = '🎉 Signed in with Google! Redirecting to dashboard...';
+        successBox.textContent = '🎉 Signed up with Google! Redirecting to dashboard...';
         successBox.style.display = 'block';
       }
       window.history.replaceState({}, '', window.location.pathname);
@@ -434,6 +438,7 @@
         errorBox.style.display = 'block';
       }
     }
+    return;
   }
 })();
 

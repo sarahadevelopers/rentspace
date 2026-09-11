@@ -24,9 +24,47 @@ const authLimiter = rateLimit({
   legacyHeaders: false
 });
 
+// ─── Per-account login attempt tracker ─────────────────────────
+// In-memory map: { email: { count, lockUntil } }
+// NOTE: resets on server restart. For persistence, move to Redis/MongoDB.
+const loginAttempts = new Map();
+const MAX_ATTEMPTS = 5;
+const LOCK_DURATION_MS = 15 * 60 * 1000; // 15 minutes
+
+function checkAccountLock(email) {
+  const record = loginAttempts.get(email);
+  if (!record) return { locked: false };
+
+  if (record.lockUntil && Date.now() < record.lockUntil) {
+    const remaining = Math.ceil((record.lockUntil - Date.now()) / 60000);
+    return { locked: true, minutesRemaining: remaining };
+  }
+
+  if (record.lockUntil && Date.now() >= record.lockUntil) {
+    loginAttempts.delete(email);
+  }
+  return { locked: false };
+}
+
+function recordFailedAttempt(email) {
+  const record = loginAttempts.get(email) || { count: 0, lockUntil: null };
+  record.count += 1;
+  if (record.count >= MAX_ATTEMPTS) {
+    record.lockUntil = Date.now() + LOCK_DURATION_MS;
+    console.warn(`🔒 Account locked: ${email} (${MAX_ATTEMPTS} failed attempts)`);
+  }
+  loginAttempts.set(email, record);
+}
+
+function clearFailedAttempts(email) {
+  loginAttempts.delete(email);
+}
+
 // ─── JWT Token Generator ──────────────────────────────────────
 const generateToken = (userId, role) => {
-  return jwt.sign({ userId, role }, process.env.JWT_SECRET, { expiresIn: '7d' });
+  // Admin gets shorter-lived tokens (24h), users get 3 days
+  const expiry = role === 'admin' ? '24h' : '3d';
+  return jwt.sign({ userId, role }, process.env.JWT_SECRET, { expiresIn: expiry });
 };
 
 // ─── Signup ────────────────────────────────────────────────────
@@ -41,9 +79,29 @@ router.post('/signup', authLimiter, async (req, res) => {
       });
     }
 
-    // ── 2. Check for existing user ─────────────────────────────
+    // ── 2. Input length & format validation ────────────────────
+    if (name.length > 100) {
+      return res.status(400).json({ error: 'Name too long (max 100 chars)' });
+    }
+    if (email.length > 200) {
+      return res.status(400).json({ error: 'Email too long' });
+    }
+    if (!/^\d{10,13}$/.test(phone)) {
+      return res.status(400).json({ error: 'Phone must be 10-13 digits (no spaces or +)' });
+    }
+    if (password.length < 8) {
+      return res.status(400).json({ error: 'Password must be at least 8 characters' });
+    }
+    if (password.length > 128) {
+      return res.status(400).json({ error: 'Password too long (max 128 chars)' });
+    }
+
+    // ── 3. Normalize email ─────────────────────────────────────
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // ── 4. Check for existing user ─────────────────────────────
     const existingUser = await User.findOne({
-      $or: [{ email }, { phone }]
+      $or: [{ email: normalizedEmail }, { phone }]
     });
     if (existingUser) {
       return res.status(400).json({
@@ -51,26 +109,26 @@ router.post('/signup', authLimiter, async (req, res) => {
       });
     }
 
-    // ── 3. Generate verification token ──────────────────────────
+    // ── 5. Generate verification token ──────────────────────────
     const verificationToken = crypto.randomBytes(32).toString('hex');
 
-    // ── 4. Create user ──────────────────────────────────────────
+    // ── 6. Create user ──────────────────────────────────────────
     const user = await User.create({
-      name,
-      email,
+      name: name.trim(),
+      email: normalizedEmail,
       phone,
       password,
-      role: role || 'customer', // Default to customer
+      role: 'customer', // Force default — never trust client for role
       verificationToken,
       verified: false,
-      trialStartDate: new Date(), // For 30-day free trial
-      subscriptionPlan: 'free'    // Start with free plan
+      trialStartDate: new Date(),
+      subscriptionPlan: 'free'
     });
 
-    // ── 5. Send verification email (non-blocking) ───────────────
+    // ── 7. Send verification email (non-blocking) ───────────────
     try {
-      await sendVerificationEmail(email, name, verificationToken);
-      console.log(`✅ Verification email sent to ${email}`);
+      await sendVerificationEmail(normalizedEmail, name, verificationToken);
+      console.log(`✅ Verification email sent to ${normalizedEmail}`);
     } catch (emailError) {
       console.error('❌ Failed to send verification email:', emailError);
     }
@@ -128,12 +186,11 @@ router.get('/verify-email/:token', async (req, res) => {
     user.verificationToken = undefined;
     await user.save();
 
-    // ─── Return a response that can redirect to frontend ──────
-    const frontendUrl = process.env.FRONTEND_URL || 'https://sarahadevelopers.github.io/rentspace-markeplace';
+    const frontendUrl = process.env.FRONTEND_URL || 'https://rentspace.co.ke';
     res.json({
       success: true,
       message: 'Email verified successfully! You can now log in.',
-      redirect: `${frontendUrl}/login?verified=true`
+      redirect: `${frontendUrl}/login.html?verified=true`
     });
   } catch (error) {
     console.error('❌ Verification error:', error);
@@ -141,7 +198,7 @@ router.get('/verify-email/:token', async (req, res) => {
   }
 });
 
-// ─── Login ────────────────────────────────────────────────────
+// ─── Login (with per-account lockout) ──────────────────────────
 router.post('/login', authLimiter, async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -150,23 +207,50 @@ router.post('/login', authLimiter, async (req, res) => {
       return res.status(400).json({ error: 'Please provide email and password' });
     }
 
-    const user = await User.findOne({ email }).select('+password');
+    // ─── Normalize email for lockout tracking ──────────────────
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // ─── Check if account is locked ────────────────────────────
+    const lockStatus = checkAccountLock(normalizedEmail);
+    if (lockStatus.locked) {
+      return res.status(429).json({
+        error: `Account temporarily locked due to too many failed attempts. Try again in ${lockStatus.minutesRemaining} minute(s).`,
+        locked: true,
+        minutesRemaining: lockStatus.minutesRemaining
+      });
+    }
+
+    // ─── Look up user ──────────────────────────────────────────
+    const user = await User.findOne({ email: normalizedEmail }).select('+password');
     if (!user) {
+      // Do NOT record failed attempt for non-existent emails
+      // (prevents email enumeration attacks)
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
+    // ─── Verify password ───────────────────────────────────────
     const isMatch = await user.matchPassword(password);
     if (!isMatch) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      recordFailedAttempt(normalizedEmail);
+      const record = loginAttempts.get(normalizedEmail);
+      const remaining = MAX_ATTEMPTS - (record?.count || 0);
+
+      return res.status(401).json({
+        error: 'Invalid credentials',
+        attemptsRemaining: remaining > 0 ? remaining : 0
+      });
     }
 
-    // ─── Check if email is verified ─────────────────────────────
+    // ─── Check if email is verified ────────────────────────────
     if (!user.verified) {
       return res.status(403).json({
         error: 'Please verify your email before logging in.',
         requiresVerification: true
       });
     }
+
+    // ─── Success: clear failed attempts ────────────────────────
+    clearFailedAttempts(normalizedEmail);
 
     const token = generateToken(user._id, user.role);
 
@@ -192,12 +276,11 @@ router.post('/login', authLimiter, async (req, res) => {
 });
 
 // ─── Step 1: Redirect user to Google ──────────────────────────
-// Usage: user clicks "Sign in with Google" →
-//        browser goes to https://rentspace-markeplace.onrender.com/api/auth/google
 router.get('/google',
   passport.authenticate('google', {
     scope: ['profile', 'email'],
-    session: false
+    session: false,
+    state: true  // CSRF protection for OAuth flow
   })
 );
 
@@ -205,13 +288,13 @@ router.get('/google',
 router.get('/google/callback',
   passport.authenticate('google', {
     session: false,
-    failureRedirect: `${process.env.FRONTEND_URL}/login.html?error=google_failed`
+    failureRedirect: `${process.env.FRONTEND_URL || 'https://rentspace.co.ke'}/login.html?error=google_failed`
   }),
   async (req, res) => {
     try {
       const user = req.user;
       if (!user) {
-        return res.redirect(`${process.env.FRONTEND_URL}/login.html?error=no_user`);
+        return res.redirect(`${process.env.FRONTEND_URL || 'https://rentspace.co.ke'}/login.html?error=no_user`);
       }
 
       // Generate JWT (same as normal login)
@@ -298,7 +381,6 @@ router.put('/update-phone', authMiddleware, async (req, res) => {
 
 // ─── Logout ────────────────────────────────────────────────────
 router.post('/logout', authMiddleware, (req, res) => {
-  // Client-side: remove token from localStorage
   res.json({ success: true, message: 'Logged out successfully' });
 });
 
@@ -364,7 +446,7 @@ router.post('/forgot-password', async (req, res) => {
       return res.status(400).json({ error: 'Email is required' });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email.toLowerCase().trim() });
     if (!user) {
       // Security: don't reveal if email exists
       return res.status(200).json({
@@ -417,15 +499,14 @@ router.get('/verify-reset-token/:token', async (req, res) => {
 });
 
 // ─── Reset Password ──────────────────────────────────────────
-// ─── Reset Password ──────────────────────────────────────────
 router.post('/reset-password', async (req, res) => {
   try {
     const { token, newPassword } = req.body;
     if (!token || !newPassword) {
       return res.status(400).json({ error: 'Token and new password are required' });
     }
-    if (newPassword.length < 6) {
-      return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    if (newPassword.length < 8) {
+      return res.status(400).json({ error: 'Password must be at least 8 characters' });
     }
 
     const user = await User.findOne({
@@ -450,11 +531,9 @@ router.post('/reset-password', async (req, res) => {
 });
 
 // =============================================================
-// 🔐 SUBSCRIPTION DOWNGRADE (Auto-downgrade expired users)
+// 🔐 SUBSCRIPTION DOWNGRADE
 // =============================================================
 
-// ─── POST /api/auth/downgrade-expired ──────────────────────────
-// ─── POST /api/auth/downgrade-expired ──────────────────────────
 router.post('/downgrade-expired', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
@@ -462,16 +541,15 @@ router.post('/downgrade-expired', authMiddleware, async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Only downgrade if expired
-   // ─── Already free? Nothing to downgrade ──────────────────────
-if (user.subscriptionPlan === 'free') {
-  return res.status(400).json({ error: 'User is already on the free plan' });
-}
+    // ─── Already free? Nothing to downgrade ──────────────────────
+    if (user.subscriptionPlan === 'free') {
+      return res.status(400).json({ error: 'User is already on the free plan' });
+    }
 
-// ─── Still active? Don't downgrade ───────────────────────────
-if (user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date()) {
-  return res.status(400).json({ error: 'Subscription is still active' });
-}
+    // ─── Still active? Don't downgrade ───────────────────────────
+    if (user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date()) {
+      return res.status(400).json({ error: 'Subscription is still active' });
+    }
 
     // ─── Downgrade user ──────────────────────────────────────────
     const previousPlan = user.subscriptionPlan;
@@ -479,26 +557,25 @@ if (user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date()) {
     user.subscriptionExpiry = null;
     await user.save();
 
-    // ─── Update all properties ──────────────────────────────────
     // ─── Update all properties (downgrade plan + expire listings) ──
-const now = new Date();
-await Property.updateMany(
-  { ownerId: user._id, status: { $in: ['approved', 'published', 'available'] } },
-  {
-    $set: {
-      ownerSubscriptionPlan: 'free',
-      status: 'expired',
-      expiresAt: now,
-      updatedAt: now
-    }
-  }
-);
+    const now = new Date();
+    await Property.updateMany(
+      { ownerId: user._id, status: { $in: ['approved', 'published', 'available'] } },
+      {
+        $set: {
+          ownerSubscriptionPlan: 'free',
+          status: 'expired',
+          expiresAt: now,
+          updatedAt: now
+        }
+      }
+    );
 
-// Keep archived/rejected listings untouched but update their plan
-await Property.updateMany(
-  { ownerId: user._id, status: { $nin: ['approved', 'published', 'available'] } },
-  { $set: { ownerSubscriptionPlan: 'free' } }
-);
+    // Keep archived/rejected listings untouched but update their plan
+    await Property.updateMany(
+      { ownerId: user._id, status: { $nin: ['approved', 'published', 'available'] } },
+      { $set: { ownerSubscriptionPlan: 'free' } }
+    );
 
     console.log(`✅ User ${user.email} auto-downgraded from ${previousPlan} to free (expired)`);
 
@@ -511,11 +588,11 @@ await Property.updateMany(
     }
 
     res.json({
-  success: true,
-  message: 'Subscription expired. Downgraded to free plan. Active listings have been expired.',
-  previousPlan,
-  listingsExpired: true
-});
+      success: true,
+      message: 'Subscription expired. Downgraded to free plan. Active listings have been expired.',
+      previousPlan,
+      listingsExpired: true
+    });
   } catch (error) {
     console.error('Downgrade error:', error);
     res.status(500).json({ error: 'Server error' });

@@ -6,6 +6,9 @@ const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 require('./config/passport');   // initializes Google strategy
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const rateLimit = require('express-rate-limit');
 
 // ─── Import route modules ──────────────────────────────────────────
 const authRoutes = require('./routes/auth');
@@ -26,7 +29,16 @@ const PORT = process.env.PORT || 3000;
 // ✅ Fix for express-rate-limit behind Render's proxy
 app.set('trust proxy', 1);
 
-// ─── CORS configuration ─────────────────────────────────────────────
+// ─── Security headers (Helmet) ─────────────────────────────────
+app.use(helmet({
+  contentSecurityPolicy: false,     // frontend uses inline scripts
+  crossOriginEmbedderPolicy: false  // allows Cloudinary images
+}));
+
+// Hide X-Powered-By: Express
+app.disable('x-powered-by');
+
+// ─── CORS configuration ─────────────────────────────────────────
 const allowedOrigins = [
   'https://sarahadevelopers.github.io',
   'https://rentspace-markeplace.onrender.com',
@@ -47,23 +59,38 @@ app.use(cors({
   credentials: true
 }));
 
-// ─── Body parsing middleware ──────────────────────────────────────
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// ─── Body parsing with size limits (DoS prevention) ─────────────
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
-// ─── Passport initialization (MUST be before auth routes) ────────
+// ─── NoSQL injection protection ─────────────────────────────────
+app.use(mongoSanitize());
+
+// ─── Passport initialization (MUST be before auth routes) ───────
 app.use(passport.initialize());
 
-// ─── Health check ──────────────────────────────────────────────────
+// ─── Global API rate limiter ────────────────────────────────────
+// Protects all /api/* routes. Auth routes have their own tighter limits.
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,   // 15 minutes
+  max: 300,                    // 300 requests per IP per window
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests. Please slow down.' }
+});
+app.use('/api', globalLimiter);
+
+// ─── Health check (excluded from rate limit) ────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'RentSpace API is running' });
 });
 
-// ─── API routes (order matters) ────────────────────────────────────
+// ─── API routes (order matters) ────────────────────────────────
 app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/admin', adminRoutes);
+
 // =====================================================================
 // Webhook from sarahapay-intasend
 // DEFINED BEFORE the subscription router so a wildcard route in
@@ -71,6 +98,14 @@ app.use('/api/admin', adminRoutes);
 // =====================================================================
 app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
   try {
+    // ─── Verify webhook came from sarahapay service ─────────────
+    // Accepts secret via header (preferred) or query string (fallback)
+    const incomingSecret = req.headers['x-api-secret'] || req.query.secret;
+    if (!incomingSecret || incomingSecret !== process.env.API_SECRET) {
+      console.warn('⚠️ Webhook rejected: invalid or missing API_SECRET');
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
     const payload = req.body;
     console.log('📥 Webhook received from sarahapay:', payload);
 
@@ -203,29 +238,28 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
     subscription.renewalDate = newExpiry;
     await subscription.save();
 
-    // ─── Step 6: Re-activate expired listings + update plan ──────
     // ─── Step 6: Re-activate expired listings + extend expiry on all ──
-await Property.updateMany(
-  { ownerId: user._id, status: 'expired' },
-  {
-    $set: {
-      ownerSubscriptionPlan: planName,
-      status: 'approved',
-      expiresAt: newExpiry
-    }
-  }
-);
+    await Property.updateMany(
+      { ownerId: user._id, status: 'expired' },
+      {
+        $set: {
+          ownerSubscriptionPlan: planName,
+          status: 'approved',
+          expiresAt: newExpiry
+        }
+      }
+    );
 
-// Extend expiry AND update plan on all remaining active listings
-await Property.updateMany(
-  { ownerId: user._id, status: { $ne: 'expired' } },
-  {
-    $set: {
-      ownerSubscriptionPlan: planName,
-      expiresAt: newExpiry        // ← THIS is the change
-    }
-  }
-);
+    // Extend expiry AND update plan on all remaining active listings
+    await Property.updateMany(
+      { ownerId: user._id, status: { $ne: 'expired' } },
+      {
+        $set: {
+          ownerSubscriptionPlan: planName,
+          expiresAt: newExpiry
+        }
+      }
+    );
 
     console.log(`✅ Subscription upgraded for ${user.email} (plan: ${planName})`);
     res.status(200).json({ success: true });

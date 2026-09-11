@@ -1147,3 +1147,45 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
 }
+
+/* ─── Read More / Show Less ─────────────────────── */
+.property-description.clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+}
+
+.property-description.expanded {
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
+}
+
+.read-more-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: none;
+  color: var(--airbnb, #FF5A5F);
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  padding: 6px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn:hover {
+  color: #E04E52;
+  gap: 10px;
+}
+
+.read-more-btn i {
+  font-size: 11px;
+  transition: transform 0.3s ease;
+}

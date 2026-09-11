@@ -1225,3 +1225,45 @@ p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height
     padding: 80px 5% 20px;
   }
 }
+
+/* ─── Read More / Show Less ─────────────────────── */
+.property-description.clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+}
+
+.property-description.expanded {
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
+}
+
+.read-more-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: none;
+  color: var(--gold, #c9a45c);
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  padding: 6px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn:hover {
+  color: #d4b37a;
+  gap: 10px;
+}
+
+.read-more-btn i {
+  font-size: 11px;
+  transition: transform 0.3s ease;
+}

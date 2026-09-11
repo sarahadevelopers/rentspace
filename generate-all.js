@@ -209,7 +209,7 @@ airbnbs.forEach(prop => {
     let page = airbnbTemplate;
     
     // Calculate nightly rate
-    const nightlyRate = prop.price_night || Math.round(prop.price / 30);
+    const nightlyRate = prop.priceNight || prop.price_night || prop.price || 0;
     const weeklyRate = nightlyRate * 6;
     const weeklySave = Math.round(((nightlyRate * 7) - weeklyRate) / (nightlyRate * 7) * 100);
     
@@ -310,7 +310,7 @@ airbnbs.forEach(prop => {
     const similarAirbnbs = airbnbs.filter(a => a.id !== prop.id && a.estate === prop.estate).slice(0, 3);
     let similarStaysHtml = '';
     similarAirbnbs.forEach(rec => {
-        const recNightly = rec.price_night || Math.round(rec.price / 30);
+        const recNightly = rec.priceNight || rec.price_night || rec.price || 0;
         similarStaysHtml += `
             <a href="../airbnb/${rec.slug}.html" class="rec-card">
                 <div class="rec-card-image">

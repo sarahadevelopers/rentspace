@@ -572,26 +572,6 @@ const resetBtn = document.getElementById('resetForm');
 const propertyCountDisplay = document.getElementById('propertyCountDisplay');
 const paginationControls = document.getElementById('paginationControls');
 
-
-
-
-// =========================
-// Apply Filters (FIXED)
-// =========================
-
-
-// =========================
-// Override renderPage to use passed data
-// =========================
-
-
-// =========================
-// Override renderPagination for filtered data
-// =========================
-
-
-
-
 // =========================
 // Dynamic Price Label / Hint
 // =========================

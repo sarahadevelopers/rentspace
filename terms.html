@@ -1,45 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-KE">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Terms of Service | RentSpace Nairobi</title>
-  <meta name="description" content="Review the terms and conditions governing the use of RentSpace services. Our commitment to transparency and professional standards.">
-  
-  <!-- Theme color for mobile browser bar -->
+  <title>Terms of Service | RentSpace Kenya</title>
+  <meta name="description" content="The terms and conditions governing your use of RentSpace — Kenya's premium real estate marketplace. Read our subscription, payment, and listing policies.">
+
   <meta name="theme-color" content="#c5a059">
-  
+
   <!-- PWA Manifest -->
   <link rel="manifest" href="/manifest.json">
-  
+
   <!-- Canonical URL -->
   <link rel="canonical" href="https://rentspace.co.ke/terms.html" />
-  
+
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/RentSpace-favicon.webp">
   <link rel="icon" type="image/png" sizes="16x16" href="images/RentSpace-favicon.webp">
   <link rel="apple-touch-icon" sizes="180x180" href="images/RentSpace-favicon.webp">
-  
-  <!-- Open Graph (Facebook, LinkedIn) -->
-  <meta property="og:title" content="Terms of Service | RentSpace Nairobi">
-  <meta property="og:description" content="Review the terms and conditions governing the use of RentSpace services. Our commitment to transparency and professional standards.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Terms of Service | RentSpace Kenya">
+  <meta property="og:description" content="The terms and conditions governing your use of RentSpace.">
   <meta property="og:image" content="https://rentspace.co.ke/images/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rentspace.co.ke/terms.html">
-  
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://rentspace.co.ke/images/og-image.jpg">
-  
-  <!-- Preconnect & Fonts -->
+
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <!-- PWA Service Worker Registration -->
+
+  <!-- PWA Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
@@ -49,10 +48,6 @@
   </script>
 
   <style>
-    /* ============================================
-       TERMS PAGE - PREMIUM DARK THEME
-       ============================================ */
-    
     :root {
       --gold: #c9a45c;
       --gold-dark: #b88f3c;
@@ -64,13 +59,9 @@
       --text-muted: rgba(255, 255, 255, 0.4);
       --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       background: radial-gradient(circle at 30% 10%, #1a1a1a 0%, #0a0a0a 100%);
       color: var(--text-primary);
@@ -81,24 +72,16 @@
       min-height: 100vh;
       animation: pageFadeIn 1s ease;
     }
-    
+
     @keyframes pageFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    
-    /* ========== EXECUTIVE NAVBAR ========== */
+
+    /* ========== NAVBAR ========== */
     .exec-nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
       background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(20px);
@@ -109,7 +92,7 @@
       align-items: center;
       transition: var(--transition);
     }
-    
+
     .nav-logo {
       font-size: 20px;
       font-weight: 500;
@@ -117,24 +100,15 @@
       text-decoration: none;
       color: var(--text-primary);
     }
-    
-    .nav-logo span {
-      color: var(--gold);
-      font-weight: 400;
-    }
-    
+    .nav-logo span { color: var(--gold); font-weight: 400; }
+
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
     }
-    
-    .nav-links li {
-      position: relative;
-    }
-    
+    .nav-links li { position: relative; }
     .nav-links a {
       text-decoration: none;
       color: var(--text-secondary);
@@ -146,11 +120,8 @@
       align-items: center;
       gap: 6px;
     }
-    
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-    
+    .nav-links a:hover { color: var(--gold); }
+
     .nav-cta {
       background: transparent;
       border: 1px solid var(--gold);
@@ -163,12 +134,8 @@
       letter-spacing: 1px;
       transition: var(--transition);
     }
-    
-    .nav-cta:hover {
-      background: var(--gold);
-      color: #000;
-    }
-    
+    .nav-cta:hover { background: var(--gold); color: #000; }
+
     .hamburger {
       display: none;
       flex-direction: column;
@@ -176,21 +143,16 @@
       cursor: pointer;
       z-index: 1002;
     }
-    
     .hamburger span {
-      width: 25px;
-      height: 2px;
+      width: 25px; height: 2px;
       background: var(--text-primary);
       transition: all 0.3s ease;
     }
-    
-    /* Menu Overlay */
+
     .menu-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(8px);
       z-index: 999;
@@ -199,114 +161,52 @@
       transition: all 0.3s ease;
       pointer-events: none;
     }
-    
-    .menu-overlay.active {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-    
-    /* ========== DESKTOP DROPDOWN ========== */
+    .menu-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
     @media (min-width: 769px) {
-      .dropdown {
-        position: relative;
-      }
-      
-      .dropdown-trigger {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-      
-      .dropdown-trigger i {
-        font-size: 10px;
-        transition: transform 0.3s ease;
-      }
-      
-      .dropdown:hover .dropdown-trigger i {
-        transform: rotate(180deg);
-      }
-      
+      .dropdown { position: relative; }
+      .dropdown-trigger { display: flex; align-items: center; gap: 6px; }
+      .dropdown-trigger i { font-size: 10px; transition: transform 0.3s ease; }
+      .dropdown:hover .dropdown-trigger i { transform: rotate(180deg); }
+
       .dropdown-menu {
         position: absolute;
-        top: 100%;
-        left: 0;
+        top: 100%; left: 0;
         min-width: 220px;
-        background: #111111;
+        background: #111;
         border: 1px solid var(--border);
         border-radius: 12px;
         padding: 8px 0;
         margin-top: 8px;
-        opacity: 0;
-        visibility: hidden;
+        opacity: 0; visibility: hidden;
         transition: all 0.25s ease;
         z-index: 1001;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       }
-      
-      .dropdown:last-child .dropdown-menu {
-        left: auto;
-        right: 0;
-      }
-      
-      .dropdown:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      .dropdown-menu li {
-        display: block;
-      }
-      
+      .dropdown:last-child .dropdown-menu { left: auto; right: 0; }
+      .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
+      .dropdown-menu li { display: block; }
       .dropdown-menu a {
         display: block;
         padding: 10px 20px;
         font-size: 13px;
         color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        transition: all 0.2s ease;
         white-space: nowrap;
       }
-      
-      .dropdown-menu a:hover {
-        background: rgba(201, 164, 92, 0.1);
-        color: var(--gold);
-        padding-left: 24px;
-      }
-      
-      .dropdown-menu li:not(:last-child) a {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
+      .dropdown-menu a:hover { background: rgba(201, 164, 92, 0.1); color: var(--gold); padding-left: 24px; }
     }
-    
-    /* ========== MOBILE NAVIGATION ========== */
+
     @media (max-width: 768px) {
-      .nav-cta {
-        display: none;
-      }
-      
-      .hamburger {
-        display: flex;
-      }
-      
-      .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-      }
-      
-      .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-      }
-      
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      .hamburger.active span:nth-child(2) { opacity: 0; }
+      .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
       .nav-links {
         position: fixed;
-        top: 0;
-        right: -100%;
-        width: 85%;
-        max-width: 320px;
+        top: 0; right: -100%;
+        width: 85%; max-width: 320px;
         height: 100vh;
         background: #0a0a0a;
         flex-direction: column;
@@ -315,48 +215,19 @@
         padding: 80px 24px 24px;
         display: flex;
         box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
-        margin: 0;
       }
-      
-      .nav-links.active {
-        right: 0;
-      }
-      
-      .nav-links li {
-        width: 100%;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      
+      .nav-links.active { right: 0; }
+      .nav-links li { width: 100%; }
       .nav-links a {
         display: block;
         padding: 14px 0;
         font-size: 18px;
         font-weight: 500;
-        color: #ffffff;
-        text-decoration: none;
+        color: #fff;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-      
-      .nav-links a:hover {
-        color: var(--gold);
-        padding-left: 8px;
-      }
-      
-      .dropdown-trigger {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-      }
-      
-      .dropdown-trigger i {
-        color: var(--gold);
-        font-size: 12px;
-        transition: transform 0.3s ease;
-      }
-      
+      .dropdown-trigger { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+      .dropdown-trigger i { color: var(--gold); font-size: 12px; }
       .dropdown-menu {
         background: rgba(255, 255, 255, 0.08);
         border-left: 2px solid var(--gold);
@@ -364,64 +235,24 @@
         margin: 8px 0 8px 16px;
         display: none;
       }
-      
-      .dropdown-menu.open {
-        display: block;
-      }
-      
-      .dropdown-menu a {
-        padding: 10px 0 10px 16px;
-        font-size: 15px;
-        border-bottom: none;
-      }
-      
-      .dropdown-menu a:hover {
-        color: var(--gold);
-        padding-left: 20px;
-      }
-      
-      .dropdown.open .dropdown-trigger i {
-        transform: rotate(180deg);
-      }
-      
-      .mobile-bottom-nav {
-        display: flex;
-      }
-      
-      body {
-        padding-bottom: 70px;
-      }
-      
-      h1 {
-        font-size: 36px;
-      }
-      
-      .terms-content {
-        padding: 1.5rem;
-      }
-      
-      .toc-links {
-        gap: 0.5rem;
-      }
-      
-      .toc-link {
-        font-size: 10px;
-        padding: 4px 10px;
-      }
+      .dropdown-menu.open { display: block; }
+      .dropdown-menu a { padding: 10px 0 10px 16px; font-size: 15px; border-bottom: none; }
+      .dropdown.open .dropdown-trigger i { transform: rotate(180deg); }
+
+      body { padding-bottom: 70px; }
+      .terms-content { padding: 1.5rem; }
     }
-    
+
     @media (min-width: 769px) {
-      .hamburger {
-        display: none !important;
-      }
+      .hamburger { display: none !important; }
     }
-    
+
     /* ========== PAGE HEADER ========== */
     .page-header {
       text-align: center;
       padding: 140px 5% 60px;
     }
-    
+
     .page-subtitle {
       font-size: 11px;
       letter-spacing: 4px;
@@ -429,50 +260,48 @@
       text-transform: uppercase;
       margin-bottom: 1rem;
     }
-    
+
     h1 {
       font-size: 48px;
       font-weight: 500;
       letter-spacing: -1px;
       margin-bottom: 1rem;
     }
-    
+
     .page-description {
       font-size: 16px;
       color: var(--text-secondary);
       max-width: 600px;
       margin: 0 auto;
     }
-    
+
     .last-updated {
       margin-top: 1rem;
       font-size: 12px;
       color: var(--text-muted);
       letter-spacing: 1px;
     }
-    
+
     /* ========== TERMS CONTENT ========== */
     .terms-container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 0 5% 80px;
     }
-    
+
     .terms-content {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 3rem;
     }
-    
+
     .terms-section {
       margin-bottom: 2.5rem;
+      scroll-margin-top: 100px;
     }
-    
-    .terms-section:last-child {
-      margin-bottom: 0;
-    }
-    
+    .terms-section:last-child { margin-bottom: 0; }
+
     .terms-section h2 {
       font-size: 22px;
       font-weight: 500;
@@ -480,60 +309,77 @@
       margin-bottom: 1rem;
       letter-spacing: -0.3px;
     }
-    
+
     .terms-section h3 {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 500;
       margin-bottom: 0.75rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      color: var(--text-primary);
     }
-    
+
     .terms-section p {
       color: var(--text-secondary);
       margin-bottom: 1rem;
       line-height: 1.7;
     }
-    
-    .terms-section ul, 
-    .terms-section ol {
+
+    .terms-section ul, .terms-section ol {
       margin: 1rem 0 1rem 1.5rem;
       color: var(--text-secondary);
     }
-    
-    .terms-section li {
-      margin-bottom: 0.5rem;
-    }
-    
-    .terms-section a {
-      color: var(--gold);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    
-    .terms-section a:hover {
-      text-decoration: underline;
-    }
-    
+    .terms-section li { margin-bottom: 0.5rem; }
+    .terms-section a { color: var(--gold); text-decoration: none; }
+    .terms-section a:hover { text-decoration: underline; }
+
     .highlight-box {
       background: rgba(201, 164, 92, 0.05);
       border-left: 3px solid var(--gold);
-      padding: 1.5rem;
+      padding: 1.25rem 1.5rem;
       border-radius: 12px;
       margin: 1.5rem 0;
     }
-    
-    .highlight-box p {
-      margin-bottom: 0;
+    .highlight-box p { margin-bottom: 0; font-size: 13px; }
+
+    .warning-box {
+      background: rgba(220, 53, 69, 0.05);
+      border-left: 3px solid #ff6b6b;
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+    .warning-box p { margin-bottom: 0; font-size: 13px; color: rgba(255, 107, 107, 0.9); }
+
+    .divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+    /* Plans table */
+    .plans-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
       font-size: 13px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      overflow: hidden;
     }
-    
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 2rem 0;
+    .plans-table th,
+    .plans-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    
-    /* Table of Contents */
+    .plans-table th {
+      background: rgba(201, 164, 92, 0.08);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .plans-table td { color: var(--text-secondary); }
+    .plans-table tr:last-child td { border-bottom: none; }
+
+    /* TOC */
     .toc {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
@@ -541,39 +387,27 @@
       padding: 1.5rem;
       margin-bottom: 2rem;
     }
-    
     .toc h3 {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 500;
       color: var(--gold);
       margin-bottom: 1rem;
       letter-spacing: 1px;
       text-transform: uppercase;
     }
-    
-    .toc-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-    
+    .toc-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
     .toc-link {
       background: rgba(201, 164, 92, 0.1);
       border: 1px solid var(--border);
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 30px;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-secondary);
       text-decoration: none;
       transition: var(--transition);
     }
-    
-    .toc-link:hover {
-      background: var(--gold);
-      color: #000;
-      border-color: var(--gold);
-    }
-    
+    .toc-link:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+
     /* Acceptance Banner */
     .acceptance-banner {
       background: rgba(201, 164, 92, 0.05);
@@ -583,26 +417,16 @@
       text-align: center;
       margin-top: 2rem;
     }
-    
-    .acceptance-banner p {
-      margin-bottom: 1rem;
-      font-size: 13px;
-    }
-    
-    .acceptance-banner .date {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
-    }
-    
-    /* ========== PREMIUM FOOTER ========== */
+    .acceptance-banner p { margin-bottom: 1rem; font-size: 13px; }
+    .acceptance-banner .date { font-size: 11px; color: var(--text-muted); margin-top: 0.5rem; }
+
+    /* ========== FOOTER ========== */
     .premium-footer {
       background: #080808;
       border-top: 1px solid var(--border);
       margin-top: 4rem;
       padding: 4rem 5% 2rem;
     }
-    
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -610,7 +434,6 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-    
     .footer-col h4 {
       color: var(--gold);
       font-size: 11px;
@@ -618,13 +441,7 @@
       margin-bottom: 1rem;
       text-transform: uppercase;
     }
-    
-    .footer-col p {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    
+    .footer-col p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
     .footer-col a {
       display: block;
       color: var(--text-muted);
@@ -633,12 +450,8 @@
       margin-bottom: 0.75rem;
       transition: var(--transition);
     }
-    
-    .footer-col a:hover {
-      color: var(--gold);
-      padding-left: 5px;
-    }
-    
+    .footer-col a:hover { color: var(--gold); padding-left: 5px; }
+
     .footer-bottom {
       text-align: center;
       padding-top: 2rem;
@@ -648,26 +461,20 @@
       letter-spacing: 1px;
       color: var(--text-muted);
     }
-    
-    .footer-bottom i {
-      color: var(--gold);
-    }
-    
+
     /* ========== MOBILE BOTTOM NAV ========== */
     .mobile-bottom-nav {
       display: none;
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       background: rgba(10, 10, 10, 0.95);
       backdrop-filter: blur(10px);
       border-top: 1px solid var(--border);
       justify-content: space-around;
-      padding: 12px 0;
+      align-items: center;
+      padding: 10px 12px 14px;
       z-index: 999;
     }
-    
     .mobile-bottom-nav a {
       display: flex;
       flex-direction: column;
@@ -676,369 +483,460 @@
       color: var(--text-muted);
       text-decoration: none;
       font-size: 10px;
-      transition: var(--transition);
+      padding: 6px 12px;
+      border-radius: 30px;
+      position: relative;
     }
-    
-    .mobile-bottom-nav a i {
-      font-size: 20px;
+    .mobile-bottom-nav a i { font-size: 20px; margin-bottom: 2px; }
+    .mobile-bottom-nav a.active { color: var(--gold); background: rgba(201, 164, 92, 0.15); }
+    .mobile-bottom-nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 50%;
+      transform: translateX(-50%);
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
     }
-    
-    .mobile-bottom-nav a.active {
-      color: var(--gold);
+    @media (max-width: 768px) { .mobile-bottom-nav { display: flex; } }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 32px; }
+      .terms-content { padding: 1.25rem; border-radius: 16px; }
+      .plans-table { font-size: 11px; }
+      .plans-table th, .plans-table td { padding: 8px 10px; }
     }
-
-    /* ========== MOBILE BOTTOM NAVIGATION ========== */
-.mobile-bottom-nav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid var(--border);
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 12px 14px;
-  z-index: 999;
-  transition: var(--transition);
-}
-
-.mobile-bottom-nav a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  transition: var(--transition);
-  padding: 6px 12px;
-  border-radius: 30px;
-  position: relative;
-}
-
-.mobile-bottom-nav a i {
-  font-size: 20px;
-  margin-bottom: 2px;
-  transition: transform 0.2s ease;
-}
-
-.mobile-bottom-nav a span {
-  font-size: 10px;
-  font-weight: 400;
-}
-
-.mobile-bottom-nav a:hover {
-  color: var(--gold);
-  background: rgba(201, 164, 92, 0.1);
-}
-
-.mobile-bottom-nav a:hover i {
-  transform: translateY(-2px);
-}
-
-.mobile-bottom-nav a.active {
-  color: var(--gold);
-  background: rgba(201, 164, 92, 0.15);
-}
-
-/* Active indicator dot */
-.mobile-bottom-nav a.active::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background: var(--gold);
-  border-radius: 50%;
-}
-
-/* Show on mobile only */
-@media (max-width: 768px) {
-  .mobile-bottom-nav {
-    display: flex;
-  }
-  
-  body {
-    padding-bottom: 70px;
-  }
-}
-
-/* For very small screens */
-@media (max-width: 480px) {
-  .mobile-bottom-nav {
-    padding: 8px 8px 12px;
-  }
-  
-  .mobile-bottom-nav a {
-    padding: 4px 8px;
-  }
-  
-  .mobile-bottom-nav a i {
-    font-size: 18px;
-  }
-  
-  .mobile-bottom-nav a span {
-    font-size: 9px;
-  }
-}
   </style>
 </head>
 <body>
 
-  <!-- Executive Navbar -->
-    <nav class="exec-nav">
+  <!-- Navbar -->
+  <nav class="exec-nav">
     <a href="index.html" class="nav-logo">Rent<span>Space</span></a>
     <ul class="nav-links">
-      <!-- Explore Rentals Dropdown -->
       <li class="dropdown">
         <a href="rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
         <ul class="dropdown-menu">
           <li><a href="rentals.html">All Rentals</a></li>
           <li><a href="rentals.html?location=Karen">Karen</a></li>
           <li><a href="rentals.html?location=Kilimani">Kilimani</a></li>
-          <li><a href="rentals.html?location=Hurlingham">Hurlingham</a></li>
           <li><a href="rentals.html?location=Syokimau">Syokimau</a></li>
-          <li><a href="rentals.html?location=Ngong">Ngong</a></li>
           <li><a href="rentals.html?location=Kitengela">Kitengela</a></li>
-          <li><a href="rentals.html?location=Westlands">Westlands</a></li>
-          <li><a href="rentals.html?location=Lavington">Lavington</a></li>
-          <li><a href="rentals.html?location=Kileleshwa">Kileleshwa</a></li>
         </ul>
       </li>
-      
-      <!-- Airbnb Dropdown -->
       <li class="dropdown">
         <a href="airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
         <ul class="dropdown-menu">
-          <li><a href="airbnb.html">All Bnbs</a></li>
+          <li><a href="airbnb.html">All BnBs</a></li>
           <li><a href="airbnb.html?location=Karen">Karen</a></li>
-          <li><a href="airbnb.html?location=Kilimani">Kilimani</a></li>
-          <li><a href="airbnb.html?location=Hurlingham">Hurlingham</a></li>
-          <li><a href="airbnb.html?location=Westlands">Westlands</a></li>
-          <li><a href="airbnb.html?location=Lavington">Lavington</a></li>
-          <li><a href="airbnb.html?location=Kileleshwa">Kileleshwa</a></li>
+          <li><a href="airbnb.html?location=Kitengela">Kitengela</a></li>
         </ul>
       </li>
-      
-       <li><a href="movers.html">Movers & Packers</a></li>
+      <li><a href="movers.html">Movers &amp; Packers</a></li>
       <li><a href="blog.html">Location Insights</a></li>
-      <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
     </ul>
-   <a href="contact.html" class="nav-cta">Book a Viewing</a>
+    <a href="contact.html" class="nav-cta">Book a Viewing</a>
     <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
   </nav>
-
-  <!-- Overlay for closing menu -->
   <div class="menu-overlay" id="menuOverlay"></div>
 
   <!-- Page Header -->
   <div class="page-header">
     <div class="page-subtitle">Legal Framework</div>
     <h1>Terms of Service</h1>
-    <p class="page-description">Understanding the terms that govern our relationship and your use of RentSpace services.</p>
-    <div class="last-updated">Last Updated: March 2026</div>
+    <p class="page-description">The rules governing your use of RentSpace — including subscriptions, payments, listings, and platform conduct.</p>
+    <div class="last-updated">Last Updated: 12 September 2026</div>
   </div>
 
   <!-- Terms Container -->
   <div class="terms-container">
     <div class="terms-content">
-      
-      <!-- Table of Contents -->
+
+      <!-- TOC -->
       <div class="toc">
         <h3>Quick Navigation</h3>
         <div class="toc-links">
-          <a href="#acceptance" class="toc-link">Acceptance</a>
-          <a href="#services" class="toc-link">Services</a>
-          <a href="#listings" class="toc-link">Property Listings</a>
-          <a href="#bookings" class="toc-link">Bookings & Payments</a>
-          <a href="#relocation" class="toc-link">Relocation Services</a>
-          <a href="#privacy" class="toc-link">Privacy</a>
-          <a href="#liability" class="toc-link">Liability</a>
-          <a href="#termination" class="toc-link">Termination</a>
-          <a href="#governing" class="toc-link">Governing Law</a>
+          <a href="#acceptance" class="toc-link">1. Acceptance</a>
+          <a href="#definitions" class="toc-link">2. Definitions</a>
+          <a href="#eligibility" class="toc-link">3. Eligibility</a>
+          <a href="#accounts" class="toc-link">4. Accounts</a>
+          <a href="#subscriptions" class="toc-link">5. Subscriptions</a>
+          <a href="#payments" class="toc-link">6. Payments</a>
+          <a href="#listings" class="toc-link">7. Listings</a>
+          <a href="#conduct" class="toc-link">8. User Conduct</a>
+          <a href="#ip" class="toc-link">9. IP &amp; Content</a>
+          <a href="#privacy" class="toc-link">10. Privacy</a>
+          <a href="#liability" class="toc-link">11. Liability</a>
+          <a href="#termination" class="toc-link">12. Termination</a>
+          <a href="#disputes" class="toc-link">13. Disputes</a>
+          <a href="#governing" class="toc-link">14. Governing Law</a>
+          <a href="#contact" class="toc-link">15. Contact</a>
         </div>
       </div>
-      
-      <!-- Section 1: Acceptance of Terms -->
+
+      <!-- Section 1 -->
       <div class="terms-section" id="acceptance">
         <h2>1. Acceptance of Terms</h2>
-        <p>By accessing or using the RentSpace website, mobile application, or any of our services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
-        <p>RentSpace reserves the right to modify these terms at any time. Changes become effective immediately upon posting. Your continued use of our services constitutes acceptance of any modified terms.</p>
+        <p>Welcome to RentSpace. These Terms of Service ("Terms") govern your access to and use of the RentSpace website at <a href="https://rentspace.co.ke">rentspace.co.ke</a>, our mobile-optimized platform, and all related services (collectively, the "Platform").</p>
+        <p>By creating an account, listing a property, subscribing to a plan, or otherwise accessing the Platform, you confirm that you have read, understood, and agreed to be bound by these Terms. If you do not agree, you must not use the Platform.</p>
+        <p>We may update these Terms from time to time. Material changes will be communicated via email or a prominent notice on the Platform. Continued use after changes constitutes acceptance.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 2 -->
+      <div class="terms-section" id="definitions">
+        <h2>2. Definitions</h2>
+        <ul>
+          <li><strong>"RentSpace", "we", "us", "our"</strong> refers to RentSpace Kenya, the operator of the Platform.</li>
+          <li><strong>"User", "you", "your"</strong> refers to any individual or entity accessing the Platform.</li>
+          <li><strong>"Agent" or "Landlord"</strong> refers to a User who lists properties on the Platform.</li>
+          <li><strong>"Listing"</strong> refers to any property advertisement (sale, rent, land, or short-stay) published on the Platform.</li>
+          <li><strong>"Subscription"</strong> refers to a paid plan (Silver, Gold, or Platinum) that unlocks additional listing capacity and visibility features.</li>
+          <li><strong>"Content"</strong> refers to any text, images, video, or other materials you upload to the Platform.</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 3 -->
+      <div class="terms-section" id="eligibility">
+        <h2>3. Eligibility</h2>
+        <p>To use RentSpace, you must:</p>
+        <ul>
+          <li>Be at least 18 years of age.</li>
+          <li>Have the legal capacity to enter into binding contracts under Kenyan law.</li>
+          <li>Not be barred from using the Platform under any applicable law.</li>
+          <li>If listing a property, have the legal authority to advertise it (as owner, agent, or authorized representative).</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 4 -->
+      <div class="terms-section" id="accounts">
+        <h2>4. Account Registration &amp; Security</h2>
+        <p>You must create an account to access certain features, including listing properties and subscribing to plans. You agree to:</p>
+        <ul>
+          <li>Provide accurate, current, and complete information during registration.</li>
+          <li>Maintain and promptly update your account information.</li>
+          <li>Keep your password confidential and secure.</li>
+          <li>Be solely responsible for all activity under your account.</li>
+          <li>Notify us immediately of any unauthorized use of your account.</li>
+        </ul>
+        <p>You may only maintain one account per person or business entity. Duplicate accounts may be merged or terminated without notice.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 5 -->
+      <div class="terms-section" id="subscriptions">
+        <h2>5. Subscription Plans &amp; Billing</h2>
+        <p>RentSpace operates on a subscription model. Free users receive a 30-day trial with limited listing capacity. Paid subscriptions unlock more listings and premium visibility.</p>
+
+        <h3>5.1 Current Plan Tiers</h3>
+        <table class="plans-table">
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>Monthly (KES)</th>
+              <th>Quarterly (KES)</th>
+              <th>Listings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Free (Trial)</strong></td><td>Free</td><td>—</td><td>1</td></tr>
+            <tr><td><strong>Silver</strong></td><td>999</td><td>2,499</td><td>15</td></tr>
+            <tr><td><strong>Gold</strong></td><td>1,999</td><td>4,999</td><td>40</td></tr>
+            <tr><td><strong>Platinum</strong></td><td>3,999</td><td>9,999</td><td>Unlimited</td></tr>
+          </tbody>
+        </table>
+
+        <h3>5.2 Listing Expiry &amp; Renewal</h3>
+        <ul>
+          <li><strong>Free trial listings</strong> expire 30 days from publication unless the user upgrades.</li>
+          <li><strong>Paid plan listings</strong> remain active for the duration of the subscription.</li>
+          <li>When a subscription expires, active listings are marked "expired" and hidden from public search results.</li>
+          <li>Users are downgraded to the Free plan upon subscription expiry, and their account is limited accordingly.</li>
+          <li>Expired listings are automatically archived 30 days after expiry.</li>
+        </ul>
+
+        <h3>5.3 Re-activation on Renewal</h3>
+        <p>If you renew your subscription before your listings are archived, all your expired listings will be automatically reactivated with a fresh expiry window tied to your new subscription period.</p>
+
+        <h3>5.4 Plan Changes</h3>
+        <p>You may upgrade to a higher plan at any time; the new plan takes effect immediately and the pricing is prorated where applicable. Downgrades take effect at the start of your next billing cycle.</p>
+
         <div class="highlight-box">
-          <p><strong>✓ Elite Commitment:</strong> We are dedicated to providing exceptional service. These terms are designed to protect both our clients and our commitment to excellence.</p>
+          <p><strong>💡 Tip:</strong> Quarterly plans offer approximately 15–20% savings versus monthly billing. Choose the plan that matches your listing volume.</p>
         </div>
       </div>
-      
+
       <div class="divider"></div>
-      
-      <!-- Section 2: Services Overview -->
-      <div class="terms-section" id="services">
-        <h2>2. Our Services</h2>
-        <p>RentSpace provides a curated platform for:</p>
+
+      <!-- Section 6 -->
+      <div class="terms-section" id="payments">
+        <h2>6. Payments &amp; M-PESA Terms</h2>
+
+        <h3>6.1 Payment Methods</h3>
+        <p>Subscription payments are processed securely via <strong>M-PESA</strong> through our payment partner <strong>IntaSend</strong>. By subscribing, you authorize us to initiate an STK push to your registered mobile number and debit the agreed amount.</p>
+
+        <h3>6.2 Subscription Activation</h3>
+        <p>Subscriptions activate automatically upon successful M-PESA payment confirmation, typically within 5–30 seconds. If your subscription does not activate within 5 minutes, contact support at <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>.</p>
+
+        <h3>6.3 Refund Policy</h3>
+        <div class="warning-box">
+          <p><strong>Important:</strong> Subscription fees are <strong>non-refundable</strong> once a listing has been published on the Platform, as the service has been rendered. Refunds may be granted on a case-by-case basis if:</p>
+        </div>
         <ul>
-          <li><strong>Property Listings:</strong> High-end rental properties across Nairobi's premier estates including Karen, Kilimani, Hurlingham, Syokimau, Ngong, and Kitengela.</li>
-          <li><strong>Relocation Services:</strong> Bespoke moving and transition services for residential and commercial clients.</li>
-          <li><strong>Sanctuary Preparation:</strong> Professional fumigation and deep cleaning services through our trusted partner network.</li>
-          <li><strong>Concierge Consultation:</strong> Personalized assistance for property viewings and residential transitions.</li>
+          <li>You were charged twice in error — the duplicate will be reversed within 7 business days.</li>
+          <li>Payment was made but no subscription was activated due to a technical fault — a full refund or replacement will be processed within 7 business days.</li>
+          <li>You request cancellation within 24 hours of payment and no listing has been published.</li>
         </ul>
-        <p>All services are provided with the highest standards of professionalism and discretion.</p>
+        <p>To request a refund, email <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a> with your M-PESA transaction code and reason for request.</p>
+
+        <h3>6.4 Failed or Disputed Payments</h3>
+        <p>If a payment fails or is reversed, your subscription may be suspended. Persistent payment failures may result in account suspension. We reserve the right to suspend services pending resolution of disputed payments.</p>
+
+        <h3>6.5 Taxes</h3>
+        <p>All prices are displayed inclusive of applicable Kenyan taxes, where required by law. You are responsible for any taxes arising from your activities on the Platform.</p>
+        <h3>6.6 Subscription Cancellation</h3>
+<p>You may cancel your subscription at any time by emailing <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a> from your registered email address. Please note:</p>
+<ul>
+  <li><strong>No auto-renewal:</strong> RentSpace subscriptions do not auto-renew. You will receive a reminder email 3 days before expiry and may choose to renew manually through the Platform.</li>
+  <li><strong>Cancellation takes effect immediately:</strong> Once cancelled, your subscription will not be charged again, and no further listings can be published.</li>
+  <li><strong>Access until end of period:</strong> If you cancel mid-cycle, you retain access to your subscription features (published listings, visibility boost) until the end of your current paid period. You will not receive a partial refund for the remaining days.</li>
+  <li><strong>Re-subscription:</strong> You may re-subscribe at any time after cancellation. Your previous listings (if still active or archived) may be reinstated on renewal, subject to availability.</li>
+  <li><strong>No cancellation fee:</strong> There is no penalty for cancelling.</li>
+</ul>
+
+<h3>6.7 Consumer Cooling-Off</h3>
+<p>Where applicable under the Kenya Consumer Protection Act, 2012, you may have the right to cancel a subscription within 7 days of purchase. To exercise this right, contact us within 7 days of payment. Refunds under this clause are subject to the requirements in Section 6.3.</p>
       </div>
-      
+
       <div class="divider"></div>
-      
-      <!-- Section 3: Property Listings -->
+
+      <!-- Section 7 -->
       <div class="terms-section" id="listings">
-        <h2>3. Property Listings</h2>
-        <h3>3.1 Accuracy of Information</h3>
-        <p>While we strive to ensure all property listings are accurate and up-to-date, RentSpace does not guarantee the accuracy, completeness, or reliability of any listing information. Property details, including pricing, availability, and features, are provided by property owners and may change without notice.</p>
-        
-        <h3>3.2 Viewing Appointments</h3>
-        <p>Property viewings are conducted by appointment only. RentSpace reserves the right to verify client identity and conduct background checks for high-value property viewings. A minimum of 24 hours' notice is required for viewing arrangements.</p>
-        
-        <h3>3.3 Rental Agreements</h3>
-        <p>All rental agreements are between the property owner and the tenant. RentSpace acts as a facilitator and does not assume any responsibility for the terms, conditions, or execution of rental contracts.</p>
-      </div>
-      
-      <div class="divider"></div>
-      
-      <!-- Section 4: Bookings & Payments -->
-      <div class="terms-section" id="bookings">
-        <h2>4. Bookings & Payments</h2>
-        <h3>4.1 Holding Deposits</h3>
-        <p>To secure a property viewing or reservation, a holding deposit may be required. This deposit is refundable in accordance with our cancellation policy. Details will be provided at the time of booking.</p>
-        
-        <h3>4.2 Payment Terms</h3>
-        <p>All payments for relocation services or sanctuary preparation must be made in full prior to service delivery unless otherwise agreed in writing. We accept bank transfers and secure online payments.</p>
-        
-        <h3>4.3 Cancellation Policy</h3>
-        <p>Cancellations made more than 48 hours before a scheduled service will receive a full refund. Cancellations within 48 hours may incur a 50% cancellation fee. Same-day cancellations are non-refundable.</p>
-      </div>
-      
-      <div class="divider"></div>
-      
-      <!-- Section 5: Relocation Services -->
-      <div class="terms-section" id="relocation">
-        <h2>5. Relocation Services</h2>
-        <p>Our relocation services are designed to ensure a seamless transition for your property. By engaging our services, you agree to:</p>
+        <h2>7. Property Listings</h2>
+
+        <h3>7.1 What You May List</h3>
+        <p>You may list properties only if you are the owner, the authorized agent, or a representative with explicit written permission from the owner. Properties must be accurately described.</p>
+
+        <h3>7.2 Listing Standards</h3>
         <ul>
-          <li>Provide accurate information about the volume and nature of items to be moved.</li>
-          <li>Ensure all valuable items are declared prior to the move.</li>
-          <li>Secure necessary permits for parking and access at both origin and destination locations.</li>
-          <li>Be present or designate a representative during the move.</li>
+          <li>Titles must be descriptive but not misleading or clickbait.</li>
+          <li>Descriptions must be factual, original, and free of spam, contact details in text (use our contact system instead), and prohibited content.</li>
+          <li>Images must be your own or used with permission, and must accurately represent the property.</li>
+          <li>Prices must be current and accurate.</li>
+          <li>Each property may only be listed once — duplicates will be removed.</li>
         </ul>
+
+        <h3>7.3 Listing Moderation</h3>
+        <p>All listings are reviewed before publication. RentSpace reserves the right to approve, reject, edit, or remove any listing for any reason, including policy violations, inaccuracy, or abuse.</p>
+
+        <h3>7.4 Listing Limits</h3>
+        <p>Listing limits apply per subscription plan (see Section 5.1). Users exceeding their plan limits will be prompted to upgrade.</p>
+
+        <h3>7.5 Prohibited Content</h3>
+        <p>You may not list:</p>
+        <ul>
+          <li>Properties that do not exist or that you do not have authority to advertise.</li>
+          <li>Properties subject to unresolved legal disputes.</li>
+          <li>Content that is discriminatory, defamatory, obscene, or unlawful.</li>
+          <li>Content copied from other platforms without permission.</li>
+          <li>Contact information presented in a way intended to bypass the Platform's messaging.</li>
+        </ul>
+
         <div class="highlight-box">
-          <p><strong>📦 Insurance Coverage:</strong> All relocation services include basic insurance coverage. Additional insurance for high-value items can be arranged upon request.</p>
+          <p><strong>⚠️ Enforcement:</strong> Violations may result in listing removal, subscription forfeiture without refund, and account termination.</p>
         </div>
       </div>
-      
+
       <div class="divider"></div>
-      
-      <!-- Section 6: Privacy & Data Protection -->
+
+      <!-- Section 8 -->
+      <div class="terms-section" id="conduct">
+        <h2>8. User Conduct</h2>
+        <p>When using RentSpace, you agree not to:</p>
+        <ul>
+          <li>Impersonate any person or entity, or falsely misrepresent your affiliation.</li>
+          <li>Use automated scripts, bots, or scrapers to access the Platform.</li>
+          <li>Attempt to interfere with, hack, or disrupt the Platform's security or functionality.</li>
+          <li>Harass, threaten, or abuse other users, agents, or RentSpace staff.</li>
+          <li>Use the Platform for any illegal purpose, including money laundering or fraud.</li>
+          <li>Post content that infringes third-party intellectual property rights.</li>
+        </ul>
+        <p>RentSpace reserves the right to suspend or terminate accounts that violate these standards, and to report illegal activity to the relevant authorities.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 9 -->
+      <div class="terms-section" id="ip">
+        <h2>9. Intellectual Property &amp; Content</h2>
+
+        <h3>9.1 RentSpace's Property</h3>
+        <p>All content, design, trademarks, logos, and software associated with RentSpace (excluding User Content) are owned by RentSpace Kenya or its licensors and are protected by Kenyan and international copyright laws.</p>
+
+        <h3>9.2 User Content License</h3>
+        <p>By uploading Content (images, descriptions, etc.), you confirm that you own or have the legal right to use it, and you grant RentSpace a worldwide, non-exclusive, royalty-free, transferable license to:</p>
+        <ul>
+          <li>Display your Content on the Platform to other Users.</li>
+          <li>Reproduce and adapt your Content for marketing purposes (social media, newsletters, ads).</li>
+          <li>Sublicense this Content to our affiliates and partners for the same purposes.</li>
+        </ul>
+        <p>You retain full ownership of your Content. This license ends when your Content is deleted, except where it has already been shared with third parties (e.g., cached by search engines).</p>
+
+        <h3>9.3 DMCA / Takedown</h3>
+        <p>If you believe your copyright has been infringed by Content on the Platform, email <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a> with details. We will investigate and take appropriate action, including removing infringing Content.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 10 -->
       <div class="terms-section" id="privacy">
-        <h2>6. Privacy & Data Protection</h2>
-        <p>RentSpace is committed to protecting your privacy. We collect and process personal information in accordance with our Privacy Policy and applicable data protection laws, including the Kenya Data Protection Act, 2019.</p>
-        <p>Your information is used solely to facilitate our services and will never be shared with third parties without your explicit consent, except as required by law.</p>
-        <p>For full details, please review our <a href="/privacy.html">Privacy Policy</a>.</p>
+        <h2>10. Privacy &amp; Data Protection</h2>
+        <p>Your privacy is important to us. Our collection, use, and protection of your personal information is governed by our <a href="privacy.html">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
+        <p>We process personal data in accordance with the <strong>Kenya Data Protection Act, 2019</strong>. For full details on your rights and our obligations, please review our Privacy Policy.</p>
       </div>
-      
+
       <div class="divider"></div>
-      
-      <!-- Section 7: Limitation of Liability -->
+
+      <!-- Section 11 -->
       <div class="terms-section" id="liability">
-        <h2>7. Limitation of Liability</h2>
-        <p>To the maximum extent permitted by law, RentSpace shall not be liable for:</p>
+        <h2>11. Limitation of Liability</h2>
+        <p>RentSpace acts as a <strong>marketplace facilitator</strong>. We are not a party to any transaction between users, agents, landlords, and tenants. We do not guarantee:</p>
         <ul>
-          <li>Any indirect, incidental, or consequential damages arising from your use of our services.</li>
-          <li>Losses resulting from property transactions between landlords and tenants.</li>
-          <li>Damage to property during relocation where proper documentation was not provided.</li>
-          <li>Third-party services recommended but not directly provided by RentSpace.</li>
+          <li>The accuracy or completeness of any listing.</li>
+          <li>The quality, safety, or legality of any listed property.</li>
+          <li>The performance of any user, agent, or landlord.</li>
         </ul>
-        <p>Our total liability for any claim shall not exceed the amount paid for the specific service giving rise to the claim.</p>
+        <p>To the maximum extent permitted by Kenyan law, RentSpace is not liable for:</p>
+        <ul>
+          <li>Indirect, incidental, or consequential damages arising from Platform use.</li>
+          <li>Losses resulting from property transactions between users.</li>
+          <li>Disputes between tenants and landlords.</li>
+          <li>Loss of data, profits, or business opportunities.</li>
+        </ul>
+        <p>Our total liability for any claim is limited to the amount you paid to RentSpace in the 3 months preceding the claim.</p>
       </div>
-      
+
       <div class="divider"></div>
-      
-      <!-- Section 8: Termination -->
+
+      <!-- Section 12 -->
       <div class="terms-section" id="termination">
-        <h2>8. Termination of Services</h2>
-        <p>RentSpace reserves the right to suspend or terminate services to any client who:</p>
+        <h2>12. Suspension &amp; Termination</h2>
+
+        <h3>12.1 By You</h3>
+        <p>You may close your account at any time by contacting <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>. Active subscriptions will not be refunded unless covered by our refund policy.</p>
+
+        <h3>12.2 By RentSpace</h3>
+        <p>We may suspend or terminate your account if you:</p>
         <ul>
-          <li>Violates these Terms of Service.</li>
-          <li>Provides false or misleading information.</li>
-          <li>Engages in fraudulent or abusive behavior.</li>
-          <li>Fails to make payments as agreed.</li>
+          <li>Violate these Terms or any applicable law.</li>
+          <li>Provide false or misleading information.</li>
+          <li>Engage in fraudulent, abusive, or harmful behavior.</li>
+          <li>Fail to pay applicable subscription fees.</li>
+          <li>Repeatedly list content that violates our policies.</li>
         </ul>
-        <p>Upon termination, any outstanding fees remain payable and deposits may be forfeited.</p>
+        <p>Upon termination, you remain liable for any outstanding fees. Content may be retained for legal, accounting, or fraud-prevention purposes.</p>
       </div>
-      
+
       <div class="divider"></div>
-      
-      <!-- Section 9: Governing Law -->
-      <div class="terms-section" id="governing">
-        <h2>9. Governing Law</h2>
-        <p>These Terms of Service shall be governed by and construed in accordance with the laws of the Republic of Kenya. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Nairobi, Kenya.</p>
-        <p>If any provision of these terms is found to be unenforceable, the remaining provisions shall remain in full force and effect.</p>
+
+      <!-- Section 13 -->
+      <div class="terms-section" id="disputes">
+        <h2>13. Dispute Resolution</h2>
+        <p>We encourage users to resolve disputes directly through our support team first. Email <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a> and we will make reasonable efforts to resolve the matter within 30 days.</p>
+        <p>If a dispute cannot be resolved amicably, it shall be referred to mediation in Nairobi, Kenya, in accordance with the <strong>Mediation Accreditation Committee</strong> rules, before any legal proceedings are initiated.</p>
       </div>
-      
+
+      <div class="divider"></div>
+
+      <!-- Section 14 -->
+      <div class="terms-section" id="governing">
+        <h2>14. Governing Law</h2>
+        <p>These Terms shall be governed by and construed in accordance with the laws of the <strong>Republic of Kenya</strong>. Any legal proceedings shall be subject to the exclusive jurisdiction of the courts of Nairobi, Kenya.</p>
+        <p>If any provision of these Terms is found to be unenforceable, the remaining provisions remain in full force and effect.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 15 -->
+      <div class="terms-section" id="contact">
+        <h2>15. Contact Information</h2>
+        <p>For questions, complaints, or legal notices regarding these Terms:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a></li>
+          <li><strong>Phone / WhatsApp:</strong> <a href="https://wa.me/254723562484">+254 723 562 484</a></li>
+          <li><strong>Location:</strong> ABC Place, Nairobi, Kenya</li>
+        </ul>
+      </div>
+
       <!-- Acceptance Banner -->
       <div class="acceptance-banner">
-        <p><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> By using RentSpace services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
-        <p class="date">For questions regarding these terms, please contact our legal team at legal@RentSpace.co.ke</p>
+        <p><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 8px;"></i> By using RentSpace, you acknowledge that you have read, understood, and agreed to be bound by these Terms of Service.</p>
+        <p class="date">Last updated: 12 September 2026 · Effective immediately</p>
       </div>
-      
+
     </div>
   </div>
 
-  <!-- Premium Footer -->
+  <!-- Footer -->
   <footer class="premium-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>Rent Space</h4>
-        <p>Curating Nairobi's most exclusive residential transitions with discretion and excellence since 2018.</p>
+        <h4>RentSpace</h4>
+        <p>Kenya's premium real estate marketplace — connecting agents, landlords, and tenants across Nairobi and satellite towns.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio</h4>
+        <a href="sale.html">For Sale</a>
+        <a href="rentals.html">For Rent</a>
+        <a href="land.html">Land</a>
+        <a href="airbnb.html">Airbnb</a>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
-        <a href="rentals.html">Explore Rentals</a>
-        <a href="movers.html">Movers & Packers</a>
-        <a href="https://fumigo.co.ke">Fumigation Experts</a>
+        <a href="movers.html">Movers &amp; Packers</a>
+        <a href="https://fumigo.co.ke" target="_blank">Fumigation</a>
+        <a href="blog.html">Location Insights</a>
       </div>
       <div class="footer-col">
-        <h4>Legal</h4>
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
         <a href="terms.html">Terms of Service</a>
         <a href="privacy.html">Privacy Policy</a>
-        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+254723562484">+254 723 562 484</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="https://wa.me/254723562484" target="_blank">WhatsApp</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
-      <p>Designed & Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
+      <p>Designed &amp; Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
 
-  <!-- Mobile Bottom Navigation -->
+  <!-- Mobile Bottom Nav -->
   <div class="mobile-bottom-nav">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="rentals.html"><i class="fas fa-building"></i> Rentals</a>
     <a href="airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
     <a href="blog.html"><i class="fas fa-newspaper"></i> Insights</a>
-    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> Support</a>
   </div>
 
   <script>
-    // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ========== HAMBURGER MENU WITH OVERLAY ==========
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.querySelector('.nav-links');
     const menuOverlay = document.getElementById('menuOverlay');
@@ -1049,56 +947,33 @@
       if (menuOverlay) menuOverlay.classList.remove('active');
       document.body.style.overflow = '';
     }
-
     function openMenu() {
       if (navMenu) navMenu.classList.add('active');
       if (hamburger) hamburger.classList.add('active');
       if (menuOverlay) menuOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
-
     if (hamburger) {
       hamburger.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (navMenu && navMenu.classList.contains('active')) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
+        if (navMenu && navMenu.classList.contains('active')) closeMenu();
+        else openMenu();
       });
     }
-
-    if (menuOverlay) {
-      menuOverlay.addEventListener('click', closeMenu);
-    }
-
-    // Close menu when clicking a link
-    if (navMenu) {
-      const navLinks = navMenu.querySelectorAll('a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-    }
-
-    // Close menu on window resize
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+    if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', closeMenu));
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
-        closeMenu();
-      }
+      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) closeMenu();
     });
 
-    // ========== MOBILE DROPDOWNS (ONLY ON MOBILE) ==========
     function initMobileDropdowns() {
       if (window.innerWidth > 768) return;
-      
-      const dropdowns = document.querySelectorAll('.dropdown');
-      dropdowns.forEach(dropdown => {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
         const trigger = dropdown.querySelector('.dropdown-trigger');
         const menu = dropdown.querySelector('.dropdown-menu');
         if (trigger && menu) {
           const newTrigger = trigger.cloneNode(true);
           trigger.parentNode.replaceChild(newTrigger, trigger);
-          
           newTrigger.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -1108,19 +983,15 @@
         }
       });
     }
-
     initMobileDropdowns();
     window.addEventListener('resize', initMobileDropdowns);
 
-    // Smooth scroll for anchor links
     document.querySelectorAll('.toc-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        const target = document.getElementById(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   </script>

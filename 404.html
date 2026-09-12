@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Page Not Found | RentSpace</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#c5a059">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/webp" href="images/favicon.webp">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: radial-gradient(circle at 30% 10%, #1a1a1a 0%, #0a0a0a 100%);
+      color: #eaeaea;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      padding: 20px 5%;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    .header .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-decoration: none;
+      color: #eaeaea;
+    }
+    .header .logo span { color: #c5a059; }
+    .header .logo sup { font-size: 0.6em; color: #c5a059; }
+
+    /* ─── Main Content ─── */
+    .error-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .error-content {
+      max-width: 560px;
+      animation: fadeUp 0.7s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Big 404 number */
+    .error-code {
+      font-size: clamp(80px, 20vw, 160px);
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #c5a059, #d4b37a, #a8874a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -4px;
+      margin-bottom: 8px;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+
+    /* Icon */
+    .error-icon {
+      font-size: 42px;
+      color: #c5a059;
+      opacity: 0.4;
+      margin-bottom: 20px;
+      animation: fadeUp 0.7s ease 0.15s both;
+    }
+
+    /* Heading */
+    .error-title {
+      font-size: 28px;
+      font-weight: 600;
+      color: #eaeaea;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .error-title span {
+      color: #c5a059;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* Description */
+    .error-description {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s ease 0.25s both;
+    }
+
+    /* Search box */
+    .search-box {
+      display: flex;
+      gap: 8px;
+      max-width: 400px;
+      margin: 0 auto 32px;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 14px 20px;
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      color: #eaeaea;
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.3s ease;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: #c5a059;
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+    }
+
+    .search-box input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+    .search-box button {
+      padding: 14px 20px;
+      background: #c5a059;
+      color: #0a0a0a;
+      border: none;
+      border-radius: 30px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .search-box button:hover {
+      background: #d4b37a;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
+    }
+
+    /* Quick links */
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      animation: fadeUp 0.7s ease 0.35s both;
+      margin-bottom: 40px;
+    }
+
+    .quick-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(197, 160, 89, 0.08);
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      border-radius: 30px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .quick-links a:hover {
+      background: rgba(197, 160, 89, 0.15);
+      border-color: #c5a059;
+      color: #c5a059;
+      transform: translateY(-2px);
+    }
+
+    .quick-links a i { color: #c5a059; font-size: 13px; }
+
+    /* Footer */
+    .error-footer {
+      padding: 24px 5%;
+      text-align: center;
+      border-top: 1px solid rgba(197, 160, 89, 0.1);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .error-footer a {
+      color: rgba(197, 160, 89, 0.6);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .error-footer a:hover { color: #c5a059; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 480px) {
+      .error-title { font-size: 22px; }
+      .error-description { font-size: 14px; }
+      .search-box { flex-direction: column; }
+      .search-box button { justify-content: center; }
+      .quick-links a { font-size: 13px; padding: 8px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo">Rent<span>Space</span><sup>®</sup></a>
+  </header>
+
+  <!-- Main Error Content -->
+  <main class="error-container">
+    <div class="error-content">
+
+      <div class="error-icon">
+        <i class="fas fa-house-crack"></i>
+      </div>
+
+      <div class="error-code">404</div>
+
+      <h1 class="error-title">
+        This page has <span>moved on</span>
+      </h1>
+
+      <p class="error-description">
+        The property you're looking for might have been rented, sold, or the link might be broken.
+        Let's help you find something better.
+      </p>
+
+      <!-- Search -->
+      <form class="search-box" onsubmit="handleSearch(event)">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search estate, location, or property type..."
+          autocomplete="off"
+        >
+        <button type="submit">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </form>
+
+      <!-- Quick Links -->
+      <div class="quick-links">
+        <a href="index.html">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="sale.html">
+          <i class="fas fa-tag"></i> For Sale
+        </a>
+        <a href="rentals.html">
+          <i class="fas fa-key"></i> For Rent
+        </a>
+        <a href="land.html">
+          <i class="fas fa-map-pin"></i> Land
+        </a>
+        <a href="airbnb.html">
+          <i class="fab fa-airbnb"></i> Airbnb
+        </a>
+        <a href="contact.html">
+          <i class="fas fa-headset"></i> Contact
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="error-footer">
+    <p>&copy; 2026 RentSpace Kenya. All rights reserved.</p>
+    <p style="margin-top: 6px;">
+      Designed & Developed </i> by
+      <a href="https://sarahadevelopers.co.ke" target="_blank">Saraha Developers Ltd</a>
+    </p>
+  </footer>
+
+  <script>
+    // Redirect search to rentals page with query
+    function handleSearch(event) {
+      event.preventDefault();
+      const query = document.getElementById('searchInput').value.trim();
+      if (query) {
+        // Send to the rentals page with a search parameter
+        window.location.href = 'rentals.html?q=' + encodeURIComponent(query);
+      } else {
+        window.location.href = 'rentals.html';
+      }
+    }
+  </script>
+
+</body>
+</html>

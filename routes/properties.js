@@ -21,14 +21,88 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'rentspace/properties',
     allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
-    transformation: [{ width: 800, height: 600, crop: 'limit' }]
+    transformation: [
+      {
+        width: 1200,
+        height: 900,
+        crop: 'limit',
+        quality: 'auto:eco',
+        fetch_format: 'auto'
+      }
+    ]
   }
 });
 
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 10 * 1024 * 1024 }
+  limits: { fileSize: 10 * 1024 * 1024 } // 10MB per file
 });
+
+// ─── Input Limits (centralised constants) ─────────────────────
+const LIMITS = {
+  TITLE_MAX: 150,
+  DESCRIPTION_MIN: 20,
+  DESCRIPTION_MAX: 5000,
+  ESTATE_MAX: 100,
+  COUNTY_MAX: 50,
+  SIZE_MAX: 100,
+  AMENITIES_MAX_COUNT: 15,
+  AMENITY_MAX_LENGTH: 100,
+  AMENITIES_PAYLOAD_MAX: 10000,  // raw JSON string size
+  IMAGES_MAX: 10,
+  PRICE_MIN: 0,
+  PRICE_MAX: 1000000000
+};
+
+// ─── Helper: validate numeric spec fields ─────────────────────
+function parsePositiveInt(value, fallback = 0) {
+  if (value === undefined || value === null || value === '') return fallback;
+  const n = parseInt(value, 10);
+  return Number.isFinite(n) && n >= 0 ? n : fallback;
+}
+
+function parsePositiveFloat(value, fallback = 0) {
+  if (value === undefined || value === null || value === '') return fallback;
+  const n = parseFloat(value);
+  return Number.isFinite(n) && n >= 0 ? n : fallback;
+}
+
+// ─── Helper: validate & sanitize amenities ────────────────────
+function sanitizeAmenities(rawAmenities) {
+  if (!rawAmenities) return { ok: true, list: [] };
+
+  // Check raw payload size first (before JSON.parse)
+  if (typeof rawAmenities === 'string' && rawAmenities.length > LIMITS.AMENITIES_PAYLOAD_MAX) {
+    return { ok: false, error: 'Amenities payload too large' };
+  }
+
+  let parsed = [];
+  try {
+    parsed = typeof rawAmenities === 'string' ? JSON.parse(rawAmenities) : rawAmenities;
+  } catch (e) {
+    return { ok: false, error: 'Amenities must be a valid JSON array' };
+  }
+
+  if (!Array.isArray(parsed)) {
+    return { ok: false, error: 'Amenities must be an array' };
+  }
+
+  // Clean, dedupe, cap length
+  const seen = new Set();
+  const cleaned = [];
+  for (const item of parsed) {
+    if (typeof item !== 'string') continue;
+    const trimmed = item.trim().slice(0, LIMITS.AMENITY_MAX_LENGTH);
+    if (!trimmed) continue;
+    const key = trimmed.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    cleaned.push(trimmed);
+    if (cleaned.length >= LIMITS.AMENITIES_MAX_COUNT) break;
+  }
+
+  return { ok: true, list: cleaned };
+}
 
 // ─── Helper: generate unique slug ─────────────────────────────
 async function generateUniqueSlug(title, existingId = null) {
@@ -37,7 +111,8 @@ async function generateUniqueSlug(title, existingId = null) {
     .replace(/[^\w\s]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
+    .replace(/^-|-$/g, '')
+    .slice(0, 100);
 
   let slug = baseSlug;
   let counter = 1;
@@ -80,59 +155,50 @@ function getListingLimit(user) {
 }
 
 // ─── Helper: build expiry filter ───────────────────────────────
-// Returns a MongoDB query fragment that excludes expired listings
 function buildExpiryFilter() {
   const now = new Date();
   return {
     $or: [
-      { expiresAt: null },              // legacy listings without expiry
-      { expiresAt: { $gt: now } }       // not yet expired
+      { expiresAt: null },
+      { expiresAt: { $gt: now } }
     ]
   };
 }
 
 // =================================================================
 // CRON ENDPOINT — Auto-expire listings past their expiresAt
-// Protected by CRON_SECRET
 // =================================================================
 router.get('/check-expiry', async (req, res) => {
   try {
-    // Security check
     if (req.query.secret !== process.env.CRON_SECRET) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
     const now = new Date();
 
-    // ── 1. Expire active listings past their expiresAt ─────────
     const expiredResult = await Property.updateMany(
       {
         status: { $in: ['approved', 'published', 'available'] },
         expiresAt: { $ne: null, $lt: now }
       },
-      {
-        $set: { status: 'expired', updatedAt: now }
-      }
+      { $set: { status: 'expired', updatedAt: now } }
     );
 
-    // ── 2. Optionally archive very old expired listings (30+ days) ─
     const archiveCutoff = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
     const archivedResult = await Property.updateMany(
       {
         status: 'expired',
         expiresAt: { $ne: null, $lt: archiveCutoff }
       },
-      {
-        $set: { status: 'archived', updatedAt: now }
-      }
+      { $set: { status: 'archived', updatedAt: now } }
     );
 
-    console.log(`🕒 Listing expiry cron: ${expiredResult.nModified} expired, ${archivedResult.nModified} archived`);
+    console.log(`🕒 Listing expiry cron: ${expiredResult.modifiedCount ?? expiredResult.nModified} expired, ${archivedResult.modifiedCount ?? archivedResult.nModified} archived`);
 
     res.json({
       success: true,
       expiredListings: expiredResult.modifiedCount ?? expiredResult.nModified ?? 0,
-archivedListings: archivedResult.modifiedCount ?? archivedResult.nModified ?? 0,
+      archivedListings: archivedResult.modifiedCount ?? archivedResult.nModified ?? 0,
       checkedAt: now.toISOString()
     });
   } catch (error) {
@@ -150,7 +216,6 @@ router.get('/', async (req, res) => {
       page = 1, limit = 20
     } = req.query;
 
-    // ✅ Base query: only approved AND not expired
     const query = {
       status: 'approved',
       ...buildExpiryFilter()
@@ -171,7 +236,7 @@ router.get('/', async (req, res) => {
     }
 
     const pageNum = parseInt(page);
-    const limitNum = parseInt(limit);
+    const limitNum = Math.min(parseInt(limit), 100); // cap page size at 100
     const skip = (pageNum - 1) * limitNum;
 
     let properties = await Property.find(query)
@@ -182,7 +247,6 @@ router.get('/', async (req, res) => {
 
     const total = await Property.countDocuments(query);
 
-    // ── Enrich with owner details ──────────────────────────────
     const ownerIds = properties.map(p => p.ownerId).filter(id => id);
     const owners = await User.find({ _id: { $in: ownerIds } })
       .select('_id phone email name subscriptionPlan subscriptionExpiry createdAt');
@@ -252,18 +316,15 @@ router.get('/', async (req, res) => {
 // ─── GET /api/properties/my-properties (authenticated) ────────
 router.get('/my-properties', authMiddleware, async (req, res) => {
   try {
-    const { page = 1, limit = 20, includeExpired } = req.query;
+    const { page = 1, limit = 20 } = req.query;
     const pageNum = parseInt(page);
-    const limitNum = parseInt(limit);
+    const limitNum = Math.min(parseInt(limit), 100);
     const skip = (pageNum - 1) * limitNum;
 
     let query = {};
     if (req.user.role !== 'admin') {
       query = { ownerId: req.user._id };
     }
-
-    // Owners can see their own expired listings unless explicitly excluded
-    // (Admins see everything)
 
     const [properties, total] = await Promise.all([
       Property.find(query)
@@ -291,10 +352,9 @@ router.get('/my-properties', authMiddleware, async (req, res) => {
 // ─── GET /api/properties/:slug (public) ────────────────────────
 router.get('/:slug', async (req, res) => {
   try {
-    const now = new Date();
     const property = await Property.findOne({
       slug: req.params.slug,
-      ...buildExpiryFilter()   // ✅ Blocks expired listings
+      ...buildExpiryFilter()
     }).lean();
 
     if (!property) {
@@ -336,9 +396,9 @@ router.get('/:slug', async (req, res) => {
 });
 
 // ─── POST /api/properties (authenticated) ─────────────────────
-router.post('/', authMiddleware, upload.array('images', 10), async (req, res) => {
+router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), async (req, res) => {
   try {
-    console.log('📥 Incoming property data:', req.body);
+    console.log('📥 Incoming property data:', Object.keys(req.body));
     console.log('👤 User plan:', req.user.subscriptionPlan, '| expiry:', req.user.subscriptionExpiry);
 
     const {
@@ -347,6 +407,7 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
       propertyType, size, status, available_for, rental_type
     } = req.body;
 
+    // ── 1. Required fields ──────────────────────────────────────
     if (!title || !listingType || !estate || !price || !description) {
       return res.status(400).json({
         success: false,
@@ -354,7 +415,51 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
       });
     }
 
-    // ── Subscription + listing limit check ────────────────────
+    // ── 2. Length & format validation ──────────────────────────
+    const cleanTitle = String(title).trim();
+    const cleanDescription = String(description).trim();
+    const cleanEstate = String(estate).trim();
+    const cleanCounty = county ? String(county).trim() : 'Nairobi';
+
+    if (cleanTitle.length < 5) {
+      return res.status(400).json({ success: false, error: 'Title too short (min 5 chars)' });
+    }
+    if (cleanTitle.length > LIMITS.TITLE_MAX) {
+      return res.status(400).json({ success: false, error: `Title too long (max ${LIMITS.TITLE_MAX} chars)` });
+    }
+    if (cleanDescription.length < LIMITS.DESCRIPTION_MIN) {
+      return res.status(400).json({ success: false, error: `Description too short (min ${LIMITS.DESCRIPTION_MIN} chars)` });
+    }
+    if (cleanDescription.length > LIMITS.DESCRIPTION_MAX) {
+      return res.status(400).json({ success: false, error: `Description too long (max ${LIMITS.DESCRIPTION_MAX} chars)` });
+    }
+    if (cleanEstate.length > LIMITS.ESTATE_MAX) {
+      return res.status(400).json({ success: false, error: `Estate name too long (max ${LIMITS.ESTATE_MAX} chars)` });
+    }
+    if (cleanCounty.length > LIMITS.COUNTY_MAX) {
+      return res.status(400).json({ success: false, error: `County name too long (max ${LIMITS.COUNTY_MAX} chars)` });
+    }
+    if (size && String(size).length > LIMITS.SIZE_MAX) {
+      return res.status(400).json({ success: false, error: `Size field too long (max ${LIMITS.SIZE_MAX} chars)` });
+    }
+
+    // ── 3. Price validation ─────────────────────────────────────
+    const numericPrice = parseFloat(price);
+    if (!Number.isFinite(numericPrice) || numericPrice < LIMITS.PRICE_MIN) {
+      return res.status(400).json({ success: false, error: 'Invalid price' });
+    }
+    if (numericPrice > LIMITS.PRICE_MAX) {
+      return res.status(400).json({ success: false, error: 'Price too large' });
+    }
+
+    // ── 4. Amenities validation ─────────────────────────────────
+    const amenitiesResult = sanitizeAmenities(amenities);
+    if (!amenitiesResult.ok) {
+      return res.status(400).json({ success: false, error: amenitiesResult.error });
+    }
+    const amenitiesArray = amenitiesResult.list;
+
+    // ── 5. Subscription + listing limit check ───────────────────
     const isAdmin = req.user.role === 'admin';
 
     if (!isAdmin) {
@@ -369,7 +474,7 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
       const maxListings = getListingLimit(req.user);
       const currentListings = await Property.countDocuments({
         ownerId: req.user._id,
-        status: { $nin: ['archived', 'expired'] }   // ✅ Don't count expired as active
+        status: { $nin: ['archived', 'expired'] }
       });
 
       if (currentListings >= maxListings) {
@@ -380,19 +485,11 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
       }
     }
 
-    const slug = await generateUniqueSlug(title);
+    // ── 6. Slug + images ────────────────────────────────────────
+    const slug = await generateUniqueSlug(cleanTitle);
     const imageUrls = req.files ? req.files.map(file => file.path) : [];
 
-    let amenitiesArray = [];
-    if (amenities) {
-      try {
-        amenitiesArray = typeof amenities === 'string' ? JSON.parse(amenities) : amenities;
-      } catch (e) { amenitiesArray = []; }
-    }
-
-    // ── Compute expiresAt ─────────────────────────────────────
-    // Free users: 30 days from now
-    // Paid users: tied to subscription expiry (or null if admin)
+    // ── 7. Compute expiresAt ────────────────────────────────────
     const plan = req.user.subscriptionPlan || 'free';
     let expiresAt = null;
 
@@ -401,18 +498,22 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
     } else if (req.user.subscriptionExpiry) {
       expiresAt = new Date(req.user.subscriptionExpiry);
     }
-    // Admins get no expiry (null)
 
+    // ── 8. Build property object ────────────────────────────────
     const propertyData = {
       ownerId: req.user._id,
-      title, slug, listingType, estate,
-      county: county || 'Nairobi',
-      price: parseFloat(price),
-      bedrooms: bedrooms ? parseInt(bedrooms) : 0,
-      bathrooms: bathrooms ? parseInt(bathrooms) : 0,
-      parking: parking ? parseInt(parking) : 0,
-      sqft: sqft ? parseFloat(sqft) : 0,
-      description,
+      title: cleanTitle,
+      slug,
+      listingType,
+      estate: cleanEstate,
+      county: cleanCounty,
+      price: numericPrice,
+      bedrooms: parsePositiveInt(bedrooms),
+      bathrooms: parsePositiveInt(bathrooms),
+      parking: parsePositiveInt(parking),
+      sqft: parsePositiveFloat(sqft),
+      size: size ? String(size).trim() : '',
+      description: cleanDescription,
       images: imageUrls,
       amenities: amenitiesArray,
       propertyType: propertyType || 'apartment',
@@ -420,10 +521,8 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
       available_for: available_for || '',
       rental_type: rental_type || '',
       ownerSubscriptionPlan: plan,
-      expiresAt                          // ✅ Set here explicitly
+      expiresAt
     };
-
-    console.log('📦 Property data to save:', { ...propertyData, expiresAt });
 
     const property = await Property.create(propertyData);
     res.status(201).json({ success: true, property });
@@ -445,7 +544,7 @@ router.post('/', authMiddleware, upload.array('images', 10), async (req, res) =>
 });
 
 // ─── PUT /api/properties/:id (authenticated) ──────────────────
-router.put('/:id', authMiddleware, upload.array('images', 10), async (req, res) => {
+router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);
     if (!property) {
@@ -456,9 +555,71 @@ router.put('/:id', authMiddleware, upload.array('images', 10), async (req, res) 
       return res.status(403).json({ success: false, error: 'Not authorized to update this property' });
     }
 
-    const updateData = { ...req.body };
+    // ── Whitelist of updatable fields ──────────────────────────
+    const UPDATABLE_FIELDS = [
+      'title', 'listingType', 'estate', 'county', 'price',
+      'bedrooms', 'bathrooms', 'parking', 'sqft', 'size',
+      'description', 'propertyType', 'available_for', 'rental_type'
+    ];
 
-    // ── Handle images ─────────────────────────────────────────
+    const updateData = {};
+    for (const field of UPDATABLE_FIELDS) {
+      if (req.body[field] !== undefined) {
+        updateData[field] = req.body[field];
+      }
+    }
+
+    // ── Validate & trim string fields ──────────────────────────
+    if (updateData.title !== undefined) {
+      updateData.title = String(updateData.title).trim();
+      if (updateData.title.length > LIMITS.TITLE_MAX) {
+        return res.status(400).json({ success: false, error: `Title too long (max ${LIMITS.TITLE_MAX} chars)` });
+      }
+    }
+    if (updateData.description !== undefined) {
+      updateData.description = String(updateData.description).trim();
+      if (updateData.description.length > LIMITS.DESCRIPTION_MAX) {
+        return res.status(400).json({ success: false, error: `Description too long (max ${LIMITS.DESCRIPTION_MAX} chars)` });
+      }
+      if (updateData.description.length < LIMITS.DESCRIPTION_MIN) {
+        return res.status(400).json({ success: false, error: `Description too short (min ${LIMITS.DESCRIPTION_MIN} chars)` });
+      }
+    }
+    if (updateData.estate !== undefined) {
+      updateData.estate = String(updateData.estate).trim();
+    }
+    if (updateData.county !== undefined) {
+      updateData.county = String(updateData.county).trim();
+    }
+    if (updateData.size !== undefined) {
+      updateData.size = String(updateData.size).trim().slice(0, LIMITS.SIZE_MAX);
+    }
+
+    // ── Price validation ────────────────────────────────────────
+    if (updateData.price !== undefined) {
+      const p = parseFloat(updateData.price);
+      if (!Number.isFinite(p) || p < LIMITS.PRICE_MIN || p > LIMITS.PRICE_MAX) {
+        return res.status(400).json({ success: false, error: 'Invalid price' });
+      }
+      updateData.price = p;
+    }
+
+    // ── Numeric conversions ─────────────────────────────────────
+    if (updateData.bedrooms !== undefined) updateData.bedrooms = parsePositiveInt(updateData.bedrooms);
+    if (updateData.bathrooms !== undefined) updateData.bathrooms = parsePositiveInt(updateData.bathrooms);
+    if (updateData.parking !== undefined) updateData.parking = parsePositiveInt(updateData.parking);
+    if (updateData.sqft !== undefined) updateData.sqft = parsePositiveFloat(updateData.sqft);
+
+    // ── Amenities validation ────────────────────────────────────
+    if (req.body.amenities !== undefined) {
+      const amenitiesResult = sanitizeAmenities(req.body.amenities);
+      if (!amenitiesResult.ok) {
+        return res.status(400).json({ success: false, error: amenitiesResult.error });
+      }
+      updateData.amenities = amenitiesResult.list;
+    }
+
+    // ── Handle images ───────────────────────────────────────────
     let existingImages = [];
     if (req.body.existingImages) {
       try {
@@ -473,34 +634,33 @@ router.put('/:id', authMiddleware, upload.array('images', 10), async (req, res) 
     if (newImageUrls.length > 0) {
       finalImages = [...finalImages, ...newImageUrls];
     }
+    // Enforce max image count
+    finalImages = finalImages.slice(0, LIMITS.IMAGES_MAX);
     updateData.images = finalImages;
 
-    // ── Regenerate slug if title changed ──────────────────────
-    if (req.body.title && req.body.title !== property.title) {
-      updateData.slug = await generateUniqueSlug(req.body.title, property._id);
+    // ── Regenerate slug if title changed ────────────────────────
+    if (updateData.title && updateData.title !== property.title) {
+      updateData.slug = await generateUniqueSlug(updateData.title, property._id);
     }
 
-    // ── Extend expiry when editing (gives renewed 30-day window) ─
-    if (updateData.extendExpiry === 'true' || property.status === 'expired') {
+    // ── Extend expiry when editing ──────────────────────────────
+    if (req.body.extendExpiry === 'true' || property.status === 'expired') {
       const plan = property.ownerSubscriptionPlan || 'free';
       if (plan === 'free') {
         updateData.expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
       }
-      // Also reset status if it was expired
-      if (property.status === 'expired' && updateData.status === undefined) {
+      if (property.status === 'expired') {
         updateData.status = 'pending';
       }
     }
-    delete updateData.extendExpiry;
 
-    // ── Remove protected fields ───────────────────────────────
-    delete updateData._id;
-    delete updateData.ownerId;
-    delete updateData.createdAt;
-    delete updateData.updatedAt;
-    delete updateData.slug;
-    delete updateData.existingImages;
-    delete updateData.existingPublicIds;
+    // ── Status: only allow safe values ──────────────────────────
+    if (req.body.status !== undefined) {
+      const allowedStatuses = ['available', 'sold', 'reserved', 'pending', 'rented', 'draft'];
+      if (allowedStatuses.includes(req.body.status)) {
+        updateData.status = req.body.status;
+      }
+    }
 
     const updatedProperty = await Property.findByIdAndUpdate(
       req.params.id,

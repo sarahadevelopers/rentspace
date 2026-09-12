@@ -150,7 +150,7 @@ function isSubscriptionActive(user) {
 // ─── Helper: get listing limit ─────────────────────────────────
 function getListingLimit(user) {
   const plan = user.subscriptionPlan || 'free';
-  const limits = { free: 2, basic: 20, pro: Infinity, developer: Infinity };
+  const limits = { free: 2, basic: 20, pro: 40, developer: Infinity };
   return limits[plan] || 2;
 }
 
@@ -346,6 +346,29 @@ router.get('/my-properties', authMiddleware, async (req, res) => {
   } catch (error) {
     console.error('Error fetching user properties:', error);
     res.status(500).json({ success: false, error: 'Server error fetching your properties' });
+  }
+});
+
+// ─── GET /api/properties/id/:id (fetch by MongoDB _id, for edit) ──
+router.get('/id/:id', authMiddleware, async (req, res) => {
+  try {
+    const property = await Property.findById(req.params.id).lean();
+    if (!property) {
+      return res.status(404).json({ success: false, error: 'Property not found' });
+    }
+
+    // Only owner or admin can fetch for edit
+    if (
+      property.ownerId.toString() !== req.user._id.toString() &&
+      req.user.role !== 'admin'
+    ) {
+      return res.status(403).json({ success: false, error: 'Not authorized' });
+    }
+
+    res.json({ success: true, property });
+  } catch (error) {
+    console.error('Error fetching property by id:', error);
+    res.status(500).json({ success: false, error: 'Server error' });
   }
 });
 
@@ -556,11 +579,12 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
     }
 
     // ── Whitelist of updatable fields ──────────────────────────
-    const UPDATABLE_FIELDS = [
-      'title', 'listingType', 'estate', 'county', 'price',
-      'bedrooms', 'bathrooms', 'parking', 'sqft', 'size',
-      'description', 'propertyType', 'available_for', 'rental_type'
-    ];
+   const UPDATABLE_FIELDS = [
+  'title', 'listingType', 'estate', 'county', 'price',
+  'bedrooms', 'bathrooms', 'parking', 'sqft', 'size',
+  'description', 'propertyType', 'available_for', 'rental_type',
+  'isAirbnb'
+];
 
     const updateData = {};
     for (const field of UPDATABLE_FIELDS) {
@@ -605,10 +629,17 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
     }
 
     // ── Numeric conversions ─────────────────────────────────────
+    // ── Numeric conversions ─────────────────────────────────────
     if (updateData.bedrooms !== undefined) updateData.bedrooms = parsePositiveInt(updateData.bedrooms);
     if (updateData.bathrooms !== undefined) updateData.bathrooms = parsePositiveInt(updateData.bathrooms);
     if (updateData.parking !== undefined) updateData.parking = parsePositiveInt(updateData.parking);
     if (updateData.sqft !== undefined) updateData.sqft = parsePositiveFloat(updateData.sqft);
+
+    // ── isAirbnb: FormData sends strings, coerce to boolean ─────
+    if (updateData.isAirbnb !== undefined) {
+      updateData.isAirbnb =
+        updateData.isAirbnb === true || updateData.isAirbnb === 'true';
+    }
 
     // ── Amenities validation ────────────────────────────────────
     if (req.body.amenities !== undefined) {

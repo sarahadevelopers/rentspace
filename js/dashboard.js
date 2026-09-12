@@ -44,11 +44,10 @@ const PropertiesTable = {
   sortDirection: 'desc',     // 'asc' or 'desc'
 
   // ── Get filtered + sorted properties ──
-  getFilteredAndSortedProperties() {
-    // 1. Start with all properties
+   getFilteredAndSortedProperties() {
+    // 1. Filter
     let filtered = [...allProperties];
 
-    // 2. Apply filters (from global filter variables)
     if (filterStatus && filterStatus !== 'all') {
       filtered = filtered.filter(p => p.status === filterStatus);
     }
@@ -59,30 +58,31 @@ const PropertiesTable = {
       filtered = filtered.filter(p => p.estate === filterEstate);
     }
 
-    // 3. Apply sorting
+    // 2. Sort (precompute keys once per item)
     const field = this.sortField;
     const dir = this.sortDirection === 'asc' ? 1 : -1;
-    filtered.sort((a, b) => {
-      let valA = a[field] ?? '';
-      let valB = b[field] ?? '';
-      if (field === 'price') {
-        valA = Number(valA);
-        valB = Number(valB);
-      } else if (field === 'title' || field === 'estate' || field === 'propertyType') {
-        valA = String(valA).toLowerCase();
-        valB = String(valB).toLowerCase();
-      } else if (field === 'createdAt') {
-        valA = new Date(valA).getTime();
-        valB = new Date(valB).getTime();
-      }
-      if (valA < valB) return -1 * dir;
-      if (valA > valB) return 1 * dir;
-      return 0;
-    });
+
+    const normalisers = {
+      price:        v => Number(v) || 0,
+      createdAt:    v => (v ? new Date(v).getTime() : 0),
+      title:        v => String(v || '').toLowerCase(),
+      estate:       v => String(v || '').toLowerCase(),
+      propertyType: v => String(v || '').toLowerCase(),
+      status:       v => String(v || '').toLowerCase()
+    };
+    const normalise = normalisers[field] || (v => v);
+
+    filtered = filtered
+      .map(p => ({ p, key: normalise(p[field]) }))
+      .sort((a, b) => {
+        if (a.key < b.key) return -1 * dir;
+        if (a.key > b.key) return 1 * dir;
+        return 0;
+      })
+      .map(({ p }) => p);
 
     return filtered;
   },
-
   // ── Render the table with current filters + sorting ──
   render(properties) {
     allProperties = properties;
@@ -214,35 +214,24 @@ const PropertiesTable = {
   },
 
   // ── Attach sort handlers to column headers ──
-  attachSortHandlers() {
-    const sortableFields = [
-      { id: 'title', label: 'Title' },
-      { id: 'estate', label: 'Estate' },
-      { id: 'propertyType', label: 'Type' },
-      { id: 'price', label: 'Price' },
-      { id: 'status', label: 'Status' },
-      { id: 'createdAt', label: 'Date' }
-    ];
-
-    // Find the table header row
+    attachSortHandlers() {
     const thead = document.querySelector('#propertiesTable thead');
     if (!thead) return;
 
-    // Remove existing sort indicators
+    // 1. Strip existing listeners & arrows by cloning each <th>
     thead.querySelectorAll('th').forEach(th => {
-      th.style.cursor = 'pointer';
-      th.title = 'Click to sort';
-      // Remove old click listeners (we'll re-bind)
       const newTh = th.cloneNode(true);
       th.parentNode.replaceChild(newTh, th);
     });
 
-    // Add click listeners to each sortable column
-    const headers = thead.querySelectorAll('th');
-    headers.forEach((th, index) => {
-      const field = sortableFields[index]?.id;
-      if (!field) return;
+    // 2. Bind click handlers based on the data-sort attribute
+    thead.querySelectorAll('th').forEach(th => {
+      const field = th.dataset.sort;
+      if (!field) return;   // Images, Listing, Actions → not sortable
+
       th.style.cursor = 'pointer';
+      th.title = 'Click to sort';
+
       th.addEventListener('click', () => {
         // Toggle direction if same field, else set to asc
         if (this.sortField === field) {
@@ -251,7 +240,7 @@ const PropertiesTable = {
           this.sortField = field;
           this.sortDirection = 'asc';
         }
-        this.currentPage = 1; // reset to first page
+        this.currentPage = 1;
         this.renderPage();
         this.renderPagination();
       });
@@ -340,102 +329,9 @@ const PropertiesTable = {
   }
 };
 
-function getFilteredProperties() {
-  let filtered = [...allProperties];
-  let filterCount = 0;
 
-  // ── Filter by Status ──
-  if (filterStatus !== 'all') {
-    filtered = filtered.filter(p => p.status === filterStatus);
-    filterCount++;
-  }
 
-  // ── Filter by Property Type ──
-  if (filterType !== 'all') {
-    filtered = filtered.filter(p => p.propertyType === filterType);
-    filterCount++;
-  }
 
-  // ── Filter by Estate ──
-  if (filterEstate !== 'all') {
-    filtered = filtered.filter(p => p.estate === filterEstate);
-    filterCount++;
-  }
-
-  return {
-    properties: filtered,
-    count: filtered.length,
-    hasFilters: filterCount > 0
-  };
-}
-
-function applyFilters() {
-  // Get filtered properties from the FULL list
-  const filtered = allProperties.filter(p => {
-    let match = true;
-    
-    // Filter by Status
-    if (filterStatus !== 'all') {
-      if (p.status !== filterStatus) match = false;
-    }
-    
-    // Filter by Property Type
-    if (filterType !== 'all') {
-      if (p.propertyType !== filterType) match = false;
-    }
-    
-    // Filter by Estate
-    if (filterEstate !== 'all') {
-      if (p.estate !== filterEstate) match = false;
-    }
-    
-    return match;
-  });
-
-  // Update the result count
-  const resultSpan = document.getElementById('filterResultCount');
-  const hasFilters = (filterStatus !== 'all' || filterType !== 'all' || filterEstate !== 'all');
-  
-  if (resultSpan) {
-    if (hasFilters) {
-      resultSpan.innerHTML = `Showing <span>${filtered.length}</span> of ${allProperties.length} properties`;
-    } else {
-      resultSpan.innerHTML = `Showing <span>${filtered.length}</span> properties`;
-    }
-  }
-
-  // If no properties match, show empty state
-  if (filtered.length === 0) {
-    propertiesTable.innerHTML = `
-      <tr>
-        <td colspan="8" class="text-center" style="padding:40px;">
-          <i class="fas fa-filter" style="font-size:32px; color:var(--text-muted); opacity:0.3; display:block; margin-bottom:12px;"></i>
-          <p style="color:var(--text-light);">No properties match your filters</p>
-          <button class="btn btn-outline" id="clearFiltersFromEmpty" style="margin-top:12px;">
-            <i class="fas fa-times"></i> Clear Filters
-          </button>
-        </td>
-      </tr>
-    `;
-    document.getElementById('clearFiltersFromEmpty')?.addEventListener('click', clearFilters);
-    // Hide pagination
-    if (paginationControls) paginationControls.innerHTML = '';
-    return;
-  }
-
-  // ✅ CORRECT: Use the filtered list directly, not via allProperties
-  const currentPage = PropertiesTable.currentPage || 1;
-  const itemsPerPage = PropertiesTable.itemsPerPage || 10;
-  const start = (currentPage - 1) * itemsPerPage;
-  const paginated = filtered.slice(start, start + itemsPerPage);
-  
-  // Store filtered data temporarily for pagination
-  PropertiesTable._filteredData = filtered;
-  
-  // Render the paginated rows
-  PropertiesTable.renderPageWithData(paginated, filtered.length);
-  PropertiesTable.renderPaginationWithData(filtered.length);
-}
 
 // =========================
 // Clear Filters
@@ -447,7 +343,9 @@ function clearFilters() {
   filterStatus = 'all';
   filterType = 'all';
   filterEstate = 'all';
-  applyFilters();
+  PropertiesTable.currentPage = 1;
+  PropertiesTable.renderPage();
+  PropertiesTable.renderPagination();
 }
 
 // =========================
@@ -462,8 +360,9 @@ function initFilters() {
   if (statusSelect) {
     statusSelect.addEventListener('change', function() {
       filterStatus = this.value;
-      PropertiesTable.currentPage = 1; // Reset to first page
-      applyFilters();
+      PropertiesTable.currentPage = 1;
+      PropertiesTable.renderPage();
+      PropertiesTable.renderPagination();
     });
   }
 
@@ -471,7 +370,8 @@ function initFilters() {
     typeSelect.addEventListener('change', function() {
       filterType = this.value;
       PropertiesTable.currentPage = 1;
-      applyFilters();
+      PropertiesTable.renderPage();
+      PropertiesTable.renderPagination();
     });
   }
 
@@ -479,7 +379,8 @@ function initFilters() {
     estateSelect.addEventListener('change', function() {
       filterEstate = this.value;
       PropertiesTable.currentPage = 1;
-      applyFilters();
+      PropertiesTable.renderPage();
+      PropertiesTable.renderPagination();
     });
   }
 
@@ -682,98 +583,11 @@ const paginationControls = document.getElementById('paginationControls');
 // =========================
 // Override renderPage to use passed data
 // =========================
-PropertiesTable.renderPageWithData = function(pageProperties, totalCount) {
-  if (!propertiesTable) return;
 
-  if (!pageProperties || pageProperties.length === 0) {
-    propertiesTable.innerHTML = `
-      <tr>
-        <td colspan="8" class="text-center" style="padding:40px;">
-          <i class="fas fa-filter" style="font-size:32px; color:var(--text-muted); opacity:0.3; display:block; margin-bottom:12px;"></i>
-          <p style="color:var(--text-light);">No properties match your filters</p>
-        </td>
-      </tr>
-    `;
-    return;
-  }
-
-  propertiesTable.innerHTML = '';
-  pageProperties.forEach(property => {
-    const tr = document.createElement('tr');
-    const thumbSrc = property.images && property.images[0]
-      ? property.images[0]
-      : 'https://via.placeholder.com/44x34?text=No+Img';
-    let listingDisplay = (property.listingType || '').toUpperCase();
-    if (property.isAirbnb) listingDisplay = 'AIRBNB';
-
-    tr.innerHTML = `
-      <td><strong>${this.escapeHtml(property.title)}</strong></td>
-      <td>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <img src="${thumbSrc}" alt="thumb" style="width:44px;height:34px;object-fit:cover;border-radius:8px;cursor:pointer;"
-               data-property-id="${property._id}" class="thumbnail-clickable">
-          <span class="badge bg-success">${property.images ? property.images.length : 0}</span>
-        </div>
-      </td>
-      <td>${this.escapeHtml(property.estate || '')}</td>
-      <td>${this.escapeHtml(property.propertyType || '')}</td>
-      <td>${listingDisplay}</td>
-      <td>${Utils.formatPrice(property.price)}</td>
-      <td><span class="status-badge ${property.status || 'draft'}">${property.status || 'Draft'}</span></td>
-      <td class="actions">
-        <button class="btn btn-outline edit-btn" data-id="${property._id}"><i class="fas fa-edit"></i> Edit</button>
-        <button class="btn btn-danger delete-btn" data-id="${property._id}"><i class="fas fa-trash"></i> Delete</button>
-      </td>
-    `;
-    propertiesTable.appendChild(tr);
-  });
-
-  // Re-attach event listeners
-  this.attachEventListeners();
-};
 
 // =========================
 // Override renderPagination for filtered data
 // =========================
-PropertiesTable.renderPaginationWithData = function(totalCount) {
-  if (!paginationControls) return;
-  
-  const totalPages = Math.ceil(totalCount / this.itemsPerPage);
-  
-  if (totalPages <= 1) {
-    paginationControls.innerHTML = '';
-    return;
-  }
-
-  let html = '';
-  if (this.currentPage > 1) {
-    html += `<button class="pagination-btn" data-page="${this.currentPage - 1}">Prev</button>`;
-  }
-  for (let i = 1; i <= totalPages; i++) {
-    if (i === this.currentPage) {
-      html += `<button class="pagination-btn active" data-page="${i}">${i}</button>`;
-    } else if (Math.abs(i - this.currentPage) <= 2 || i === 1 || i === totalPages) {
-      html += `<button class="pagination-btn" data-page="${i}">${i}</button>`;
-    } else if (Math.abs(i - this.currentPage) === 3) {
-      html += `<span style="margin:0 4px;">...</span>`;
-    }
-  }
-  if (this.currentPage < totalPages) {
-    html += `<button class="pagination-btn" data-page="${this.currentPage + 1}">Next</button>`;
-  }
-
-  paginationControls.innerHTML = html;
-  paginationControls.querySelectorAll('.pagination-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const page = parseInt(btn.dataset.page);
-      if (!isNaN(page)) {
-        this.currentPage = page;
-        // Re-apply filters with new page
-        applyFilters();
-      }
-    });
-  });
-};
 
 
 
@@ -1093,9 +907,9 @@ const FormManager = {
         document.getElementById('isAirbnb').value = isAirbnb ? 'true' : 'false';
 
         document.querySelectorAll('.transaction-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.dataset.transaction === listingType) btn.classList.add('active');
-        });
+    btn.classList.remove('active');
+    if (btn.dataset.transaction === listingType) btn.classList.add('active');
+});  // ← Airbnb button ALSO matches when listingType === 'rent'
         if (isAirbnb) {
             document.getElementById('airbnbBtn')?.classList.add('active');
         }
@@ -1129,35 +943,36 @@ const FormManager = {
 // Property API (RentSpace)
 // =========================
 const PropertyAPI = {
-    async fetchMyProperties() {
-        let isAdmin = false;
-        try {
-            const user = JSON.parse(localStorage.getItem('rentspace_user') || '{}');
-            isAdmin = user.role === 'admin';
-        } catch (e) {}
-
-        const limit = isAdmin ? 100 : 20;
-        const url = `${API_BASE}/api/properties/my-properties?limit=${limit}`;
+        async fetchMyProperties() {
+        // Backend caps `limit` at 100. Always request the max so the listing
+        // count used by loadSubscriptionData (progress bar) is never truncated,
+        // regardless of plan tier or admin status.
+        const url = `${API_BASE}/api/properties/my-properties?limit=100`;
 
         const res = await authFetch(url);
         if (!res.ok) {
             const err = await res.text();
             throw new Error(err || 'Failed to fetch properties');
         }
+
         const data = await res.json();
-        console.log('📥 API response:', data);
+
+        // Normalise the various shapes the API might return
         if (Array.isArray(data)) return data;
-        if (data.properties && Array.isArray(data.properties)) return data.properties;
+        if (Array.isArray(data.properties)) return data.properties;
         if (data.success && Array.isArray(data.data)) return data.data;
+
         if (data.error) throw new Error(data.error);
         return [];
     },
 
-    async getPropertyById(id) {
-        const res = await authFetch(`${API_BASE}/api/properties/${id}`);
-        if (!res.ok) throw new Error('Property not found');
-        return await res.json();
-    },
+    // ✅ NEW — points to /id/:id route and unpacks the property
+async getPropertyById(id) {
+    const res = await authFetch(`${API_BASE}/api/properties/id/${id}`);
+    if (!res.ok) throw new Error('Property not found');
+    const data = await res.json();
+    return data.property || data;  // unpack {success, property} → property
+},
 
     async createProperty(formData) {
         const res = await fetch(`${API_BASE}/api/properties`, {
@@ -1424,11 +1239,11 @@ async function loadSubscriptionData() {
         } catch (e) {}
 
         // ── Define plan limits ────────────────────────────────────
-        const planLimits = {
-  free: 1,
-  basic: 15,
+     const planLimits = {
+  free: 2,
+  basic: 20,
   pro: 40,
-  developer: 9999
+  developer: 9999   // 9999 is treated as "unlimited" in the code below
 };
         const maxListings = plan && planLimits[plan] ? planLimits[plan] : 0;
         const isUnlimited = maxListings === 9999;
@@ -1946,7 +1761,7 @@ async function openUpgradeModal() {
       icon: 'fa-shield',
       price: 0,
       period: 'month',
-      features: ['1 listing', 'Standard visibility', '14-day listing expiry'],
+      features: ['2 listings', 'Standard visibility', '30-day listing expiry'],
       popular: false,
       color: '#cd7f32',
       trial: true
@@ -1957,7 +1772,7 @@ async function openUpgradeModal() {
       icon: 'fa-gem',
       price: 999,
       period: 'month',
-      features: ['10 listings', 'Basic boost', 'WhatsApp leads', 'Email support'],
+      features: ['20 listings', 'Basic boost', 'WhatsApp leads', 'Email support'],
       popular: false,
       color: '#c0c0c0'
     },
@@ -1967,7 +1782,7 @@ async function openUpgradeModal() {
       icon: 'fa-crown',
       price: 1999,
       period: 'month',
-      features: ['30 listings', 'Popular badge', 'Priority support', '2 Featured slots'],
+      features: ['40 listings', 'Popular badge', 'Priority support', '2 Featured slots'],
       popular: true,
       color: '#d4af37'
     },
@@ -1989,7 +1804,7 @@ async function openUpgradeModal() {
       icon: 'fa-gem',
       price: 2499,
       period: 'quarter',
-      features: ['10 listings', 'Basic boost', 'WhatsApp leads', 'Save KES 500'],
+     features: ['20 listings', 'Basic boost', 'WhatsApp leads', 'Save KES 500'],
       popular: false,
       color: '#c0c0c0'
     },
@@ -1999,7 +1814,7 @@ async function openUpgradeModal() {
       icon: 'fa-crown',
       price: 4999,
       period: 'quarter',
-      features: ['30 listings', 'Popular badge', 'Priority support', 'Save KES 1,000'],
+      features: ['40 listings', 'Popular badge', 'Priority support', 'Save KES 1,000'],
       popular: true,
       color: '#d4af37'
     },
@@ -2024,8 +1839,8 @@ async function openUpgradeModal() {
             <div class="modal-packages">
                 <div class="modal-period-toggle">
                     <button class="period-btn ${period === 'monthly' ? 'active' : ''}" data-period="monthly">Monthly</button>
-                    <button class="period-btn ${period === 'weekly' ? 'active' : ''}" data-period="weekly">Weekly</button>
-                    <span class="toggle-savings">Save 15% with monthly</span>
+<button class="period-btn ${period === 'quarterly' ? 'active' : ''}" data-period="quarterly">Quarterly</button>
+<span class="toggle-savings">Save ~15% with quarterly</span>
                 </div>
                 <div class="packages-grid">
         `;
@@ -2071,55 +1886,56 @@ async function openUpgradeModal() {
     `;
 
     // ─── Period toggle ──────────────────────────────────────────
-    document.querySelectorAll('.period-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const period = this.dataset.period;
-            currentPeriod = period;
-            const currentSummary = planList.querySelector('.modal-property-summary')?.outerHTML || '';
-            const phoneSection = planList.querySelector('.modal-phone-section')?.outerHTML || '';
-            const actions = planList.querySelector('.modal-actions')?.outerHTML || '';
-            planList.innerHTML = `
-                ${currentSummary || summaryHTML}
-                ${renderPlans(period)}
-                ${phoneSection}
-                ${actions}
-            `;
-            // Re-bind package clicks
-            document.querySelectorAll('.package-card').forEach(el => {
-                el.addEventListener('click', function() {
-                    document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-                    this.classList.add('selected');
-                    this.style.borderColor = '#c5a059';
-                    this.style.boxShadow = '0 0 30px rgba(197, 160, 89, 0.25)';
-                });
-            });
-            // Re-bind period toggles
-            document.querySelectorAll('.period-btn').forEach(b => {
-                b.addEventListener('click', arguments.callee);
-            });
-            // Re-bind subscribe button
-            document.getElementById('subscribeBtn')?.addEventListener('click', handleSubscription);
-            document.getElementById('closeModalBtn')?.addEventListener('click', () => {
-                document.getElementById('upgradeModal').style.display = 'none';
+       // ─── Reusable binding logic for modal events ────────────────
+    function bindModalEvents() {
+        // Period toggles
+        document.querySelectorAll('.period-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const newPeriod = this.dataset.period;
+                if (newPeriod === currentPeriod) return;
+
+                // Preserve what the user already typed / selected
+                const phoneEl = document.getElementById('subscribePhone');
+                const savedPhone = phoneEl ? phoneEl.value : userPhone;
+                const savedSummary =
+                    planList.querySelector('.modal-property-summary')?.outerHTML || summaryHTML;
+
+                currentPeriod = newPeriod;
+
+                planList.innerHTML = `
+                    ${savedSummary}
+                    ${renderPlans(currentPeriod)}
+                    <div class="modal-phone-section">
+                        <label for="subscribePhone">📱 Phone Number (STK Push)</label>
+                        <input type="tel" id="subscribePhone" placeholder="2547XXXXXXXX" value="${savedPhone}">
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary" id="subscribeBtn">Subscribe Now</button>
+                        <button class="btn btn-outline" id="closeModalBtn">Cancel</button>
+                    </div>
+                `;
+                bindModalEvents();
             });
         });
-    });
 
-    // ─── Package selection ──────────────────────────────────────
-    document.querySelectorAll('.package-card').forEach(el => {
-        el.addEventListener('click', function() {
-            document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-            this.classList.add('selected');
-            this.style.borderColor = '#c5a059';
-            this.style.boxShadow = '0 0 30px rgba(197, 160, 89, 0.25)';
+        // Package selection
+        document.querySelectorAll('.package-card').forEach(el => {
+            el.addEventListener('click', function () {
+                document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
         });
-    });
 
-    // ─── Subscribe handler ──────────────────────────────────────
-    document.getElementById('subscribeBtn')?.addEventListener('click', handleSubscription);
-    document.getElementById('closeModalBtn')?.addEventListener('click', () => {
-        document.getElementById('upgradeModal').style.display = 'none';
-    });
+        // Subscribe / close
+        document.getElementById('subscribeBtn')?.addEventListener('click', handleSubscription);
+        document.getElementById('closeModalBtn')?.addEventListener('click', () => {
+            document.getElementById('upgradeModal').style.display = 'none';
+        });
+    }
+
+    // Initial bind after the first render
+    bindModalEvents();
+
 }
 
 // ─── Global subscription handler ──────────────────────────────

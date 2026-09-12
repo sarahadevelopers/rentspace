@@ -1356,7 +1356,7 @@ async function loadSubscriptionData() {
                         Your Bronze trial ends in ${daysRemaining} days. Upgrade to keep your listings live!
                     </div>
                     <button class="btn-upgrade" id="upgradeBtn">
-                        <i class="fas fa-rocket"></i> Upgrade Now – From KES 2/mo
+                        <i class="fas fa-rocket"></i> Upgrade Now – From KES 999/mo
                     </button>
                 `;
                 document.getElementById('upgradeBtn')?.addEventListener('click', openUpgradeModal);
@@ -1389,7 +1389,7 @@ async function loadSubscriptionData() {
                         <i class="fas fa-lock"></i> ${msg}
                     </div>
                     <button class="btn-upgrade" id="upgradeBtn">
-                        <i class="fas fa-rocket"></i> Subscribe Now – From KES 2/mo
+                        <i class="fas fa-rocket"></i> Subscribe Now – From KES 999/mo
                     </button>
                 `;
                 document.getElementById('upgradeBtn')?.addEventListener('click', openUpgradeModal);

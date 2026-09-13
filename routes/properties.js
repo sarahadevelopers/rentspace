@@ -540,7 +540,7 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
       images: imageUrls,
       amenities: amenitiesArray,
       propertyType: propertyType || 'apartment',
-      status: status || 'pending',
+      status: 'approved',
       available_for: available_for || '',
       rental_type: rental_type || '',
       ownerSubscriptionPlan: plan,
@@ -686,8 +686,9 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
     }
 
     // ── Status: only allow safe values ──────────────────────────
+       // ── Status: only allow safe values ──────────────────────────
     if (req.body.status !== undefined) {
-      const allowedStatuses = ['available', 'sold', 'reserved', 'pending', 'rented', 'draft'];
+      const allowedStatuses = ['available', 'approved', 'sold', 'reserved', 'pending', 'rented', 'draft'];
       if (allowedStatuses.includes(req.body.status)) {
         updateData.status = req.body.status;
       }

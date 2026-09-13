@@ -1,5 +1,54 @@
 [
   {
+    "id": "6aa6145903e2f3ed2009371e",
+    "slug": "maskani",
+    "title": "Maskani",
+    "type": "maisonette",
+    "estate": "kitengela",
+    "specific_estate": "",
+    "price": 50000,
+    "currency": "KES",
+    "specs": {
+      "bedrooms": 10,
+      "bathrooms": 1,
+      "parking": 1,
+      "sqft": 0
+    },
+    "features": [
+      "swmming pool"
+    ],
+    "images": [
+      "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789269080/rentspace/properties/rscbx4e5skg5buuliwk0.jpg",
+      "https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789269165/rentspace/properties/ihirighmfnqbfbmvh1vx.jpg"
+    ],
+    "isFeatured": false,
+    "movingEstimate": 0,
+    "fumigationLink": "https://fumigo.co.ke",
+    "description": "<div class=\"form-group\">\r\n          <label for=\"status\">Status</label>\r\n          <select id=\"status\" class=\"form-control\">\r\n            <option value=\"approved\">Approved (Live)</option>\r\n            <option value=\"sold\">Sold</option>\r\n            <option value=\"reserved\">Reserved</option>\r\n            <option value=\"available\">Available</option>\r\n          </select>\r\n        </div>",
+    "rental_type": "sale",
+    "available_for": "sale",
+    "is_airbnb_ready": false,
+    "price_night": null,
+    "price_week": null,
+    "price_month_short": null,
+    "min_stay_nights": null,
+    "airbnb_rating": null,
+    "airbnb_reviews": null,
+    "airbnb_superhost": false,
+    "furnishing_level": "partially_furnished",
+    "is_furnished": false,
+    "short_stay_amenities": [
+      "swmming pool"
+    ],
+    "meta_description": "<div class=\"form-group\">\r\n          <label for=\"status\">Status</label>\r\n          <select id=\"status\" class=\"form-control\">\r\n            <option value=\"approved",
+    "why_rent": "",
+    "listingType": "sale",
+    "ownerSubscriptionPlan": "developer",
+    "status": "approved",
+    "createdAt": "2026-09-13T03:11:21.354Z",
+    "updatedAt": "2026-09-13T03:11:21.400Z"
+  },
+  {
     "id": "6a8586d08b80a055e0354c6c",
     "slug": "4-bedroom-ground-floor-duplex-sq-to-let-in-safaricom-2-estate-kitengela-secure-serene-1",
     "title": "4 Bedroom Ground Floor Duplex + SQ to Let in Safaricom 2 Estate, Kitengela – Secure & Serene",
@@ -306,7 +355,7 @@
     "description": "Private 4‑Bedroom Mansion in Yukos – Space, Privacy, and Serenity Under One Roof. Tucked away in the tranquil Yukos estate, this standalone mansion offers something increasingly rare in Kitengela – your own private compound. No shared walls, no upstairs neighbours, no compromise on space. Just you, your people, and the quiet hum of a peaceful suburban retreat.\n\n**Living Area:** A grand, sun‑drenched space anchored by a plush sofa set and a 43‑inch Smart TV. The room flows effortlessly into the dining area, creating an open, sociable heart for the home.\n\n**Kitchen:** A culinary haven – fully equipped with a refrigerator, cooker, microwave, and all the cookware you need to prepare anything from a quick breakfast to a family feast.\n\n**Bedrooms:** Four generously proportioned bedrooms configured to sleep up to 12 guests across six comfortable beds – king, queen, and double options. Each room is finished with premium cotton linens, memory foam mattresses, and blackout curtains to ensure deep, uninterrupted rest.\n\n**Workspace:** A dedicated desk with an ergonomic chair and high‑speed Wi‑Fi makes remote work or study effortless.\n\n**Outdoor Space:** A private compound with room to breathe – perfect for morning coffee as the sun rises, evening conversations under the stars, or simply enjoying the rare luxury of open space.\n\nYukos is one of Kitengela's most sought‑after residential areas – known for its quiet, tree‑lined streets and family‑friendly atmosphere. Yet you're just 3 minutes from Kitengela town, with supermarkets (Naivas, Quickmart), hospitals (Halisi Family Hospital), and top schools (Acacia Crest, Kitengela International) all within easy reach. The Nairobi‑Namanga Road is also just minutes away.\n\nThis is not just a place to stay – it's a place to gather, connect, and recharge. Perfect for large families, reunions, or corporate groups who value privacy and genuine space. Call or WhatsApp 0723562484 to secure your stay.",
     "rental_type": "short_term",
     "available_for": "short_term",
-    "is_airbnb_ready": false,
+    "is_airbnb_ready": true,
     "price_night": null,
     "price_week": null,
     "price_month_short": null,

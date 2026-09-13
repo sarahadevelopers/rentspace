@@ -1873,6 +1873,42 @@
     font-weight: 500;
   }
 }
+/* Status badges — full set */
+#propertiesTable .status-badge.approved {
+  background: rgba(76, 175, 80, 0.12);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.15);
+}
+
+#propertiesTable .status-badge.reserved {
+  background: rgba(255, 193, 7, 0.12);
+  color: #ffc107;
+  border: 1px solid rgba(255, 193, 7, 0.15);
+}
+
+#propertiesTable .status-badge.sold {
+  background: rgba(220, 53, 69, 0.12);
+  color: #ff6b6b;
+  border: 1px solid rgba(220, 53, 69, 0.15);
+}
+
+#propertiesTable .status-badge.rented {
+  background: rgba(156, 39, 176, 0.12);
+  color: #ce93d8;
+  border: 1px solid rgba(156, 39, 176, 0.2);
+}
+
+#propertiesTable .status-badge.archived {
+  background: rgba(108, 117, 125, 0.12);
+  color: #888;
+  border: 1px solid rgba(108, 117, 125, 0.15);
+}
+
+#propertiesTable .status-badge.draft {
+  background: rgba(108, 117, 125, 0.12);
+  color: #888;
+  border: 1px solid rgba(108, 117, 125, 0.15);
+}
   </style>
 </head>
 <body>
@@ -2105,11 +2141,11 @@
                 <div class="form-group">
           <label for="status">Status</label>
           <select id="status" class="form-control">
-            <option value="approved">Approved (Live)</option>
-            <option value="sold">Sold</option>
-            <option value="reserved">Reserved</option>
-            <option value="available">Available</option>
-          </select>
+  <option value="approved">Available</option>
+  <option value="reserved">Reserved</option>
+  <option value="sold">Sold</option>
+  <option value="rented">Rented</option>
+</select>
         </div>
       </div>
 

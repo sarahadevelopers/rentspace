@@ -15,3 +15,6 @@ Thumbs.db
 *.sqlite
 *.db
 *.bak
+# .gitignore
+service-account.json
+rentspace-508304-*.json

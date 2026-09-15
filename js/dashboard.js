@@ -267,16 +267,41 @@ const PropertiesTable = {
   attachEventListeners() {
     // Edit buttons
     propertiesTable.querySelectorAll('.edit-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const id = btn.dataset.id;
-        try {
-          const property = await PropertyAPI.getPropertyById(id);
-          FormManager.populateForEdit(property);
-        } catch (error) {
-          Utils.showToast('Failed to load property', 'error');
-        }
-      });
-    });
+  btn.addEventListener('click', async () => {
+    const id = btn.dataset.id;
+    if (!id) return;
+
+    // Prevent double-clicks and show loading state
+    const originalHtml = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+    try {
+      const property = await PropertyAPI.getPropertyById(id);
+
+      if (!property || !property._id) {
+        throw new Error('Property data is empty');
+      }
+
+      FormManager.populateForEdit(property);
+
+      // Scroll to the form so the user sees what loaded
+      document.getElementById('propertyForm')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    } catch (error) {
+      console.error('Failed to load property for edit:', error);
+      Utils.showToast(
+        error.message || 'Failed to load property',
+        'error'
+      );
+    } finally {
+      // Always restore the button, even if we fail
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+    }
+  });
+});
 
     // Delete buttons
     propertiesTable.querySelectorAll('.delete-btn').forEach(btn => {
@@ -1619,6 +1644,9 @@ async function handleFormSubmit(e) {
   formData.append('size', document.getElementById('size')?.value || '');
   formData.append('status', document.getElementById('status')?.value || 'available');
   formData.append('description', description);
+  formData.append('seo_title', document.getElementById('seoTitle')?.value.trim() || '');
+formData.append('meta_description', document.getElementById('metaDescription')?.value.trim() || '');
+formData.append('why_rent', document.getElementById('whyRent')?.value.trim() || '');
   formData.append('amenities', JSON.stringify(features));
 
   // Append computed availability fields

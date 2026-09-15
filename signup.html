@@ -297,6 +297,22 @@
       .rentspace-header nav { gap: 12px; flex-wrap: wrap; justify-content: center; }
       .signup-card { padding: 28px 20px; }
     }
+        .legal-consent {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      line-height: 1.6;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+    .legal-consent a {
+      color: #c5a059;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .legal-consent a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -352,9 +368,16 @@
         <input type="password" id="passwordConfirm" required placeholder="Confirm your password">
       </div>
 
-      <button type="submit" class="btn-signup" id="signupBtn">
+           <button type="submit" class="btn-signup" id="signupBtn">
         <i class="fas fa-rocket"></i> Create Account
       </button>
+
+      <p class="legal-consent">
+        By creating an account, you agree to our
+        <a href="terms.html"  rel="noopener">Terms of Service</a>
+        and
+        <a href="privacy.html"  rel="noopener">Privacy Policy</a>.
+      </p>
     </form>
 
     <!-- Google Sign-Up -->

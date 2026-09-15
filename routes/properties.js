@@ -217,9 +217,9 @@ router.get('/', async (req, res) => {
     } = req.query;
 
     const query = {
-      status: 'approved',
-      ...buildExpiryFilter()
-    };
+  status: { $in: ['approved', 'reserved'] },
+  ...buildExpiryFilter()
+};
 
     if (estate) query.estate = estate;
     if (type) query.listingType = type;
@@ -427,7 +427,8 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
     const {
       title, listingType, estate, county, price,
       bedrooms, bathrooms, parking, sqft, description, amenities,
-      propertyType, size, status, available_for, rental_type
+      propertyType, size, status, available_for, rental_type,
+      seo_title, meta_description, why_rent
     } = req.body;
 
     // ── 1. Required fields ──────────────────────────────────────
@@ -464,6 +465,21 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
     }
     if (size && String(size).length > LIMITS.SIZE_MAX) {
       return res.status(400).json({ success: false, error: `Size field too long (max ${LIMITS.SIZE_MAX} chars)` });
+    }
+
+    // ── 2b. SEO field validation ────────────────────────────────
+    const cleanSeoTitle        = seo_title        ? String(seo_title).trim()        : '';
+    const cleanMetaDescription = meta_description ? String(meta_description).trim() : '';
+    const cleanWhyRent         = why_rent         ? String(why_rent).trim()         : '';
+
+    if (cleanSeoTitle.length > 70) {
+      return res.status(400).json({ success: false, error: 'SEO title too long (max 70 chars)' });
+    }
+    if (cleanMetaDescription.length > 160) {
+      return res.status(400).json({ success: false, error: 'Meta description too long (max 160 chars)' });
+    }
+    if (cleanWhyRent.length > 2000) {
+      return res.status(400).json({ success: false, error: 'Why-rent section too long (max 2000 chars)' });
     }
 
     // ── 3. Price validation ─────────────────────────────────────
@@ -544,7 +560,11 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
       available_for: available_for || '',
       rental_type: rental_type || '',
       ownerSubscriptionPlan: plan,
-      expiresAt
+      expiresAt,
+      // ── SEO fields ────────────────────────────────────────────
+      seo_title:        cleanSeoTitle,
+      meta_description: cleanMetaDescription,
+      why_rent:         cleanWhyRent
     };
 
     const property = await Property.create(propertyData);
@@ -567,6 +587,7 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
 });
 
 // ─── PUT /api/properties/:id (authenticated) ──────────────────
+// ─── PUT /api/properties/:id (authenticated) ──────────────────
 router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);
@@ -579,12 +600,13 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
     }
 
     // ── Whitelist of updatable fields ──────────────────────────
-   const UPDATABLE_FIELDS = [
-  'title', 'listingType', 'estate', 'county', 'price',
-  'bedrooms', 'bathrooms', 'parking', 'sqft', 'size',
-  'description', 'propertyType', 'available_for', 'rental_type',
-  'isAirbnb'
-];
+    const UPDATABLE_FIELDS = [
+      'title', 'listingType', 'estate', 'county', 'price',
+      'bedrooms', 'bathrooms', 'parking', 'sqft', 'size',
+      'description', 'propertyType', 'available_for', 'rental_type',
+      'isAirbnb',
+      'seo_title', 'meta_description', 'why_rent'
+    ];
 
     const updateData = {};
     for (const field of UPDATABLE_FIELDS) {
@@ -619,6 +641,27 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
       updateData.size = String(updateData.size).trim().slice(0, LIMITS.SIZE_MAX);
     }
 
+    // ── SEO field validation ────────────────────────────────────
+   // ── SEO field validation ────────────────────────────────────
+    if (updateData.seo_title !== undefined) {
+      updateData.seo_title = String(updateData.seo_title).trim();
+      if (updateData.seo_title.length > 70) {
+        return res.status(400).json({ success: false, error: 'SEO title too long (max 70 chars)' });
+      }
+    }
+    if (updateData.meta_description !== undefined) {
+      updateData.meta_description = String(updateData.meta_description).trim();
+      if (updateData.meta_description.length > 160) {
+        return res.status(400).json({ success: false, error: 'Meta description too long (max 160 chars)' });
+      }
+    }
+    if (updateData.why_rent !== undefined) {
+      updateData.why_rent = String(updateData.why_rent).trim();
+      if (updateData.why_rent.length > 2000) {
+        return res.status(400).json({ success: false, error: 'Why-rent section too long (max 2000 chars)' });
+      }
+    }
+
     // ── Price validation ────────────────────────────────────────
     if (updateData.price !== undefined) {
       const p = parseFloat(updateData.price);
@@ -628,7 +671,6 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
       updateData.price = p;
     }
 
-    // ── Numeric conversions ─────────────────────────────────────
     // ── Numeric conversions ─────────────────────────────────────
     if (updateData.bedrooms !== undefined) updateData.bedrooms = parsePositiveInt(updateData.bedrooms);
     if (updateData.bathrooms !== undefined) updateData.bathrooms = parsePositiveInt(updateData.bathrooms);
@@ -686,7 +728,6 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
     }
 
     // ── Status: only allow safe values ──────────────────────────
-       // ── Status: only allow safe values ──────────────────────────
     if (req.body.status !== undefined) {
       const allowedStatuses = ['available', 'approved', 'sold', 'reserved', 'pending', 'rented', 'draft'];
       if (allowedStatuses.includes(req.body.status)) {
@@ -694,10 +735,13 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
       }
     }
 
+    // ── Manually bump updatedAt (findByIdAndUpdate bypasses pre-save hooks) ──
+    updateData.updatedAt = Date.now();
+
     const updatedProperty = await Property.findByIdAndUpdate(
       req.params.id,
       updateData,
-      { new: true, runValidators: true }
+      { returnDocument: 'after', runValidators: true }
     );
 
     res.json({ success: true, property: updatedProperty });

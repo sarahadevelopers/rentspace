@@ -17,7 +17,7 @@ const propertySchema = new mongoose.Schema({
   slug: {
     type: String,
     required: true,
-    unique: true,
+    unique: true,        // creates the unique index automatically
     lowercase: true
   },
   listingType: {
@@ -61,6 +61,26 @@ const propertySchema = new mongoose.Schema({
   images: [String],
   amenities: [String],
 
+  // ─── SEO fields (optional — injected into meta tags) ───────
+  seo_title: {
+    type: String,
+    default: '',
+    trim: true,
+    maxlength: 70
+  },
+  meta_description: {
+    type: String,
+    default: '',
+    trim: true,
+    maxlength: 160
+  },
+  why_rent: {
+    type: String,
+    default: '',
+    trim: true,
+    maxlength: 2000
+  },
+
   // ─── Status & Metadata ────────────────────────────────────
   status: {
     type: String,
@@ -73,9 +93,9 @@ const propertySchema = new mongoose.Schema({
       'rented',
       'expired',
       'archived',
-      'available',   // ✅ Added
-      'sold',        // ✅ Added
-      'reserved'     // ✅ Added
+      'available',
+      'sold',
+      'reserved'
     ],
     default: 'pending'
   },
@@ -113,7 +133,7 @@ const propertySchema = new mongoose.Schema({
     default: false
   },
 
-  // ⭐ NEW: Subscription plan of the owner (for ranking)
+  // ⭐ Subscription plan of the owner (for ranking)
   ownerSubscriptionPlan: {
     type: String,
     enum: ['free', 'basic', 'pro', 'developer'],
@@ -139,17 +159,19 @@ const propertySchema = new mongoose.Schema({
 
 // ─── Indexes for performance ──────────────────────────────────
 propertySchema.index({ featured: -1, ownerSubscriptionPlan: 1, createdAt: -1 });
-propertySchema.index({ ownerId: 1, status: 1 }); // For listing limit queries
-propertySchema.index({ slug: 1 });
-propertySchema.index({ status: 1, expiresAt: 1 }); // For expiry cleanup
+propertySchema.index({ ownerId: 1, status: 1 });          // for listing limit queries
+propertySchema.index({ status: 1, expiresAt: 1 });        // for expiry cleanup
+// NOTE: slug index is created automatically by the `unique: true` on the field,
+// so we intentionally do NOT add another propertySchema.index({ slug: 1 }) —
+// that would trigger the Mongoose "duplicate schema index" warning at startup.
 
 // ─── Pre‑save hook ─────────────────────────────────────────────
-propertySchema.pre('save', async function() {
+propertySchema.pre('save', function() {
   this.updatedAt = Date.now();
 });
 
 // ─── Pre‑save: auto-set expiresAt for free listings ──────────
-propertySchema.pre('save', async function() {
+propertySchema.pre('save', function() {
   if (this.isNew && this.ownerSubscriptionPlan === 'free') {
     this.expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
   }

@@ -905,6 +905,10 @@ const FormManager = {
         document.getElementById('bathrooms').value = property.bathrooms || 0;
         document.getElementById('parking').value = property.parking || 0;
         document.getElementById('status').value = property.status || 'available';
+        // ── SEO fields ──────────────────────────────────────────────
+document.getElementById('seoTitle').value        = property.seo_title        || '';
+document.getElementById('metaDescription').value = property.meta_description || '';
+document.getElementById('whyRent').value         = property.why_rent         || '';
 
         const listingType = property.listingType || 'sale';
         const isAirbnb = property.isAirbnb || false;
@@ -1555,6 +1559,13 @@ async function handleFormSubmit(e) {
   e.preventDefault();
 
   // ── Clear previous validation states ──
+  // ── Clear SEO fields ────────────────────────────────────────
+const seoTitleEl        = document.getElementById('seoTitle');
+const metaDescriptionEl = document.getElementById('metaDescription');
+const whyRentEl         = document.getElementById('whyRent');
+if (seoTitleEl)        seoTitleEl.value = '';
+if (metaDescriptionEl) metaDescriptionEl.value = '';
+if (whyRentEl)         whyRentEl.value = '';
   document.querySelectorAll('.form-control').forEach(el => {
     el.classList.remove('is-valid', 'is-invalid');
   });

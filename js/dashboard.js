@@ -1559,13 +1559,6 @@ async function handleFormSubmit(e) {
   e.preventDefault();
 
   // ── Clear previous validation states ──
-  // ── Clear SEO fields ────────────────────────────────────────
-const seoTitleEl        = document.getElementById('seoTitle');
-const metaDescriptionEl = document.getElementById('metaDescription');
-const whyRentEl         = document.getElementById('whyRent');
-if (seoTitleEl)        seoTitleEl.value = '';
-if (metaDescriptionEl) metaDescriptionEl.value = '';
-if (whyRentEl)         whyRentEl.value = '';
   document.querySelectorAll('.form-control').forEach(el => {
     el.classList.remove('is-valid', 'is-invalid');
   });
@@ -1625,22 +1618,22 @@ if (whyRentEl)         whyRentEl.value = '';
     return;
   }
 
-  // ── ★ NEW: Get form element and add loading state ──
+  // ── Get form element and add loading state ──
   const form = document.getElementById('propertyForm');
   form.classList.add('form-loading');
 
-  // ── If all validations pass, proceed with submission ──
-  const title = document.getElementById('title')?.value.trim();
-  const estate = document.getElementById('estate')?.value.trim();
-  const county = document.getElementById('county')?.value.trim();
-  const price = parseFloat(document.getElementById('price')?.value || 0);
+  // ── Collect values ──
+  const title       = document.getElementById('title')?.value.trim();
+  const estate      = document.getElementById('estate')?.value.trim();
+  const county      = document.getElementById('county')?.value.trim();
+  const price       = parseFloat(document.getElementById('price')?.value || 0);
   const description = document.getElementById('description')?.value.trim();
   const propertyType = document.getElementById('propertyType')?.value;
 
-  // ── Compute available_for and rental_type ──────────────────
+  // ── Compute available_for and rental_type ──
   const { availableFor, rentalType } = computeAvailabilityFields();
 
-  // ── Build FormData ──────────────────────────────────────────
+  // ── Build FormData ──
   const formData = new FormData();
   formData.append('title', title);
   formData.append('listingType', document.getElementById('listingType')?.value || 'sale');
@@ -1655,24 +1648,27 @@ if (whyRentEl)         whyRentEl.value = '';
   formData.append('size', document.getElementById('size')?.value || '');
   formData.append('status', document.getElementById('status')?.value || 'available');
   formData.append('description', description);
-  formData.append('seo_title', document.getElementById('seoTitle')?.value.trim() || '');
-formData.append('meta_description', document.getElementById('metaDescription')?.value.trim() || '');
-formData.append('why_rent', document.getElementById('whyRent')?.value.trim() || '');
   formData.append('amenities', JSON.stringify(features));
 
-  // Append computed availability fields
+  // ── SEO fields ──
+  formData.append('seo_title',        document.getElementById('seoTitle')?.value.trim()        || '');
+  formData.append('meta_description', document.getElementById('metaDescription')?.value.trim() || '');
+  formData.append('why_rent',         document.getElementById('whyRent')?.value.trim()         || '');
+
+  // ── Computed availability fields ──
   formData.append('available_for', availableFor);
   formData.append('rental_type', rentalType);
 
-  // Append new images
+  // ── New images ──
   ImageManager.getNewImages().forEach(file => formData.append('images', file));
 
+  // ── Existing images (edit mode) ──
   if (currentEditId) {
     formData.append('existingImages', JSON.stringify(existingImages));
     formData.append('existingPublicIds', JSON.stringify(existingPublicIds));
   }
 
-  // ── Disable submit button ──────────────────────────────────
+  // ── Disable submit button ──
   submitBtn.disabled = true;
   submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${currentEditId ? 'Updating...' : 'Creating...'}`;
 
@@ -1716,7 +1712,6 @@ formData.append('why_rent', document.getElementById('whyRent')?.value.trim() || 
       Utils.showToast(errorMsg || 'Failed to save property', 'error');
     }
   } finally {
-    // ── ★ NEW: Remove loading state ──
     form.classList.remove('form-loading');
     submitBtn.disabled = false;
     submitBtn.innerHTML = currentEditId

@@ -2,8 +2,8 @@ name: Regenerate Property Pages
 
 on:
   schedule:
-    # Every hour at :05 past the hour
-    - cron: '5 * * * *'
+    # Every 5 minutes
+    - cron: '*/5 * * * *'
   workflow_dispatch:   # allow manual trigger from Actions tab
 
 permissions:

@@ -983,23 +983,39 @@ async getPropertyById(id) {
     return data.property || data;  // unpack {success, property} → property
 },
 
-    async createProperty(formData) {
+        async createProperty(formData) {
         const res = await fetch(`${API_BASE}/api/properties`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${getToken()}` },
             body: formData
         });
+
+        // Read body exactly once (streams can only be consumed once)
+        const rawBody = await res.text();
+
         if (!res.ok) {
-            let errMsg;
+            let errMsg = 'Creation failed';
             try {
-                const errData = await res.json();
-                errMsg = errData.error || 'Creation failed';
-            } catch (e) {
-                errMsg = await res.text() || 'Creation failed';
+                const parsed = JSON.parse(rawBody);
+                errMsg = parsed.error || errMsg;
+            } catch {
+                // Non-JSON response (Render cold start, 502, HTML error page, etc.)
+                errMsg = rawBody.trim() || `Server error (${res.status})`;
+                console.error('Non-JSON error response on create:', {
+                    status: res.status,
+                    statusText: res.statusText,
+                    bodyPreview: rawBody.slice(0, 500)
+                });
             }
             throw new Error(errMsg);
         }
-        return await res.json();
+
+        // Success — parse the single-read body
+        try {
+            return JSON.parse(rawBody);
+        } catch {
+            throw new Error('Server returned invalid JSON on success');
+        }
     },
 
     async updateProperty(id, formData) {
@@ -1008,28 +1024,54 @@ async getPropertyById(id) {
             headers: { 'Authorization': `Bearer ${getToken()}` },
             body: formData
         });
+
+        // Read body exactly once (streams can only be consumed once)
+        const rawBody = await res.text();
+
         if (!res.ok) {
-            let errMsg;
+            let errMsg = 'Update failed';
             try {
-                const errData = await res.json();
-                errMsg = errData.error || 'Update failed';
-            } catch (e) {
-                errMsg = await res.text() || 'Update failed';
+                const parsed = JSON.parse(rawBody);
+                errMsg = parsed.error || errMsg;
+            } catch {
+                // Non-JSON response (Render cold start, 502, HTML error page, etc.)
+                errMsg = rawBody.trim() || `Server error (${res.status})`;
+                console.error('Non-JSON error response on update:', {
+                    status: res.status,
+                    statusText: res.statusText,
+                    bodyPreview: rawBody.slice(0, 500)
+                });
             }
             throw new Error(errMsg);
         }
-        return await res.json();
+
+        // Success — parse the single-read body
+        try {
+            return JSON.parse(rawBody);
+        } catch {
+            throw new Error('Server returned invalid JSON on success');
+        }
     },
 
     async deleteProperty(id) {
         const res = await authFetch(`${API_BASE}/api/properties/${id}`, {
             method: 'DELETE'
         });
-        if (!res.ok) throw new Error('Delete failed');
+
+        if (!res.ok) {
+            const rawBody = await res.text();
+            let errMsg = 'Delete failed';
+            try {
+                const parsed = JSON.parse(rawBody);
+                errMsg = parsed.error || errMsg;
+            } catch {
+                errMsg = rawBody.trim() || `Server error (${res.status})`;
+            }
+            throw new Error(errMsg);
+        }
         return true;
     }
 };
-
 
 
 // =========================

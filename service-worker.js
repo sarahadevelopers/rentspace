@@ -2,7 +2,7 @@
 // SERVICE WORKER – RentSpace PWA (root domain)
 // =============================================
 
-const CACHE_NAME = 'rentspace-v3';           // Increment version on updates
+const CACHE_NAME = 'rentspace-v4';           // Increment version on updates
 const BASE_PATH = '';                        // Root domain
 
 // ─── Core assets to pre-cache ──────────────────────────────────
@@ -36,7 +36,6 @@ const urlsToCache = [
   `${BASE_PATH}/manifest.json`,
   `${BASE_PATH}/images/favicon.webp`,
   `${BASE_PATH}/images/placeholder.jpg`,
-  // Add more common assets as needed
 ];
 
 // ─── Install – cache core assets ──────────────────────────────
@@ -73,7 +72,7 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// ─── Fetch – cache-first, then network, with offline fallback ─
+// ─── Fetch – network-first for code, cache-first for assets ───
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
@@ -89,50 +88,79 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request)
-      .then((cachedResponse) => {
-        if (cachedResponse) {
-          // Return cached version, but also update cache in background
-          fetch(event.request)
-            .then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(event.request, networkResponse);
-                });
-              }
-            })
-            .catch(() => {});
-          return cachedResponse;
-        }
+  // ─── Network-first for JS, CSS, and HTML ────────────────────
+  // Ensures users always get the latest code after a deployment.
+  const isCodeFile =
+    url.pathname.endsWith('.js') ||
+    url.pathname.endsWith('.css') ||
+    url.pathname.endsWith('.html') ||
+    event.request.mode === 'navigate';
 
-        // ─── Not in cache – fetch from network ──────────────────
-        return fetch(event.request)
-          .then((networkResponse) => {
-            // Cache valid responses for future use
-            if (
-              networkResponse &&
-              networkResponse.status === 200 &&
-              networkResponse.type === 'basic'
-            ) {
-              const responseClone = networkResponse.clone();
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(event.request, responseClone);
-              });
-            }
-            return networkResponse;
-          })
-          .catch(() => {
-            // ─── Offline fallback: serve index.html for navigation ─
+  if (isCodeFile) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          // Offline fallback — serve the cached version if network fails
+          return caches.match(event.request).then((cached) => {
+            if (cached) return cached;
             if (event.request.mode === 'navigate') {
               return caches.match(`${BASE_PATH}/index.html`);
             }
-            // You could return a custom offline page here
             return new Response('Offline – please check your internet connection.', {
               status: 503,
               statusText: 'Service Unavailable'
             });
           });
-      })
+        })
+    );
+    return;
+  }
+
+  // ─── Cache-first for images and other assets ────────────────
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        // Return cached version, refresh cache in background
+        fetch(event.request)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              caches.open(CACHE_NAME).then((cache) => {
+                cache.put(event.request, networkResponse);
+              });
+            }
+          })
+          .catch(() => {});
+        return cachedResponse;
+      }
+
+      // Not in cache — fetch from network and cache
+      return fetch(event.request)
+        .then((networkResponse) => {
+          if (
+            networkResponse &&
+            networkResponse.status === 200 &&
+            networkResponse.type === 'basic'
+          ) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          return new Response('Offline – please check your internet connection.', {
+            status: 503,
+            statusText: 'Service Unavailable'
+          });
+        });
+    })
   );
 });

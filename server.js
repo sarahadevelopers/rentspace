@@ -106,6 +106,30 @@ app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/admin', adminRoutes);
+// ─── Multer / upload error handler ────────────────────────────
+app.use((err, req, res, next) => {
+  if (err && err.name === 'MulterError') {
+    let message = 'File upload error';
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      message = 'One or more images exceed the 10MB size limit';
+    } else if (err.code === 'LIMIT_FILE_COUNT') {
+      message = 'Too many files uploaded';
+    } else if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+      message = 'Too many images. Maximum is 20 per property.';
+    }
+    return res.status(400).json({ success: false, error: message });
+  }
+
+  if (err && err.message && err.message.toLowerCase().includes('cloudinary')) {
+    console.error('❌ Cloudinary upload error:', err);
+    return res.status(500).json({
+      success: false,
+      error: 'Image upload service is temporarily unavailable. Please try again.'
+    });
+  }
+
+  return next(err);
+});
 
 // =====================================================================
 // Webhook from sarahapay-intasend
@@ -214,7 +238,7 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
       }
     );
 
-    if (result.nModified === 0) {
+    if (result.modifiedCount === 0) {
       subscription.status = 'active';
       subscription.paymentStatus = 'paid';
       subscription.metadata = {

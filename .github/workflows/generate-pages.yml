@@ -5,6 +5,8 @@ on:
     # Every 5 minutes
     - cron: '*/5 * * * *'
   workflow_dispatch:   # allow manual trigger from Actions tab
+  repository_dispatch:
+    types: [property-changed]   # fires instantly when the backend saves a property
 
 permissions:
   contents: write      # needed to push generated pages back

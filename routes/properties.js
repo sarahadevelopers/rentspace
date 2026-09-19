@@ -5,7 +5,42 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const Property = require('../models/Property');
 const User = require('../models/User');
 const authMiddleware = require('../middleware/auth');
+// ─── Fire a workflow dispatch to regenerate this property's page ──
+async function triggerPageRegeneration(propertyId, action) {
+  const token = process.env.GITHUB_DISPATCH_TOKEN;
+  if (!token) {
+    console.warn('⚠️ GITHUB_DISPATCH_TOKEN not set; skipping page regeneration');
+    return;
+  }
 
+  try {
+    const res = await fetch(
+      'https://api.github.com/repos/sarahadevelopers/rentspace/dispatches',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+          'User-Agent': 'RentSpace-Backend'
+        },
+        body: JSON.stringify({
+          event_type: 'property-changed',
+          client_payload: { propertyId, action }
+        })
+      }
+    );
+
+    if (res.ok) {
+      console.log(`📤 Triggered page regeneration for ${propertyId} (${action})`);
+    } else {
+      const body = await res.text();
+      console.error(`❌ Dispatch failed: ${res.status} — ${body.slice(0, 200)}`);
+    }
+  } catch (err) {
+    console.error('❌ Dispatch fetch error:', err.message);
+  }
+}
 const router = express.Router();
 
 // ─── Cloudinary Configuration ──────────────────────────────────
@@ -539,8 +574,8 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
       expiresAt = new Date(req.user.subscriptionExpiry);
     }
 
-    // ── 8. Build property object ────────────────────────────────
-      const propertyData = {
+       // ── 8. Build property object ────────────────────────────────
+    const propertyData = {
       ownerId: req.user._id,
       title: cleanTitle,
       slug,
@@ -571,6 +606,10 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
     };
 
     const property = await Property.create(propertyData);
+
+    // Fire-and-forget: don't await, don't block the response
+    triggerPageRegeneration(property._id.toString(), 'created');
+
     res.status(201).json({ success: true, property });
   } catch (error) {
     console.error('❌ Property creation error:', error);
@@ -747,11 +786,14 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
     // ── Manually bump updatedAt (findByIdAndUpdate bypasses pre-save hooks) ──
     updateData.updatedAt = Date.now();
 
-    const updatedProperty = await Property.findByIdAndUpdate(
+        const updatedProperty = await Property.findByIdAndUpdate(
       req.params.id,
       updateData,
       { returnDocument: 'after', runValidators: true }
     );
+
+    // Fire-and-forget: don't await, don't block the response
+    triggerPageRegeneration(updatedProperty._id.toString(), 'updated');
 
     res.json({ success: true, property: updatedProperty });
   } catch (error) {

@@ -181,6 +181,15 @@ function generateRentalPages(rentals, airbnbs, rentalTemplate) {
     page = page.replace(/\{\{slug\}\}/g, prop.slug);
     page = page.replace(/\{\{estate\}\}/g, prop.estate);
     page = page.replace(/\{\{price\}\}/g, prop.price?.toLocaleString() || '0');
+
+// ── Price suffix depends on listing type ────────────────────
+const isSale =
+  prop.rental_type === 'sale' ||
+  prop.available_for === 'sale' ||
+  (prop.type && String(prop.type).toLowerCase().includes('land'));
+
+const priceSuffix = isSale ? '' : ' / month';
+page = page.replace(/\{\{priceSuffix\}\}/g, priceSuffix);
     page = page.replace(/\{\{bedrooms\}\}/g, prop.specs?.bedrooms || 1);
     page = page.replace(/\{\{bathrooms\}\}/g, prop.specs?.bathrooms || 1);
     page = page.replace(/\{\{parking\}\}/g, prop.specs?.parking || 1);

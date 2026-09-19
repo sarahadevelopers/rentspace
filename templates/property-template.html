@@ -190,7 +190,7 @@
         <i class="fas fa-map-marker-alt"></i> {{estate}}, Nairobi
       </div>
       <h1 class="property-title">{{title}}</h1>
-      <div class="price-tag">KES {{price}} <span>/ month</span></div>
+      <div class="price-tag">KES {{price}}<span>{{priceSuffix}}</span></div>
       <div class="listed-by" style="margin-top: 8px; font-size: 14px; color: #a0a0a0;">
         <i class="fas fa-user-circle"></i> Listed by {{ownerName}}
       </div>
@@ -332,7 +332,7 @@
   </footer>
 
   <div class="sticky-contact-bar">
-    <div class="sticky-price">KES {{price}}<span>/mo</span></div>
+    <div class="sticky-price">KES {{price}}<span>{{priceSuffix}}</span></div>
     <div class="sticky-actions">
       <a href="tel:{{ownerPhone}}" class="sticky-call-btn"><i class="fas fa-phone-alt"></i> Call</a>
       <button class="sticky-inquiry-btn" id="stickyInquiryBtn"><i class="fab fa-whatsapp"></i> Inquire</button>

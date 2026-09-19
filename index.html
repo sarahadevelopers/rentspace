@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://rentspace.co.ke" />
 
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    
 
     <!-- LOCAL BUSINESS SCHEMA (JSON-LD) -->
     <script type="application/ld+json">
@@ -37,13 +37,19 @@
     </script>
 
     <!-- PWA Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(() => console.log('✅ Service Worker registered'))
-          .catch((err) => console.error('❌ Service Worker failed:', err));
+   <script>
+  // ─── Kill-switch: unregister any service worker + clear caches ──
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(regs => {
+      regs.forEach(reg => reg.unregister());
+      if (regs.length > 0) {
+        caches.keys().then(names =>
+          Promise.all(names.map(n => caches.delete(n)))
+        ).then(() => location.reload());
       }
-    </script>
+    });
+  }
+</script>
 
     <!-- OPEN GRAPH (Facebook, LinkedIn, etc.) -->
     <meta property="og:title" content="RentSpace | Verified Properties for Sale & Rent in Kitengela & Syokimau">

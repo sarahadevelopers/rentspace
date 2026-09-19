@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#c5a059">
   
   <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.json">
+  
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://rentspace.co.ke/land.html" />
@@ -43,13 +43,19 @@
   <link rel="stylesheet" href="css/rentals.css">
   
   <!-- PWA Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(() => console.log('✅ Service Worker registered'))
-        .catch((err) => console.error('❌ Service Worker failed:', err));
-    }
-  </script>
+ <script>
+  // ─── Kill-switch: unregister any service worker + clear caches ──
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(regs => {
+      regs.forEach(reg => reg.unregister());
+      if (regs.length > 0) {
+        caches.keys().then(names =>
+          Promise.all(names.map(n => caches.delete(n)))
+        ).then(() => location.reload());
+      }
+    });
+  }
+</script>
 </head>
 
   <style>

@@ -48,7 +48,7 @@
   },
   "offers": {
     "@type": "Offer",
-    "price": 3999998,
+    "price": 4000000,
     "priceCurrency": "KES",
     "availability": "https://schema.org/InStock",
     "url": "https://rentspace.co.ke/property/villa-5-bedroom-on-sale.html"
@@ -190,7 +190,10 @@
         <i class="fas fa-map-marker-alt"></i> kitengela, Nairobi
       </div>
       <h1 class="property-title">Villa 5 bedroom on sale</h1>
-      <div class="price-tag">KES 3,999,998 <span>/ month</span></div>
+      <div class="price-tag">KES 4,000,000<span></span></div>
+      <div class="listed-by" style="margin-top: 8px; font-size: 14px; color: #a0a0a0;">
+        <i class="fas fa-user-circle"></i> Listed by charles karanja
+      </div>
     </div>
 
     <div class="gallery-container">
@@ -200,7 +203,7 @@
         <button class="gallery-arrow next" id="galleryNextBtn"><i class="fas fa-chevron-right"></i></button>
       </div>
       <div class="thumbnail-track" id="thumbTrack">
-        <div class="thumb" data-index="0"><img src="https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789808630/rentspace/properties/bj1e8xnf1twmxjko9l1p.jpg" alt="Living area of Villa 5 bedroom on sale" loading="lazy"></div><div class="thumb" data-index="1"><img src="https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789808722/rentspace/properties/cpj391i31alnsvy5daqw.jpg" alt="Master bedroom of Villa 5 bedroom on sale" loading="lazy"></div>
+        <div class="thumb" data-index="0"><img src="https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789808630/rentspace/properties/bj1e8xnf1twmxjko9l1p.jpg" alt="Living area of Villa 5 bedroom on sale" loading="lazy"></div><div class="thumb" data-index="1"><img src="https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789834211/rentspace/properties/j2dfjsug181ywymd9cel.jpg" alt="Master bedroom of Villa 5 bedroom on sale" loading="lazy"></div><div class="thumb" data-index="2"><img src="https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789808722/rentspace/properties/cpj391i31alnsvy5daqw.jpg" alt="Kitchen of Villa 5 bedroom on sale" loading="lazy"></div><div class="thumb" data-index="3"><img src="https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789825651/rentspace/properties/wkmnft7042ybfhjxhpkp.jpg" alt="Bathroom of Villa 5 bedroom on sale" loading="lazy"></div>
       </div>
     </div>
 
@@ -283,7 +286,16 @@
 
     <section class="recommendations">
       <div class="section-header"><h2>Similar Curations</h2><div class="section-line"></div></div>
-      <div class="recommendation-cards" id="recCards"></div>
+      <div class="recommendation-cards" id="recCards">
+        <a href="../property/villa-on-sale.html" class="rec-card">
+          <div class="rec-card-image">
+            <img src="https://res.cloudinary.com/ddmbp2jb5/image/upload/v1789838117/rentspace/properties/bobebnwpgl5eshuoj2ut.jpg" alt="villa on sale">
+          </div>
+          <div class="rec-card-info">
+            <h4>villa on sale</h4>
+            <p>kitengela · KES 2,000,000 / mo</p>
+          </div>
+        </a></div>
     </section>
 
     <section class="testimonials">
@@ -322,8 +334,9 @@
       </div>
       <div class="footer-col">
         <h4>Inquiries</h4>
-        <a href="tel:+254723562484"><i class="fas fa-phone"></i> +254 723 562 484</a>
-        <a href="mailto:info@rentspace.co.ke"><i class="fas fa-envelope"></i> info@rentspace.co.ke</a>
+        <a href="tel:+254732662602"><i class="fas fa-phone"></i> +254732662602</a>
+        <a href="mailto:codewithkaranja@gmail.com"><i class="fas fa-envelope"></i> codewithkaranja@gmail.com</a>
+        <a href="https://wa.me/254732662602" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <div class="social-links">
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -338,9 +351,9 @@
   </footer>
 
   <div class="sticky-contact-bar">
-    <div class="sticky-price">KES 3,999,998<span>/mo</span></div>
+    <div class="sticky-price">KES 4,000,000<span></span></div>
     <div class="sticky-actions">
-      <a href="tel:+254723562484" class="sticky-call-btn"><i class="fas fa-phone-alt"></i> Call</a>
+      <a href="tel:+254732662602" class="sticky-call-btn"><i class="fas fa-phone-alt"></i> Call</a>
       <button class="sticky-inquiry-btn" id="stickyInquiryBtn"><i class="fab fa-whatsapp"></i> Inquire</button>
     </div>
   </div>
@@ -525,7 +538,7 @@
                       `*Listing:* ${url}%0A%0A` +
                       `Hello, I'm interested in this property. Please share more details.`;
 
-      window.open(`https://wa.me/254723562484?text=${message}`, '_blank');
+      window.open(`https://wa.me/254732662602?text=${message}`, '_blank');
     });
   }
 </script>

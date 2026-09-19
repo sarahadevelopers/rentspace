@@ -1915,6 +1915,59 @@
   color: #888;
   border: 1px solid rgba(108, 117, 125, 0.15);
 }
+    /* ─── Cover / Reorder ─── */
+    .preview-image {
+      cursor: grab;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .preview-image:active {
+      cursor: grabbing;
+    }
+    .preview-image.dragging {
+      opacity: 0.4;
+      transform: scale(0.95);
+    }
+    .preview-image.drag-over {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+      transform: scale(1.05);
+    }
+    .preview-image.is-cover {
+      border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(197, 160, 89, 0.35);
+    }
+    .preview-image .set-cover-btn {
+      position: absolute;
+      bottom: 30px;
+      left: 4px;
+      right: 4px;
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 600;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .preview-image:hover .set-cover-btn {
+      opacity: 1;
+    }
+    .preview-image .set-cover-btn:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+    .preview-image.is-cover .image-index {
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
@@ -2216,9 +2269,9 @@
 
       <!-- Images -->
       <div class="form-group">
-        <label for="images">Property Images <span class="required">*</span></label>
-        <input type="file" id="images" class="form-control" multiple accept="image/*" required>
-        <span class="helper">Select at least one image. Max 10MB each. Recommended: 600x400px.</span>
+  <label for="images">Property Images <span class="required" id="imagesRequiredStar">*</span></label>
+  <input type="file" id="images" class="form-control" multiple accept="image/*">
+  <span class="helper">Select at least one image (max 20). Max 10MB each. Drag to reorder — the first image is the cover.</span>
 
         <div style="margin-top: 15px;">
           <label>New Images Preview</label>

@@ -677,6 +677,7 @@ const ImageManager = {
         imageInput.files = dt.files;
     },
 
+    // ── Preview of NEW files (uploads pending) ─────────────────
     previewNewImages() {
         if (!imagePreview) return;
 
@@ -686,30 +687,56 @@ const ImageManager = {
         }
 
         imagePreview.innerHTML = '';
+
         this.selectedImages.forEach((file, index) => {
             const reader = new FileReader();
             reader.onload = (e) => {
                 const div = document.createElement('div');
-                div.className = 'preview-image';
+                // "Cover" applies to new-only when there are no existing images
+                const isCover = index === 0 && existingImages.length === 0;
+                div.className = 'preview-image' + (isCover ? ' is-cover' : '');
+                div.draggable = true;
+                div.dataset.index = index;
+
                 div.innerHTML = `
                     <img src="${e.target.result}" alt="Preview">
                     <span class="image-name">${file.name}</span>
                     <span class="image-size">${Utils.formatFileSize(file.size)}</span>
+                    <span class="image-index">${isCover ? '⭐ COVER' : `Image ${index + 1}`}</span>
                     <button type="button" class="remove-selected-btn" data-index="${index}" title="Remove">
                         <i class="fas fa-times"></i>
                     </button>
+                    ${!isCover && existingImages.length === 0 ? `
+                        <button type="button" class="set-cover-btn" data-index="${index}" title="Set as cover">
+                            <i class="fas fa-star"></i> Set as Cover
+                        </button>
+                    ` : ''}
                 `;
-                div.querySelector('.remove-selected-btn')?.addEventListener('click', () => {
+
+                // Remove
+                div.querySelector('.remove-selected-btn')?.addEventListener('click', (ev) => {
+                    ev.stopPropagation();
                     this.selectedImages.splice(index, 1);
                     this.syncInput();
                     this.previewNewImages();
                 });
+
+                // Set as cover (new-only mode)
+                div.querySelector('.set-cover-btn')?.addEventListener('click', (ev) => {
+                    ev.stopPropagation();
+                    this.moveNewImage(index, 0);
+                });
+
+                // Drag & drop
+                this.attachDragHandlers(div, index, 'new');
+
                 imagePreview.appendChild(div);
             };
             reader.readAsDataURL(file);
         });
     },
 
+    // ── Preview of EXISTING images (from DB) ───────────────────
     displayExistingImages(images, publicIds = []) {
         if (!existingPreview) return;
         existingImages = images || [];
@@ -721,40 +748,118 @@ const ImageManager = {
         }
 
         existingPreview.innerHTML = '';
+
         existingImages.forEach((url, index) => {
             const div = document.createElement('div');
-            div.className = 'preview-image existing';
+            const isCover = index === 0;
+            div.className = 'preview-image existing' + (isCover ? ' is-cover' : '');
+            div.draggable = true;
+            div.dataset.index = index;
+
             div.innerHTML = `
                 <img src="${url}" alt="Existing image">
-                <span class="image-index">${index === 0 ? '⭐ COVER' : `Image ${index + 1}`}</span>
+                <span class="image-index">${isCover ? '⭐ COVER' : `Image ${index + 1}`}</span>
                 <button type="button" class="remove-existing-btn" data-index="${index}" title="Remove">
                     <i class="fas fa-times"></i>
                 </button>
+                ${!isCover ? `
+                    <button type="button" class="set-cover-btn" data-index="${index}" title="Set as cover">
+                        <i class="fas fa-star"></i> Set as Cover
+                    </button>
+                ` : ''}
             `;
-            div.querySelector('.remove-existing-btn')?.addEventListener('click', () => {
+
+            // Remove
+            div.querySelector('.remove-existing-btn')?.addEventListener('click', (ev) => {
+                ev.stopPropagation();
                 existingImages.splice(index, 1);
                 existingPublicIds.splice(index, 1);
                 this.displayExistingImages(existingImages, existingPublicIds);
             });
+
+            // Set as cover
+            div.querySelector('.set-cover-btn')?.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                this.moveExistingImage(index, 0);
+            });
+
+            // Drag & drop
+            this.attachDragHandlers(div, index, 'existing');
+
             existingPreview.appendChild(div);
         });
     },
 
-    getFinalImages() {
-        return existingImages;
+    // ── Shared drag-drop handler factory ───────────────────────
+    attachDragHandlers(div, index, kind) {
+        div.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', String(index));
+            e.dataTransfer.effectAllowed = 'move';
+            div.classList.add('dragging');
+        });
+
+        div.addEventListener('dragend', () => {
+            div.classList.remove('dragging');
+        });
+
+        div.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            div.classList.add('drag-over');
+        });
+
+        div.addEventListener('dragleave', () => {
+            div.classList.remove('drag-over');
+        });
+
+        div.addEventListener('drop', (e) => {
+            e.preventDefault();
+            div.classList.remove('drag-over');
+            const from = parseInt(e.dataTransfer.getData('text/plain'), 10);
+            const to = index;
+            if (isNaN(from) || from === to) return;
+
+            if (kind === 'existing') {
+                this.moveExistingImage(from, to);
+            } else {
+                this.moveNewImage(from, to);
+            }
+        });
     },
 
-    getFinalPublicIds() {
-        return existingPublicIds;
+    // ── Reorder existing ──────────────────────────────────────
+    moveExistingImage(from, to) {
+        if (from === to || from < 0 || to < 0) return;
+        if (from >= existingImages.length || to >= existingImages.length) return;
+
+        const [movedUrl] = existingImages.splice(from, 1);
+        existingImages.splice(to, 0, movedUrl);
+
+        // Keep publicIds aligned if same length
+        if (existingPublicIds.length === existingImages.length) {
+            const [movedId] = existingPublicIds.splice(from, 1);
+            existingPublicIds.splice(to, 0, movedId);
+        }
+
+        this.displayExistingImages(existingImages, existingPublicIds);
     },
 
-    hasNewImages() {
-        return this.selectedImages.length > 0;
+    // ── Reorder new (pending uploads) ─────────────────────────
+    moveNewImage(from, to) {
+        if (from === to || from < 0 || to < 0) return;
+        if (from >= this.selectedImages.length || to >= this.selectedImages.length) return;
+
+        const [moved] = this.selectedImages.splice(from, 1);
+        this.selectedImages.splice(to, 0, moved);
+
+        this.syncInput();
+        this.previewNewImages();
     },
 
-    getNewImages() {
-        return this.selectedImages;
-    }
+    getFinalImages() { return existingImages; },
+    getFinalPublicIds() { return existingPublicIds; },
+    hasNewImages() { return this.selectedImages.length > 0; },
+    getNewImages() { return this.selectedImages; }
 };
 
 // =========================

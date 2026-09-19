@@ -846,12 +846,17 @@ const FormManager = {
     ImageManager.selectedImages = [];
 
     // ── Reset listing type to default ──
+       // ── Reset listing type to default ──
     document.getElementById('listingType').value = 'sale';
     document.getElementById('isAirbnb').value = 'false';
     document.querySelectorAll('.transaction-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.dataset.transaction === 'sale') btn.classList.add('active');
     });
+
+    // ── Clear contact phone override ───────────────────────────
+    const contactPhoneEl = document.getElementById('contactPhone');
+    if (contactPhoneEl) contactPhoneEl.value = '';
 
     // ── Reset features ──
     document.getElementById('features').value = '[]';
@@ -904,11 +909,13 @@ const FormManager = {
         document.getElementById('size').value = property.size || '';
         document.getElementById('bathrooms').value = property.bathrooms || 0;
         document.getElementById('parking').value = property.parking || 0;
-        document.getElementById('status').value = property.status || 'available';
-        // ── SEO fields ──────────────────────────────────────────────
+       document.getElementById('status').value = property.status || 'available';
+// ── SEO fields ──────────────────────────────────────────────
 document.getElementById('seoTitle').value        = property.seo_title        || '';
 document.getElementById('metaDescription').value = property.meta_description || '';
 document.getElementById('whyRent').value         = property.why_rent         || '';
+// ── Contact override ────────────────────────────────────────
+document.getElementById('contactPhone').value    = property.contactPhone     || '';
 
         const listingType = property.listingType || 'sale';
         const isAirbnb = property.isAirbnb || false;
@@ -1697,6 +1704,8 @@ async function handleFormSubmit(e) {
   formData.append('meta_description', document.getElementById('metaDescription')?.value.trim() || '');
   formData.append('why_rent',         document.getElementById('whyRent')?.value.trim()         || '');
 
+  // ── Contact override (per-listing) ─────────────────────────
+  formData.append('contactPhone', document.getElementById('contactPhone')?.value.trim() || '');
   // ── Computed availability fields ──
   formData.append('available_for', availableFor);
   formData.append('rental_type', rentalType);

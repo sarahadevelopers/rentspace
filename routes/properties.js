@@ -424,12 +424,13 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
     console.log('📥 Incoming property data:', Object.keys(req.body));
     console.log('👤 User plan:', req.user.subscriptionPlan, '| expiry:', req.user.subscriptionExpiry);
 
-    const {
-      title, listingType, estate, county, price,
-      bedrooms, bathrooms, parking, sqft, description, amenities,
-      propertyType, size, status, available_for, rental_type,
-      seo_title, meta_description, why_rent
-    } = req.body;
+  const {
+  title, listingType, estate, county, price,
+  bedrooms, bathrooms, parking, sqft, description, amenities,
+  propertyType, size, status, available_for, rental_type,
+  seo_title, meta_description, why_rent,
+  contactPhone   // ← added
+} = req.body;
 
     // ── 1. Required fields ──────────────────────────────────────
     if (!title || !listingType || !estate || !price || !description) {
@@ -539,7 +540,7 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
     }
 
     // ── 8. Build property object ────────────────────────────────
-    const propertyData = {
+      const propertyData = {
       ownerId: req.user._id,
       title: cleanTitle,
       slug,
@@ -564,7 +565,9 @@ router.post('/', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), asyn
       // ── SEO fields ────────────────────────────────────────────
       seo_title:        cleanSeoTitle,
       meta_description: cleanMetaDescription,
-      why_rent:         cleanWhyRent
+      why_rent:         cleanWhyRent,
+      // ── Contact override ──────────────────────────────────────
+      contactPhone:     contactPhone ? String(contactPhone).trim() : ''
     };
 
     const property = await Property.create(propertyData);
@@ -600,13 +603,14 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
     }
 
     // ── Whitelist of updatable fields ──────────────────────────
-    const UPDATABLE_FIELDS = [
-      'title', 'listingType', 'estate', 'county', 'price',
-      'bedrooms', 'bathrooms', 'parking', 'sqft', 'size',
-      'description', 'propertyType', 'available_for', 'rental_type',
-      'isAirbnb',
-      'seo_title', 'meta_description', 'why_rent'
-    ];
+   const UPDATABLE_FIELDS = [
+  'title', 'listingType', 'estate', 'county', 'price',
+  'bedrooms', 'bathrooms', 'parking', 'sqft', 'size',
+  'description', 'propertyType', 'available_for', 'rental_type',
+  'isAirbnb',
+  'seo_title', 'meta_description', 'why_rent',
+  'contactPhone'   // ← added
+];
 
     const updateData = {};
     for (const field of UPDATABLE_FIELDS) {
@@ -655,11 +659,16 @@ router.put('/:id', authMiddleware, upload.array('images', LIMITS.IMAGES_MAX), as
         return res.status(400).json({ success: false, error: 'Meta description too long (max 160 chars)' });
       }
     }
-    if (updateData.why_rent !== undefined) {
+     if (updateData.why_rent !== undefined) {
       updateData.why_rent = String(updateData.why_rent).trim();
       if (updateData.why_rent.length > 2000) {
         return res.status(400).json({ success: false, error: 'Why-rent section too long (max 2000 chars)' });
       }
+    }
+
+    // ── contactPhone sanitisation ───────────────────────────────
+    if (updateData.contactPhone !== undefined) {
+      updateData.contactPhone = String(updateData.contactPhone).trim().slice(0, 20);
     }
 
     // ── Price validation ────────────────────────────────────────

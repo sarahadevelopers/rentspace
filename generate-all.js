@@ -1,9 +1,9 @@
 // =============================================
 // generate-all.js — Unified generator (MongoDB source of truth)
 // =============================================
-// Reads properties from MongoDB, renders static HTML pages for
-// rentals (/property/) and Airbnbs (/airbnb/), refreshes sitemap.xml,
-// and submits new/changed URLs to the Google Indexing API.
+// Reads properties from MongoDB, joins with User for owner contact info,
+// renders static HTML pages for rentals (/property/) and Airbnbs (/airbnb/),
+// refreshes sitemap.xml, and submits new/changed URLs to the Google Indexing API.
 // =============================================
 require('dotenv').config();
 const fs = require('fs');
@@ -18,6 +18,12 @@ const RENTAL_OUTPUT_DIR     = path.join(__dirname, 'property');
 const AIRBNB_OUTPUT_DIR     = path.join(__dirname, 'airbnb');
 const SITEMAP_PATH          = path.join(__dirname, 'sitemap.xml');
 const BASE_URL              = 'https://rentspace.co.ke';
+
+// Fallback contact info when neither property nor owner has a phone
+const FALLBACK_PHONE = '+254723562484';        // e.g. RentSpace admin line
+const FALLBACK_WHATSAPP = '254723562484';      // without the +
+const FALLBACK_EMAIL = 'info@rentspace.co.ke';
+const FALLBACK_NAME = 'RentSpace';
 
 // URLs collected during generation that need Google submission
 const urlsToSubmit = [];
@@ -36,6 +42,27 @@ function escapeHtml(str) {
     if (m === '>') return '&gt;';
     return m;
   });
+}
+
+// Normalise any phone format into two usable strings
+function normalizePhone(raw) {
+  if (!raw) return { tel: '', wa: '' };
+  // Strip everything except digits and a leading +
+  let cleaned = String(raw).replace(/[^\d+]/g, '');
+  // Remove leading +
+  cleaned = cleaned.replace(/^\+/, '');
+  // Convert 0XXXXXXXXX (10 digits) → 254XXXXXXXXX
+  if (cleaned.startsWith('0') && cleaned.length === 10) {
+    cleaned = '254' + cleaned.slice(1);
+  }
+  // If it doesn't start with 254 yet, prepend it
+  if (!cleaned.startsWith('254')) {
+    cleaned = '254' + cleaned;
+  }
+  // Basic length sanity check (Kenyan numbers are 12 digits total)
+  if (cleaned.length !== 12) return { tel: '', wa: '' };
+
+  return { tel: '+' + cleaned, wa: cleaned };
 }
 
 function getAltTextForThumbnail(idx, prop, isRental = true) {
@@ -108,6 +135,22 @@ function adaptMongoDoc(p) {
   };
 }
 
+// ─── Attach owner contact info to adapted property ────────────
+function attachOwnerInfo(adapted, propertyDoc, ownerMap) {
+  const owner = ownerMap[propertyDoc.ownerId?.toString()];
+
+  // Priority: per-property override → owner account phone → fallback
+  const rawPhone = propertyDoc.contactPhone || owner?.phone || '';
+  const { tel, wa } = normalizePhone(rawPhone);
+
+  adapted.ownerName     = owner?.name  || FALLBACK_NAME;
+  adapted.ownerPhone    = tel || FALLBACK_PHONE;
+  adapted.ownerWhatsapp = wa  || FALLBACK_WHATSAPP;
+  adapted.ownerEmail    = owner?.email || FALLBACK_EMAIL;
+
+  return adapted;
+}
+
 // ─── Rental page generator ────────────────────────────────────
 function generateRentalPages(rentals, airbnbs, rentalTemplate) {
   console.log('\n📝 Generating Rental Pages...');
@@ -144,6 +187,12 @@ function generateRentalPages(rentals, airbnbs, rentalTemplate) {
     page = page.replace(/\{\{sqft\}\}/g, prop.specs?.sqft || 800);
     page = page.replace(/\{\{encodedTitle\}\}/g, encodeURIComponent(prop.title));
     page = page.replace(/\{\{fumigationLink\}\}/g, prop.fumigationLink || 'https://fumigo.co.ke');
+
+    // ── Owner contact info ─────────────────────────────────────
+    page = page.replace(/\{\{ownerName\}\}/g,     escapeHtml(prop.ownerName || FALLBACK_NAME));
+    page = page.replace(/\{\{ownerPhone\}\}/g,    prop.ownerPhone || FALLBACK_PHONE);
+    page = page.replace(/\{\{ownerWhatsapp\}\}/g, prop.ownerWhatsapp || FALLBACK_WHATSAPP);
+    page = page.replace(/\{\{ownerEmail\}\}/g,    prop.ownerEmail || FALLBACK_EMAIL);
 
     const seoTitle  = prop.seo_title || `${prop.title} – KES ${prop.price?.toLocaleString()}/mo | RentSpace`;
     const metaDesc  = prop.meta_description || (prop.description || '').substring(0, 150);
@@ -275,6 +324,12 @@ function generateAirbnbPages(airbnbs, airbnbTemplate) {
     page = page.replace(/\{\{host_response_rate\}\}/g, prop.host_response_rate || 98);
     page = page.replace(/\{\{host_response_time\}\}/g, prop.host_response_time || 'within an hour');
     page = page.replace(/\{\{cancellation_policy\}\}/g, prop.cancellation_policy || 'Free cancellation for 48 hours');
+
+    // ── Owner contact info ─────────────────────────────────────
+    page = page.replace(/\{\{ownerName\}\}/g,     escapeHtml(prop.ownerName || FALLBACK_NAME));
+    page = page.replace(/\{\{ownerPhone\}\}/g,    prop.ownerPhone || FALLBACK_PHONE);
+    page = page.replace(/\{\{ownerWhatsapp\}\}/g, prop.ownerWhatsapp || FALLBACK_WHATSAPP);
+    page = page.replace(/\{\{ownerEmail\}\}/g,    prop.ownerEmail || FALLBACK_EMAIL);
 
     const seoTitle = prop.seo_title || `${prop.title} – KES ${nightlyRate}/night | RentSpace`;
     const metaDesc = prop.meta_description || (prop.description || '').substring(0, 150);
@@ -461,7 +516,7 @@ async function submitToGoogle(urls) {
 
   for (const url of urls) {
     try {
-      const res = await indexing.urlNotifications.publish({
+      await indexing.urlNotifications.publish({
         requestBody: { url, type: 'URL_UPDATED' }
       });
       ok++;
@@ -472,7 +527,6 @@ async function submitToGoogle(urls) {
       console.log(`   ❌ ${url} — ${msg}`);
     }
 
-    // Small delay to avoid rate limits (Google allows ~600/min, but be gentle)
     await new Promise(r => setTimeout(r, 500));
   }
 
@@ -497,11 +551,25 @@ async function main() {
   const airbnbTemplate = fs.readFileSync(AIRBNB_TEMPLATE_PATH, 'utf8');
 
   const Property = require('./models/Property');
+  const User     = require('./models/User');
+
   const raw = await Property.find({
     status: { $in: ['approved'] }
   }).lean();
 
-  const properties = raw.map(adaptMongoDoc);
+  // ── Fetch all owners in ONE query ────────────────────────────
+  const ownerIds = [...new Set(raw.map(p => p.ownerId).filter(Boolean).map(String))];
+  const owners = await User.find({ _id: { $in: ownerIds } })
+    .select('_id name phone email whatsapp')
+    .lean();
+  const ownerMap = {};
+  owners.forEach(o => { ownerMap[o._id.toString()] = o; });
+
+  // ── Attach owner contact info to each property ───────────────
+  const properties = raw.map(p => {
+    const adapted = adaptMongoDoc(p);
+    return attachOwnerInfo(adapted, p, ownerMap);
+  });
 
   const rentals = properties.filter(p =>
     p.rental_type === 'long_term' || (!p.price_night && p.available_for !== 'short_term')
@@ -519,7 +587,6 @@ async function main() {
   generateAirbnbPages(airbnbs, airbnbTemplate);
   generateSitemap(rentals, airbnbs);
 
-  // Submit only new/changed pages to Google
   await submitToGoogle(urlsToSubmit);
 
   await mongoose.disconnect();

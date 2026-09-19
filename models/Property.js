@@ -61,6 +61,15 @@ const propertySchema = new mongoose.Schema({
   images: [String],
   amenities: [String],
 
+  // ─── Contact override (optional) ────────────────────────────
+  // If empty, the property page uses the owner's account phone.
+  // If set, this phone appears on this listing's page instead.
+  contactPhone: {
+    type: String,
+    default: '',
+    trim: true
+  },
+
   // ─── SEO fields (optional — injected into meta tags) ───────
   seo_title: {
     type: String,

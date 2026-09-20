@@ -9,9 +9,6 @@
   <!-- Theme color for mobile browser bar -->
   <meta name="theme-color" content="#c5a059">
   
-  <!-- PWA Manifest -->
-  
-  
   <!-- Canonical URL -->
   <link rel="canonical" href="https://rentspace.co.ke/login.html" />
   
@@ -38,22 +35,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- PWA Service Worker Registration -->
-<script>
-  // ─── Kill-switch: unregister any service worker + clear caches ──
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(regs => {
-      regs.forEach(reg => reg.unregister());
-      if (regs.length > 0) {
-        caches.keys().then(names =>
-          Promise.all(names.map(n => caches.delete(n)))
-        ).then(() => location.reload());
-      }
-    });
-  }
-</script>
+  <!-- PWA Service Worker Kill-switch -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.unregister());
+        if (regs.length > 0) {
+          caches.keys().then(names =>
+            Promise.all(names.map(n => caches.delete(n)))
+          ).then(() => location.reload());
+        }
+      });
+    }
+  </script>
 
-<style>
+  <style>
     /* ─── Reset & Base ─── */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -229,6 +225,44 @@
     }
     .login-card .back-home a:hover { color: #c5a059; }
 
+    /* ─── Password Visibility Toggle ─── */
+    .password-input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    .password-input-wrapper input {
+      padding-right: 46px; /* room for the eye button */
+    }
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #888;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 6px;
+      line-height: 1;
+      border-radius: 6px;
+      transition: color 0.2s ease, background 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .password-toggle:hover {
+      color: #c5a059;
+      background: rgba(197, 160, 89, 0.08);
+    }
+    .password-toggle:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.3);
+    }
+    .password-toggle.active {
+      color: #c5a059;
+    }
+
     /* ─── Divider (OR) ─── */
     .divider {
       display: flex;
@@ -347,7 +381,12 @@
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" required placeholder="Enter your password">
+        <div class="password-input-wrapper">
+          <input type="password" id="password" required placeholder="Enter your password">
+          <button type="button" class="password-toggle" id="togglePassword" aria-label="Show password" tabindex="-1">
+            <i class="fas fa-eye" id="togglePasswordIcon"></i>
+          </button>
+        </div>
       </div>
 
       <div class="form-options">
@@ -392,8 +431,6 @@
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
-// ─── Google OAuth callback handler ──────────────────────────
-// Runs immediately on page load if URL has ?token=... from Google
 // ─── Google OAuth callback handler ──────────────────────────
 // Runs immediately on page load if URL has ?token=... from Google
 (function handleGoogleCallback() {
@@ -458,6 +495,25 @@
   }
 })();
 
+// ─── Password visibility toggle ──────────────────────────────
+(function initPasswordToggle() {
+  const toggleBtn = document.getElementById('togglePassword');
+  const toggleIcon = document.getElementById('togglePasswordIcon');
+  const passwordInput = document.getElementById('password');
+  if (!toggleBtn || !passwordInput) return;
+
+  toggleBtn.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    if (toggleIcon) {
+      toggleIcon.classList.toggle('fa-eye', !isPassword);
+      toggleIcon.classList.toggle('fa-eye-slash', isPassword);
+    }
+    toggleBtn.classList.toggle('active', isPassword);
+    toggleBtn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+  });
+})();
+
 // ─── Standard email/password login ──────────────────────────
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -516,11 +572,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   }
 });
 
-// Optional: add a manual test helper (visible in console)
-console.log('🔑 Login page ready – use the form above or test with:');
-console.log(
-  'fetch("https://rentspace-markeplace.onrender.com/api/auth/login", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({email:"info@rentspace.co.ke", password:"Admin123!"}) }).then(r=>r.json()).then(d=>console.log(d))'
-);
+// Login page ready
+console.log('🔑 Login page ready');
 </script>
 
 </body>

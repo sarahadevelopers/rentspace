@@ -1,3 +1,7 @@
+// ============================================
+// AIRBNB LISTING PAGE - COMPLETE FUNCTIONALITY
+// ============================================
+
 // ========== DYNAMIC PATH HELPER ==========
 const getBasePath = () => {
     if (window.location.hostname === 'sarahadevelopers.github.io') {
@@ -7,19 +11,20 @@ const getBasePath = () => {
 };
 const basePath = getBasePath();
 
-// API base URL – your live backend on Render
+// API base URL
 const API_BASE = 'https://rentspace-markeplace.onrender.com/api';
 
-// ========== AUTO-FILTER AIRBNB FROM URL ==========
+// ========== AUTO-FILTER FROM URL ==========
 function getLocationFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('location');
 }
 
-// Dynamic year
-document.getElementById('year').textContent = new Date().getFullYear();
+// Dynamic year (guarded)
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// ========== HAMBURGER MENU WITH OVERLAY ==========
+// ========== HAMBURGER MENU ==========
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.querySelector('.nav-links');
 const menuOverlay = document.getElementById('menuOverlay');
@@ -42,11 +47,8 @@ function openMenu() {
 if (hamburger) {
     hamburger.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (navMenu && navMenu.classList.contains('active')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
+        if (navMenu && navMenu.classList.contains('active')) closeMenu();
+        else openMenu();
     });
 }
 
@@ -60,7 +62,7 @@ window.addEventListener('resize', () => {
     if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) closeMenu();
 });
 
-// ========== MOBILE DROPDOWNS ==========
+// ========== MOBILE NAV DROPDOWNS ==========
 function initMobileDropdowns() {
     if (window.innerWidth > 768) return;
     document.querySelectorAll('.dropdown').forEach(dropdown => {
@@ -79,7 +81,7 @@ function initMobileDropdowns() {
     });
 }
 
-// ========== AIRBNB PROPERTIES VARIABLES ==========
+// ========== STATE ==========
 let allAirbnbProperties = [];
 let currentFilteredProperties = [];
 let currentPage = 1;
@@ -89,6 +91,60 @@ const itemsPerPage = 12;
 let currentLocationFilter = 'all';
 let currentPriceFilter = 'all';
 let currentGuestsFilter = 'all';
+
+// ========== ESCAPE HELPERS ==========
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+    });
+}
+
+function escapeAttr(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        if (m === '"') return '&quot;';
+        if (m === "'") return '&#39;';
+        return m;
+    });
+}
+
+// ========== DYNAMIC LOCATION DROPDOWN ==========
+// Rebuilds the location dropdown from real estate values in the API data.
+// Preserves the current selection if it still exists.
+function renderLocationDropdown() {
+    const dropdown = document.getElementById('locationDropdown');
+    if (!dropdown) return;
+
+    // Unique, sorted estate names from API data
+    const estates = [...new Set(
+        allAirbnbProperties
+            .map(p => p.estate ? String(p.estate).trim() : null)
+            .filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+
+    // If the current selection is gone, reset to 'all'
+    if (currentLocationFilter !== 'all' && !estates.includes(currentLocationFilter)) {
+        currentLocationFilter = 'all';
+    }
+
+    let html = `<div class="filter-option ${currentLocationFilter === 'all' ? 'active' : ''}" data-location="all">All Locations</div>`;
+    estates.forEach(name => {
+        const isActive = currentLocationFilter === name;
+        html += `<div class="filter-option ${isActive ? 'active' : ''}" data-location="${escapeAttr(name)}">${escapeHtml(name)}</div>`;
+    });
+
+    dropdown.innerHTML = html;
+
+    // Rebind click handlers to the newly-rendered options
+    bindLocationOptionClicks(dropdown);
+}
 
 // ========== FILTER FUNCTION ==========
 function applyAllFilters() {
@@ -112,7 +168,7 @@ function applyAllFilters() {
     }
 
     if (currentGuestsFilter !== 'all') {
-        const guestNum = parseInt(currentGuestsFilter);
+        const guestNum = parseInt(currentGuestsFilter, 10);
         filtered = filtered.filter(p => {
             const guestCapacity = (p.bedrooms || 1) * 2;
             if (currentGuestsFilter === '6') return guestCapacity >= 6;
@@ -133,6 +189,8 @@ function renderProperties(properties) {
     const grid = document.getElementById('propertyGrid');
     const paginationDiv = document.getElementById('pagination');
     const loadingSpinner = document.getElementById('loadingSpinner');
+    const emptyState = document.getElementById('emptyState');
+    const resultSpan = document.getElementById('countValue');
 
     if (!grid) return;
     if (loadingSpinner) loadingSpinner.style.display = 'none';
@@ -140,17 +198,13 @@ function renderProperties(properties) {
     if (!properties || properties.length === 0) {
         grid.style.display = 'none';
         if (paginationDiv) paginationDiv.style.display = 'none';
-        const emptyState = document.getElementById('emptyState');
         if (emptyState) emptyState.style.display = 'block';
-        const resultSpan = document.getElementById('countValue');
         if (resultSpan) resultSpan.textContent = '0';
         return;
     }
 
     grid.style.display = 'grid';
-    const emptyState = document.getElementById('emptyState');
     if (emptyState) emptyState.style.display = 'none';
-    const resultSpan = document.getElementById('countValue');
     if (resultSpan) resultSpan.textContent = properties.length;
 
     const start = (currentPage - 1) * itemsPerPage;
@@ -159,13 +213,14 @@ function renderProperties(properties) {
     const totalPages = Math.ceil(properties.length / itemsPerPage);
 
     grid.innerHTML = paginated.map(prop => {
-        // Airbnb prices are nightly — `price` IS the nightly rate
         const nightPrice = Number(prop.price) || 0;
         const rating = prop.airbnb_rating || '4.9';
         const reviews = prop.airbnb_reviews || 25;
         const imageUrl = prop.images?.[0] || `${basePath}/images/placeholder.jpg`;
+        const bedrooms = prop.bedrooms || 0;
+        const bathrooms = prop.bathrooms || 0;
 
-        // ─── SUBSCRIPTION BADGE ───────────────────────────────
+        // ─── Subscription badge ───
         const plan = prop.ownerSubscriptionPlan || 'free';
         const badgeConfig = {
             basic:     { label: 'Silver',   color: '#c0c0c0', icon: 'fa-gem',   className: 'badge-silver' },
@@ -180,35 +235,36 @@ function renderProperties(properties) {
         ` : '';
 
         return `
-    <a href="${basePath}/airbnb/${prop.slug}.html" class="property-card">
-        <div class="card-image-wrapper">
-            ${premiumBadgeHTML}
-            <img class="card-image" src="${imageUrl}" alt="${escapeAttr(prop.title)}" loading="lazy" onerror="this.src='${basePath}/images/placeholder.jpg'">
-            <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
-            <div class="card-price">KES ${nightPrice.toLocaleString()}<span>/night</span></div>
-        </div>
-        <div class="card-info">
-            <h3 class="card-title">${escapeHtml(prop.title)}</h3>
-            <div class="card-location">
-                <i class="fas fa-map-marker-alt"></i>
-                ${escapeHtml(prop.estate || 'Nairobi')}
-            </div>
-            <div class="card-features">
-                <span><i class="fas fa-bed"></i> ${prop.bedrooms || 0} bed${(prop.bedrooms || 0) !== 1 ? 's' : ''}</span>
-                <span><i class="fas fa-bath"></i> ${prop.bathrooms || 0} bath${(prop.bathrooms || 0) !== 1 ? 's' : ''}</span>
-                <span><i class="fas fa-users"></i> ${(prop.bedrooms || 1) * 2} guests</span>
-            </div>
-            <div class="card-rating">
-                <i class="fas fa-star"></i>
-                <span>${rating}</span>
-                <span class="reviews">(${reviews} reviews)</span>
-            </div>
-            <div class="card-cta">Book Now →</div>
-        </div>
-    </a>
-`;
+            <a href="${basePath}/airbnb/${escapeAttr(prop.slug)}.html" class="property-card">
+                <div class="card-image-wrapper">
+                    ${premiumBadgeHTML}
+                    <img class="card-image" src="${escapeAttr(imageUrl)}" alt="${escapeAttr(prop.title)}" loading="lazy" onerror="this.src='${basePath}/images/placeholder.jpg'">
+                    <div class="card-badge"><i class="fab fa-airbnb"></i> Short-stay</div>
+                    <div class="card-price">KES ${nightPrice.toLocaleString()}<span>/night</span></div>
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">${escapeHtml(prop.title)}</h3>
+                    <div class="card-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${escapeHtml(prop.estate || 'Nairobi')}
+                    </div>
+                    <div class="card-features">
+                        <span><i class="fas fa-bed"></i> ${bedrooms} bed${bedrooms !== 1 ? 's' : ''}</span>
+                        <span><i class="fas fa-bath"></i> ${bathrooms} bath${bathrooms !== 1 ? 's' : ''}</span>
+                        <span><i class="fas fa-users"></i> ${(bedrooms || 1) * 2} guests</span>
+                    </div>
+                    <div class="card-rating">
+                        <i class="fas fa-star"></i>
+                        <span>${escapeHtml(rating)}</span>
+                        <span class="reviews">(${reviews} reviews)</span>
+                    </div>
+                    <div class="card-cta">Book Now →</div>
+                </div>
+            </a>
+        `;
     }).join('');
 
+    // ─── Pagination ───
     if (totalPages <= 1) {
         if (paginationDiv) paginationDiv.style.display = 'none';
         return;
@@ -235,7 +291,7 @@ function renderProperties(properties) {
         document.querySelectorAll('.page-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const page = parseInt(link.dataset.page);
+                const page = parseInt(link.dataset.page, 10);
                 if (!isNaN(page)) {
                     currentPage = page;
                     renderProperties(currentFilteredProperties);
@@ -246,33 +302,17 @@ function renderProperties(properties) {
     }
 }
 
-// ========== ESCAPE HELPERS ==========
-function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        return m;
-    });
-}
-
-function escapeAttr(str) {
-    if (!str) return '';
-    return str.replace(/[&<>"']/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        if (m === '"') return '&quot;';
-        if (m === "'") return '&#39;';
-        return m;
-    });
-}
-
 // ========== FILTER DROPDOWN HANDLERS ==========
 function initFilterDropdowns() {
     const locationBtn = document.getElementById('filterLocationBtn');
     const locationDropdown = document.getElementById('locationDropdown');
+    const priceBtn = document.getElementById('filterPriceBtn');
+    const priceDropdown = document.getElementById('priceDropdown');
+    const guestsBtn = document.getElementById('filterGuestsBtn');
+    const guestsDropdown = document.getElementById('guestsDropdown');
+    const resetBtn = document.getElementById('resetFiltersBtn');
+
+    // Location
     if (locationBtn) {
         locationBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -281,19 +321,9 @@ function initFilterDropdowns() {
             locationBtn.classList.toggle('active');
         });
     }
+    // Option clicks are bound by renderLocationDropdown() after each rebuild
 
-    document.querySelectorAll('#locationDropdown .filter-option').forEach(opt => {
-        opt.addEventListener('click', () => {
-            currentLocationFilter = opt.dataset.location;
-            updateFilterButtonText('filterLocationBtn', currentLocationFilter === 'all' ? 'Location' : currentLocationFilter);
-            applyAllFilters();
-            if (locationDropdown) locationDropdown.classList.remove('show');
-            if (locationBtn) locationBtn.classList.remove('active');
-        });
-    });
-
-    const priceBtn = document.getElementById('filterPriceBtn');
-    const priceDropdown = document.getElementById('priceDropdown');
+    // Price
     if (priceBtn) {
         priceBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -302,11 +332,10 @@ function initFilterDropdowns() {
             priceBtn.classList.toggle('active');
         });
     }
-
     document.querySelectorAll('#priceDropdown .filter-option').forEach(opt => {
         opt.addEventListener('click', () => {
             currentPriceFilter = opt.dataset.price;
-            const displayText = opt.textContent;
+            const displayText = opt.textContent.trim();
             updateFilterButtonText('filterPriceBtn', displayText === 'All Prices' ? 'Price Range' : displayText);
             applyAllFilters();
             if (priceDropdown) priceDropdown.classList.remove('show');
@@ -314,8 +343,7 @@ function initFilterDropdowns() {
         });
     });
 
-    const guestsBtn = document.getElementById('filterGuestsBtn');
-    const guestsDropdown = document.getElementById('guestsDropdown');
+    // Guests
     if (guestsBtn) {
         guestsBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -324,11 +352,10 @@ function initFilterDropdowns() {
             guestsBtn.classList.toggle('active');
         });
     }
-
     document.querySelectorAll('#guestsDropdown .filter-option').forEach(opt => {
         opt.addEventListener('click', () => {
             currentGuestsFilter = opt.dataset.guests;
-            const displayText = opt.textContent;
+            const displayText = opt.textContent.trim();
             updateFilterButtonText('filterGuestsBtn', displayText === 'Any Guests' ? 'Guests' : displayText);
             applyAllFilters();
             if (guestsDropdown) guestsDropdown.classList.remove('show');
@@ -336,7 +363,7 @@ function initFilterDropdowns() {
         });
     });
 
-    const resetBtn = document.getElementById('resetFiltersBtn');
+    // Reset
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
             currentLocationFilter = 'all';
@@ -345,13 +372,46 @@ function initFilterDropdowns() {
             updateFilterButtonText('filterLocationBtn', 'Location');
             updateFilterButtonText('filterPriceBtn', 'Price Range');
             updateFilterButtonText('filterGuestsBtn', 'Guests');
+
+            // Mark 'All' options active in dropdowns
+            document.querySelectorAll('#locationDropdown .filter-option').forEach(o => {
+                o.classList.toggle('active', o.dataset.location === 'all');
+            });
+            document.querySelectorAll('#priceDropdown .filter-option').forEach(o => {
+                o.classList.toggle('active', o.dataset.price === 'all');
+            });
+            document.querySelectorAll('#guestsDropdown .filter-option').forEach(o => {
+                o.classList.toggle('active', o.dataset.guests === 'all');
+            });
+
             applyAllFilters();
             closeAllDropdowns();
         });
     }
 
+    // Click-outside closes all dropdowns
     document.addEventListener('click', () => {
         closeAllDropdowns();
+    });
+}
+
+// Binds click handlers to location options — call after every rebuild
+function bindLocationOptionClicks(dropdown) {
+    const locationBtn = document.getElementById('filterLocationBtn');
+    dropdown.querySelectorAll('.filter-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            currentLocationFilter = opt.dataset.location;
+            updateFilterButtonText(
+                'filterLocationBtn',
+                currentLocationFilter === 'all' ? 'Location' : currentLocationFilter
+            );
+            // Update active state
+            dropdown.querySelectorAll('.filter-option').forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+            applyAllFilters();
+            dropdown.classList.remove('show');
+            if (locationBtn) locationBtn.classList.remove('active');
+        });
     });
 }
 
@@ -363,11 +423,11 @@ function closeAllDropdowns() {
 function updateFilterButtonText(btnId, text) {
     const btn = document.getElementById(btnId);
     if (btn) {
-        btn.innerHTML = `${text} <i class="fas fa-chevron-down"></i>`;
+        btn.innerHTML = `${escapeHtml(text)} <i class="fas fa-chevron-down"></i>`;
     }
 }
 
-// ========== LOAD AIRBNB PROPERTIES FROM RENDER API ==========
+// ========== LOAD PROPERTIES ==========
 async function loadAirbnbProperties() {
     const loadingSpinner = document.getElementById('loadingSpinner');
     const propertyGrid = document.getElementById('propertyGrid');
@@ -382,10 +442,25 @@ async function loadAirbnbProperties() {
 
         console.log(`✅ Found ${allAirbnbProperties.length} Airbnb properties from API`);
 
+        // Build dynamic location dropdown from real data
+        renderLocationDropdown();
+
+        // Apply URL filter if present
         const locationFromURL = getLocationFromURL();
         if (locationFromURL) {
-            currentLocationFilter = locationFromURL;
-            updateFilterButtonText('filterLocationBtn', locationFromURL);
+            const match = [...new Set(allAirbnbProperties.map(p => p.estate))]
+                .find(e => e && e.toLowerCase() === locationFromURL.toLowerCase());
+            if (match) {
+                currentLocationFilter = match;
+                updateFilterButtonText('filterLocationBtn', match);
+                // Mark the matching option as active
+                const dropdown = document.getElementById('locationDropdown');
+                if (dropdown) {
+                    dropdown.querySelectorAll('.filter-option').forEach(o => {
+                        o.classList.toggle('active', o.dataset.location === match);
+                    });
+                }
+            }
         }
 
         applyAllFilters();
@@ -408,6 +483,7 @@ async function loadAirbnbProperties() {
 }
 
 // ========== LOCATION QUICK NAVIGATION ==========
+// Handles clicks on any element with class `.location-nav-link` (if used)
 function initLocationNav() {
     const locationLinks = document.querySelectorAll('.location-nav-link');
     locationLinks.forEach(link => {
@@ -430,7 +506,7 @@ function initLocationNav() {
 function initCloseMenuOnOutsideClick() {
     document.addEventListener('click', (e) => {
         if (navMenu && navMenu.classList.contains('active')) {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            if (hamburger && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                 closeMenu();
             }
         }

@@ -7,21 +7,14 @@
   <title>Land for Sale | RentSpace</title>
   <meta name="description" content="Find residential and commercial land for sale in Kitengela, Syokimau, Karen, and Nairobi. Prime plots for your dream home or investment.">
   
-  <!-- Theme color for mobile browser bar -->
   <meta name="theme-color" content="#c5a059">
   
-  <!-- PWA Manifest -->
-  
-  
-  <!-- Canonical URL -->
   <link rel="canonical" href="https://rentspace.co.ke/land.html" />
   
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/RentSpace-favicon.webp">
   <link rel="icon" type="image/png" sizes="16x16" href="images/RentSpace-favicon.webp">
   <link rel="apple-touch-icon" sizes="180x180" href="images/RentSpace-favicon.webp">
   
-  <!-- Open Graph (Facebook, LinkedIn) -->
   <meta property="og:title" content="Land for Sale | RentSpace">
   <meta property="og:description" content="Explore prime residential and commercial land for sale in Nairobi's best locations. Find your perfect plot in Kitengela, Syokimau, Karen, and beyond.">
   <meta property="og:image" content="https://rentspace.co.ke/images/og-image.jpg">
@@ -30,11 +23,9 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rentspace.co.ke/land.html">
   
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://rentspace.co.ke/images/og-image.jpg">
   
-  <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -42,21 +33,19 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/rentals.css">
   
-  <!-- PWA Service Worker Registration -->
- <script>
-  // ─── Kill-switch: unregister any service worker + clear caches ──
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(regs => {
-      regs.forEach(reg => reg.unregister());
-      if (regs.length > 0) {
-        caches.keys().then(names =>
-          Promise.all(names.map(n => caches.delete(n)))
-        ).then(() => location.reload());
-      }
-    });
-  }
-</script>
-</head>
+  <!-- PWA Service Worker Kill-switch -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.unregister());
+        if (regs.length > 0) {
+          caches.keys().then(names =>
+            Promise.all(names.map(n => caches.delete(n)))
+          ).then(() => location.reload());
+        }
+      });
+    }
+  </script>
 
   <style>
     /* ===== FLOATING WHATSAPP SUPPORT (DESKTOP ONLY) ===== */
@@ -89,73 +78,95 @@
       color: #fff;
     }
 
-    /* Hide on mobile (max-width: 767px) */
     @media (max-width: 767px) {
       .whatsapp-float {
         display: none !important;
       }
+    }
+
+    /* ===== MOBILE BOTTOM NAV — SUPPORT GREEN ===== */
+    .mobile-bottom-nav .support-link {
+      color: #25D366 !important;
+      font-weight: 600;
+    }
+    .mobile-bottom-nav .support-link i {
+      color: #25D366 !important;
+      text-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+    }
+    .mobile-bottom-nav .support-link:active {
+      color: #1ebe5c !important;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ===== EXECUTIVE NAVBAR (CLEAN & PREMIUM) ===== -->
- <!-- ===== EXECUTIVE NAVBAR (UPDATED WITH CTAs) ===== -->
-<nav class="exec-nav">
-  <a href="index.html" class="nav-logo">Rent<span>Space</span></a>
+  <!-- ===== EXECUTIVE NAVBAR ===== -->
+  <nav class="exec-nav">
+    <a href="index.html" class="nav-logo">Rent<span>Space</span><sup class="r-sup">®</sup></a>
 
-  <ul class="nav-links">
-    
-    <!-- FOR SALE -->
-    <li class="dropdown">
-      <a href="sale.html" class="dropdown-trigger">For Sale <i class="fas fa-chevron-down"></i></a>
-      <ul class="dropdown-menu">
-        <li><a href="sale.html">All For Sale</a></li>
-        <li><a href="sale.html?type=apartment">Apartments</a></li>
-        <li><a href="sale.html?type=bungalow">Bungalows</a></li>
-        <li><a href="sale.html?type=maisonette">Maisonettes</a></li>
-        <li><a href="sale.html?type=villa">Villas</a></li>
-      </ul>
-    </li>
+    <ul class="nav-links">
+      
+      <!-- FOR SALE -->
+      <li class="dropdown">
+        <a href="sale.html" class="dropdown-trigger">For Sale <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="sale.html">All For Sale</a></li>
+          <li><a href="sale.html?type=apartment">Apartments</a></li>
+          <li><a href="sale.html?type=bungalow">Bungalows</a></li>
+          <li><a href="sale.html?type=maisonette">Maisonettes</a></li>
+          <li><a href="sale.html?type=villa">Villas</a></li>
+        </ul>
+      </li>
 
-    <!-- FOR RENT -->
-    <li class="dropdown">
-      <a href="rentals.html" class="dropdown-trigger">For Rent <i class="fas fa-chevron-down"></i></a>
-      <ul class="dropdown-menu">
-        <li><a href="rentals.html">All Rentals</a></li>
-        <li><a href="rentals.html?type=apartment">Apartments</a></li>
-        <li><a href="rentals.html?type=bungalow">Bungalows</a></li>
-        <li><a href="rentals.html?type=maisonette">Maisonettes</a></li>
-        <li><a href="rentals.html?type=studio">Studios</a></li>
-      </ul>
-    </li>
+      <!-- FOR RENT -->
+      <li class="dropdown">
+        <a href="rentals.html" class="dropdown-trigger">For Rent <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="rentals.html">All Rentals</a></li>
+          <li><a href="rentals.html?type=apartment">Apartments</a></li>
+          <li><a href="rentals.html?type=bungalow">Bungalows</a></li>
+          <li><a href="rentals.html?type=maisonette">Maisonettes</a></li>
+          <li><a href="rentals.html?type=studio">Studios</a></li>
+        </ul>
+      </li>
 
-    <!-- LAND (Active) -->
-    <li class="dropdown">
-      <a href="land.html" class="dropdown-trigger active">Land <i class="fas fa-chevron-down"></i></a>
-      <ul class="dropdown-menu">
-        <li><a href="land.html">All Land</a></li>
-        <li><a href="land.html?type=land-res">Residential</a></li>
-        <li><a href="land.html?type=land-comm">Commercial</a></li>
-        <li><a href="land.html?type=ranch">Agricultural</a></li>
-      </ul>
-    </li>
+      <!-- LAND (Active) -->
+      <li class="dropdown">
+        <a href="land.html" class="dropdown-trigger active">Land <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="land.html">All Land</a></li>
+          <li><a href="land.html?type=land-res">Residential</a></li>
+          <li><a href="land.html?type=land-comm">Commercial</a></li>
+          <li><a href="land.html?type=ranch">Agricultural</a></li>
+        </ul>
+      </li>
 
-    <!-- AIRBNB -->
-    <li class="dropdown">
-      <a href="airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
-      <ul class="dropdown-menu">
-        <li><a href="airbnb.html">All Bnbs</a></li>
-        <li><a href="airbnb.html?type=studio">Studio</a></li>
-        <li><a href="airbnb.html?type=1-bedroom">1 Bedroom</a></li>
-        <li><a href="airbnb.html?type=2-bedroom">2 Bedroom</a></li>
-        <li><a href="airbnb.html?type=executive">Executive</a></li>
-      </ul>
-    </li>
+      <!-- AIRBNB -->
+      <li class="dropdown">
+        <a href="airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="airbnb.html">All Bnbs</a></li>
+          <li><a href="airbnb.html?type=studio">Studio</a></li>
+          <li><a href="airbnb.html?type=1-bedroom">1 Bedroom</a></li>
+          <li><a href="airbnb.html?type=2-bedroom">2 Bedroom</a></li>
+          <li><a href="airbnb.html?type=executive">Executive</a></li>
+        </ul>
+      </li>
 
-    <!-- ===== MOBILE CTAs (Inside Nav Links) ===== -->
-    <div class="nav-actions">
+      <!-- ===== MOBILE CTAs ===== -->
+      <div class="nav-actions">
+        <a href="login.html?redirect=dashboard" class="nav-cta-primary">
+          <i class="fas fa-plus-circle"></i> Create Listing
+        </a>
+        <a href="login.html" class="nav-auth">Log In</a>
+        <a href="signup.html" class="nav-cta-secondary">Sign Up</a>
+      </div>
+
+    </ul>
+
+    <!-- ===== DESKTOP CTAs ===== -->
+    <div class="nav-actions-desktop">
       <a href="login.html?redirect=dashboard" class="nav-cta-primary">
         <i class="fas fa-plus-circle"></i> Create Listing
       </a>
@@ -163,26 +174,12 @@
       <a href="signup.html" class="nav-cta-secondary">Sign Up</a>
     </div>
 
-  </ul>
-
-  <!-- ===== DESKTOP CTAs (Outside Nav Links) ===== -->
-  <div class="nav-actions-desktop">
-    <a href="login.html?redirect=dashboard" class="nav-cta-primary">
-      <i class="fas fa-plus-circle"></i> Create Listing
-    </a>
-    <a href="login.html" class="nav-auth">Log In</a>
-    <a href="signup.html" class="nav-cta-secondary">Sign Up</a>
-  </div>
-
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-</nav>
-
-<!-- Overlay for closing menu -->
-<div class="menu-overlay" id="menuOverlay"></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
 
   <!-- Overlay for closing menu -->
   <div class="menu-overlay" id="menuOverlay"></div>
@@ -206,7 +203,7 @@
 
   <!-- ===== FILTER STRIP ===== -->
   <div class="filter-strip">
-    <button class="filter-btn" id="filterNeighborhoodBtn">Location <i class="fas fa-chevron-down"></i></button>
+    <button class="filter-btn" id="filterNeighborhoodBtn">Neighborhood <i class="fas fa-chevron-down"></i></button>
     <button class="filter-btn" id="filterTypeBtn">Land Type <i class="fas fa-chevron-down"></i></button>
     <button class="filter-btn" id="filterBudgetBtn">Budget <i class="fas fa-chevron-down"></i></button>
     <button class="filter-btn refine-btn" id="openDrawerBtn"><i class="fas fa-sliders-h"></i> Refine Search</button>
@@ -249,12 +246,6 @@
       <span class="filter-section-label">Neighborhood</span>
       <div class="filter-chips" id="neighborhoodChips">
         <div class="filter-chip active" data-value="all">All Estates</div>
-        <div class="filter-chip" data-value="Karen">Karen</div>
-        <div class="filter-chip" data-value="Kilimani">Kilimani</div>
-        <div class="filter-chip" data-value="Hurlingham">Hurlingham</div>
-        <div class="filter-chip" data-value="Syokimau">Syokimau</div>
-        <div class="filter-chip" data-value="Ngong">Ngong</div>
-        <div class="filter-chip" data-value="Kitengela">Kitengela</div>
       </div>
     </div>
 
@@ -262,20 +253,32 @@
       <span class="filter-section-label">Land Type</span>
       <div class="filter-chips" id="typeChips">
         <div class="filter-chip active" data-value="all">All Types</div>
-        <div class="filter-chip" data-value="land-res">Residential</div>
-        <div class="filter-chip" data-value="land-comm">Commercial</div>
-        <div class="filter-chip" data-value="ranch">Agricultural / Ranch</div>
       </div>
     </div>
 
     <div class="filter-section">
-      <span class="filter-section-label">Budget</span>
-      <div class="price-range">
-        <input type="range" id="priceRange" min="0" max="100000000" step="500000" value="100000000">
-        <div class="price-values">
-          <span>KES 0</span>
-          <span id="maxPriceLabel">KES 100M+</span>
-        </div>
+      <span class="filter-section-label">Budget (Land Price)</span>
+
+      <!-- Land-scale quick-pick brackets -->
+      <div class="price-presets" id="pricePresets">
+        <button type="button" class="price-preset" data-min="0"         data-max="500000">Under 500K</button>
+        <button type="button" class="price-preset" data-min="500000"    data-max="2000000">500K – 2M</button>
+        <button type="button" class="price-preset" data-min="2000000"   data-max="5000000">2M – 5M</button>
+        <button type="button" class="price-preset" data-min="5000000"   data-max="20000000">5M – 20M</button>
+        <button type="button" class="price-preset" data-min="20000000"  data-max="100000000">20M+</button>
+      </div>
+
+      <!-- Dual-thumb slider, land scale -->
+      <div class="dual-slider" id="dualSlider">
+        <div class="dual-slider-rail"></div>
+        <div class="dual-slider-fill" id="priceFill"></div>
+        <input type="range" id="priceMin" min="0" max="100000000" step="1000000" value="0" aria-label="Minimum price">
+        <input type="range" id="priceMax" min="0" max="100000000" step="1000000" value="100000000" aria-label="Maximum price">
+      </div>
+
+      <div class="price-values">
+        <span id="minPriceLabel">KES 0</span>
+        <span id="maxPriceLabel">KES 100M+</span>
       </div>
     </div>
 
@@ -331,7 +334,7 @@
     </div>
   </footer>
 
-  <!-- ===== FLOATING WHATSAPP SUPPORT BUTTON (DESKTOP ONLY) ===== -->
+  <!-- ===== FLOATING WHATSAPP SUPPORT (DESKTOP ONLY) ===== -->
   <a href="https://wa.me/254723562484" target="_blank" class="whatsapp-float" aria-label="Chat with support on WhatsApp">
     <i class="fab fa-whatsapp"></i>
     <span>Chat with Support</span>
@@ -344,11 +347,8 @@
     <a href="rentals.html"><i class="fas fa-home"></i> Rent</a>
     <a href="land.html" class="active"><i class="fas fa-map-pin"></i> Land</a>
     <a href="airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
-    <a href="https://wa.me/254723562484" class="support-link" style="color: #25D366;"><i class="fab fa-whatsapp"></i> Support</a>
+    <a href="https://wa.me/254723562484" class="support-link"><i class="fab fa-whatsapp"></i> Support</a>
   </div>
-  
- 
-
 
   <script src="js/land.js"></script>
 </body>

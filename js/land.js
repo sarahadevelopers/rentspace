@@ -2,16 +2,21 @@
 // LAND PORTAL - COMPLETE FUNCTIONALITY
 // ============================================
 
+// ========== SLIDER CONFIG ==========
+// Land prices run highest of the three portals
+const PRICE_CEILING = 100000000;   // 100M
+const PRICE_STEP = 1000000;        // 1M
+
 // ========== DYNAMIC PATH HELPER ==========
 const getBasePath = () => {
     if (window.location.hostname === 'sarahadevelopers.github.io') {
         return '/rentspace-markeplace';
     }
-    return ''; // for rentspace.co.ke
+    return '';
 };
 const basePath = getBasePath();
 
-// ========== AUTO-FILTER FROM URL PARAMETERS ==========
+// ========== AUTO-FILTER FROM URL ==========
 function getLocationFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const location = urlParams.get('location');
@@ -24,7 +29,7 @@ function getLocationFromURL() {
 const yearSpan = document.getElementById('year');
 if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-// ========== HAMBURGER MENU TOGGLE ==========
+// ========== HAMBURGER MENU ==========
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.querySelector('.nav-links');
 const menuOverlay = document.getElementById('menuOverlay');
@@ -39,7 +44,6 @@ function closeMenu() {
     if (menuOverlay) menuOverlay.classList.remove('active');
     document.body.style.overflow = '';
 }
-
 function openMenu() {
     if (navMenu) navMenu.classList.add('active');
     if (hamburger) hamburger.classList.add('active');
@@ -50,35 +54,20 @@ function openMenu() {
 if (hamburger) {
     hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
-        if (navMenu && navMenu.classList.contains('active')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
+        if (navMenu && navMenu.classList.contains('active')) closeMenu();
+        else openMenu();
     });
 }
-
-if (menuOverlay) {
-    menuOverlay.addEventListener('click', closeMenu);
-}
-
-if (navMenu) {
-    const links = navMenu.querySelectorAll('a');
-    links.forEach(function(link) {
-        link.addEventListener('click', closeMenu);
-    });
-}
+if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', closeMenu));
 
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
-        closeMenu();
-    }
+    if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) closeMenu();
 });
 
 // ========== MOBILE DROPDOWNS ==========
 function initMobileDropdowns() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-    dropdowns.forEach(dropdown => {
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
         const trigger = dropdown.querySelector('.dropdown-trigger');
         const menu = dropdown.querySelector('.dropdown-menu');
         if (trigger && menu) {
@@ -93,18 +82,12 @@ function initMobileDropdowns() {
         }
     });
 }
-
-if (window.innerWidth <= 768) {
-    initMobileDropdowns();
-}
-
+if (window.innerWidth <= 768) initMobileDropdowns();
 window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
-        initMobileDropdowns();
-    }
+    if (window.innerWidth <= 768) initMobileDropdowns();
 });
 
-// ========== FILTER DRAWER LOGIC ==========
+// ========== DRAWER ==========
 const drawerOverlay = document.getElementById('drawerOverlay');
 const filterDrawer = document.getElementById('filterDrawer');
 const openDrawerBtn = document.getElementById('openDrawerBtn');
@@ -118,7 +101,6 @@ function openDrawer() {
     if (filterDrawer) filterDrawer.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
-
 function closeDrawer() {
     if (drawerOverlay) drawerOverlay.classList.remove('active');
     if (filterDrawer) filterDrawer.classList.remove('active');
@@ -132,32 +114,33 @@ if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 if (filterNeighborhoodBtn) {
     filterNeighborhoodBtn.addEventListener('click', () => {
         openDrawer();
-        const neighborhoodSection = document.getElementById('neighborhoodChips');
-        if (neighborhoodSection) neighborhoodSection.scrollIntoView({ behavior: 'smooth' });
+        const s = document.getElementById('neighborhoodChips');
+        if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 }
 if (filterTypeBtn) {
     filterTypeBtn.addEventListener('click', () => {
         openDrawer();
-        const typeSection = document.getElementById('typeChips');
-        if (typeSection) typeSection.scrollIntoView({ behavior: 'smooth' });
+        const s = document.getElementById('typeChips');
+        if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 }
 if (filterBudgetBtn) {
     filterBudgetBtn.addEventListener('click', () => {
         openDrawer();
-        const priceSection = document.getElementById('priceRange');
-        if (priceSection) priceSection.scrollIntoView({ behavior: 'smooth' });
+        const s = document.getElementById('dualSlider');
+        if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 }
 
-// ========== PAGINATION VARIABLES ==========
+// ========== STATE ==========
 let allProperties = [];
 let currentFilteredProperties = [];
 let currentFilters = {
     neighborhood: 'all',
     type: 'all',
-    maxPrice: 100000000
+    minPrice: 0,
+    maxPrice: PRICE_CEILING
 };
 let currentPage = 1;
 const ITEMS_PER_PAGE = 12;
@@ -166,12 +149,154 @@ const propertyGrid = document.getElementById('propertyGrid');
 const skeletonLoader = document.getElementById('skeletonLoader');
 const emptyState = document.getElementById('emptyState');
 const resultCountSpan = document.getElementById('countValue');
-const priceRange = document.getElementById('priceRange');
+
+const priceMin = document.getElementById('priceMin');
+const priceMax = document.getElementById('priceMax');
+const minPriceLabel = document.getElementById('minPriceLabel');
 const maxPriceLabel = document.getElementById('maxPriceLabel');
+const priceFill = document.getElementById('priceFill');
+const pricePresets = document.getElementById('pricePresets');
+
 let paginationContainer;
 
-// ========== IMAGE HANDLING ==========
-// Cover image only — full gallery lives on individual property pages.
+// ========== LAND TYPE LABEL MAP ==========
+// Converts raw propertyType values into friendly labels.
+function formatLandType(raw) {
+    if (!raw) return 'Land';
+    const s = String(raw).toLowerCase();
+    if (s.includes('land-res') || s.includes('residential')) return 'Residential';
+    if (s.includes('land-comm') || s.includes('commercial')) return 'Commercial';
+    if (s.includes('ranch') || s.includes('agricult')) return 'Agricultural';
+    // Fallback: title-case the raw value
+    return String(raw)
+        .replace(/[-_]/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+// ========== BUTTON TEXT HELPERS ==========
+function compactPrice(val) {
+    if (val >= 1000000) {
+        const m = val / 1000000;
+        return (m % 1 === 0 ? m : m.toFixed(1)) + 'M';
+    }
+    if (val >= 1000) {
+        const k = val / 1000;
+        return (k % 1 === 0 ? k : k.toFixed(1)) + 'K';
+    }
+    return val.toString();
+}
+
+function updateNeighborhoodButton() {
+    if (!filterNeighborhoodBtn) return;
+    if (currentFilters.neighborhood !== 'all') {
+        filterNeighborhoodBtn.innerHTML = `${currentFilters.neighborhood} <i class="fas fa-chevron-down"></i>`;
+        filterNeighborhoodBtn.style.borderColor = 'var(--gold)';
+        filterNeighborhoodBtn.style.color = 'var(--gold)';
+    } else {
+        filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
+        filterNeighborhoodBtn.style.borderColor = '';
+        filterNeighborhoodBtn.style.color = '';
+    }
+}
+
+function updateTypeButton() {
+    if (!filterTypeBtn) return;
+    if (currentFilters.type !== 'all') {
+        filterTypeBtn.innerHTML = `${formatLandType(currentFilters.type)} <i class="fas fa-chevron-down"></i>`;
+        filterTypeBtn.style.borderColor = 'var(--gold)';
+        filterTypeBtn.style.color = 'var(--gold)';
+    } else {
+        filterTypeBtn.innerHTML = `Land Type <i class="fas fa-chevron-down"></i>`;
+        filterTypeBtn.style.borderColor = '';
+        filterTypeBtn.style.color = '';
+    }
+}
+
+function updateBudgetButton() {
+    if (!filterBudgetBtn) return;
+    const isFiltered = currentFilters.minPrice > 0 || currentFilters.maxPrice < PRICE_CEILING;
+    if (!isFiltered) {
+        filterBudgetBtn.innerHTML = `Budget <i class="fas fa-chevron-down"></i>`;
+        filterBudgetBtn.style.borderColor = '';
+        filterBudgetBtn.style.color = '';
+        return;
+    }
+    let label;
+    if (currentFilters.minPrice === 0) {
+        label = `Under ${compactPrice(currentFilters.maxPrice)}`;
+    } else if (currentFilters.maxPrice >= PRICE_CEILING) {
+        label = `${compactPrice(currentFilters.minPrice)}+`;
+    } else {
+        label = `${compactPrice(currentFilters.minPrice)} – ${compactPrice(currentFilters.maxPrice)}`;
+    }
+    filterBudgetBtn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
+    filterBudgetBtn.style.borderColor = 'var(--gold)';
+    filterBudgetBtn.style.color = 'var(--gold)';
+}
+
+function updateAllButtons() {
+    updateNeighborhoodButton();
+    updateTypeButton();
+    updateBudgetButton();
+}
+
+// ========== DYNAMIC FILTER CHIPS ==========
+function renderDynamicFilters() {
+    renderNeighborhoodChips();
+    renderTypeChips();
+    initChipListeners();
+}
+
+function renderNeighborhoodChips() {
+    const container = document.getElementById('neighborhoodChips');
+    if (!container) return;
+
+    const estates = [...new Set(
+        allProperties
+            .map(p => p.estate ? String(p.estate).trim() : null)
+            .filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+
+    if (currentFilters.neighborhood !== 'all' && !estates.includes(currentFilters.neighborhood)) {
+        currentFilters.neighborhood = 'all';
+    }
+
+    let html = `<div class="filter-chip ${currentFilters.neighborhood === 'all' ? 'active' : ''}" data-value="all">All Estates</div>`;
+    estates.forEach(name => {
+        const isActive = currentFilters.neighborhood === name;
+        html += `<div class="filter-chip ${isActive ? 'active' : ''}" data-value="${escapeHtml(name)}">${escapeHtml(name)}</div>`;
+    });
+
+    container.innerHTML = html;
+}
+
+function renderTypeChips() {
+    const container = document.getElementById('typeChips');
+    if (!container) return;
+
+    // Unique raw propertyType values
+    const types = [...new Set(
+        allProperties
+            .map(p => p.propertyType)
+            .filter(v => v && String(v).trim())
+    )];
+
+    // Sort by friendly label
+    types.sort((a, b) => formatLandType(a).localeCompare(formatLandType(b)));
+
+    if (currentFilters.type !== 'all' && !types.includes(currentFilters.type)) {
+        currentFilters.type = 'all';
+    }
+
+    let html = `<div class="filter-chip ${currentFilters.type === 'all' ? 'active' : ''}" data-value="all">All Types</div>`;
+    types.forEach(raw => {
+        const isActive = currentFilters.type === raw;
+        const label = formatLandType(raw);
+        html += `<div class="filter-chip ${isActive ? 'active' : ''}" data-value="${escapeHtml(raw)}">${escapeHtml(label)}</div>`;
+    });
+
+    container.innerHTML = html;
+}
 
 // ========== PAGINATION ==========
 function ensurePaginationContainer() {
@@ -192,32 +317,33 @@ function renderPagination() {
         return;
     }
     paginationContainer.style.display = 'flex';
-    let paginationHTML = '';
+    let html = '';
     if (currentPage > 1) {
-        paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${currentPage - 1})"><i class="fas fa-chevron-left"></i></button>`;
+        html += `<button class="pagination-btn" onclick="window.changePage(${currentPage - 1})"><i class="fas fa-chevron-left"></i></button>`;
     }
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, currentPage + 2);
     if (startPage > 1) {
-        paginationHTML += `<button class="pagination-btn" onclick="window.changePage(1)">1</button>`;
-        if (startPage > 2) paginationHTML += `<span class="pagination-dots">...</span>`;
+        html += `<button class="pagination-btn" onclick="window.changePage(1)">1</button>`;
+        if (startPage > 2) html += `<span class="pagination-dots">...</span>`;
     }
     for (let i = startPage; i <= endPage; i++) {
-        paginationHTML += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="window.changePage(${i})">${i}</button>`;
+        html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="window.changePage(${i})">${i}</button>`;
     }
     if (endPage < totalPages) {
-        if (endPage < totalPages - 1) paginationHTML += `<span class="pagination-dots">...</span>`;
-        paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${totalPages})">${totalPages}</button>`;
+        if (endPage < totalPages - 1) html += `<span class="pagination-dots">...</span>`;
+        html += `<button class="pagination-btn" onclick="window.changePage(${totalPages})">${totalPages}</button>`;
     }
     if (currentPage < totalPages) {
-        paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${currentPage + 1})"><i class="fas fa-chevron-right"></i></button>`;
+        html += `<button class="pagination-btn" onclick="window.changePage(${currentPage + 1})"><i class="fas fa-chevron-right"></i></button>`;
     }
-    paginationContainer.innerHTML = paginationHTML;
+    paginationContainer.innerHTML = html;
 }
 
 // ========== RENDER PROPERTIES ==========
 function renderProperties() {
     if (!propertyGrid) return;
+
     if (currentFilteredProperties.length === 0) {
         propertyGrid.style.display = 'none';
         if (emptyState) emptyState.style.display = 'block';
@@ -225,6 +351,7 @@ function renderProperties() {
         if (paginationContainer) paginationContainer.style.display = 'none';
         return;
     }
+
     propertyGrid.style.display = 'grid';
     if (emptyState) emptyState.style.display = 'none';
     if (resultCountSpan) resultCountSpan.textContent = currentFilteredProperties.length;
@@ -235,14 +362,9 @@ function renderProperties() {
 
     propertyGrid.innerHTML = paginatedProperties.map(prop => {
         const firstImage = prop.images?.[0] || '/images/placeholder.jpg';
+        const landType = formatLandType(prop.propertyType);
 
-        // Determine land type label
-        let landType = 'Land';
-        if (prop.propertyType && prop.propertyType.includes('comm')) landType = 'Commercial';
-        else if (prop.propertyType && prop.propertyType.includes('res')) landType = 'Residential';
-        else if (prop.propertyType && prop.propertyType.includes('ranch')) landType = 'Agricultural';
-
-        // ─── SUBSCRIPTION BADGE ──────────────────────────────────────
+        // Subscription badge
         const plan = prop.ownerSubscriptionPlan || 'free';
         const badgeConfig = {
             basic: { label: 'Silver', color: '#c0c0c0', icon: 'fa-gem', className: 'badge-silver' },
@@ -263,13 +385,13 @@ function renderProperties() {
             <a href="${basePath}/property/${prop.slug}.html" class="property-card" data-property-id="${prop.id}">
                 <div class="card-image-wrapper" style="position:relative;">
                     ${premiumBadgeHTML}
-                    <img class="card-image" src="${firstImage}" alt="${prop.title}" loading="lazy">
-                    <div class="card-badge">${landType}</div>
+                    <img class="card-image" src="${firstImage}" alt="${escapeHtml(prop.title)}" loading="lazy">
+                    <div class="card-badge">${escapeHtml(landType)}</div>
                     <div class="card-price">KES ${prop.price.toLocaleString()}</div>
                 </div>
                 <div class="card-info">
                     <h3 class="card-title">${escapeHtml(prop.title)}</h3>
-                    <div class="card-location">${prop.estate || 'Nairobi'}</div>
+                    <div class="card-location">${escapeHtml(prop.estate || 'Nairobi')}</div>
                     <div class="card-features">
                         ${prop.size ? `<span><i class="fas fa-arrows-alt"></i> ${escapeHtml(prop.size)}</span>` : ''}
                         ${prop.bedrooms ? `<span><i class="fas fa-bed"></i> ${prop.bedrooms}</span>` : ''}
@@ -287,15 +409,16 @@ function renderProperties() {
 
 function escapeHtml(str) {
     if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
+    return String(str).replace(/[&<>"]/g, function(m) {
         if (m === '&') return '&amp;';
         if (m === '<') return '&lt;';
         if (m === '>') return '&gt;';
+        if (m === '"') return '&quot;';
         return m;
     });
 }
 
-// ========== FILTER FUNCTIONS ==========
+// ========== FILTER ==========
 function applyFilters() {
     let filtered = [...allProperties];
     if (currentFilters.neighborhood !== 'all') {
@@ -304,7 +427,10 @@ function applyFilters() {
     if (currentFilters.type !== 'all') {
         filtered = filtered.filter(prop => prop.propertyType === currentFilters.type);
     }
-    if (currentFilters.maxPrice < 100000000) {
+    if (currentFilters.minPrice > 0) {
+        filtered = filtered.filter(prop => prop.price >= currentFilters.minPrice);
+    }
+    if (currentFilters.maxPrice < PRICE_CEILING) {
         filtered = filtered.filter(prop => prop.price <= currentFilters.maxPrice);
     }
     return filtered;
@@ -314,67 +440,41 @@ function applyAndRender() {
     currentFilteredProperties = applyFilters();
     currentPage = 1;
     renderProperties();
-    closeDrawer();
     if (resultCountSpan) resultCountSpan.textContent = currentFilteredProperties.length;
 }
 
-function filterByLocationFromURL(location) {
-    if (!location) {
-        currentFilteredProperties = [...allProperties];
-        currentFilters.neighborhood = 'all';
-        if (filterNeighborhoodBtn) {
-            filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
-            filterNeighborhoodBtn.style.borderColor = '';
-            filterNeighborhoodBtn.style.color = '';
-        }
-    } else {
-        currentFilteredProperties = allProperties.filter(prop =>
-            prop.estate && prop.estate.toLowerCase() === location.toLowerCase()
-        );
-        currentFilters.neighborhood = location;
-        if (filterNeighborhoodBtn) {
-            filterNeighborhoodBtn.innerHTML = `${location} <i class="fas fa-chevron-down"></i>`;
-            filterNeighborhoodBtn.style.borderColor = 'var(--gold)';
-            filterNeighborhoodBtn.style.color = 'var(--gold)';
-        }
-        const neighborhoodChips = document.querySelectorAll('#neighborhoodChips .filter-chip');
-        neighborhoodChips.forEach(chip => {
-            if (chip.dataset.value && chip.dataset.value.toLowerCase() === location.toLowerCase()) {
-                neighborhoodChips.forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-            }
-        });
-    }
-    currentPage = 1;
-    renderProperties();
-    console.log(`📍 Showing ${currentFilteredProperties.length} land listings in: ${location || 'all locations'}`);
-}
-
-function filterByTypeFromURL(type) {
-    if (!type) return;
-    const matchedChip = document.querySelector(`#typeChips .filter-chip[data-value="${type}"]`);
-    if (matchedChip) {
-        document.querySelectorAll('#typeChips .filter-chip').forEach(c => c.classList.remove('active'));
-        matchedChip.classList.add('active');
-        currentFilters.type = type;
-        if (filterTypeBtn) {
-            const label = matchedChip.textContent.trim();
-            filterTypeBtn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
-            filterTypeBtn.style.borderColor = 'var(--gold)';
-            filterTypeBtn.style.color = 'var(--gold)';
-        }
-        applyAndRender();
-    }
-}
-
+// ========== URL AUTO-FILTER ==========
 function applyFiltersFromURL() {
     const { location, type } = getLocationFromURL();
+
+    // Location
     if (location) {
-        setTimeout(() => filterByLocationFromURL(location), 100);
+        const match = [...new Set(allProperties.map(p => p.estate))]
+            .find(e => e && e.toLowerCase() === location.toLowerCase());
+        if (match) {
+            currentFilters.neighborhood = match;
+        }
     }
+
+    // Land type — case-insensitive exact match against raw propertyType
     if (type) {
-        setTimeout(() => filterByTypeFromURL(type), 150);
+        const match = [...new Set(allProperties.map(p => p.propertyType))]
+            .find(t => t && t.toLowerCase() === type.toLowerCase());
+        if (match) {
+            currentFilters.type = match;
+        }
     }
+
+    // Re-render chips so active states reflect the URL
+    renderNeighborhoodChips();
+    renderTypeChips();
+    initChipListeners();
+    updateAllButtons();
+
+    currentPage = 1;
+    currentFilteredProperties = applyFilters();
+    renderProperties();
+    console.log(`📍 URL filter → location: ${location || 'all'}, type: ${type || 'all'} — ${currentFilteredProperties.length} results`);
 }
 
 window.changePage = function(page) {
@@ -386,120 +486,137 @@ window.changePage = function(page) {
     }
 };
 
-// ========== FILTER CHIP LISTENERS ==========
+// ========== CHIP LISTENERS (event delegation) ==========
 function initChipListeners() {
-    document.querySelectorAll('#neighborhoodChips .filter-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            document.querySelectorAll('#neighborhoodChips .filter-chip').forEach(c => c.classList.remove('active'));
+    const hoods = document.getElementById('neighborhoodChips');
+    const types = document.getElementById('typeChips');
+
+    if (hoods && !hoods.dataset.bound) {
+        hoods.addEventListener('click', (e) => {
+            const chip = e.target.closest('.filter-chip');
+            if (!chip) return;
+            hoods.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
             currentFilters.neighborhood = chip.dataset.value;
-            currentPage = 1;
-            if (filterNeighborhoodBtn) {
-                if (currentFilters.neighborhood !== 'all') {
-                    filterNeighborhoodBtn.innerHTML = `${currentFilters.neighborhood} <i class="fas fa-chevron-down"></i>`;
-                    filterNeighborhoodBtn.style.borderColor = 'var(--gold)';
-                    filterNeighborhoodBtn.style.color = 'var(--gold)';
-                } else {
-                    filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
-                    filterNeighborhoodBtn.style.borderColor = '';
-                    filterNeighborhoodBtn.style.color = '';
-                }
-            }
-            applyAndRender();
+            updateNeighborhoodButton();
         });
-    });
+        hoods.dataset.bound = '1';
+    }
 
-    document.querySelectorAll('#typeChips .filter-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            document.querySelectorAll('#typeChips .filter-chip').forEach(c => c.classList.remove('active'));
+    if (types && !types.dataset.bound) {
+        types.addEventListener('click', (e) => {
+            const chip = e.target.closest('.filter-chip');
+            if (!chip) return;
+            types.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
             currentFilters.type = chip.dataset.value;
-            currentPage = 1;
-            if (filterTypeBtn) {
-                if (currentFilters.type !== 'all') {
-                    const label = chip.textContent.trim();
-                    filterTypeBtn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
-                    filterTypeBtn.style.borderColor = 'var(--gold)';
-                    filterTypeBtn.style.color = 'var(--gold)';
-                } else {
-                    filterTypeBtn.innerHTML = `Land Type <i class="fas fa-chevron-down"></i>`;
-                    filterTypeBtn.style.borderColor = '';
-                    filterTypeBtn.style.color = '';
-                }
-            }
-            applyAndRender();
+            updateTypeButton();
         });
-    });
+        types.dataset.bound = '1';
+    }
+}
 
-    function updateBudgetButton() {
-        if (filterBudgetBtn) {
-            if (currentFilters.maxPrice < 100000000) {
-                filterBudgetBtn.innerHTML = `Under KES ${currentFilters.maxPrice.toLocaleString()} <i class="fas fa-chevron-down"></i>`;
-                filterBudgetBtn.style.borderColor = 'var(--gold)';
-                filterBudgetBtn.style.color = 'var(--gold)';
-            } else {
-                filterBudgetBtn.innerHTML = `Budget <i class="fas fa-chevron-down"></i>`;
-                filterBudgetBtn.style.borderColor = '';
-                filterBudgetBtn.style.color = '';
-            }
+// ========== DUAL-RANGE PRICE ==========
+function formatPrice(val) {
+    return 'KES ' + val.toLocaleString();
+}
+
+function updateSliderVisuals() {
+    if (!priceMin || !priceMax) return;
+
+    let minVal = parseInt(priceMin.value, 10) || 0;
+    let maxVal = parseInt(priceMax.value, 10) || PRICE_CEILING;
+
+    if (minVal > maxVal - PRICE_STEP) {
+        if (document.activeElement === priceMin) {
+            minVal = Math.max(0, maxVal - PRICE_STEP);
+            priceMin.value = minVal;
+        } else {
+            maxVal = Math.min(PRICE_CEILING, minVal + PRICE_STEP);
+            priceMax.value = maxVal;
         }
     }
-    if (priceRange) {
-        priceRange.addEventListener('change', updateBudgetButton);
+
+    const minPct = (minVal / PRICE_CEILING) * 100;
+    const maxPct = (maxVal / PRICE_CEILING) * 100;
+    if (priceFill) {
+        priceFill.style.left = minPct + '%';
+        priceFill.style.right = (100 - maxPct) + '%';
     }
+
+    if (minPriceLabel) {
+        minPriceLabel.textContent = formatPrice(minVal);
+        minPriceLabel.classList.toggle('active-value', minVal > 0);
+    }
+    if (maxPriceLabel) {
+        if (maxVal >= PRICE_CEILING) {
+            maxPriceLabel.textContent = formatPrice(PRICE_CEILING) + '+';
+            maxPriceLabel.classList.remove('active-value');
+        } else {
+            maxPriceLabel.textContent = formatPrice(maxVal);
+            maxPriceLabel.classList.add('active-value');
+        }
+    }
+
+    currentFilters.minPrice = minVal;
+    currentFilters.maxPrice = maxVal;
     updateBudgetButton();
 }
 
-// ========== PRICE RANGE HANDLER ==========
-if (priceRange) {
-    priceRange.addEventListener('input', (e) => {
-        const val = parseInt(e.target.value);
-        if (val >= 100000000) {
-            if (maxPriceLabel) maxPriceLabel.textContent = 'KES 100M+';
-        } else {
-            if (maxPriceLabel) maxPriceLabel.textContent = `KES ${val.toLocaleString()}`;
-        }
-        currentFilters.maxPrice = val;
-        currentPage = 1;
-        applyAndRender();
+function syncActivePreset() {
+    if (!pricePresets) return;
+    const min = currentFilters.minPrice;
+    const max = currentFilters.maxPrice;
+    pricePresets.querySelectorAll('.price-preset').forEach(btn => {
+        const bMin = parseInt(btn.dataset.min, 10);
+        const bMax = parseInt(btn.dataset.max, 10);
+        btn.classList.toggle('active', bMin === min && bMax === max);
     });
 }
 
-// ========== RESET FILTERS ==========
+if (priceMin) priceMin.addEventListener('input', updateSliderVisuals);
+if (priceMax) priceMax.addEventListener('input', updateSliderVisuals);
+
+if (pricePresets) {
+    pricePresets.querySelectorAll('.price-preset').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const min = parseInt(btn.dataset.min, 10);
+            const max = parseInt(btn.dataset.max, 10);
+            if (priceMin) priceMin.value = min;
+            if (priceMax) priceMax.value = max;
+            updateSliderVisuals();
+            syncActivePreset();
+        });
+    });
+}
+
+updateSliderVisuals();
+
+// ========== RESET ==========
 function resetFilters() {
     currentFilters = {
         neighborhood: 'all',
         type: 'all',
-        maxPrice: 100000000
+        minPrice: 0,
+        maxPrice: PRICE_CEILING
     };
     currentPage = 1;
+
     document.querySelectorAll('#neighborhoodChips .filter-chip').forEach(chip => {
-        if (chip.dataset.value === 'all') chip.classList.add('active');
-        else chip.classList.remove('active');
+        chip.classList.toggle('active', chip.dataset.value === 'all');
     });
     document.querySelectorAll('#typeChips .filter-chip').forEach(chip => {
-        if (chip.dataset.value === 'all') chip.classList.add('active');
-        else chip.classList.remove('active');
+        chip.classList.toggle('active', chip.dataset.value === 'all');
     });
-    if (priceRange) {
-        priceRange.value = 100000000;
-        if (maxPriceLabel) maxPriceLabel.textContent = 'KES 100M+';
+
+    if (priceMin) priceMin.value = 0;
+    if (priceMax) priceMax.value = PRICE_CEILING;
+    updateSliderVisuals();
+    if (pricePresets) {
+        pricePresets.querySelectorAll('.price-preset').forEach(b => b.classList.remove('active'));
     }
-    if (filterNeighborhoodBtn) {
-        filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
-        filterNeighborhoodBtn.style.borderColor = '';
-        filterNeighborhoodBtn.style.color = '';
-    }
-    if (filterTypeBtn) {
-        filterTypeBtn.innerHTML = `Land Type <i class="fas fa-chevron-down"></i>`;
-        filterTypeBtn.style.borderColor = '';
-        filterTypeBtn.style.color = '';
-    }
-    if (filterBudgetBtn) {
-        filterBudgetBtn.innerHTML = `Budget <i class="fas fa-chevron-down"></i>`;
-        filterBudgetBtn.style.borderColor = '';
-        filterBudgetBtn.style.color = '';
-    }
+
+    updateAllButtons();
     applyAndRender();
 }
 
@@ -524,6 +641,7 @@ function addResetButton() {
     }
 }
 
+// ========== "SHOW RESULTS" ==========
 const applyBtn = document.getElementById('applyFiltersBtn');
 if (applyBtn) {
     applyBtn.addEventListener('click', () => {
@@ -542,7 +660,6 @@ async function loadProperties() {
         const data = await response.json();
         const propertiesFromAPI = data.properties || [];
 
-        // Map and filter to ONLY land properties
         allProperties = propertiesFromAPI
             .map(prop => ({
                 id: prop._id,
@@ -550,7 +667,6 @@ async function loadProperties() {
                 slug: prop.slug,
                 estate: prop.estate,
                 price: Number(prop.price) || 0,
-                type: prop.propertyType || 'Land',
                 images: prop.images || [],
                 bedrooms: prop.bedrooms || 0,
                 bathrooms: prop.bathrooms || 0,
@@ -575,8 +691,9 @@ async function loadProperties() {
 
         currentFilteredProperties = [...allProperties];
         renderProperties();
-        initChipListeners();
+        renderDynamicFilters();
         addResetButton();
+        updateAllButtons();
         applyFiltersFromURL();
 
     } catch (error) {
@@ -592,5 +709,4 @@ async function loadProperties() {
     }
 }
 
-// Start loading
 loadProperties();

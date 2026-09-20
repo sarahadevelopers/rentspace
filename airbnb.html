@@ -6,21 +6,14 @@
   <title>Short-stay & Airbnb | RentSpace Nairobi</title>
   <meta name="description" content="Discover fully furnished short-stay rentals and Airbnb properties in Nairobi's prime locations. Perfect for tourists, business travelers, and temporary stays.">
   
-  <!-- Theme color for mobile browser bar -->
   <meta name="theme-color" content="#c5a059">
   
-  <!-- PWA Manifest -->
-  
-  
-  <!-- Canonical URL -->
   <link rel="canonical" href="https://rentspace.co.ke/airbnb.html" />
   
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/RentSpace-favicon.webp">
   <link rel="icon" type="image/png" sizes="16x16" href="images/RentSpace-favicon.webp">
   <link rel="apple-touch-icon" sizes="180x180" href="images/RentSpace-favicon.webp">
   
-  <!-- Open Graph (Facebook, LinkedIn) -->
   <meta property="og:title" content="Short-stay & Airbnb | RentSpace Nairobi">
   <meta property="og:description" content="Discover fully furnished short-stay rentals and Airbnb properties in Nairobi's prime locations. Perfect for tourists, business travelers, and temporary stays.">
   <meta property="og:image" content="https://rentspace.co.ke/images/og-image.jpg">
@@ -29,11 +22,9 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rentspace.co.ke/airbnb.html">
   
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://rentspace.co.ke/images/og-image.jpg">
   
-  <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -41,106 +32,101 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="airbnb.css">
   
-  <!-- PWA Service Worker Registration -->
-<script>
-  // ─── Kill-switch: unregister any service worker + clear caches ──
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(regs => {
-      regs.forEach(reg => reg.unregister());
-      if (regs.length > 0) {
-        caches.keys().then(names =>
-          Promise.all(names.map(n => caches.delete(n)))
-        ).then(() => location.reload());
-      }
-    });
-  }
-</script>
+  <!-- PWA Service Worker Kill-switch -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.unregister());
+        if (regs.length > 0) {
+          caches.keys().then(names =>
+            Promise.all(names.map(n => caches.delete(n)))
+          ).then(() => location.reload());
+        }
+      });
+    }
+  </script>
 </head>
 <body>
 
   <!-- ===== EXECUTIVE NAVBAR ===== -->
- <!-- ===== EXECUTIVE NAVBAR ===== -->
-<nav class="exec-nav">
-  <a href="index.html" class="nav-logo">Rent<span>Space</span></a>
-  
-  <ul class="nav-links">
-    
-    <!-- FOR SALE -->
-    <li class="dropdown">
-      <a href="sale.html" class="dropdown-trigger">For Sale <i class="fas fa-chevron-down"></i></a>
-      <ul class="dropdown-menu">
-        <li><a href="sale.html">All For Sale</a></li>
-        <li><a href="sale.html?type=apartment">Apartments</a></li>
-        <li><a href="sale.html?type=bungalow">Bungalows</a></li>
-        <li><a href="sale.html?type=maisonette">Maisonettes</a></li>
-        <li><a href="sale.html?type=villa">Villas</a></li>
-      </ul>
-    </li>
+  <nav class="exec-nav">
+    <a href="index.html" class="nav-logo">Rent<span>Space</span><sup class="r-sup">®</sup></a>
 
-    <!-- FOR RENT -->
-    <li class="dropdown">
-      <a href="rentals.html" class="dropdown-trigger">For Rent <i class="fas fa-chevron-down"></i></a>
-      <ul class="dropdown-menu">
-        <li><a href="rentals.html">All Rentals</a></li>
-        <li><a href="rentals.html?type=apartment">Apartments</a></li>
-        <li><a href="rentals.html?type=bungalow">Bungalows</a></li>
-        <li><a href="rentals.html?type=maisonette">Maisonettes</a></li>
-        <li><a href="rentals.html?type=studio">Studios</a></li>
-      </ul>
-    </li>
+    <ul class="nav-links">
 
-    <!-- LAND -->
-    <li class="dropdown">
-      <a href="land.html" class="dropdown-trigger">Land <i class="fas fa-chevron-down"></i></a>
-      <ul class="dropdown-menu">
-        <li><a href="land.html">All Land</a></li>
-        <li><a href="land.html?type=land-res">Residential</a></li>
-        <li><a href="land.html?type=land-comm">Commercial</a></li>
-        <li><a href="land.html?type=ranch">Agricultural</a></li>
-      </ul>
-    </li>
+      <!-- FOR SALE -->
+      <li class="dropdown">
+        <a href="sale.html" class="dropdown-trigger">For Sale <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="sale.html">All For Sale</a></li>
+          <li><a href="sale.html?type=apartment">Apartments</a></li>
+          <li><a href="sale.html?type=bungalow">Bungalows</a></li>
+          <li><a href="sale.html?type=maisonette">Maisonettes</a></li>
+          <li><a href="sale.html?type=villa">Villas</a></li>
+        </ul>
+      </li>
 
-    <!-- AIRBNB -->
-    <li class="dropdown">
-      <a href="airbnb.html" class="dropdown-trigger active" style="color: #FF5A5F;"  >Airbnb <i class="fas fa-chevron-down"></i></a>
-      <ul class="dropdown-menu">
-        <li><a href="airbnb.html">All Bnbs</a></li>
-        <li><a href="airbnb.html?type=studio">Studio</a></li>
-        <li><a href="airbnb.html?type=1-bedroom">1 Bedroom</a></li>
-        <li><a href="airbnb.html?type=2-bedroom">2 Bedroom</a></li>
-        <li><a href="airbnb.html?type=executive">Executive</a></li>
-      </ul>
-    </li>
+      <!-- FOR RENT -->
+      <li class="dropdown">
+        <a href="rentals.html" class="dropdown-trigger">For Rent <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="rentals.html">All Rentals</a></li>
+          <li><a href="rentals.html?type=apartment">Apartments</a></li>
+          <li><a href="rentals.html?type=bungalow">Bungalows</a></li>
+          <li><a href="rentals.html?type=maisonette">Maisonettes</a></li>
+          <li><a href="rentals.html?type=studio">Studios</a></li>
+        </ul>
+      </li>
 
-    <!-- ===== MOBILE CTAs (Inside Nav Links) ===== -->
-    <div class="nav-actions">
+      <!-- LAND -->
+      <li class="dropdown">
+        <a href="land.html" class="dropdown-trigger">Land <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="land.html">All Land</a></li>
+          <li><a href="land.html?type=land-res">Residential</a></li>
+          <li><a href="land.html?type=land-comm">Commercial</a></li>
+          <li><a href="land.html?type=ranch">Agricultural</a></li>
+        </ul>
+      </li>
+
+      <!-- AIRBNB (Active) -->
+      <li class="dropdown">
+        <a href="airbnb.html" class="dropdown-trigger active" style="color: #FF5A5F;">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="airbnb.html">All Bnbs</a></li>
+          <li><a href="airbnb.html?type=studio">Studio</a></li>
+          <li><a href="airbnb.html?type=1-bedroom">1 Bedroom</a></li>
+          <li><a href="airbnb.html?type=2-bedroom">2 Bedroom</a></li>
+          <li><a href="airbnb.html?type=executive">Executive</a></li>
+        </ul>
+      </li>
+
+      <!-- ===== MOBILE CTAs ===== -->
+      <div class="nav-actions">
+        <a href="login.html?redirect=dashboard" class="nav-cta-primary" style="background-color: #FF5A5F;">
+          <i class="fas fa-plus-circle"></i> Create Listing
+        </a>
+        <a href="login.html" class="nav-auth">Log In</a>
+        <a href="signup.html" class="nav-cta-secondary" style="background-color: #FF5A5F;">Sign Up</a>
+      </div>
+
+    </ul>
+
+    <!-- ===== DESKTOP CTAs ===== -->
+    <div class="nav-actions-desktop">
       <a href="login.html?redirect=dashboard" class="nav-cta-primary" style="background-color: #FF5A5F;">
         <i class="fas fa-plus-circle"></i> Create Listing
       </a>
       <a href="login.html" class="nav-auth">Log In</a>
-      <a href="signup.html" class="nav-cta-secondary" style="background-color: #FF5A5F;">Sign Up</a>
+      <a href="signup.html" class="nav-cta-secondary" style="color: #FF5A5F;">Sign Up</a>
     </div>
 
-  </ul>
-
-  <!-- ===== DESKTOP CTAs (Outside Nav Links) ===== -->
-  <div class="nav-actions-desktop">
-    <a href="login.html?redirect=dashboard" class="nav-cta-primary" style="background-color: #FF5A5F;">
-      <i class="fas fa-plus-circle"></i> Create Listing
-    </a>
-    <a href="login.html" class="nav-auth">Log In</a>
-    <a href="signup.html" class="nav-cta-secondary" style="color: #FF5A5F;">Sign Up</a>
-  </div>
-
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-</nav>
-
-<!-- Overlay for closing menu -->
-<div class="menu-overlay" id="menuOverlay"></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
 
   <!-- Overlay for closing menu -->
   <div class="menu-overlay" id="menuOverlay"></div>
@@ -171,18 +157,9 @@
       <button class="filter-btn" id="filterLocationBtn">
         Location <i class="fas fa-chevron-down"></i>
       </button>
-      <div class="filter-dropdown" id="locationDropdown">
-        <div class="filter-option" data-location="all">All Locations</div>
-        <div class="filter-option" data-location="Kilimani">Kilimani</div>
-        <div class="filter-option" data-location="Karen">Karen</div>
-        <div class="filter-option" data-location="Hurlingham">Hurlingham</div>
-        <div class="filter-option" data-location="Westlands">Westlands</div>
-        <div class="filter-option" data-location="Lavington">Lavington</div>
-        <div class="filter-option" data-location="Kileleshwa">Kileleshwa</div>
-        <div class="filter-option" data-location="Syokimau">Syokimau</div>
-        <div class="filter-option" data-location="Ngong">Ngong</div>
-        <div class="filter-option" data-location="Kitengela">Kitengela</div>
-      </div>
+     <div class="filter-dropdown" id="locationDropdown">
+  <div class="filter-option" data-location="all">All Locations</div>
+</div>
     </div>
 
     <div class="filter-wrapper">
@@ -267,7 +244,7 @@
     </div>
   </div>
 
-  <!-- ===== FLOATING WHATSAPP SUPPORT BUTTON (DESKTOP ONLY) ===== -->
+  <!-- ===== FLOATING WHATSAPP SUPPORT ===== -->
   <a href="https://wa.me/254723562484" target="_blank" class="whatsapp-float" aria-label="Chat with support on WhatsApp">
     <i class="fab fa-whatsapp"></i>
     <span>Chat with Support</span>

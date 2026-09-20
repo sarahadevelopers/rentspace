@@ -1,16 +1,22 @@
 // ============================================
 // RENTALS PORTAL - COMPLETE FUNCTIONALITY
 // ============================================
+
+// ========== SLIDER CONFIG ==========
+// Change per page: 500000 rentals, 50000000 sale, 100000000 land
+const PRICE_CEILING = 500000;
+const PRICE_STEP = 5000;
+
 // ========== DYNAMIC PATH HELPER ==========
 const getBasePath = () => {
     if (window.location.hostname === 'sarahadevelopers.github.io') {
         return '/rentspace-markeplace';
     }
-    return ''; // for rentspace.co.ke
+    return '';
 };
 const basePath = getBasePath();
 
-// ========== AUTO-FILTER FROM URL PARAMETERS ==========
+// ========== AUTO-FILTER FROM URL ==========
 function getLocationFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const location = urlParams.get('location');
@@ -22,7 +28,7 @@ function getLocationFromURL() {
 const yearSpan = document.getElementById('year');
 if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-// ========== HAMBURGER MENU TOGGLE ==========
+// ========== HAMBURGER MENU ==========
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.querySelector('.nav-links');
 const menuOverlay = document.getElementById('menuOverlay');
@@ -37,7 +43,6 @@ function closeMenu() {
     if (menuOverlay) menuOverlay.classList.remove('active');
     document.body.style.overflow = '';
 }
-
 function openMenu() {
     if (navMenu) navMenu.classList.add('active');
     if (hamburger) hamburger.classList.add('active');
@@ -48,35 +53,20 @@ function openMenu() {
 if (hamburger) {
     hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
-        if (navMenu && navMenu.classList.contains('active')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
+        if (navMenu && navMenu.classList.contains('active')) closeMenu();
+        else openMenu();
     });
 }
-
-if (menuOverlay) {
-    menuOverlay.addEventListener('click', closeMenu);
-}
-
-if (navMenu) {
-    const links = navMenu.querySelectorAll('a');
-    links.forEach(function(link) {
-        link.addEventListener('click', closeMenu);
-    });
-}
+if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', closeMenu));
 
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
-        closeMenu();
-    }
+    if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) closeMenu();
 });
 
 // ========== MOBILE DROPDOWNS ==========
 function initMobileDropdowns() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-    dropdowns.forEach(dropdown => {
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
         const trigger = dropdown.querySelector('.dropdown-trigger');
         const menu = dropdown.querySelector('.dropdown-menu');
         if (trigger && menu) {
@@ -91,18 +81,12 @@ function initMobileDropdowns() {
         }
     });
 }
-
-if (window.innerWidth <= 768) {
-    initMobileDropdowns();
-}
-
+if (window.innerWidth <= 768) initMobileDropdowns();
 window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
-        initMobileDropdowns();
-    }
+    if (window.innerWidth <= 768) initMobileDropdowns();
 });
 
-// ========== FILTER DRAWER LOGIC ==========
+// ========== DRAWER ==========
 const drawerOverlay = document.getElementById('drawerOverlay');
 const filterDrawer = document.getElementById('filterDrawer');
 const openDrawerBtn = document.getElementById('openDrawerBtn');
@@ -116,7 +100,6 @@ function openDrawer() {
     if (filterDrawer) filterDrawer.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
-
 function closeDrawer() {
     if (drawerOverlay) drawerOverlay.classList.remove('active');
     if (filterDrawer) filterDrawer.classList.remove('active');
@@ -130,32 +113,33 @@ if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 if (filterNeighborhoodBtn) {
     filterNeighborhoodBtn.addEventListener('click', () => {
         openDrawer();
-        const neighborhoodSection = document.getElementById('neighborhoodChips');
-        if (neighborhoodSection) neighborhoodSection.scrollIntoView({ behavior: 'smooth' });
+        const s = document.getElementById('neighborhoodChips');
+        if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 }
 if (filterTypeBtn) {
     filterTypeBtn.addEventListener('click', () => {
         openDrawer();
-        const typeSection = document.getElementById('typeChips');
-        if (typeSection) typeSection.scrollIntoView({ behavior: 'smooth' });
+        const s = document.getElementById('typeChips');
+        if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 }
 if (filterBudgetBtn) {
     filterBudgetBtn.addEventListener('click', () => {
         openDrawer();
-        const priceSection = document.getElementById('priceRange');
-        if (priceSection) priceSection.scrollIntoView({ behavior: 'smooth' });
+        const s = document.getElementById('dualSlider');
+        if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 }
 
-// ========== PAGINATION VARIABLES ==========
+// ========== STATE ==========
 let allProperties = [];
 let currentFilteredProperties = [];
 let currentFilters = {
     neighborhood: 'all',
     type: 'all',
-    maxPrice: 500000
+    minPrice: 0,
+    maxPrice: PRICE_CEILING
 };
 let currentPage = 1;
 const ITEMS_PER_PAGE = 12;
@@ -164,58 +148,139 @@ const propertyGrid = document.getElementById('propertyGrid');
 const skeletonLoader = document.getElementById('skeletonLoader');
 const emptyState = document.getElementById('emptyState');
 const resultCountSpan = document.getElementById('countValue');
-const priceRange = document.getElementById('priceRange');
+
+const priceMin = document.getElementById('priceMin');
+const priceMax = document.getElementById('priceMax');
+const minPriceLabel = document.getElementById('minPriceLabel');
 const maxPriceLabel = document.getElementById('maxPriceLabel');
+const priceFill = document.getElementById('priceFill');
+const pricePresets = document.getElementById('pricePresets');
+
 let paginationContainer;
 
-// ========== IMAGE CAROUSEL ==========
-/*const propertyImagesMap = new Map();
-let imageIntervals = [];
-
-function stopAllImageShuffling() {
-    imageIntervals.forEach(interval => clearInterval(interval));
-    imageIntervals = [];
+// ========== BUTTON TEXT HELPERS ==========
+function compactPrice(val) {
+    if (val >= 1000000) {
+        const m = val / 1000000;
+        return (m % 1 === 0 ? m : m.toFixed(1)) + 'M';
+    }
+    if (val >= 1000) {
+        const k = val / 1000;
+        return (k % 1 === 0 ? k : k.toFixed(1)) + 'K';
+    }
+    return val.toString();
 }
 
-function startImageShuffle(cardElement, imagesArray) {
-    if (!imagesArray || imagesArray.length <= 1) return;
-    let currentIndex = 0;
-    const imageWrapper = cardElement.querySelector('.card-image-wrapper');
-    if (!imageWrapper) return;
+function updateNeighborhoodButton() {
+    if (!filterNeighborhoodBtn) return;
+    if (currentFilters.neighborhood !== 'all') {
+        filterNeighborhoodBtn.innerHTML = `${currentFilters.neighborhood} <i class="fas fa-chevron-down"></i>`;
+        filterNeighborhoodBtn.style.borderColor = 'var(--gold)';
+        filterNeighborhoodBtn.style.color = 'var(--gold)';
+    } else {
+        filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
+        filterNeighborhoodBtn.style.borderColor = '';
+        filterNeighborhoodBtn.style.color = '';
+    }
+}
 
-    const existingImages = imageWrapper.querySelectorAll('.card-image');
-    if (existingImages.length === 1 && imagesArray.length > 1) {
-        const firstImage = existingImages[0];
-        imageWrapper.innerHTML = '';
-        imagesArray.forEach((src, idx) => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = cardElement.querySelector('.card-title')?.textContent || 'Property';
-            img.className = 'card-image';
-            img.setAttribute('data-image-index', idx);
-            img.style.position = 'absolute';
-            img.style.top = '0';
-            img.style.left = '0';
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.objectFit = 'cover';
-            img.style.transition = 'opacity 0.5s ease-in-out';
-            img.style.opacity = idx === 0 ? '1' : '0';
-            imageWrapper.appendChild(img);
-        });
+function updateTypeButton() {
+    if (!filterTypeBtn) return;
+    if (currentFilters.type !== 'all') {
+        filterTypeBtn.innerHTML = `${currentFilters.type} <i class="fas fa-chevron-down"></i>`;
+        filterTypeBtn.style.borderColor = 'var(--gold)';
+        filterTypeBtn.style.color = 'var(--gold)';
+    } else {
+        filterTypeBtn.innerHTML = `Property Type <i class="fas fa-chevron-down"></i>`;
+        filterTypeBtn.style.borderColor = '';
+        filterTypeBtn.style.color = '';
+    }
+}
+
+function updateBudgetButton() {
+    if (!filterBudgetBtn) return;
+    const isFiltered = currentFilters.minPrice > 0 || currentFilters.maxPrice < PRICE_CEILING;
+    if (!isFiltered) {
+        filterBudgetBtn.innerHTML = `Budget <i class="fas fa-chevron-down"></i>`;
+        filterBudgetBtn.style.borderColor = '';
+        filterBudgetBtn.style.color = '';
+        return;
+    }
+    let label;
+    if (currentFilters.minPrice === 0) {
+        label = `Under ${compactPrice(currentFilters.maxPrice)}`;
+    } else if (currentFilters.maxPrice >= PRICE_CEILING) {
+        label = `${compactPrice(currentFilters.minPrice)}+`;
+    } else {
+        label = `${compactPrice(currentFilters.minPrice)} – ${compactPrice(currentFilters.maxPrice)}`;
+    }
+    filterBudgetBtn.innerHTML = `${label} <i class="fas fa-chevron-down"></i>`;
+    filterBudgetBtn.style.borderColor = 'var(--gold)';
+    filterBudgetBtn.style.color = 'var(--gold)';
+}
+
+function updateAllButtons() {
+    updateNeighborhoodButton();
+    updateTypeButton();
+    updateBudgetButton();
+}
+
+// ========== DYNAMIC FILTER CHIPS ==========
+// Rebuilds neighborhood + type chips from the loaded properties.
+// Preserves the currently-selected value if it still exists.
+function renderDynamicFilters() {
+    renderNeighborhoodChips();
+    renderTypeChips();
+    initChipListeners();
+}
+
+function renderNeighborhoodChips() {
+    const container = document.getElementById('neighborhoodChips');
+    if (!container) return;
+
+    // Unique, sorted estate names from real data
+    const estates = [...new Set(
+    allProperties
+        .map(p => p.estate ? String(p.estate).trim() : null)
+        .filter(Boolean)
+)].sort((a, b) => a.localeCompare(b));
+
+    // If the current selection vanished (e.g. no longer in inventory), reset to 'all'
+    if (currentFilters.neighborhood !== 'all' && !estates.includes(currentFilters.neighborhood)) {
+        currentFilters.neighborhood = 'all';
     }
 
-    const images = imageWrapper.querySelectorAll('.card-image');
-    if (images.length <= 1) return;
+    let html = `<div class="filter-chip ${currentFilters.neighborhood === 'all' ? 'active' : ''}" data-value="all">All Estates</div>`;
+    estates.forEach(name => {
+        const isActive = currentFilters.neighborhood === name;
+        html += `<div class="filter-chip ${isActive ? 'active' : ''}" data-value="${escapeHtml(name)}">${escapeHtml(name)}</div>`;
+    });
 
-    const interval = setInterval(() => {
-        const nextIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].style.opacity = '0';
-        images[nextIndex].style.opacity = '1';
-        currentIndex = nextIndex;
-    }, 10000);
-    imageIntervals.push(interval);
-} */
+    container.innerHTML = html;
+}
+
+function renderTypeChips() {
+    const container = document.getElementById('typeChips');
+    if (!container) return;
+
+    const types = [...new Set(
+        allProperties
+            .map(p => p.type)
+            .filter(v => v && String(v).trim())
+    )].sort((a, b) => a.localeCompare(b));
+
+    if (currentFilters.type !== 'all' && !types.includes(currentFilters.type)) {
+        currentFilters.type = 'all';
+    }
+
+    let html = `<div class="filter-chip ${currentFilters.type === 'all' ? 'active' : ''}" data-value="all">All Types</div>`;
+    types.forEach(name => {
+        const isActive = currentFilters.type === name;
+        html += `<div class="filter-chip ${isActive ? 'active' : ''}" data-value="${escapeHtml(name)}">${escapeHtml(name)}</div>`;
+    });
+
+    container.innerHTML = html;
+}
 
 // ========== PAGINATION ==========
 function ensurePaginationContainer() {
@@ -236,27 +301,27 @@ function renderPagination() {
         return;
     }
     paginationContainer.style.display = 'flex';
-    let paginationHTML = '';
+    let html = '';
     if (currentPage > 1) {
-        paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${currentPage - 1})"><i class="fas fa-chevron-left"></i></button>`;
+        html += `<button class="pagination-btn" onclick="window.changePage(${currentPage - 1})"><i class="fas fa-chevron-left"></i></button>`;
     }
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, currentPage + 2);
     if (startPage > 1) {
-        paginationHTML += `<button class="pagination-btn" onclick="window.changePage(1)">1</button>`;
-        if (startPage > 2) paginationHTML += `<span class="pagination-dots">...</span>`;
+        html += `<button class="pagination-btn" onclick="window.changePage(1)">1</button>`;
+        if (startPage > 2) html += `<span class="pagination-dots">...</span>`;
     }
     for (let i = startPage; i <= endPage; i++) {
-        paginationHTML += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="window.changePage(${i})">${i}</button>`;
+        html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="window.changePage(${i})">${i}</button>`;
     }
     if (endPage < totalPages) {
-        if (endPage < totalPages - 1) paginationHTML += `<span class="pagination-dots">...</span>`;
-        paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${totalPages})">${totalPages}</button>`;
+        if (endPage < totalPages - 1) html += `<span class="pagination-dots">...</span>`;
+        html += `<button class="pagination-btn" onclick="window.changePage(${totalPages})">${totalPages}</button>`;
     }
     if (currentPage < totalPages) {
-        paginationHTML += `<button class="pagination-btn" onclick="window.changePage(${currentPage + 1})"><i class="fas fa-chevron-right"></i></button>`;
+        html += `<button class="pagination-btn" onclick="window.changePage(${currentPage + 1})"><i class="fas fa-chevron-right"></i></button>`;
     }
-    paginationContainer.innerHTML = paginationHTML;
+    paginationContainer.innerHTML = html;
 }
 
 // ========== RENDER PROPERTIES ==========
@@ -279,51 +344,42 @@ function renderProperties() {
     const endIndex = startIndex + ITEMS_PER_PAGE;
     const paginatedProperties = currentFilteredProperties.slice(startIndex, endIndex);
 
-    /*paginatedProperties.forEach(prop => {
-        const images = prop.images || [prop.images?.[0] || '/images/placeholder.jpg'];
-        propertyImagesMap.set(prop.id, images);
-    });
-
-    propertyGrid.innerHTML = paginatedProperties.map(prop => {
-        const images = propertyImagesMap.get(prop.id) || [prop.images?.[0] || '/images/placeholder.jpg'];
-        const firstImage = images[0];*/
     propertyGrid.innerHTML = paginatedProperties.map(prop => {
         const firstImage = prop.images?.[0] || '/images/placeholder.jpg';
 
-        // ─── Determine the subscription badge ──────────────────────────────
         const plan = prop.ownerSubscriptionPlan || 'free';
         let badge = '';
         let badgeClass = '';
 
         if (plan === 'developer') {
-    badge = '💎 Platinum';
-    badgeClass = 'property-badge badge-platinum';
-} else if (plan === 'pro') {
-    badge = '🏅 Gold';
-    badgeClass = 'property-badge badge-gold';
-} else if (plan === 'basic') {
-    badge = '🥈 Silver';
-    badgeClass = 'property-badge badge-silver';
-} else {
-    if (prop.type === 'Short-Stay' || prop.listingType === 'short_term' || prop.listingType === 'airbnb') {
-        badge = 'Short Stay';
-        badgeClass = 'property-badge badge-airbnb';
-    } else {
-        badge = 'Long-Term';
-        badgeClass = 'property-badge badge-rent';
-    }
-}
+            badge = '💎 Platinum';
+            badgeClass = 'property-badge badge-platinum';
+        } else if (plan === 'pro') {
+            badge = '🏅 Gold';
+            badgeClass = 'property-badge badge-gold';
+        } else if (plan === 'basic') {
+            badge = '🥈 Silver';
+            badgeClass = 'property-badge badge-silver';
+        } else {
+            if (prop.type === 'Short-Stay' || prop.listingType === 'short_term' || prop.listingType === 'airbnb') {
+                badge = 'Short Stay';
+                badgeClass = 'property-badge badge-airbnb';
+            } else {
+                badge = 'Long-Term';
+                badgeClass = 'property-badge badge-rent';
+            }
+        }
 
         return `
             <a href="${basePath}/property/${prop.slug}.html" class="property-card" data-property-id="${prop.id}">
                 <div class="card-image-wrapper">
-                    <img class="card-image" src="${firstImage}" alt="${prop.title}" loading="lazy">
+                    <img class="card-image" src="${firstImage}" alt="${escapeHtml(prop.title)}" loading="lazy">
                     ${badge ? `<div class="${badgeClass}">${badge}</div>` : ''}
                     <div class="card-price">KES ${prop.price.toLocaleString()}/mo</div>
                 </div>
                 <div class="card-info">
                     <h3 class="card-title">${escapeHtml(prop.title)}</h3>
-                    <div class="card-location">${prop.estate}, Nairobi</div>
+                    <div class="card-location">${escapeHtml(prop.estate)}, Nairobi</div>
                     <div class="card-features">
                         <span><i class="fas fa-bed"></i> ${prop.bedrooms || 0}</span>
                         <span><i class="fas fa-bath"></i> ${prop.bathrooms || 0}</span>
@@ -335,32 +391,21 @@ function renderProperties() {
         `;
     }).join('');
 
-    /*setTimeout(() => {
-        paginatedProperties.forEach(prop => {
-            const card = document.querySelector(`.property-card[data-property-id="${prop.id}"]`);
-            if (card) {
-                const images = propertyImagesMap.get(prop.id);
-                if (images && images.length > 1) {
-                    startImageShuffle(card, images);
-                }
-            }
-        });
-    }, 100);*/
-
     renderPagination();
 }
 
 function escapeHtml(str) {
     if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
+    return String(str).replace(/[&<>"]/g, function(m) {
         if (m === '&') return '&amp;';
         if (m === '<') return '&lt;';
         if (m === '>') return '&gt;';
+        if (m === '"') return '&quot;';
         return m;
     });
 }
 
-// ========== FILTER FUNCTIONS ==========
+// ========== FILTER ==========
 function applyFilters() {
     let filtered = [...allProperties];
     if (currentFilters.neighborhood !== 'all') {
@@ -369,7 +414,10 @@ function applyFilters() {
     if (currentFilters.type !== 'all') {
         filtered = filtered.filter(prop => prop.type === currentFilters.type);
     }
-    if (currentFilters.maxPrice < 500000) {
+    if (currentFilters.minPrice > 0) {
+        filtered = filtered.filter(prop => prop.price >= currentFilters.minPrice);
+    }
+    if (currentFilters.maxPrice < PRICE_CEILING) {
         filtered = filtered.filter(prop => prop.price <= currentFilters.maxPrice);
     }
     return filtered;
@@ -378,39 +426,33 @@ function applyFilters() {
 function applyAndRender() {
     currentFilteredProperties = applyFilters();
     currentPage = 1;
-    //stopAllImageShuffling();
     renderProperties();
-    closeDrawer();
     if (resultCountSpan) resultCountSpan.textContent = currentFilteredProperties.length;
 }
 
+// ========== URL AUTO-FILTER ==========
 function filterByLocationFromURL(location) {
     if (!location) {
         currentFilteredProperties = [...allProperties];
         currentFilters.neighborhood = 'all';
-        if (filterNeighborhoodBtn) {
-            filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
-            filterNeighborhoodBtn.style.borderColor = '';
-            filterNeighborhoodBtn.style.color = '';
-        }
     } else {
-        currentFilteredProperties = allProperties.filter(prop =>
-            prop.estate && prop.estate.toLowerCase() === location.toLowerCase()
-        );
-        currentFilters.neighborhood = location;
-        if (filterNeighborhoodBtn) {
-            filterNeighborhoodBtn.innerHTML = `${location} <i class="fas fa-chevron-down"></i>`;
-            filterNeighborhoodBtn.style.borderColor = 'var(--gold)';
-            filterNeighborhoodBtn.style.color = 'var(--gold)';
+        // Match case-insensitively against real estate values
+        const match = [...new Set(allProperties.map(p => p.estate))]
+            .find(e => e && e.toLowerCase() === location.toLowerCase());
+        if (match) {
+            currentFilters.neighborhood = match;
+            currentFilteredProperties = allProperties.filter(p => p.estate === match);
+        } else {
+            currentFilters.neighborhood = 'all';
+            currentFilteredProperties = [...allProperties];
         }
-        const neighborhoodChips = document.querySelectorAll('#neighborhoodChips .filter-chip');
-        neighborhoodChips.forEach(chip => {
-            if (chip.dataset.value && chip.dataset.value.toLowerCase() === location.toLowerCase()) {
-                neighborhoodChips.forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-            }
-        });
     }
+
+    // Re-render chips so the active one reflects the current selection
+    renderNeighborhoodChips();
+    initChipListeners();
+    updateAllButtons();
+
     currentPage = 1;
     renderProperties();
     console.log(`📍 Showing ${currentFilteredProperties.length} properties for: ${location || 'all locations'}`);
@@ -418,135 +460,150 @@ function filterByLocationFromURL(location) {
 
 function applyFilterFromURL() {
     const location = getLocationFromURL();
-    if (location) {
-        setTimeout(() => filterByLocationFromURL(location), 100);
-    }
+    if (location) setTimeout(() => filterByLocationFromURL(location), 100);
 }
 
 window.changePage = function(page) {
     const totalPages = Math.ceil(currentFilteredProperties.length / ITEMS_PER_PAGE);
     if (page >= 1 && page <= totalPages) {
         currentPage = page;
-        //stopAllImageShuffling();
         renderProperties();
         if (propertyGrid) propertyGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 };
 
-// ========== FILTER CHIP LISTENERS ==========
+// ========== CHIP LISTENERS (state only — no render) ==========
+// Uses event delegation on the parent containers so we can re-render chips freely.
 function initChipListeners() {
-    document.querySelectorAll('#neighborhoodChips .filter-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            document.querySelectorAll('#neighborhoodChips .filter-chip').forEach(c => c.classList.remove('active'));
+    const hoods = document.getElementById('neighborhoodChips');
+    const types = document.getElementById('typeChips');
+
+    if (hoods && !hoods.dataset.bound) {
+        hoods.addEventListener('click', (e) => {
+            const chip = e.target.closest('.filter-chip');
+            if (!chip) return;
+            hoods.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
             currentFilters.neighborhood = chip.dataset.value;
-            currentPage = 1;
-            if (filterNeighborhoodBtn) {
-                if (currentFilters.neighborhood !== 'all') {
-                    filterNeighborhoodBtn.innerHTML = `${currentFilters.neighborhood} <i class="fas fa-chevron-down"></i>`;
-                    filterNeighborhoodBtn.style.borderColor = 'var(--gold)';
-                    filterNeighborhoodBtn.style.color = 'var(--gold)';
-                } else {
-                    filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
-                    filterNeighborhoodBtn.style.borderColor = '';
-                    filterNeighborhoodBtn.style.color = '';
-                }
-            }
-            applyAndRender();
+            updateNeighborhoodButton();
         });
-    });
+        hoods.dataset.bound = '1';
+    }
 
-    document.querySelectorAll('#typeChips .filter-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            document.querySelectorAll('#typeChips .filter-chip').forEach(c => c.classList.remove('active'));
+    if (types && !types.dataset.bound) {
+        types.addEventListener('click', (e) => {
+            const chip = e.target.closest('.filter-chip');
+            if (!chip) return;
+            types.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
             currentFilters.type = chip.dataset.value;
-            currentPage = 1;
-            if (filterTypeBtn) {
-                if (currentFilters.type !== 'all') {
-                    filterTypeBtn.innerHTML = `${currentFilters.type} <i class="fas fa-chevron-down"></i>`;
-                    filterTypeBtn.style.borderColor = 'var(--gold)';
-                    filterTypeBtn.style.color = 'var(--gold)';
-                } else {
-                    filterTypeBtn.innerHTML = `Property Type <i class="fas fa-chevron-down"></i>`;
-                    filterTypeBtn.style.borderColor = '';
-                    filterTypeBtn.style.color = '';
-                }
-            }
-            applyAndRender();
+            updateTypeButton();
         });
-    });
+        types.dataset.bound = '1';
+    }
+}
 
-    function updateBudgetButton() {
-        if (filterBudgetBtn) {
-            if (currentFilters.maxPrice < 500000) {
-                filterBudgetBtn.innerHTML = `Under KES ${currentFilters.maxPrice.toLocaleString()} <i class="fas fa-chevron-down"></i>`;
-                filterBudgetBtn.style.borderColor = 'var(--gold)';
-                filterBudgetBtn.style.color = 'var(--gold)';
-            } else {
-                filterBudgetBtn.innerHTML = `Budget <i class="fas fa-chevron-down"></i>`;
-                filterBudgetBtn.style.borderColor = '';
-                filterBudgetBtn.style.color = '';
-            }
+// ========== DUAL-RANGE PRICE (visuals only — no render) ==========
+function formatPrice(val) {
+    return 'KES ' + val.toLocaleString();
+}
+
+function updateSliderVisuals() {
+    if (!priceMin || !priceMax) return;
+
+    let minVal = parseInt(priceMin.value, 10) || 0;
+    let maxVal = parseInt(priceMax.value, 10) || PRICE_CEILING;
+
+    if (minVal > maxVal - PRICE_STEP) {
+        if (document.activeElement === priceMin) {
+            minVal = Math.max(0, maxVal - PRICE_STEP);
+            priceMin.value = minVal;
+        } else {
+            maxVal = Math.min(PRICE_CEILING, minVal + PRICE_STEP);
+            priceMax.value = maxVal;
         }
     }
-    if (priceRange) {
-        priceRange.addEventListener('change', updateBudgetButton);
+
+    const minPct = (minVal / PRICE_CEILING) * 100;
+    const maxPct = (maxVal / PRICE_CEILING) * 100;
+    if (priceFill) {
+        priceFill.style.left = minPct + '%';
+        priceFill.style.right = (100 - maxPct) + '%';
     }
+
+    if (minPriceLabel) {
+        minPriceLabel.textContent = formatPrice(minVal);
+        minPriceLabel.classList.toggle('active-value', minVal > 0);
+    }
+    if (maxPriceLabel) {
+        if (maxVal >= PRICE_CEILING) {
+            maxPriceLabel.textContent = formatPrice(PRICE_CEILING) + '+';
+            maxPriceLabel.classList.remove('active-value');
+        } else {
+            maxPriceLabel.textContent = formatPrice(maxVal);
+            maxPriceLabel.classList.add('active-value');
+        }
+    }
+
+    currentFilters.minPrice = minVal;
+    currentFilters.maxPrice = maxVal;
     updateBudgetButton();
 }
 
-// ========== PRICE RANGE HANDLER ==========
-if (priceRange) {
-    priceRange.addEventListener('input', (e) => {
-        const val = parseInt(e.target.value);
-        if (val >= 500000) {
-            if (maxPriceLabel) maxPriceLabel.textContent = 'KES 500,000+';
-        } else {
-            if (maxPriceLabel) maxPriceLabel.textContent = `KES ${val.toLocaleString()}`;
-        }
-        currentFilters.maxPrice = val;
-        currentPage = 1;
-        applyAndRender();
+function syncActivePreset() {
+    if (!pricePresets) return;
+    const min = currentFilters.minPrice;
+    const max = currentFilters.maxPrice;
+    pricePresets.querySelectorAll('.price-preset').forEach(btn => {
+        const bMin = parseInt(btn.dataset.min, 10);
+        const bMax = parseInt(btn.dataset.max, 10);
+        btn.classList.toggle('active', bMin === min && bMax === max);
     });
 }
 
-// ========== RESET FILTERS ==========
+if (priceMin) priceMin.addEventListener('input', updateSliderVisuals);
+if (priceMax) priceMax.addEventListener('input', updateSliderVisuals);
+
+if (pricePresets) {
+    pricePresets.querySelectorAll('.price-preset').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const min = parseInt(btn.dataset.min, 10);
+            const max = parseInt(btn.dataset.max, 10);
+            if (priceMin) priceMin.value = min;
+            if (priceMax) priceMax.value = max;
+            updateSliderVisuals();
+            syncActivePreset();
+        });
+    });
+}
+
+updateSliderVisuals();
+
+// ========== RESET (applies immediately, keeps drawer open) ==========
 function resetFilters() {
     currentFilters = {
         neighborhood: 'all',
         type: 'all',
-        maxPrice: 500000
+        minPrice: 0,
+        maxPrice: PRICE_CEILING
     };
     currentPage = 1;
+
     document.querySelectorAll('#neighborhoodChips .filter-chip').forEach(chip => {
-        if (chip.dataset.value === 'all') chip.classList.add('active');
-        else chip.classList.remove('active');
+        chip.classList.toggle('active', chip.dataset.value === 'all');
     });
     document.querySelectorAll('#typeChips .filter-chip').forEach(chip => {
-        if (chip.dataset.value === 'all') chip.classList.add('active');
-        else chip.classList.remove('active');
+        chip.classList.toggle('active', chip.dataset.value === 'all');
     });
-    if (priceRange) {
-        priceRange.value = 500000;
-        if (maxPriceLabel) maxPriceLabel.textContent = 'KES 500,000+';
+
+    if (priceMin) priceMin.value = 0;
+    if (priceMax) priceMax.value = PRICE_CEILING;
+    updateSliderVisuals();
+    if (pricePresets) {
+        pricePresets.querySelectorAll('.price-preset').forEach(b => b.classList.remove('active'));
     }
-    if (filterNeighborhoodBtn) {
-        filterNeighborhoodBtn.innerHTML = `Neighborhood <i class="fas fa-chevron-down"></i>`;
-        filterNeighborhoodBtn.style.borderColor = '';
-        filterNeighborhoodBtn.style.color = '';
-    }
-    if (filterTypeBtn) {
-        filterTypeBtn.innerHTML = `Property Type <i class="fas fa-chevron-down"></i>`;
-        filterTypeBtn.style.borderColor = '';
-        filterTypeBtn.style.color = '';
-    }
-    if (filterBudgetBtn) {
-        filterBudgetBtn.innerHTML = `Budget <i class="fas fa-chevron-down"></i>`;
-        filterBudgetBtn.style.borderColor = '';
-        filterBudgetBtn.style.color = '';
-    }
-    //stopAllImageShuffling();
+
+    updateAllButtons();
     applyAndRender();
 }
 
@@ -571,6 +628,7 @@ function addResetButton() {
     }
 }
 
+// ========== "SHOW RESULTS" ==========
 const applyBtn = document.getElementById('applyFiltersBtn');
 if (applyBtn) {
     applyBtn.addEventListener('click', () => {
@@ -579,7 +637,7 @@ if (applyBtn) {
     });
 }
 
-// ========== LOAD PROPERTIES (RENTALS ONLY) ==========
+// ========== LOAD PROPERTIES ==========
 async function loadProperties() {
     try {
         if (skeletonLoader) skeletonLoader.style.display = 'flex';
@@ -590,7 +648,7 @@ async function loadProperties() {
         const propertiesFromAPI = data.properties || [];
 
         allProperties = propertiesFromAPI
-    .filter(prop => prop.listingType === 'rent' || prop.listingType === 'long_term')
+            .filter(prop => prop.listingType === 'rent' || prop.listingType === 'long_term')
             .map(prop => ({
                 id: prop._id,
                 title: prop.title,
@@ -605,7 +663,7 @@ async function loadProperties() {
                 description: prop.description || '',
                 listingType: prop.listingType,
                 status: prop.status,
-                ownerSubscriptionPlan: prop.ownerSubscriptionPlan || 'free'   // ✅ ADDED
+                ownerSubscriptionPlan: prop.ownerSubscriptionPlan || 'free'
             }));
 
         console.log(`🏠 Found ${allProperties.length} rental properties`);
@@ -615,8 +673,12 @@ async function loadProperties() {
 
         currentFilteredProperties = [...allProperties];
         renderProperties();
-        initChipListeners();
+
+        // Build chips from real data, then wire listeners
+        renderDynamicFilters();
         addResetButton();
+        updateAllButtons();
+
         applyFilterFromURL();
 
     } catch (error) {
@@ -624,16 +686,12 @@ async function loadProperties() {
         if (skeletonLoader) skeletonLoader.style.display = 'none';
         if (emptyState) {
             emptyState.style.display = 'block';
-            const emptyTitle = emptyState.querySelector('h3');
-            if (emptyTitle) emptyTitle.textContent = 'Unable to Load Rentals';
-            const emptyText = emptyState.querySelector('p');
-            if (emptyText) emptyText.textContent = 'Please check back later.';
+            const t = emptyState.querySelector('h3');
+            if (t) t.textContent = 'Unable to Load Rentals';
+            const p = emptyState.querySelector('p');
+            if (p) p.textContent = 'Please check back later.';
         }
     }
 }
-
-/*window.addEventListener('beforeunload', () => {
-    stopAllImageShuffling();
-});*/
 
 loadProperties();

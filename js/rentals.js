@@ -169,7 +169,7 @@ const maxPriceLabel = document.getElementById('maxPriceLabel');
 let paginationContainer;
 
 // ========== IMAGE CAROUSEL ==========
-const propertyImagesMap = new Map();
+/*const propertyImagesMap = new Map();
 let imageIntervals = [];
 
 function stopAllImageShuffling() {
@@ -215,7 +215,7 @@ function startImageShuffle(cardElement, imagesArray) {
         currentIndex = nextIndex;
     }, 10000);
     imageIntervals.push(interval);
-}
+} */
 
 // ========== PAGINATION ==========
 function ensurePaginationContainer() {
@@ -279,14 +279,16 @@ function renderProperties() {
     const endIndex = startIndex + ITEMS_PER_PAGE;
     const paginatedProperties = currentFilteredProperties.slice(startIndex, endIndex);
 
-    paginatedProperties.forEach(prop => {
+    /*paginatedProperties.forEach(prop => {
         const images = prop.images || [prop.images?.[0] || '/images/placeholder.jpg'];
         propertyImagesMap.set(prop.id, images);
     });
 
     propertyGrid.innerHTML = paginatedProperties.map(prop => {
         const images = propertyImagesMap.get(prop.id) || [prop.images?.[0] || '/images/placeholder.jpg'];
-        const firstImage = images[0];
+        const firstImage = images[0];*/
+    propertyGrid.innerHTML = paginatedProperties.map(prop => {
+        const firstImage = prop.images?.[0] || '/images/placeholder.jpg';
 
         // ─── Determine the subscription badge ──────────────────────────────
         const plan = prop.ownerSubscriptionPlan || 'free';
@@ -333,7 +335,7 @@ function renderProperties() {
         `;
     }).join('');
 
-    setTimeout(() => {
+    /*setTimeout(() => {
         paginatedProperties.forEach(prop => {
             const card = document.querySelector(`.property-card[data-property-id="${prop.id}"]`);
             if (card) {
@@ -343,7 +345,7 @@ function renderProperties() {
                 }
             }
         });
-    }, 100);
+    }, 100);*/
 
     renderPagination();
 }
@@ -376,7 +378,7 @@ function applyFilters() {
 function applyAndRender() {
     currentFilteredProperties = applyFilters();
     currentPage = 1;
-    stopAllImageShuffling();
+    //stopAllImageShuffling();
     renderProperties();
     closeDrawer();
     if (resultCountSpan) resultCountSpan.textContent = currentFilteredProperties.length;
@@ -410,7 +412,6 @@ function filterByLocationFromURL(location) {
         });
     }
     currentPage = 1;
-    stopAllImageShuffling();
     renderProperties();
     console.log(`📍 Showing ${currentFilteredProperties.length} properties for: ${location || 'all locations'}`);
 }
@@ -426,7 +427,7 @@ window.changePage = function(page) {
     const totalPages = Math.ceil(currentFilteredProperties.length / ITEMS_PER_PAGE);
     if (page >= 1 && page <= totalPages) {
         currentPage = page;
-        stopAllImageShuffling();
+        //stopAllImageShuffling();
         renderProperties();
         if (propertyGrid) propertyGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -545,7 +546,7 @@ function resetFilters() {
         filterBudgetBtn.style.borderColor = '';
         filterBudgetBtn.style.color = '';
     }
-    stopAllImageShuffling();
+    //stopAllImageShuffling();
     applyAndRender();
 }
 
@@ -631,8 +632,8 @@ async function loadProperties() {
     }
 }
 
-window.addEventListener('beforeunload', () => {
+/*window.addEventListener('beforeunload', () => {
     stopAllImageShuffling();
-});
+});*/
 
 loadProperties();

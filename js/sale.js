@@ -169,54 +169,8 @@ const priceRange = document.getElementById('priceRange');
 const maxPriceLabel = document.getElementById('maxPriceLabel');
 let paginationContainer;
 
-// ========== IMAGE CAROUSEL ==========
-const propertyImagesMap = new Map();
-let imageIntervals = [];
-
-function stopAllImageShuffling() {
-    imageIntervals.forEach(interval => clearInterval(interval));
-    imageIntervals = [];
-}
-
-function startImageShuffle(cardElement, imagesArray) {
-    if (!imagesArray || imagesArray.length <= 1) return;
-    let currentIndex = 0;
-    const imageWrapper = cardElement.querySelector('.card-image-wrapper');
-    if (!imageWrapper) return;
-    
-    const existingImages = imageWrapper.querySelectorAll('.card-image');
-    if (existingImages.length === 1 && imagesArray.length > 1) {
-        const firstImage = existingImages[0];
-        imageWrapper.innerHTML = '';
-        imagesArray.forEach((src, idx) => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = cardElement.querySelector('.card-title')?.textContent || 'Property';
-            img.className = 'card-image';
-            img.setAttribute('data-image-index', idx);
-            img.style.position = 'absolute';
-            img.style.top = '0';
-            img.style.left = '0';
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.objectFit = 'cover';
-            img.style.transition = 'opacity 0.5s ease-in-out';
-            img.style.opacity = idx === 0 ? '1' : '0';
-            imageWrapper.appendChild(img);
-        });
-    }
-    
-    const images = imageWrapper.querySelectorAll('.card-image');
-    if (images.length <= 1) return;
-    
-    const interval = setInterval(() => {
-        const nextIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].style.opacity = '0';
-        images[nextIndex].style.opacity = '1';
-        currentIndex = nextIndex;
-    }, 10000);
-    imageIntervals.push(interval);
-}
+// ========== IMAGE HANDLING ==========
+// Cover image only — full gallery lives on individual property pages.
 
 // ========== PAGINATION ==========
 function ensurePaginationContainer() {
@@ -273,72 +227,55 @@ function renderProperties() {
     propertyGrid.style.display = 'grid';
     if (emptyState) emptyState.style.display = 'none';
     if (resultCountSpan) resultCountSpan.textContent = currentFilteredProperties.length;
-    
+
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
     const paginatedProperties = currentFilteredProperties.slice(startIndex, endIndex);
-    
-    paginatedProperties.forEach(prop => {
-        const images = prop.images || [prop.images?.[0] || '/images/placeholder.jpg'];
-        propertyImagesMap.set(prop.id, images);
-    });
-    
-  propertyGrid.innerHTML = paginatedProperties.map(prop => {
-    const images = propertyImagesMap.get(prop.id) || [prop.images?.[0] || '/images/placeholder.jpg'];
-    const firstImage = images[0];
-    const badge = prop.listingType === 'sale' ? 'For Sale' : 'Sale';
-    
-    // ─── SUBSCRIPTION BADGE ──────────────────────────────────
-    const plan = prop.ownerSubscriptionPlan || 'free';
-    const badgeConfig = {
-        basic: { label: 'Silver', color: '#c0c0c0', icon: 'fa-gem', className: 'badge-silver' },
-        pro: { label: 'Gold', color: '#d4af37', icon: 'fa-crown', className: 'badge-gold' },
-        developer: { label: 'Platinum', color: '#e5e4e2', icon: 'fa-gem', className: 'badge-platinum' }
-    };
-    const config = badgeConfig[plan] || null;
-    let premiumBadgeHTML = '';
-    if (config) {
-        premiumBadgeHTML = `
-            <div class="property-badge ${config.className}">
-                <i class="fas ${config.icon}"></i> ${config.label}
-            </div>
-        `;
-    }
-    
-    return `
-        <a href="${basePath}/property/${prop.slug}.html" class="property-card" data-property-id="${prop.id}">
-            <div class="card-image-wrapper" style="position:relative;">
-                ${premiumBadgeHTML}
-                <img class="card-image" src="${firstImage}" alt="${prop.title}" loading="lazy">
-                <div class="card-badge">${badge}</div>
-                <div class="card-price">KES ${prop.price.toLocaleString()}</div>
-            </div>
-            <div class="card-info">
-                <h3 class="card-title">${escapeHtml(prop.title)}</h3>
-                <div class="card-location">${prop.estate || 'Nairobi'}</div>
-                <div class="card-features">
-                    <span><i class="fas fa-bed"></i> ${prop.bedrooms || 0}</span>
-                    <span><i class="fas fa-bath"></i> ${prop.bathrooms || 0}</span>
-                    <span><i class="fas fa-car"></i> ${prop.parking || 0}</span>
+
+    propertyGrid.innerHTML = paginatedProperties.map(prop => {
+        const firstImage = prop.images?.[0] || '/images/placeholder.jpg';
+        const badge = prop.listingType === 'sale' ? 'For Sale' : 'Sale';
+
+        // ─── SUBSCRIPTION BADGE ──────────────────────────────────
+        const plan = prop.ownerSubscriptionPlan || 'free';
+        const badgeConfig = {
+            basic: { label: 'Silver', color: '#c0c0c0', icon: 'fa-gem', className: 'badge-silver' },
+            pro: { label: 'Gold', color: '#d4af37', icon: 'fa-crown', className: 'badge-gold' },
+            developer: { label: 'Platinum', color: '#e5e4e2', icon: 'fa-gem', className: 'badge-platinum' }
+        };
+        const config = badgeConfig[plan] || null;
+        let premiumBadgeHTML = '';
+        if (config) {
+            premiumBadgeHTML = `
+                <div class="property-badge ${config.className}">
+                    <i class="fas ${config.icon}"></i> ${config.label}
                 </div>
-                ${config ? `<div class="boost-tag"><i class="fas fa-arrow-up" style="color:${config.color};"></i> <span style="color:${config.color};">Boosted visibility</span></div>` : ''}
-            </div>
-            <div class="card-cta">View Details</div>
-        </a>
-    `;
-}).join('');
-    
-    setTimeout(() => {
-        paginatedProperties.forEach(prop => {
-            const card = document.querySelector(`.property-card[data-property-id="${prop.id}"]`);
-            if (card) {
-                const images = propertyImagesMap.get(prop.id);
-                if (images && images.length > 1) {
-                    startImageShuffle(card, images);
-                }
-            }
-        });
-    }, 100);
+            `;
+        }
+
+        return `
+            <a href="${basePath}/property/${prop.slug}.html" class="property-card" data-property-id="${prop.id}">
+                <div class="card-image-wrapper" style="position:relative;">
+                    ${premiumBadgeHTML}
+                    <img class="card-image" src="${firstImage}" alt="${prop.title}" loading="lazy">
+                    <div class="card-badge">${badge}</div>
+                    <div class="card-price">KES ${prop.price.toLocaleString()}</div>
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">${escapeHtml(prop.title)}</h3>
+                    <div class="card-location">${prop.estate || 'Nairobi'}</div>
+                    <div class="card-features">
+                        <span><i class="fas fa-bed"></i> ${prop.bedrooms || 0}</span>
+                        <span><i class="fas fa-bath"></i> ${prop.bathrooms || 0}</span>
+                        <span><i class="fas fa-car"></i> ${prop.parking || 0}</span>
+                    </div>
+                    ${config ? `<div class="boost-tag"><i class="fas fa-arrow-up" style="color:${config.color};"></i> <span style="color:${config.color};">Boosted visibility</span></div>` : ''}
+                </div>
+                <div class="card-cta">View Details</div>
+            </a>
+        `;
+    }).join('');
+
     renderPagination();
 }
 
@@ -370,7 +307,6 @@ function applyFilters() {
 function applyAndRender() {
     currentFilteredProperties = applyFilters();
     currentPage = 1;
-    stopAllImageShuffling();
     renderProperties();
     closeDrawer();
     if (resultCountSpan) resultCountSpan.textContent = currentFilteredProperties.length;
@@ -386,7 +322,7 @@ function filterByLocationFromURL(location) {
             filterNeighborhoodBtn.style.color = '';
         }
     } else {
-        currentFilteredProperties = allProperties.filter(prop => 
+        currentFilteredProperties = allProperties.filter(prop =>
             prop.estate && prop.estate.toLowerCase() === location.toLowerCase()
         );
         currentFilters.neighborhood = location;
@@ -404,7 +340,6 @@ function filterByLocationFromURL(location) {
         });
     }
     currentPage = 1;
-    stopAllImageShuffling();
     renderProperties();
     console.log(`📍 Showing ${currentFilteredProperties.length} properties for sale in: ${location || 'all locations'}`);
 }
@@ -420,7 +355,6 @@ window.changePage = function(page) {
     const totalPages = Math.ceil(currentFilteredProperties.length / ITEMS_PER_PAGE);
     if (page >= 1 && page <= totalPages) {
         currentPage = page;
-        stopAllImageShuffling();
         renderProperties();
         if (propertyGrid) propertyGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -469,7 +403,7 @@ function initChipListeners() {
             applyAndRender();
         });
     });
-    
+
     function updateBudgetButton() {
         if (filterBudgetBtn) {
             if (currentFilters.maxPrice < 50000000) {
@@ -539,7 +473,6 @@ function resetFilters() {
         filterBudgetBtn.style.borderColor = '';
         filterBudgetBtn.style.color = '';
     }
-    stopAllImageShuffling();
     applyAndRender();
 }
 
@@ -576,49 +509,49 @@ if (applyBtn) {
 async function loadProperties() {
     try {
         if (skeletonLoader) skeletonLoader.style.display = 'flex';
-        
+
         const response = await fetch('https://rentspace-markeplace.onrender.com/api/properties?limit=200');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
-        let propertiesFromAPI = data.properties || [];
-        
+        const propertiesFromAPI = data.properties || [];
+
         // Map and filter to ONLY properties for sale (exclude land)
         allProperties = propertiesFromAPI
-         .map(prop => ({
-    id: prop._id,
-    title: prop.title,
-    slug: prop.slug,
-    estate: prop.estate,
-    price: Number(prop.price) || 0,
-    type: prop.propertyType || (prop.listingType === 'short_term' ? 'Short-Stay' : 'Long-Term'),
-    images: prop.images || [],
-    bedrooms: prop.bedrooms || 0,
-    bathrooms: prop.bathrooms || 0,
-    parking: prop.parking || 0,
-    description: prop.description || '',
-    listingType: prop.listingType,
-    propertyType: prop.propertyType,
-    status: prop.status,
-    ownerSubscriptionPlan: prop.ownerSubscriptionPlan || 'free'
-}))
+            .map(prop => ({
+                id: prop._id,
+                title: prop.title,
+                slug: prop.slug,
+                estate: prop.estate,
+                price: Number(prop.price) || 0,
+                type: prop.propertyType || (prop.listingType === 'short_term' ? 'Short-Stay' : 'Long-Term'),
+                images: prop.images || [],
+                bedrooms: prop.bedrooms || 0,
+                bathrooms: prop.bathrooms || 0,
+                parking: prop.parking || 0,
+                description: prop.description || '',
+                listingType: prop.listingType,
+                propertyType: prop.propertyType,
+                status: prop.status,
+                ownerSubscriptionPlan: prop.ownerSubscriptionPlan || 'free'
+            }))
             // 🔥 KEY FILTER: Only sale properties, excluding land
-            .filter(prop => 
-                prop.listingType === 'sale' && 
-                prop.propertyType && 
+            .filter(prop =>
+                prop.listingType === 'sale' &&
+                prop.propertyType &&
                 !prop.propertyType.toLowerCase().includes('land')
             );
-        
+
         console.log(`🏠 Found ${allProperties.length} properties for sale`);
-        
+
         if (skeletonLoader) skeletonLoader.style.display = 'none';
         ensurePaginationContainer();
-        
+
         currentFilteredProperties = [...allProperties];
         renderProperties();
         initChipListeners();
         addResetButton();
         applyFilterFromURL();
-        
+
     } catch (error) {
         console.error('Error loading properties for sale:', error);
         if (skeletonLoader) skeletonLoader.style.display = 'none';
@@ -631,10 +564,6 @@ async function loadProperties() {
         }
     }
 }
-
-window.addEventListener('beforeunload', () => {
-    stopAllImageShuffling();
-});
 
 // Start loading
 loadProperties();

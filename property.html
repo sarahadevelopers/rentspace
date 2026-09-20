@@ -1,92 +1,599 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-KE">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  
+
   <title>Property Details | RentSpace</title>
   <meta name="description" content="View detailed property information including photos, price, location, and features. Find your dream home or investment property with RentSpace.">
-  
-  <!-- Theme color for mobile browser bar -->
+
   <meta name="theme-color" content="#c5a059">
-  
-  <!-- PWA Manifest -->
-  
-  
-  <!-- Canonical URL (dynamic - will be overridden by JavaScript) -->
+
   <link rel="canonical" href="https://rentspace.co.ke/property.html" />
-  
-  <!-- Favicons -->
+
   <link rel="icon" type="image/png" sizes="32x32" href="images/RentSpace-favicon.webp">
   <link rel="icon" type="image/png" sizes="16x16" href="images/RentSpace-favicon.webp">
   <link rel="apple-touch-icon" sizes="180x180" href="images/RentSpace-favicon.webp">
-  
-  <!-- Open Graph (Facebook, LinkedIn) - Will be dynamically updated by JavaScript -->
+
   <meta property="og:title" content="Property Details | RentSpace">
-  <meta property="og:description" content="View detailed property information including photos, price, location, and features. Find your dream home or investment property with RentSpace.">
+  <meta property="og:description" content="View detailed property information including photos, price, location, and features.">
   <meta property="og:image" content="https://rentspace.co.ke/images/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rentspace.co.ke/property.html">
-  
-  <!-- Twitter Card -->
+
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://rentspace.co.ke/images/og-image.jpg">
-  
-  <!-- Preconnect & Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
-  
-  <!-- PWA Service Worker Registration -->
-<script>
-  // ─── Kill-switch: unregister any service worker + clear caches ──
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(regs => {
-      regs.forEach(reg => reg.unregister());
-      if (regs.length > 0) {
-        caches.keys().then(names =>
-          Promise.all(names.map(n => caches.delete(n)))
-        ).then(() => location.reload());
-      }
-    });
-  }
-</script>
 
+  <script>
+    // ─── Kill-switch: unregister any service worker + clear caches ──
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.unregister());
+        if (regs.length > 0) {
+          caches.keys().then(names =>
+            Promise.all(names.map(n => caches.delete(n)))
+          ).then(() => location.reload());
+        }
+      });
+    }
+  </script>
+
+  <style>
+    /* ===== DARK THEME OVERRIDE ===== */
+    :root {
+      --gold: #c9a45c;
+      --gold-dark: #b88f3c;
+      --bg-dark: #0a0a0a;
+      --bg-card: #111111;
+      --border: rgba(201, 164, 92, 0.2);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    body {
+      background: radial-gradient(circle at 30% 10%, #1a1a1a 0%, #0a0a0a 100%) !important;
+      color: var(--text-primary);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* ===== EXECUTIVE NAVBAR ===== */
+    .exec-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .nav-logo span { color: var(--gold); font-weight: 400; }
+    .r-sup { font-size: 0.65rem; vertical-align: super; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li { position: relative; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1002;
+      background: transparent;
+      border: none;
+      padding: 0;
+      -webkit-appearance: none;
+      appearance: none;
+      color: inherit;
+      font: inherit;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--gold); }
+    .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--gold); }
+
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      opacity: 0; visibility: hidden;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    .menu-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+    /* Desktop dropdowns */
+    @media (min-width: 769px) {
+      .dropdown-trigger i { font-size: 10px; transition: transform 0.3s ease; }
+      .dropdown:hover .dropdown-trigger i { transform: rotate(180deg); }
+      .dropdown-menu {
+        position: absolute;
+        top: 100%; left: 0;
+        min-width: 220px;
+        background: #111111;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 8px 0;
+        margin-top: 8px;
+        opacity: 0; visibility: hidden;
+        transition: all 0.25s ease;
+        z-index: 1001;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+      .dropdown:last-child .dropdown-menu { left: auto; right: 0; }
+      .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
+      .dropdown-menu li { display: block; }
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 20px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        white-space: nowrap;
+      }
+      .dropdown-menu a:hover { background: rgba(201, 164, 92, 0.1); color: var(--gold); padding-left: 24px; }
+      .dropdown-menu li:not(:last-child) a { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    }
+
+    /* ===== NAVBAR CTAs ===== */
+    .nav-actions-desktop {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .nav-actions { display: none; }
+
+    .nav-cta-primary {
+      background: var(--gold);
+      color: #0a0a0a;
+      padding: 10px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+      transition: all 0.3s ease;
+    }
+    .nav-cta-primary i { font-size: 14px; }
+    .nav-cta-primary:hover { background: #d4b37a; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(197, 160, 89, 0.4); }
+
+    .nav-cta-secondary {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .nav-cta-secondary:hover { background: var(--gold); color: #0a0a0a; transform: translateY(-2px); }
+
+    .nav-auth {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 12px;
+      padding: 8px 4px;
+      transition: all 0.3s ease;
+    }
+    .nav-auth:hover { color: var(--gold); }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .nav-actions-desktop { display: none !important; }
+      .hamburger { display: flex; }
+
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 85%; max-width: 320px;
+        height: 100vh;
+        background: #0a0a0a;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0;
+        transition: right 0.4s ease;
+        z-index: 1001;
+        padding: 80px 1.5rem 2rem;
+        margin: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+      }
+      .nav-links.active { right: 0; }
+      .nav-links li { width: 100%; margin: 0; padding: 0; list-style: none; position: static; }
+      .nav-links a {
+        padding: 12px 0;
+        font-size: 16px;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        color: #fff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .dropdown-trigger i { color: var(--gold); font-size: 12px; }
+      .dropdown-menu {
+        position: static;
+        background: rgba(255, 255, 255, 0.08);
+        border-left: 2px solid var(--gold);
+        border-radius: 0;
+        padding: 0;
+        margin: 8px 0 8px 1rem;
+        display: none;
+        width: calc(100% - 1rem);
+      }
+      .dropdown-menu.open { display: block; }
+      .dropdown-menu a {
+        padding: 10px 0 10px 1rem;
+        font-size: 14px;
+        border-bottom: none;
+        color: rgba(255, 255, 255, 0.8);
+        justify-content: flex-start;
+      }
+      .dropdown.open .dropdown-trigger i { transform: rotate(180deg); }
+
+      .nav-actions {
+        display: flex !important;
+        flex-direction: column;
+        width: 100%;
+        padding: 16px 0 10px;
+        gap: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 8px;
+      }
+      .nav-actions .nav-cta-primary,
+      .nav-actions .nav-cta-secondary,
+      .nav-actions .nav-auth {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        justify-content: center;
+        padding: 14px 20px;
+        font-size: 15px;
+      }
+      .nav-actions .nav-cta-secondary { background: var(--gold); color: #0a0a0a; border: none; }
+      .nav-actions .nav-auth {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 30px;
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+      body { padding-bottom: 70px; }
+    }
+
+    @media (min-width: 769px) { .hamburger { display: none !important; } }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      margin-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    /* ===== PREMIUM FOOTER ===== */
+    .premium-footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 4rem 5% 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-col h4 {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .footer-col p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+    }
+    .footer-col a:hover { color: var(--gold); padding-left: 5px; }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    /* ===== MOBILE BOTTOM NAV ===== */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(201, 164, 92, 0.15);
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 12px 14px;
+      z-index: 999;
+    }
+    .mobile-bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 10px;
+      padding: 8px 16px;
+      border-radius: 40px;
+      position: relative;
+    }
+    .mobile-bottom-nav a i { font-size: 20px; }
+    .mobile-bottom-nav a.active { color: var(--gold); background: rgba(201, 164, 92, 0.15); }
+
+    @media (max-width: 768px) { .mobile-bottom-nav { display: flex; } }
+  </style>
+</head>
 <body>
-  <nav class="navbar">
-    <a href="index.html" class="nav-logo">Rent<span>Space</span></a>
-    <ul class="nav-menu">
-      <li><a href="rentals.html" class="nav-link">Find a Home</a></li>
-      <li><a href="movers.html" class="nav-link">Professional Moving</a></li>
-      <li><a href="https://fumigo.co.ke" target="_blank" class="nav-link external">Fumigation</a></li>
+
+  <!-- Executive Navbar -->
+  <nav class="exec-nav">
+    <a href="index.html" class="nav-logo">Rent<span>Space</span><sup class="r-sup">®</sup></a>
+
+    <ul class="nav-links">
+
+      <!-- FOR SALE -->
+      <li class="dropdown">
+        <a href="sale.html" class="dropdown-trigger">For Sale <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="sale.html">All For Sale</a></li>
+          <li><a href="sale.html?type=apartment">Apartments</a></li>
+          <li><a href="sale.html?type=bungalow">Bungalows</a></li>
+          <li><a href="sale.html?type=maisonette">Maisonettes</a></li>
+          <li><a href="sale.html?type=villa">Villas</a></li>
+        </ul>
+      </li>
+
+      <!-- FOR RENT -->
+      <li class="dropdown">
+        <a href="rentals.html" class="dropdown-trigger">For Rent <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="rentals.html">All Rentals</a></li>
+          <li><a href="rentals.html?type=apartment">Apartments</a></li>
+          <li><a href="rentals.html?type=bungalow">Bungalows</a></li>
+          <li><a href="rentals.html?type=maisonette">Maisonettes</a></li>
+          <li><a href="rentals.html?type=studio">Studios</a></li>
+        </ul>
+      </li>
+
+      <!-- LAND -->
+      <li class="dropdown">
+        <a href="land.html" class="dropdown-trigger">Land <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="land.html">All Land</a></li>
+          <li><a href="land.html?type=land-res">Residential</a></li>
+          <li><a href="land.html?type=land-comm">Commercial</a></li>
+          <li><a href="land.html?type=ranch">Agricultural</a></li>
+        </ul>
+      </li>
+
+      <!-- AIRBNB -->
+      <li class="dropdown">
+        <a href="airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="airbnb.html">All Bnbs</a></li>
+          <li><a href="airbnb.html?type=studio">Studio</a></li>
+          <li><a href="airbnb.html?type=1-bedroom">1 Bedroom</a></li>
+          <li><a href="airbnb.html?type=2-bedroom">2 Bedroom</a></li>
+          <li><a href="airbnb.html?type=executive">Executive</a></li>
+        </ul>
+      </li>
+
+      <!-- Mobile CTAs -->
+      <div class="nav-actions">
+        <a href="login.html?redirect=dashboard" class="nav-cta-primary">
+          <i class="fas fa-plus-circle"></i> Create Listing
+        </a>
+        <a href="login.html" class="nav-auth">Log In</a>
+        <a href="signup.html" class="nav-cta-secondary">Sign Up</a>
+      </div>
     </ul>
-    <a href="movers.html" class="nav-cta">Get Moving Quote</a>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+
+    <!-- Desktop CTAs -->
+    <div class="nav-actions-desktop">
+      <a href="login.html?redirect=dashboard" class="nav-cta-primary">
+        <i class="fas fa-plus-circle"></i> Create Listing
+      </a>
+      <a href="login.html" class="nav-auth">Log In</a>
+      <a href="signup.html" class="nav-cta-secondary">Sign Up</a>
     </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
-  <main style="margin-top: 80px;">
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Main Content — populated by js/property.js -->
+  <main>
     <div class="container" style="max-width: 1200px;">
       <div id="propertyDetail" style="display: grid; grid-template-columns: 1fr 350px; gap: 40px;"></div>
     </div>
   </main>
 
-  <div class="mobile-bottom-nav">
-    <a href="tel:+254723562484"><i class="fas fa-phone-alt"></i> Call</a>
-    <a href="rentals.html"><i class="fas fa-search"></i> Search</a>
-    <a href="https://wa.me/254723562484?text=I'm%20interested%20in%20a%20property"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  </div>
-
-  <footer style="background: #f5f5f5; padding: 40px 20px; text-align: center;">
-    <div class="container">
-      <p>© 2025 RentSpace – Premium Rentals & Moving in Nairobi</p>
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>RentSpace</h4>
+        <p>Kenya's premium real estate marketplace — connecting agents, landlords, and tenants across Nairobi and satellite towns.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio</h4>
+        <a href="sale.html">For Sale</a>
+        <a href="rentals.html">For Rent</a>
+        <a href="land.html">Land</a>
+        <a href="airbnb.html">Airbnb</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="movers.html">Movers &amp; Packers</a>
+        <a href="https://fumigo.co.ke" target="_blank">Fumigation</a>
+        <a href="blog.html">Location Insights</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+254723562484">+254 723 562 484</a>
+        <a href="mailto:info@rentspace.co.ke">info@rentspace.co.ke</a>
+        <a href="https://wa.me/254723562484" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> RentSpace — All Rights Reserved</p>
+      <p>Designed &amp; Developed by <a href="https://sarahadevelopers.co.ke" target="_blank" style="color: var(--gold); text-decoration: none;">Saraha Developers</a></p>
     </div>
   </footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="rentals.html"><i class="fas fa-building"></i> Rentals</a>
+    <a href="airbnb.html"><i class="fab fa-airbnb"></i> Airbnb</a>
+    <a href="blog.html"><i class="fas fa-newspaper"></i> Insights</a>
+    <a href="https://wa.me/254723562484"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-links');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function closeMenu() {
+      if (navMenu) navMenu.classList.remove('active');
+      if (hamburger) hamburger.classList.remove('active');
+      if (menuOverlay) menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function openMenu() {
+      if (navMenu) navMenu.classList.add('active');
+      if (hamburger) hamburger.classList.add('active');
+      if (menuOverlay) menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (navMenu && navMenu.classList.contains('active')) closeMenu();
+        else openMenu();
+      });
+    }
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+    if (navMenu) navMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', closeMenu));
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) closeMenu();
+    });
+
+    function initMobileDropdowns() {
+      if (window.innerWidth > 768) return;
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (trigger && menu) {
+          const newTrigger = trigger.cloneNode(true);
+          trigger.parentNode.replaceChild(newTrigger, trigger);
+          newTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+            menu.classList.toggle('open');
+          });
+        }
+      });
+    }
+    initMobileDropdowns();
+    window.addEventListener('resize', initMobileDropdowns);
+  </script>
 
   <script src="js/properties.js"></script>
   <script src="js/property.js"></script>

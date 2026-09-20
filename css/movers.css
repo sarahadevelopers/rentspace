@@ -1066,3 +1066,63 @@ select.elite-input {
     font-size: 9px;
   }
 }
+
+/* ===== MENU OVERLAY (was missing) ===== */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ===== MENU OVERLAY (was missing) ===== */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ===== LOGO ® ===== */
+.r-sup {
+  font-size: 0.65rem;
+  vertical-align: super;
+}
+
+/* ===== MOBILE PANEL OVERFLOW GUARD ===== */
+@media (max-width: 768px) {
+  .nav-links {
+    overflow-x: hidden;
+  }
+  .nav-links a {
+    box-sizing: border-box;
+  }
+}

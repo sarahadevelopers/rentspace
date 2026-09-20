@@ -203,7 +203,7 @@ page = page.replace(/\{\{priceSuffix\}\}/g, priceSuffix);
     page = page.replace(/\{\{ownerWhatsapp\}\}/g, prop.ownerWhatsapp || FALLBACK_WHATSAPP);
     page = page.replace(/\{\{ownerEmail\}\}/g,    prop.ownerEmail || FALLBACK_EMAIL);
 
-    const seoTitle  = prop.seo_title || `${prop.title} – KES ${prop.price?.toLocaleString()}/mo | RentSpace`;
+    const seoTitle  = prop.seo_title || `${prop.title} – KES ${prop.price?.toLocaleString()}${priceSuffix} | RentSpace`;
     const metaDesc  = prop.meta_description || (prop.description || '').substring(0, 150);
     page = page.replace(/\{\{seo_title\}\}/g, escapeHtml(seoTitle));
     page = page.replace(/\{\{meta_description\}\}/g, escapeHtml(metaDesc));
@@ -245,8 +245,14 @@ page = page.replace(/\{\{priceSuffix\}\}/g, priceSuffix);
     page = page.replace(/\{\{schemaType\}\}/g, schemaType);
 
     const similarRentals = rentals.filter(r => r.id !== prop.id && r.estate === prop.estate).slice(0, 4);
-    let recsHtml = '';
+       let recsHtml = '';
     similarRentals.forEach(rec => {
+      const recIsSale =
+        rec.rental_type === 'sale' ||
+        rec.available_for === 'sale' ||
+        (rec.type && String(rec.type).toLowerCase().includes('land'));
+      const recSuffix = recIsSale ? '' : ' / mo';
+
       recsHtml += `
         <a href="../property/${rec.slug}.html" class="rec-card">
           <div class="rec-card-image">
@@ -254,7 +260,7 @@ page = page.replace(/\{\{priceSuffix\}\}/g, priceSuffix);
           </div>
           <div class="rec-card-info">
             <h4>${escapeHtml(rec.title)}</h4>
-            <p>${rec.estate} · KES ${rec.price?.toLocaleString()} / mo</p>
+            <p>${rec.estate} · KES ${rec.price?.toLocaleString()}${recSuffix}</p>
           </div>
         </a>`;
     });

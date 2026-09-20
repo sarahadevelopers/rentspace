@@ -1203,6 +1203,151 @@
   color: #000;
   border-color: var(--gold);
 }
+
+/* ===== HAMBURGER BUTTON RESET ===== */
+.hamburger {
+  background: transparent;
+  border: none;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  color: inherit;
+  font: inherit;
+}
+
+/* ===== NAVBAR CTAs ===== */
+.nav-actions-desktop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nav-actions {
+  display: none;
+}
+
+.nav-cta-primary {
+  background: var(--gold, #c9a45c);
+  color: #0a0a0a;
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-cta-primary i { font-size: 14px; }
+
+.nav-cta-primary:hover {
+  background: #d4b37a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(197, 160, 89, 0.4);
+}
+
+.nav-cta-secondary {
+  background: transparent;
+  border: 1.5px solid var(--gold, #c9a45c);
+  color: var(--gold, #c9a45c);
+  padding: 8px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-cta-secondary:hover {
+  background: var(--gold, #c9a45c);
+  color: #0a0a0a;
+  transform: translateY(-2px);
+}
+
+.nav-auth {
+  color: var(--text-secondary, rgba(255,255,255,0.7));
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  padding: 8px 4px;
+  transition: all 0.3s ease;
+}
+
+.nav-auth:hover { color: var(--gold, #c9a45c); }
+
+/* ===== LOGO ® ===== */
+.r-sup {
+  font-size: 0.65rem;
+  vertical-align: super;
+}
+
+/* ===== MOBILE OVERRIDES ===== */
+@media (max-width: 768px) {
+  .nav-actions-desktop {
+    display: none !important;
+  }
+
+  .nav-actions {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    padding: 16px 0 10px;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 8px;
+  }
+
+  .nav-actions .nav-cta-primary,
+  .nav-actions .nav-cta-secondary,
+  .nav-actions .nav-auth {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .nav-actions .nav-cta-secondary {
+    background: var(--gold, #c9a45c);
+    color: #0a0a0a;
+    border: none;
+    padding: 14px 20px;
+  }
+
+  .nav-actions .nav-auth {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  /* Stop overflow inside the slide-in panel */
+  .nav-links {
+    overflow-x: hidden !important;
+  }
+}
+
+/* ===== MOBILE LINK SAFETY ===== */
+@media (max-width: 768px) {
+  .nav-links a {
+    box-sizing: border-box;
+  }
+}
   </style>
 </head>
 <body>
@@ -1210,38 +1355,82 @@
   <!-- Executive Navbar -->
  <!-- Executive Navbar -->
 <nav class="exec-nav">
-  <a href="../index.html" class="nav-logo">Rent<span>Space</span></a>
+  <a href="../index.html" class="nav-logo">Rent<span>Space</span><sup class="r-sup">®</sup></a>
+
   <ul class="nav-links">
-    <!-- Explore Rentals Dropdown -->
+
+    <!-- FOR SALE -->
     <li class="dropdown">
-      <a href="../rentals.html" class="dropdown-trigger">Explore Rentals <i class="fas fa-chevron-down"></i></a>
+      <a href="../sale.html" class="dropdown-trigger">For Sale <i class="fas fa-chevron-down"></i></a>
       <ul class="dropdown-menu">
-        <li><a href="../rentals.html">All Rentals</a></li>
-        <li><a href="../rentals.html?location=Kitengela">Kitengela</a></li>
-        <li><a href="../rentals.html?location=Syokimau">Syokimau</a></li>
+        <li><a href="../sale.html">All For Sale</a></li>
+        <li><a href="../sale.html?type=apartment">Apartments</a></li>
+        <li><a href="../sale.html?type=bungalow">Bungalows</a></li>
+        <li><a href="../sale.html?type=maisonette">Maisonettes</a></li>
+        <li><a href="../sale.html?type=villa">Villas</a></li>
       </ul>
     </li>
-    
-    <!-- Airbnb Dropdown -->
+
+    <!-- FOR RENT -->
+    <li class="dropdown">
+      <a href="../rentals.html" class="dropdown-trigger">For Rent <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="../rentals.html">All Rentals</a></li>
+        <li><a href="../rentals.html?type=apartment">Apartments</a></li>
+        <li><a href="../rentals.html?type=bungalow">Bungalows</a></li>
+        <li><a href="../rentals.html?type=maisonette">Maisonettes</a></li>
+        <li><a href="../rentals.html?type=studio">Studios</a></li>
+      </ul>
+    </li>
+
+    <!-- LAND -->
+    <li class="dropdown">
+      <a href="../land.html" class="dropdown-trigger">Land <i class="fas fa-chevron-down"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="../land.html">All Land</a></li>
+        <li><a href="../land.html?type=land-res">Residential</a></li>
+        <li><a href="../land.html?type=land-comm">Commercial</a></li>
+        <li><a href="../land.html?type=ranch">Agricultural</a></li>
+      </ul>
+    </li>
+
+    <!-- AIRBNB -->
     <li class="dropdown">
       <a href="../airbnb.html" class="dropdown-trigger">Airbnb <i class="fas fa-chevron-down"></i></a>
       <ul class="dropdown-menu">
         <li><a href="../airbnb.html">All Bnbs</a></li>
-        <li><a href="../airbnb.html?location=Kitengela">Kitengela</a></li>
-        <li><a href="../airbnb.html?location=Syokimau">Syokimau</a></li>
+        <li><a href="../airbnb.html?type=studio">Studio</a></li>
+        <li><a href="../airbnb.html?type=1-bedroom">1 Bedroom</a></li>
+        <li><a href="../airbnb.html?type=2-bedroom">2 Bedroom</a></li>
+        <li><a href="../airbnb.html?type=executive">Executive</a></li>
       </ul>
     </li>
-    
-    <li><a href="../movers.html">Movers & Packers</a></li>
-    <li><a href="../blog.html">Location Insights</a></li>
-    <li><a href="https://fumigo.co.ke" target="_blank">Fumigation</a></li>
+
+    <!-- ===== MOBILE CTAs (Inside Nav Links) ===== -->
+    <div class="nav-actions">
+      <a href="../login.html?redirect=dashboard" class="nav-cta-primary">
+        <i class="fas fa-plus-circle"></i> Create Listing
+      </a>
+      <a href="../login.html" class="nav-auth">Log In</a>
+      <a href="../signup.html" class="nav-cta-secondary">Sign Up</a>
+    </div>
+
   </ul>
-  <a href="../contact.html" class="nav-cta">Book a Viewing</a>
-  <div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
+
+  <!-- ===== DESKTOP CTAs (Outside Nav Links) ===== -->
+  <div class="nav-actions-desktop">
+    <a href="../login.html?redirect=dashboard" class="nav-cta-primary">
+      <i class="fas fa-plus-circle"></i> Create Listing
+    </a>
+    <a href="../login.html" class="nav-auth">Log In</a>
+    <a href="../signup.html" class="nav-cta-secondary">Sign Up</a>
   </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <div class="menu-overlay" id="menuOverlay"></div>

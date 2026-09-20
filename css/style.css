@@ -93,11 +93,34 @@ h3, h4, h5, h6 { font-size: 22px; font-weight: 600; margin-bottom: 0.75rem; }
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  z-index: 1002;
+  background: transparent;
+  border: none;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  color: inherit;
+  font: inherit;
 }
 .hamburger span {
   width: 25px;
   height: 2px;
   background: var(--dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--gold);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--gold);
 }
 @media (max-width: 768px) {
   .nav-menu {

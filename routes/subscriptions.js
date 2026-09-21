@@ -6,11 +6,33 @@ const authMiddleware = require('../middleware/auth');
 const User = require('../models/User');
 const Subscription = require('../models/Subscription');
 const Property = require('../models/Property');
-const { 
+const {
   sendSubscriptionConfirmationEmail,
   sendRenewalReminderEmail,
   sendExpiredEmail
 } = require('../config/email');
+
+// ─── Optional rate limiter (graceful fallback if not installed) ───
+let rateLimit = null;
+try {
+  rateLimit = require('express-rate-limit');
+} catch (e) {
+  console.warn('⚠️  express-rate-limit not installed — /subscribe is UNPROTECTED.');
+  console.warn('    Fix: npm install express-rate-limit');
+}
+
+const subscribeLimiter = rateLimit
+  ? rateLimit({
+      windowMs: 15 * 60 * 1000,
+      max: 5,
+      standardHeaders: true,
+      legacyHeaders: false,
+      message: {
+        success: false,
+        error: 'Too many payment attempts. Please try again in 15 minutes.'
+      }
+    })
+  : (req, res, next) => next();
 
 // ─── Plan definitions ──────────────────────────────────────────
 const PLANS = {
@@ -61,13 +83,38 @@ function getDurationDays(period) {
   return 30; // default monthly
 }
 
+// ─── Middleware: Verify callback came from our payment proxy ───
+// Fail-closed if the secret is set; warn-and-pass if not (migration mode).
+function verifyCallbackSecret(req, res, next) {
+  const expected = process.env.PAYMENT_CALLBACK_SECRET;
+
+  if (!expected) {
+    console.warn('⚠️  PAYMENT_CALLBACK_SECRET not set — callback auth is DISABLED.');
+    console.warn('    Set it in Render env, then update the proxy to send x-callback-secret.');
+    return next();
+  }
+
+  const provided = req.headers['x-callback-secret'] || req.body?.secret;
+
+  if (provided !== expected) {
+    console.warn('🚫 Unauthorized callback attempt', {
+      ip: req.ip,
+      path: req.path,
+      hasProvidedSecret: Boolean(provided)
+    });
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
+
+  next();
+}
+
 // ─── GET /api/subscriptions/plans ──────────────────────────────
 router.get('/plans', (req, res) => {
   res.json(PLANS);
 });
 
 // ─── POST /api/subscriptions/subscribe ─────────────────────────
-router.post('/subscribe', authMiddleware, async (req, res) => {
+router.post('/subscribe', authMiddleware, subscribeLimiter, async (req, res) => {
   try {
     const { plan, phoneNumber, period } = req.body; // period: 'monthly' or 'quarterly'
 
@@ -90,16 +137,27 @@ router.post('/subscribe', authMiddleware, async (req, res) => {
     const durationDays = getDurationDays(period); // 30 or 90
     const now = new Date();
 
-    // ─── Check for existing active subscription ────────────────
+    // ─── Check for existing active subscription (renewals allowed) ──
     if (hasActiveSubscription(user)) {
-      // Allow renewal – do not block, but we'll handle it.
-      // We'll still allow the payment, and the webhook will extend from current expiry.
-      // No error – just proceed.
       console.log(`🔄 Renewal requested for user ${user.email}`);
     }
 
     // ─── Free plan ──────────────────────────────────────────────
     if (amount === 0) {
+      // Prevent duplicate free subscriptions
+      const existingFree = await Subscription.findOne({
+        userId,
+        plan: 'free',
+        status: 'active'
+      });
+
+      if (existingFree) {
+        return res.status(400).json({
+          success: false,
+          error: 'Free plan is already active on your account.'
+        });
+      }
+
       user.subscriptionPlan = plan;
       user.subscriptionExpiry = null;
       user.trialStartDate = user.trialStartDate || new Date();
@@ -130,10 +188,31 @@ router.post('/subscribe', authMiddleware, async (req, res) => {
       });
     }
 
-    // ─── Paid plan – forward to IntaSend payment service ──────
+    // ─── Paid plan ──────────────────────────────────────────────
+    // Supersede any pending subscription from the last 5 minutes
+    // (prevents double-charge from a user double-clicking)
+    const fiveMinAgo = new Date(Date.now() - 5 * 60 * 1000);
+    const recentPending = await Subscription.findOne({
+      userId,
+      status: 'pending',
+      createdAt: { $gt: fiveMinAgo }
+    });
+
+    if (recentPending) {
+      console.log(`♻️  Superseding recent pending sub ${recentPending.transactionRef}`);
+      recentPending.status = 'cancelled';
+      recentPending.paymentStatus = 'superseded';
+      recentPending.metadata = {
+        ...recentPending.metadata,
+        supersededAt: new Date(),
+        supersededBy: 'new-subscribe-request'
+      };
+      await recentPending.save();
+    }
+
     const transactionRef = `RENT-${uuidv4().slice(0, 8)}`;
 
-    // ─── Create subscription (provisional, will be updated by webhook) ──
+    // ─── Create subscription (provisional, updated by callback) ──
     const subscription = new Subscription({
       userId,
       plan,
@@ -142,23 +221,26 @@ router.post('/subscribe', authMiddleware, async (req, res) => {
       transactionRef,
       amount,
       phone: phoneNumber,
-      renewalDate: new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000) // provisional
+      renewalDate: new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000)
     });
     await subscription.save();
 
-    const intasendServiceUrl = process.env.INTASEND_SERVICE_URL || 'https://sarahapay-intasend.onrender.com';
-    const callbackUrl = process.env.INTASEND_CALLBACK_URL || 'https://rentspace-markeplace.onrender.com/api/payment-callback';
+    const intasendServiceUrl =
+      process.env.INTASEND_SERVICE_URL || 'https://sarahapay-intasend.onrender.com';
+    const callbackUrl =
+      process.env.INTASEND_CALLBACK_URL ||
+      'https://rentspace-markeplace.onrender.com/api/subscriptions/payment-callback';
 
-    // ─── Call sarahapay-intasend ──────────────────────────────
+    // ─── Call the payment proxy ────────────────────────────────
     const response = await axios.post(
       `${intasendServiceUrl}/api/pay`,
       {
         phone: phoneNumber,
-        amount: amount,
-        plan: plan,
-        userId: userId,
+        amount,
+        plan,
+        userId,
         website: 'rentspace',
-        callbackUrl: callbackUrl,
+        callbackUrl,
         name: user.name || 'RentSpace User'
       },
       {
@@ -170,22 +252,30 @@ router.post('/subscribe', authMiddleware, async (req, res) => {
       }
     );
 
-    console.log('📤 Proxy response data:', JSON.stringify(response.data, null, 2));
+    console.log('📤 Proxy response:', JSON.stringify(response.data, null, 2));
 
-    // ─── Store metadata with duration and period ──────────────
-    const checkoutId = response.data.checkoutId || response.data.checkout_id || response.data.id || response.data.invoice_id;
-    const apiRef = response.data.api_ref || response.data.reference || response.data.transactionRef || null;
+    const checkoutId =
+      response.data.checkoutId ||
+      response.data.checkout_id ||
+      response.data.id ||
+      response.data.invoice_id;
+
+    const apiRef =
+      response.data.api_ref ||
+      response.data.reference ||
+      response.data.transactionRef ||
+      null;
 
     if (!checkoutId) {
-      console.warn('⚠️ No checkout_id found in proxy response. Using transactionRef as fallback.');
+      console.warn('⚠️  No checkout_id in proxy response — using transactionRef fallback.');
     }
 
     subscription.metadata = {
       ...subscription.metadata,
       checkout_id: checkoutId || transactionRef,
       api_ref: apiRef,
-      durationDays: durationDays,        // ← STORE DURATION
-      period: period || 'monthly',       // ← STORE PERIOD
+      durationDays,
+      period: period || 'monthly',
       intasendResponse: response.data,
       initiatedAt: new Date()
     };
@@ -199,7 +289,6 @@ router.post('/subscribe', authMiddleware, async (req, res) => {
       transactionRef,
       checkoutId: checkoutId || transactionRef
     });
-
   } catch (error) {
     console.error('Subscription error:', {
       message: error.message,
@@ -217,29 +306,54 @@ router.post('/subscribe', authMiddleware, async (req, res) => {
   }
 });
 
-// ─── POST /api/payment-callback (Called by sarahapay-intasend) ──
-// This is the callback from the proxy – we keep it for backward compatibility.
-// The main webhook is in server.js, but this is also used.
-router.post('/payment-callback', async (req, res) => {
+// ─── POST /api/subscriptions/payment-callback ──────────────────
+// Called by the payment proxy after M-PESA confirms.
+// SECURED via shared secret (x-callback-secret header).
+router.post('/payment-callback', verifyCallbackSecret, async (req, res) => {
   try {
     const payload = req.body;
     const { transactionRef, userId, plan, status, mpesaReceipt } = payload;
 
     console.log(`📥 Payment callback received: ${transactionRef} | ${status}`);
 
-    const subscription = await Subscription.findOne({ transactionRef });
+    if (!transactionRef) {
+      return res.status(400).json({ error: 'transactionRef required' });
+    }
+
+    // ─── Multi-field lookup (handles proxies that send checkout_id) ──
+    const subscription = await Subscription.findOne({
+      $or: [
+        { transactionRef },
+        { 'metadata.checkout_id': transactionRef },
+        { 'metadata.api_ref': transactionRef }
+      ]
+    });
+
     if (!subscription) {
-      console.warn(`⚠️ No subscription found for ref: ${transactionRef}`);
+      console.warn(`⚠️  No subscription found for ref: ${transactionRef}`);
       return res.status(404).json({ error: 'Subscription not found' });
     }
 
+    // ─── Idempotency: already-processed guard ──────────────────
     if (subscription.status !== 'pending') {
-      console.log(`⏭️ Subscription ${transactionRef} already processed (status: ${subscription.status})`);
+      console.log(`⏭️  Subscription ${subscription.transactionRef} already processed (${subscription.status})`);
       return res.status(200).send('OK');
     }
 
+    // ─── Success path ──────────────────────────────────────────
     if (status === 'completed' || status === 'COMPLETE' || status === 'success') {
-      // Update subscription
+      // Receipt uniqueness check (guards against replay / reuse)
+      if (mpesaReceipt) {
+        const receiptInUse = await Subscription.findOne({
+          'metadata.mpesaReceipt': mpesaReceipt,
+          _id: { $ne: subscription._id }
+        });
+        if (receiptInUse) {
+          console.warn(`🚫 M-Pesa receipt already used elsewhere: ${mpesaReceipt}`);
+          return res.status(400).json({ error: 'Receipt already used' });
+        }
+      }
+
       subscription.status = 'active';
       subscription.paymentStatus = 'paid';
       subscription.metadata = {
@@ -251,51 +365,68 @@ router.post('/payment-callback', async (req, res) => {
       };
       await subscription.save();
 
-      // Update user with renewal logic
-      const user = await User.findById(userId);
+      // ─── Activate user + extend expiry ─────────────────────
+      const resolvedUserId = userId || subscription.userId;
+      const user = await User.findById(resolvedUserId);
+
       if (user) {
         const previousPlan = user.subscriptionPlan;
         const durationDays = subscription.metadata?.durationDays || 30;
 
-        // Compute new expiry: extend from current expiry or from now
-        const currentExpiry = user.subscriptionExpiry ? new Date(user.subscriptionExpiry) : null;
+        const currentExpiry = user.subscriptionExpiry
+          ? new Date(user.subscriptionExpiry)
+          : null;
         const now = new Date();
+
         let newExpiry;
         if (currentExpiry && currentExpiry > now) {
-          // Renewal: extend from current expiry
           newExpiry = new Date(currentExpiry.getTime() + durationDays * 24 * 60 * 60 * 1000);
         } else {
           newExpiry = new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000);
         }
 
-        user.subscriptionPlan = plan;
+        user.subscriptionPlan = plan || subscription.plan;
         user.subscriptionExpiry = newExpiry;
         user.mpesaReceipt = mpesaReceipt;
-        user.transactionRef = transactionRef;
+        user.transactionRef = subscription.transactionRef;
         await user.save();
 
-        // Update properties
         await Property.updateMany(
           { ownerId: user._id },
-          { $set: { ownerSubscriptionPlan: plan } }
+          { $set: { ownerSubscriptionPlan: user.subscriptionPlan } }
         );
 
-        console.log(`✅ User ${user.email} upgraded from ${previousPlan || 'free'} to ${plan} via callback (expiry: ${newExpiry.toISOString()})`);
+        console.log(
+          `✅ User ${user.email} upgraded ${previousPlan || 'free'} → ${user.subscriptionPlan} ` +
+          `(expiry: ${newExpiry.toISOString()})`
+        );
 
         try {
-          await sendSubscriptionConfirmationEmail(user.email, user.name, plan, subscription.amount);
+          await sendSubscriptionConfirmationEmail(
+            user.email,
+            user.name,
+            user.subscriptionPlan,
+            subscription.amount
+          );
           console.log(`✅ Confirmation email sent to ${user.email}`);
         } catch (emailError) {
           console.error('Email error:', emailError);
         }
       } else {
-        console.warn(`⚠️ User ${userId} not found`);
+        console.warn(`⚠️  User ${resolvedUserId} not found for subscription ${subscription.transactionRef}`);
       }
     } else {
+      // ─── Failure path ────────────────────────────────────────
       subscription.status = 'cancelled';
       subscription.paymentStatus = 'failed';
+      subscription.metadata = {
+        ...subscription.metadata,
+        failedAt: new Date(),
+        failureStatus: status,
+        callbackPayload: payload
+      };
       await subscription.save();
-      console.log(`❌ Payment failed for ${transactionRef}`);
+      console.log(`❌ Payment failed for ${subscription.transactionRef}`);
     }
 
     res.status(200).send('OK');
@@ -305,73 +436,136 @@ router.post('/payment-callback', async (req, res) => {
   }
 });
 
-// ─── POST /api/subscriptions/intasend-webhook (Legacy) ──
+// ─── POST /api/subscriptions/intasend-webhook (Legacy) ─────────
 router.post('/intasend-webhook', async (req, res) => {
-  console.log('📥 Legacy webhook called (intasend-webhook) — ignoring.');
+  console.log('📥 Legacy webhook (intasend-webhook) — ignoring.');
   res.status(200).send('OK');
 });
 
-// ─── POST /api/subscriptions/verify-payment (Manual fallback) ──
+// ─── POST /api/subscriptions/verify-payment ────────────────────
+// SAFE version: queries the payment proxy for the real status.
+// Does NOT activate on user-supplied receipt alone.
 router.post('/verify-payment', authMiddleware, async (req, res) => {
   try {
-    const { transactionRef, mpesaReceipt } = req.body;
+    const { transactionRef } = req.body;
     if (!transactionRef) {
       return res.status(400).json({ error: 'Transaction reference required' });
     }
 
     const subscription = await Subscription.findOne({
       transactionRef,
-      userId: req.user._id,
-      status: 'pending'
+      userId: req.user._id
     });
 
     if (!subscription) {
-      return res.status(404).json({ error: 'No pending subscription found' });
+      return res.status(404).json({ error: 'Subscription not found' });
     }
 
-    if (!mpesaReceipt) {
-      return res.status(400).json({ error: 'M-Pesa receipt number required' });
+    // Already handled — idempotent response
+    if (subscription.status === 'active') {
+      return res.json({
+        success: true,
+        message: 'Subscription is already active.',
+        status: 'active'
+      });
     }
 
-    subscription.status = 'active';
-    subscription.paymentStatus = 'paid';
-    subscription.metadata = {
-      ...subscription.metadata,
-      mpesaReceipt,
-      verifiedAt: new Date(),
-      verifiedBy: 'manual'
-    };
-    await subscription.save();
+    if (subscription.status !== 'pending') {
+      return res.status(400).json({
+        error: `Subscription is in "${subscription.status}" state — cannot verify.`
+      });
+    }
 
-    const user = await User.findById(subscription.userId);
-    if (user) {
-      const previousPlan = user.subscriptionPlan;
-      const durationDays = subscription.metadata?.durationDays || 30;
-      const currentExpiry = user.subscriptionExpiry ? new Date(user.subscriptionExpiry) : null;
-      const now = new Date();
-      let newExpiry;
-      if (currentExpiry && currentExpiry > now) {
-        newExpiry = new Date(currentExpiry.getTime() + durationDays * 24 * 60 * 60 * 1000);
-      } else {
-        newExpiry = new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000);
+    // ─── Query the payment proxy for authoritative status ──────
+    const intasendServiceUrl =
+      process.env.INTASEND_SERVICE_URL || 'https://sarahapay-intasend.onrender.com';
+
+    let remoteStatus = null;
+    let remoteReceipt = null;
+
+    try {
+      const lookupRef = subscription.metadata?.api_ref || transactionRef;
+      const statusRes = await axios.get(
+        `${intasendServiceUrl}/api/status/${encodeURIComponent(lookupRef)}`,
+        {
+          headers: { 'x-api-secret': process.env.API_SECRET },
+          timeout: 10000
+        }
+      );
+      remoteStatus = String(statusRes.data?.status || '').toLowerCase();
+      remoteReceipt = statusRes.data?.mpesaReceipt || statusRes.data?.mpesa_receipt || null;
+      console.log(`🔎 Remote status for ${lookupRef}: ${remoteStatus}`);
+    } catch (err) {
+      console.warn('⚠️  Proxy status lookup failed:', err.message);
+      return res.status(503).json({
+        error: 'Could not reach payment provider. Please wait for the payment to auto-confirm.'
+      });
+    }
+
+    // ─── Only activate if the provider confirms success ────────
+    if (remoteStatus === 'complete' || remoteStatus === 'completed' || remoteStatus === 'success') {
+      subscription.status = 'active';
+      subscription.paymentStatus = 'paid';
+      subscription.metadata = {
+        ...subscription.metadata,
+        mpesaReceipt: remoteReceipt,
+        verifiedAt: new Date(),
+        verifiedBy: 'manual-status-query'
+      };
+      await subscription.save();
+
+      const user = await User.findById(subscription.userId);
+      if (user) {
+        const durationDays = subscription.metadata?.durationDays || 30;
+        const currentExpiry = user.subscriptionExpiry
+          ? new Date(user.subscriptionExpiry)
+          : null;
+        const now = new Date();
+
+        const newExpiry =
+          currentExpiry && currentExpiry > now
+            ? new Date(currentExpiry.getTime() + durationDays * 24 * 60 * 60 * 1000)
+            : new Date(now.getTime() + durationDays * 24 * 60 * 60 * 1000);
+
+        user.subscriptionPlan = subscription.plan;
+        user.subscriptionExpiry = newExpiry;
+        await user.save();
+
+        await Property.updateMany(
+          { ownerId: user._id },
+          { $set: { ownerSubscriptionPlan: subscription.plan } }
+        );
+
+        console.log(
+          `✅ User ${user.email} activated via manual query ` +
+          `(expiry: ${newExpiry.toISOString()})`
+        );
+
+        try {
+          await sendSubscriptionConfirmationEmail(
+            user.email,
+            user.name,
+            subscription.plan,
+            subscription.amount
+          );
+        } catch (emailError) {
+          console.error('Email error:', emailError);
+        }
       }
 
-      user.subscriptionPlan = subscription.plan;
-      user.subscriptionExpiry = newExpiry;
-      await user.save();
-
-      await Property.updateMany(
-        { ownerId: user._id },
-        { $set: { ownerSubscriptionPlan: subscription.plan } }
-      );
-
-      console.log(`✅ User ${user.email} upgraded via manual verification (expiry: ${newExpiry.toISOString()})`);
+      return res.json({
+        success: true,
+        message: 'Subscription verified and activated.',
+        status: 'active',
+        subscription
+      });
     }
 
-    res.json({
-      success: true,
-      message: 'Subscription activated manually',
-      subscription
+    // Status query came back, but not confirmed yet
+    return res.status(202).json({
+      success: false,
+      status: remoteStatus || 'pending',
+      message: 'Payment is still being processed. We will activate your account once M-PESA confirms.'
     });
   } catch (error) {
     console.error('Manual verification error:', error);
@@ -379,7 +573,7 @@ router.post('/verify-payment', authMiddleware, async (req, res) => {
   }
 });
 
-// ─── GET /api/subscriptions/status (Check current subscription) ──
+// ─── GET /api/subscriptions/status ─────────────────────────────
 router.get('/status', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
@@ -396,9 +590,16 @@ router.get('/status', authMiddleware, async (req, res) => {
         isActive,
         expiresAt: user.subscriptionExpiry,
         trialStartDate: user.trialStartDate,
-        daysRemaining: isActive && user.subscriptionExpiry
-          ? Math.max(0, Math.ceil((new Date(user.subscriptionExpiry) - new Date()) / (1000 * 60 * 60 * 24)))
-          : 0
+        daysRemaining:
+          isActive && user.subscriptionExpiry
+            ? Math.max(
+                0,
+                Math.ceil(
+                  (new Date(user.subscriptionExpiry) - new Date()) /
+                    (1000 * 60 * 60 * 24)
+                )
+              )
+            : 0
       }
     });
   } catch (error) {
@@ -407,7 +608,7 @@ router.get('/status', authMiddleware, async (req, res) => {
   }
 });
 
-// ─── GET /api/subscriptions/check-expiry ─────────────────────────
+// ─── GET /api/subscriptions/check-expiry ───────────────────────
 router.get('/check-expiry', async (req, res) => {
   try {
     const secret = req.query.secret;
@@ -428,10 +629,17 @@ router.get('/check-expiry', async (req, res) => {
 
     let reminderCount = 0;
     for (const user of expiringUsers) {
-      const daysRemaining = Math.ceil((user.subscriptionExpiry - now) / (1000 * 60 * 60 * 24));
+      const daysRemaining = Math.ceil(
+        (user.subscriptionExpiry - now) / (1000 * 60 * 60 * 24)
+      );
       if (daysRemaining === 3) {
         try {
-          await sendRenewalReminderEmail(user.email, user.name, user.subscriptionPlan, daysRemaining);
+          await sendRenewalReminderEmail(
+            user.email,
+            user.name,
+            user.subscriptionPlan,
+            daysRemaining
+          );
           user.lastReminderSent = now;
           await user.save();
           reminderCount++;
@@ -441,7 +649,7 @@ router.get('/check-expiry', async (req, res) => {
       }
     }
 
-    // ─── Users expired today ────────────────────────────────────
+    // ─── Users expired today ───────────────────────────────────
     const expiredUsers = await User.find({
       subscriptionPlan: { $ne: 'free' },
       subscriptionExpiry: { $gt: oneDayAgo, $lt: now },

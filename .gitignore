@@ -1,20 +1,37 @@
+# ─── Dependencies ───
 node_modules/
+
+# ─── Environment files ───
 .env
 .env.local
 .env.*.local
+
+# ─── Admin setup scripts (local only) ───
 reset-admin.js
 create-admin.js
+
+# ─── Editor / OS files ───
 .vscode/
 .idea/
-*.log
+.DS_Store
+Thumbs.db
+
+# ─── Build artifacts ───
 dist/
 build/
 coverage/
-.DS_Store
-Thumbs.db
+
+# ─── Logs ───
+*.log
+
+# ─── Databases ───
 *.sqlite
 *.db
 *.bak
-# .gitignore
+
+# ─── Secrets & credentials ───
 service-account.json
-rentspace-508304-*.jsonextract-blogs.js
+rentspace-508304-*.json
+
+# ─── Local utilities ───
+extract-blogs.js

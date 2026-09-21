@@ -106,6 +106,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/admin', adminRoutes);
+
 // ─── Multer / upload error handler ────────────────────────────
 app.use((err, req, res, next) => {
   if (err && err.name === 'MulterError') {
@@ -139,10 +140,37 @@ app.use((err, req, res, next) => {
 app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
   try {
     // ─── Verify webhook came from sarahapay service ─────────────
-    const incomingSecret = req.headers['x-api-secret'] || req.query.secret;
-    if (!incomingSecret || incomingSecret !== process.env.API_SECRET) {
-      console.warn('⚠️ Webhook rejected: invalid or missing API_SECRET');
+    // Preferred:  x-callback-secret header matching PAYMENT_CALLBACK_SECRET
+    // Fallback:   x-api-secret header matching API_SECRET (migration mode)
+    //
+    // The fallback exists so we can deploy this without breaking the
+    // currently-running proxy. Remove the apiOk branch once the proxy
+    // has been updated to send x-callback-secret.
+    const expectedCallbackSecret = process.env.PAYMENT_CALLBACK_SECRET;
+    const expectedApiSecret = process.env.API_SECRET;
+
+    const incomingCallbackSecret = req.headers['x-callback-secret'];
+    const incomingApiSecret = req.headers['x-api-secret'];
+
+    const callbackOk =
+      expectedCallbackSecret &&
+      incomingCallbackSecret &&
+      incomingCallbackSecret === expectedCallbackSecret;
+
+    const apiOk =
+      expectedApiSecret &&
+      incomingApiSecret &&
+      incomingApiSecret === expectedApiSecret;
+
+    if (!callbackOk && !apiOk) {
+      console.warn('⚠️ Webhook rejected: no valid secret (callback or api)');
       return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    if (callbackOk) {
+      console.log('🔐 Webhook authenticated via PAYMENT_CALLBACK_SECRET');
+    } else {
+      console.log('🔐 Webhook authenticated via API_SECRET (migration mode — update proxy to send x-callback-secret)');
     }
 
     const payload = req.body;
@@ -216,12 +244,15 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
     }
     console.log(`👤 Found user: ${user.email}`);
 
-    // ─── Step 3: Determine plan from amount ──────────────────────
-    let planName = 'basic';
-    const amt = parseFloat(amount);
-    if (amt >= 10) planName = 'developer';
-    else if (amt >= 5) planName = 'pro';
-    else if (amt >= 2) planName = 'basic';
+    // ─── Step 3: Read plan from the subscription itself ─────────
+    // (Not inferred from amount — the previous logic marked every
+    // paid subscription as 'developer' because all prices exceed 10.)
+    const planName = subscription.plan;
+    if (!planName || !['basic', 'pro', 'developer', 'free'].includes(planName)) {
+      console.warn(`⚠️ Subscription ${subscription._id} has invalid plan: ${planName}`);
+      return res.status(400).json({ error: 'Invalid subscription plan' });
+    }
+    console.log(`📦 Activating plan: ${planName} (amount received: ${amount})`);
 
     // ─── Step 4: Activate all pending subscriptions for this user ──
     const result = await Subscription.updateMany(

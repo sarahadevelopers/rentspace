@@ -56,7 +56,7 @@ const subscriptionSchema = new mongoose.Schema({
 
 // ─── Indexes for performance ──────────────────────────────────
 subscriptionSchema.index({ userId: 1, status: 1 });
-subscriptionSchema.index({ transactionRef: 1 });
+//subscriptionSchema.index({ transactionRef: 1 });
 subscriptionSchema.index({ status: 1, renewalDate: 1 });
 subscriptionSchema.index({ phone: 1, status: 1 }); // ✅ NEW – for webhook lookup by phone
 

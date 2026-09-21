@@ -65,7 +65,7 @@ const postSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // ─── Indexes for performance ──────────────────────────────────
-postSchema.index({ slug: 1 });
+//postSchema.index({ slug: 1 });
 postSchema.index({ category: 1, createdAt: -1 });
 postSchema.index({ status: 1, createdAt: -1 });
 

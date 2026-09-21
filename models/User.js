@@ -93,18 +93,8 @@ const userSchema = new mongoose.Schema({
     logo: { type: String },
     website: { type: String },
     bio: { type: String }
-  },
-
-  // ─── Timestamps ──────────────────────────────────────────
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
   }
-}, { timestamps: true }); // Auto-updates `updatedAt`
+}, { timestamps: true }); // Auto-updates `createdAt` and `updatedAt`
 
 // ─── Encrypt password ──────────────────────────────────────
 userSchema.pre('save', async function() {
@@ -119,8 +109,8 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
 };
 
 // ─── Indexes for performance ──────────────────────────────
-userSchema.index({ email: 1 });
-userSchema.index({ phone: 1 });
+// `email` and `phone` indexes are declared at field level via `unique: true`.
+// Do NOT re-add them here — that produces a duplicate-index warning on boot.
 userSchema.index({ resetPasswordToken: 1 }, { sparse: true });
 
 module.exports = mongoose.model('User', userSchema);

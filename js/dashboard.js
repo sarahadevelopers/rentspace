@@ -457,7 +457,7 @@ function populateEstateFilter() {
 // API Configuration
 // =========================
 // ─── reCAPTCHA v3 helper ──────────────────────────────────────
-const RECAPTCHA_SITE_KEY = '6LcKDGEtAAAAAJKAWjXB7j5bSIPvzz94wBWapTD5';
+const RECAPTCHA_SITE_KEY = '6LdYicctAAAAAHX5innx5Bf46qa20YU8EMYQcpWm';
 
 function getRecaptchaToken(action) {
   return new Promise((resolve, reject) => {

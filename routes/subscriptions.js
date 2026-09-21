@@ -6,6 +6,7 @@ const authMiddleware = require('../middleware/auth');
 const User = require('../models/User');
 const Subscription = require('../models/Subscription');
 const Property = require('../models/Property');
+const { verifyRecaptcha } = require('../middleware/recaptcha');
 const {
   sendSubscriptionConfirmationEmail,
   sendRenewalReminderEmail,
@@ -114,7 +115,7 @@ router.get('/plans', (req, res) => {
 });
 
 // ─── POST /api/subscriptions/subscribe ─────────────────────────
-router.post('/subscribe', authMiddleware, subscribeLimiter, async (req, res) => {
+router.post('/subscribe', authMiddleware, subscribeLimiter, verifyRecaptcha('payment'), async (req, res) => {
   try {
     const { plan, phoneNumber, period } = req.body; // period: 'monthly' or 'quarterly'
 

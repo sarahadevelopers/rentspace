@@ -18,7 +18,9 @@ const subscriptionSchema = new mongoose.Schema({
   },
   paymentStatus: {
     type: String,
-    enum: ['pending', 'paid', 'failed'],
+    // 'superseded' is set when a newer pending sub replaces this one
+    // (double-click / re-initiated renewal). 'refunded' reserved for future use.
+    enum: ['pending', 'paid', 'failed', 'superseded', 'refunded'],
     default: 'pending'
   },
   transactionRef: {
@@ -30,7 +32,7 @@ const subscriptionSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  phone: {                // ✅ NEW – stores the phone number used for payment
+  phone: {                // stores the phone number used for payment
     type: String,
     default: null
   },
@@ -55,10 +57,11 @@ const subscriptionSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // ─── Indexes for performance ──────────────────────────────────
+// `transactionRef` is declared at field level via `unique: true, sparse: true`.
+// Do NOT re-add it here — that produces a duplicate-index warning on boot.
 subscriptionSchema.index({ userId: 1, status: 1 });
-//subscriptionSchema.index({ transactionRef: 1 });
 subscriptionSchema.index({ status: 1, renewalDate: 1 });
-subscriptionSchema.index({ phone: 1, status: 1 }); // ✅ NEW – for webhook lookup by phone
+subscriptionSchema.index({ phone: 1, status: 1 }); // webhook lookup by phone
 
 // ─── Instance method: check if subscription is active ──────
 subscriptionSchema.methods.isActive = function() {
@@ -76,8 +79,7 @@ subscriptionSchema.statics.expirePastSubscriptions = async function() {
       renewalDate: { $lt: now }
     },
     {
-      status: 'expired',
-      expiredAt: now
+      $set: { status: 'expired', expiredAt: now }
     }
   );
   return result;

@@ -21,7 +21,7 @@
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcKDGEtAAAAAJKAWjXB7j5bSIPvzz94wBWapTD5" async defer></script>
   <!-- Canonical URL -->
   <link rel="canonical" href="https://rentspace.co.ke/dashboard.html" />
   
@@ -2595,6 +2595,22 @@
   // Auto-focus the input
   input.focus();
 })();
+// ─── reCAPTCHA v3 helper ──────────────────────────────────────
+const RECAPTCHA_SITE_KEY = '6LcKDGEtAAAAAJKAWjXB7j5bSIPvzz94wBWapTD5';
+
+function getRecaptchaToken(action) {
+  return new Promise((resolve, reject) => {
+    if (!window.grecaptcha) {
+      return reject(new Error('reCAPTCHA not loaded'));
+    }
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute(RECAPTCHA_SITE_KEY, { action })
+        .then(resolve)
+        .catch(reject);
+    });
+  });
+}
 </script>
 </body>
 </html>

@@ -456,6 +456,22 @@ function populateEstateFilter() {
 // =========================
 // API Configuration
 // =========================
+// ─── reCAPTCHA v3 helper ──────────────────────────────────────
+const RECAPTCHA_SITE_KEY = '6LcKDGEtAAAAAJKAWjXB7j5bSIPvzz94wBWapTD5';
+
+function getRecaptchaToken(action) {
+  return new Promise((resolve, reject) => {
+    if (!window.grecaptcha) {
+      return reject(new Error('reCAPTCHA not loaded'));
+    }
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute(RECAPTCHA_SITE_KEY, { action })
+        .then(resolve)
+        .catch(reject);
+    });
+  });
+}
 const API_BASE = 'https://rentspace-markeplace.onrender.com';
 
 // =========================
@@ -2148,17 +2164,27 @@ async function handleSubscription() {
     closeBtn.style.opacity = '0.5';
     closeBtn.style.cursor = 'not-allowed';
 
-    try {
+        try {
         const token = getToken();
-        
-        // ✅ SEND PERIOD TO BACKEND
+
+        // ─── Get reCAPTCHA token (payment action = strict) ──────
+        let recaptchaToken = '';
+        try {
+            recaptchaToken = await getRecaptchaToken('payment');
+        } catch (rcErr) {
+            console.warn('reCAPTCHA unavailable:', rcErr.message);
+            // Continue without token — server decides whether to allow it.
+        }
+
+        // ✅ SEND PERIOD + reCAPTCHA TOKEN TO BACKEND
         const res = await fetch(`${API_BASE}/api/subscriptions/subscribe`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify({ 
                 plan, 
                 phoneNumber: phone,
-                period: period   // ✅ ADDED
+                period: period,
+                recaptchaToken
             })
         });
         const data = await res.json();

@@ -42,6 +42,7 @@ const allowedOrigins = [
   'https://sarahadevelopers.github.io',
   'https://rentspace-markeplace.onrender.com',
   'https://rentspace.co.ke',
+  'https://www.rentspace.co.ke',    // ← added — covers www variant
   'http://localhost:5000',
   'http://localhost:3000'
 ];
@@ -346,6 +347,24 @@ app.use((req, res, next) => {
   if (req.path.startsWith('/api/')) return next();
   if (req.method !== 'GET') return next();
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// ─── Global error handler (must be last) ──────────────────────────
+// Catches any error not handled above, returns JSON instead of
+// Express's default HTML error page. Prevents frontend from choking
+// on "Unexpected token < in JSON" when something goes wrong.
+app.use((err, req, res, next) => {
+  console.error('💥 Unhandled error:', err);
+
+  // CORS errors come through here as well — return a clear 500 JSON
+  if (err.message === 'Not allowed by CORS') {
+    return res.status(500).json({ success: false, error: 'CORS: origin not allowed' });
+  }
+
+  res.status(err.status || 500).json({
+    success: false,
+    error: err.message || 'Internal server error'
+  });
 });
 
 // ─── Connect to MongoDB and start server ─────────────────────────

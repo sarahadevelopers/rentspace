@@ -7,6 +7,7 @@ require('../config/passport');
 const User = require('../models/User');
 const Property = require('../models/Property');
 const authMiddleware = require('../middleware/auth');
+const { verifyRecaptcha } = require('../middleware/recaptcha');
 const { 
   sendVerificationEmail, 
   sendPasswordResetEmail,
@@ -68,7 +69,7 @@ const generateToken = (userId, role) => {
 };
 
 // ─── Signup ────────────────────────────────────────────────────
-router.post('/signup', authLimiter, async (req, res) => {
+router.post('/signup', authLimiter, verifyRecaptcha('signup'), async (req, res) => {
   try {
     const { name, email, phone, password, role } = req.body;
 
@@ -199,7 +200,7 @@ router.get('/verify-email/:token', async (req, res) => {
 });
 
 // ─── Login (with per-account lockout) ──────────────────────────
-router.post('/login', authLimiter, async (req, res) => {
+router.post('/login', authLimiter, verifyRecaptcha('login'), async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -439,7 +440,7 @@ router.put('/users/:id/role', authMiddleware, async (req, res) => {
 // =============================================================
 
 // ─── Request Password Reset ──────────────────────────────────
-router.post('/forgot-password', async (req, res) => {
+router.post('/forgot-password', authLimiter, verifyRecaptcha('contact'), async (req, res) => {
   try {
     const { email } = req.body;
     if (!email) {

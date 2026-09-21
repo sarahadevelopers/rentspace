@@ -65,6 +65,55 @@ function normalizePhone(raw) {
   return { tel: '+' + cleaned, wa: cleaned };
 }
 
+// ─── Classify a property into one of four categories ──────────
+// Categories: 'land' | 'airbnb' | 'sale' | 'rental'
+// Order matters: land before sale (land is technically for sale).
+function getPropertyCategory(prop) {
+  const type  = String(prop.type || '').toLowerCase();
+  const title = String(prop.title || '').toLowerCase();
+  const rtype = String(prop.rental_type || '').toLowerCase();
+  const avail = String(prop.available_for || '').toLowerCase();
+
+  // Land — checks both type and title for keywords
+  if (
+    type.includes('land') ||
+    title.includes('land') ||
+    title.includes('plot') ||
+    title.includes('acre') ||
+    title.includes('ranch')
+  ) {
+    return 'land';
+  }
+
+  // Airbnb / short-stay
+  if (
+    rtype === 'short_term' ||
+    avail === 'short_term' ||
+    prop.price_night
+  ) {
+    return 'airbnb';
+  }
+
+  // Sale
+  if (rtype === 'sale' || avail === 'sale') {
+    return 'sale';
+  }
+
+  // Default: long-term rental
+  return 'rental';
+}
+
+// ─── Human-readable heading per category ──────────────────────
+function getRecommendationsHeading(category) {
+  switch (category) {
+    case 'land':   return 'Similar Land Listings';
+    case 'airbnb': return 'Similar Short-Stays';
+    case 'sale':   return 'Similar Properties for Sale';
+    case 'rental': return 'Similar Rentals';
+    default:       return 'Similar Curations';
+  }
+}
+
 function getAltTextForThumbnail(idx, prop, isRental = true) {
   const uniqueTitle = isRental ? prop.title : (prop.title.split(' – ')[0] || prop.title);
   const altMap = [
@@ -244,8 +293,30 @@ page = page.replace(/\{\{priceSuffix\}\}/g, priceSuffix);
     page = page.replace(/\{\{estateSlug\}\}/g, estateSlug);
     page = page.replace(/\{\{schemaType\}\}/g, schemaType);
 
-    const similarRentals = rentals.filter(r => r.id !== prop.id && r.estate === prop.estate).slice(0, 4);
-       let recsHtml = '';
+    // ── Recommendations — same category, prefer same estate ────
+    const propCategory = getPropertyCategory(prop);
+
+    // Pass 1: same estate + same category
+    let similarRentals = rentals.filter(r =>
+      r.id !== prop.id &&
+      r.estate === prop.estate &&
+      getPropertyCategory(r) === propCategory
+    );
+
+    // Pass 2: backfill with same category from other estates (only if needed)
+    if (similarRentals.length < 4) {
+      const extras = rentals.filter(r =>
+        r.id !== prop.id &&
+        r.estate !== prop.estate &&
+        getPropertyCategory(r) === propCategory &&
+        !similarRentals.some(s => s.id === r.id)
+      );
+      similarRentals = similarRentals.concat(extras);
+    }
+
+    similarRentals = similarRentals.slice(0, 4);
+
+    let recsHtml = '';
     similarRentals.forEach(rec => {
       const recIsSale =
         rec.rental_type === 'sale' ||
@@ -265,6 +336,7 @@ page = page.replace(/\{\{priceSuffix\}\}/g, priceSuffix);
         </a>`;
     });
     page = page.replace(/\{\{recommendations\}\}/g, recsHtml);
+    page = page.replace(/\{\{recommendationsHeading\}\}/g, getRecommendationsHeading(propCategory));
 
     const reviews = prop.reviews || [];
     let reviewsHtml = '';

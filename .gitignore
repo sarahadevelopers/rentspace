@@ -33,5 +33,4 @@ coverage/
 service-account.json
 rentspace-508304-*.json
 
-# ─── Local utilities ───
-extract-blogs.js
+

@@ -24,7 +24,7 @@ const Subscription = require('./models/Subscription');
 // ─── Initialize Express app ────────────────────────────────────────
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+wh
 // ✅ Fix for express-rate-limit behind Render's proxy
 app.set('trust proxy', 1);
 

@@ -24,7 +24,7 @@ const Subscription = require('./models/Subscription');
 // ─── Initialize Express app ────────────────────────────────────────
 const app = express();
 const PORT = process.env.PORT || 3000;
-//wh
+
 // ✅ Fix for express-rate-limit behind Render's proxy
 app.set('trust proxy', 1);
 
@@ -338,6 +338,47 @@ app.post('/api/subscriptions/saraha-webhook', async (req, res) => {
 
 // ─── Subscription routes (AFTER webhook) ─────────────────────────
 app.use('/api/subscriptions', subscriptionRoutes);
+
+// ─── Block backend source files from static serving ────────────
+// Must come BEFORE express.static. Without this, every .js and
+// .json file in the repo root is publicly readable — including
+// server.js, routes/*.js, and service-account.json.
+app.use((req, res, next) => {
+  const p = req.path.toLowerCase();
+
+  const blockedDirs = [
+    '/routes/',
+    '/models/',
+    '/middleware/',
+    '/config/',
+    '/node_modules/',
+    '/.git/'
+  ];
+
+  const blockedExts = [
+    '.json', '.md', '.yml', '.yaml',
+    '.env', '.log', '.sh', '.bat', '.ps1'
+  ];
+
+  const blockedFiles = [
+    '/server.js',
+    '/generate-all.js',
+    '/extract-blogs.js',
+    '/seed-posts.js',
+    '/package.json',
+    '/package-lock.json'
+  ];
+
+  if (
+    blockedDirs.some(d => p.startsWith(d)) ||
+    blockedExts.some(e => p.endsWith(e)) ||
+    blockedFiles.includes(p)
+  ) {
+    return res.status(404).end();
+  }
+
+  next();
+});
 
 // ─── Serve static frontend files ──────────────────────────────────
 app.use(express.static(path.join(__dirname)));
